@@ -35,5 +35,28 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="WastelandGame\Calculator\BulletPenetration.cs" />
+    <Compile Include="WastelandGame\Calculator\RandomNumbers.cs" />
+    <Compile Include="WastelandGame\GameObjects\Animal.cs" />
+    <Compile Include="WastelandGame\GameObjects\BodyPart.cs" />
+    <Compile Include="WastelandGame\GameObjects\Dialogue.cs" />
+    <Compile Include="WastelandGame\GameObjects\Entity.cs" />
+    <Compile Include="WastelandGame\GameObjects\EntityAction.cs" />
+    <Compile Include="WastelandGame\GameObjects\GameObject.cs" />
+    <Compile Include="WastelandGame\GameObjects\GameObjectPos.cs" />
+    <Compile Include="WastelandGame\GameObjects\Hitbox.cs" />
+    <Compile Include="WastelandGame\GameObjects\InternalOrgin.cs" />
+    <Compile Include="WastelandGame\GameObjects\MakeEntity.cs" />
+    <Compile Include="WastelandGame\GameObjects\Material.cs" />
+    <Compile Include="WastelandGame\GameObjects\MaterialLayer.cs" />
+    <Compile Include="WastelandGame\GameObjects\StatusEffect.cs" />
+    <Compile Include="WastelandGame\GameObjects\Wound.cs" />
+    <Compile Include="WastelandGame\GameRunner\CommandHandler.cs" />
+    <Compile Include="WastelandGame\GameRunner\EntityManager.cs" />
+    <Compile Include="WastelandGame\GameRunner\GameRunner.cs" />
+    <Compile Include="WastelandGame\GameRunner\GameState.cs" />
+    <Compile Include="WastelandGame\GameRunner\PlayerAction.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

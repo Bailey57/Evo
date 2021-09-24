@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Wasteland_game.WastelandGame.Calculator
 {
-    class Class1
+    class BulletPenetration
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Wasteland_game.WastelandGame.GameObjects
 {
-    class Class1
+    class Animal
     {
     }
 }
