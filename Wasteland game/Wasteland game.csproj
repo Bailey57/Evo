@@ -57,6 +57,15 @@
     <Compile Include="WastelandGame\GameRunner\GameRunner.cs" />
     <Compile Include="WastelandGame\GameRunner\GameState.cs" />
     <Compile Include="WastelandGame\GameRunner\PlayerAction.cs" />
+    <Compile Include="WastelandGame\Items\Armor.cs" />
+    <Compile Include="WastelandGame\Items\BaseItem.cs" />
+    <Compile Include="WastelandGame\Items\ProjectileAmmo.cs" />
+    <Compile Include="WastelandGame\Map\Map.cs" />
+    <Compile Include="WastelandGame\Map\MapArea.cs" />
+    <Compile Include="WastelandGame\Map\MapAreaFactory.cs" />
+    <Compile Include="WastelandGame\Weapons\Gun.cs" />
+    <Compile Include="WastelandGame\Weapons\GunAttachments.cs" />
+    <Compile Include="WastelandGame\Weapons\Magazine.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

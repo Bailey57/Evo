@@ -10,14 +10,16 @@ package wasteland.calculator;
 import java.util.Scanner;
 
 import GameObjects.GameObject;
-using Wasteland.entity.BodyPart;
-using Wasteland.entity.Hitbox;
-using Wasteland.entity.Material;
-using Wasteland.entity.MaterialLayer;
-using Wasteland.entity.Wound;
-using Wasteland.items.ProjectileAmmo;
 */
-namespace Wasteland_game.WastelandGame.Calculator {
+/*
+using Wasteland_game.WastelandGame.entity.BodyPart;
+using Wasteland_game.WastelandGame.entity.Hitbox;
+using Wasteland_game.WastelandGame.entity.Material;
+using Wasteland_game.WastelandGame.entity.MaterialLayer;
+using Wasteland_game.WastelandGame.entity.Wound;
+using Wasteland_game.WastelandGame.Items.ProjectileAmmo;
+*/
+namespace Wasteland_game.WastelandGame {
 public class BulletPenetration {
 
 	public String name = "unnamed projectile";// _9_mm, _7_62_mm, _12_7_mm
