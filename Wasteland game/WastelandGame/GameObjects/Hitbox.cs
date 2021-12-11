@@ -9,11 +9,11 @@ namespace Wasteland_game.WastelandGame.GameObjects
 	/*
     package wasteland.entity;
 
-import wasteland.GameObject;
-import wasteland.calculator.BulletPenetration;
-import wasteland.calculator.RandomNumbers;
-import wasteland.items.Armor;
-import wasteland.items.ProjectileAmmo;
+using Wasteland.GameObject;
+using Wasteland.calculator.BulletPenetration;
+using Wasteland.calculator.RandomNumbers;
+using Wasteland.items.Armor;
+using Wasteland.items.ProjectileAmmo;
 */
 public class Hitbox {
 
@@ -535,7 +535,7 @@ public class Hitbox {
 		return humanHitBox;
 	}
 
-	public boolean onHitboxCheck(double xPosOnHitbox, double yPosOnHitbox) {
+	public bool onHitboxCheck(double xPosOnHitbox, double yPosOnHitbox) {
 
 		if (xPosOnHitbox <= xMaxLocation && xPosOnHitbox >= xMinLocation) {
 

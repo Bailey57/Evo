@@ -60,7 +60,7 @@ public class BodyPart {
 	 * any other body part: bleeding based on area of hole
 	 * 
 	 */
-	boolean punctured;//
+	bool punctured;//
 	
 
 	private double xCenter;
@@ -76,8 +76,8 @@ public class BodyPart {
 	
 	Wound[] wounds;
 	
-	boolean vital = false;
-	boolean bleedable = true;
+	bool vital = false;
+	bool bleedable = true;
 	
 	// 6in
 	// heart 50.8mm(2in) from ribs
@@ -320,14 +320,14 @@ public class BodyPart {
 	/**
 	 * @return the vital
 	 */
-	public boolean isVital() {
+	public bool isVital() {
 		return vital;
 	}
 
 	/**
 	 * @param vital the vital to set
 	 */
-	public void setVital(boolean vital) {
+	public void setVital(bool vital) {
 		this.vital = vital;
 	}
 	
@@ -336,14 +336,14 @@ public class BodyPart {
 	/**
 	 * @return the bleedable
 	 */
-	public boolean isBleedable() {
+	public bool isBleedable() {
 		return bleedable;
 	}
 
 	/**
 	 * @param bleedable the bleedable to set
 	 */
-	public void setBleedable(boolean bleedable) {
+	public void setBleedable(bool bleedable) {
 		this.bleedable = bleedable;
 	}
 
@@ -384,14 +384,14 @@ public class BodyPart {
 	/**
 	 * @return the punctured
 	 */
-	public boolean isPunctured() {
+	public bool isPunctured() {
 		return punctured;
 	}
 
 	/**
 	 * @param punctured the punctured to set
 	 */
-	public void setPunctured(boolean punctured) {
+	public void setPunctured(bool punctured) {
 		this.punctured = punctured;
 	}
 
@@ -473,8 +473,8 @@ public class BodyPart {
 	 * @param wound
 	 * @return true if wound was removed
 	 */
-	public boolean removeWound(Wound wound) {
-		boolean removed = false;
+	public bool removeWound(Wound wound) {
+		bool removed = false;
 		if (wounds == null) {
 			wounds = new Wound[1];
 		}

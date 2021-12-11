@@ -31,7 +31,7 @@ namespace Wasteland_game.WastelandGame.GameObjects
 	
 	
 	
-	//public boolean putOnWearable() {
+	//public bool putOnWearable() {
 		//return false;
 	//}
 	

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import wasteland.saveAndLoad.Files;
+using Wasteland.saveAndLoad.Files;
 */
 /**
  * Handler class for running user commands
@@ -90,7 +90,7 @@ public class CommandHandler {
 	}
 
 	// doesnt work for some reason
-	public boolean isDouble(String output) {
+	public bool isDouble(String output) {
 		if (output == null) {
 			return false;
 		}
@@ -180,7 +180,7 @@ public class CommandHandler {
 //		if (gameState.getPlayer().entitiesInSightList(gameState.getMainMap())[0] != null) {
 //			Console.Writeln("Attack what enemy? ");
 //			Console.Writeln(gameState.getPlayer().entitiesInSightListToString(gameState.getMainMap()));
-//			boolean done = false;
+//			bool done = false;
 //			while (!done) {
 //
 //				Console.Writeln("Type number you want to attack.");
@@ -254,7 +254,7 @@ public class CommandHandler {
 			if (gameState.getPlayer().entitiesInSightList(gameState.getMainMap())[0] != null) {
 				Console.Writeln("Attack what enemy? ");
 				Console.Writeln(gameState.getPlayer().entitiesInSightListToString(gameState.getMainMap()));
-				boolean done = false;
+				bool done = false;
 				while (!done) {
 
 					Console.Writeln("Type number you want to attack.");
@@ -293,7 +293,7 @@ public class CommandHandler {
 
 				Console.Writeln(gameState.getPlayer().itemsInSightListToString(gameState.getMainMap()));
 
-				boolean done = false;
+				bool done = false;
 				while (!done) {
 
 					Console.Writeln("Type number you want to pick up. Type c to cancel.");
@@ -335,7 +335,7 @@ public class CommandHandler {
 		} else if (input.equals("drop item") || input.equals("di")) {
 			Console.Writeln("Drop what item? Type c to cancel.");
 
-			boolean done = false;
+			bool done = false;
 			Console.Writeln(gameState.getPlayer().showInventory());
 
 			while (!done) {
@@ -441,7 +441,7 @@ public class CommandHandler {
 				String directionPlayerMoves = "e";
 				String directionPlayerDistance = "0";
 
-				boolean correctInput = false;
+				bool correctInput = false;
 
 				while (!correctInput) {
 

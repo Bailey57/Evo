@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 //import java.io.Serializable;
 
-//import wasteland.entity.Entity;
-//import wasteland.entity.Hitbox;
-//import wasteland.entity.Material;
-//import wasteland.map.GameObjectPos;
+//using Wasteland.entity.Entity;
+//using Wasteland.entity.Hitbox;
+//using Wasteland.entity.Material;
+//using Wasteland.map.GameObjectPos;
 namespace Wasteland_game.WastelandGame.GameObjects{ 
 
 public class GameObject{
@@ -79,7 +79,7 @@ public Material baseMaterial;
 /**
  * If the object is spotted by something
  */
-boolean spotted = false;
+bool spotted = false;
 
 double directionInDegrees = 0;
 
@@ -268,7 +268,7 @@ public void setBaseMaterial(Material baseMaterial)
 /**
  * @return the spotted
  */
-public boolean isSpotted()
+public bool isSpotted()
 {
 	return spotted;
 }
@@ -276,7 +276,7 @@ public boolean isSpotted()
 /**
  * @param spotted the spotted to set
  */
-public void setSpotted(boolean spotted)
+public void setSpotted(bool spotted)
 {
 	this.spotted = spotted;
 }
@@ -375,7 +375,7 @@ public void addObjectStringEvents(String objectStringEvents)
 
 
 // think of better name
-public boolean integrityCheck()
+public bool integrityCheck()
 {
 
 	if (this.integraty > 0)

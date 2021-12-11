@@ -3,7 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wasteland_game.WastelandGame.BaseItem;
 
+
+using Wasteland_game.Wasteland.GameObject;
+using Wasteland_game.Wasteland.Calculator.RandomNumbers;
+using Wasteland_game.Wasteland.Items.BaseItem;
+using Wasteland_game.Wasteland.Items.weapons.Gun;
+using Wasteland_game.Wasteland.Items.weapons.Magazine;
+using Wasteland_game.Wasteland.Map.GameObjectPos;
+using Wasteland_game.Wasteland.Map.Map;
+using Wasteland.Map.MapArea;
+using Wasteland.Map.MapAreaFactory;
 
 
 
@@ -12,19 +23,19 @@ package wasteland.entity;
 
 import java.util.Random;
 
-import wasteland.GameObject;
-import wasteland.calculator.RandomNumbers;
-import wasteland.items.BaseItem;
-import wasteland.items.weapons.Gun;
-import wasteland.items.weapons.Magazine;
-import wasteland.map.GameObjectPos;
-import wasteland.map.Map;
-import wasteland.map.MapArea;
-import wasteland.map.MapAreaFactory;
+using Wasteland.GameObject;
+using Wasteland.calculator.RandomNumbers;
+using Wasteland.items.BaseItem;
+using Wasteland.items.weapons.Gun;
+using Wasteland.items.weapons.Magazine;
+using Wasteland.map.GameObjectPos;
+using Wasteland.map.Map;
+using Wasteland.map.MapArea;
+using Wasteland.map.MapAreaFactory;
 */
 
 //later: add entity levels wich affect how skilled they are ex: high lvl might have high accuracy
-namespace Wasteland_game.WastelandGame.GameObjects {
+namespace Wasteland_game.WastelandGame {
 public class Animal : Entity {
 	// types: humaniod, vehicle,
 
@@ -34,7 +45,7 @@ public class Animal : Entity {
 	//private static final long serialVersionUID = 1L;
 
 	// energy, health, stealth
-	boolean isThePlayer = false;
+	bool isThePlayer = false;
 
 
 
@@ -51,8 +62,8 @@ public class Animal : Entity {
 	
 
 	public double attackRange = 1.5;
-	public boolean inCombat = false;
-	public boolean inCover = false;
+	public bool inCombat = false;
+	public bool inCover = false;
 
 	// carrie over seconds
 	public double secondsLeft = 0;
@@ -65,27 +76,22 @@ public class Animal : Entity {
 	
 
 
-	public boolean concious = false;
+	public bool concious = false;
 
-	/**
-	 * @return the isThePlayer
-	 */
-	public boolean isThePlayer() {
-		return isThePlayer;
-	}
+
 
 	/**
 	 * @param isThePlayer the isThePlayer to set
 	 */
-	public void setThePlayer(boolean isThePlayer) {
+	public void setThePlayer(bool isThePlayer) {
 		this.isThePlayer = isThePlayer;
 	}
 
-	public boolean isAlive() {
+	public bool isAlive() {
 		return alive;
 	}
 
-	public void setAlive(boolean alive) {
+	public void setAlive(bool alive) {
 		this.alive = alive;
 	}
 
@@ -200,14 +206,14 @@ public class Animal : Entity {
 	/**
 	 * @return the inCombat
 	 */
-	public boolean isInCombat() {
+	public bool isInCombat() {
 		return inCombat;
 	}
 
 	/**
 	 * @param inCombat the inCombat to set
 	 */
-	public void setInCombat(boolean inCombat) {
+	public void setInCombat(bool inCombat) {
 		this.inCombat = inCombat;
 	}
 
@@ -228,14 +234,14 @@ public class Animal : Entity {
 	/**
 	 * @return the inCover
 	 */
-	public boolean isInCover() {
+	public bool isInCover() {
 		return inCover;
 	}
 
 	/**
 	 * @param inCover the inCover to set
 	 */
-	public void setInCover(boolean inCover) {
+	public void setInCover(bool inCover) {
 		this.inCover = inCover;
 	}
 
@@ -286,18 +292,18 @@ public class Animal : Entity {
 	/**
 	 * @return the concious
 	 */
-	public boolean isConcious() {
+	public bool isConcious() {
 		return concious;
 	}
 
 	/**
 	 * @param concious the concious to set
 	 */
-	public void setConcious(boolean concious) {
+	public void setConcious(bool concious) {
 		this.concious = concious;
 	}
 
-	public boolean aliveCheck() {
+	public bool aliveCheck() {
 
 		if (integrityCheck() == true && alive == true) {
 
@@ -328,7 +334,7 @@ public class Animal : Entity {
 	
 	
 
-	public Animal(String objectName, boolean alive, double energy, double movementSpeed, double accuracy,
+	public Animal(String objectName, bool alive, double energy, double movementSpeed, double accuracy,
 			GameObjectPos gameObjectPos) {
 		super(objectName,  alive,  energy,  movementSpeed,  accuracy,
 				 gameObjectPos);
@@ -341,7 +347,7 @@ public class Animal : Entity {
 
 	public String entitiesInSightListToString(Map worldMap) {
 		String stringOutput = "";
-		// boolean done = false;
+		// bool done = false;
 		Entity[] entityList;
 		entityList = entitiesInSightList(worldMap);
 
@@ -395,7 +401,7 @@ public class Animal : Entity {
 //
 //		int entityListCount = 0;
 //		int iterations = 0;
-//		boolean done = false;
+//		bool done = false;
 //
 //		while (!done) {
 //			if (worldEntityList[iterations] != null) {
@@ -415,7 +421,7 @@ public class Animal : Entity {
 
 	}
 
-	public boolean entityInSight(Entity targetEntity) {
+	public bool entityInSight(Entity targetEntity) {
 		// double viewDistance = 20; // in meters
 
 		if (getDistanceFromObject(targetEntity) <= this.viewDistance) {
@@ -433,7 +439,7 @@ public class Animal : Entity {
 
 	public String gameObjectInSightListToString(Map worldMap) {
 		String stringOutput = "";
-		// boolean done = false;
+		// bool done = false;
 		GameObject[] gameObjectList;
 		gameObjectList = gameObjectInSightList(worldMap);
 
@@ -462,7 +468,7 @@ public class Animal : Entity {
 
 		int gameObjectListCount = 0;
 		int iterations = 0;
-		boolean done = false;
+		bool done = false;
 
 		while (!done) {
 			if (worldGameObjectList[iterations] != null) {
@@ -482,7 +488,7 @@ public class Animal : Entity {
 
 	}
 
-	public boolean gameObjectInSight(GameObject gameObject) {
+	public bool gameObjectInSight(GameObject gameObject) {
 		// double viewDistance = 20; // in meters
 
 		if (getDistanceFromObject(gameObject) <= this.viewDistance) {
@@ -507,7 +513,7 @@ public class Animal : Entity {
 //
 //			int itemListCount = 0;
 //			int iterations = 0;
-//			boolean done = false;
+//			bool done = false;
 //
 //			while (!done) {
 //				if (worldItemList[iterations] != null) {
@@ -529,7 +535,7 @@ public class Animal : Entity {
 
 	public String itemsInSightListToString(Map worldMap) {
 		String stringOutput = "";
-		// boolean done = false;
+		// bool done = false;
 		BaseItem[] itemList;
 		itemList = itemsInSightList(worldMap);
 
@@ -569,7 +575,7 @@ public class Animal : Entity {
 		return itemsInSightList;
 	}
 
-	public boolean itemInSight(BaseItem targetItem) {
+	public bool itemInSight(BaseItem targetItem) {
 
 		// half the view distance to see objects (gonna change to be based off of the
 		// objects size)
@@ -602,7 +608,7 @@ public class Animal : Entity {
 	 */
 	public double chaseEntityInMapArea(Map worldMap, Entity targetEntity, double secondsPassed) {
 		secondsLeft += secondsPassed;
-		boolean objectCaught = false;
+		bool objectCaught = false;
 
 //		Random random = new Random();
 //		int min = 0;
@@ -668,7 +674,7 @@ public class Animal : Entity {
 //	 * @param ticksPassed
 //	 * @return
 //	 */
-//	public boolean inMeleRange(Map worldMap, Entity targetEntity, double ticksPassed) {
+//	public bool inMeleRange(Map worldMap, Entity targetEntity, double ticksPassed) {
 //		if (targetEntity.getGameObjectPos().getCurrentArea() == getGameObjectPos().getCurrentArea()
 //				&& (int) getGameObjectPos().getMapAreaXPos() == (int) targetEntity.getGameObjectPos().getMapAreaXPos()
 //				&& (int) getGameObjectPos().getMapAreaYPos() == (int) targetEntity.getGameObjectPos()
@@ -680,7 +686,7 @@ public class Animal : Entity {
 //		return false;
 //	}
 
-	public boolean inAttackRange(Map worldMap, Entity targetEntity) {
+	public bool inAttackRange(Map worldMap, Entity targetEntity) {
 
 		if (getDistanceFromObject(targetEntity) <= attackRange
 				|| (entityWeapon != null && getDistanceFromObject(targetEntity) <= entityWeapon.getAttackRange())) {
@@ -750,7 +756,7 @@ public class Animal : Entity {
 	 * @param intialMove   Dictates to use or produce ticks passed.
 	 * @return
 	 */
-	public double attackEntity(Map worldMap, Entity targetEntity, double secondsPassed, boolean intialMove) {
+	public double attackEntity(Map worldMap, Entity targetEntity, double secondsPassed, bool intialMove) {
 		RandomNumbers rand = new RandomNumbers();
 		double timeMoveTakes = 2.5;
 
@@ -822,7 +828,7 @@ public class Animal : Entity {
 	}
 	
 	
-	public boolean shootEntity(Entity targetEntity, boolean intialMove) {
+	public bool shootEntity(Entity targetEntity, bool intialMove) {
 		double timeMoveTakes = 2.5;
 		// change later
 		double distanceFromTarget = this.getDistanceFromObject(targetEntity);
@@ -898,14 +904,14 @@ public class Animal : Entity {
 		return false;
 	}
 
-	public boolean equipItemAsWeapon(BaseItem item) {
+	public bool equipItemAsWeapon(BaseItem item) {
 
 		setEntityWeapon(item);
 
 		return false;
 	}
 
-//	private boolean addItemToInventory(BaseItem item) {
+//	private bool addItemToInventory(BaseItem item) {
 //
 //		for (int i = 0; i < inventory.length; i++) {
 //			if (inventory[i] == null) {
@@ -919,7 +925,7 @@ public class Animal : Entity {
 //
 //	}
 
-	public boolean removeItemFromInventory(BaseItem item) {
+	public bool removeItemFromInventory(BaseItem item) {
 		for (int i = 0; i < inventory.length; i++) {
 			if (inventory[i] == item) {
 				inventory[i] = null;
@@ -930,7 +936,7 @@ public class Animal : Entity {
 		return false;
 	}
 
-	public boolean itemInInventory(BaseItem item) {
+	public bool itemInInventory(BaseItem item) {
 
 		for (int i = 0; i < inventory.length; i++) {
 			if (inventory[i] == item) {
@@ -962,7 +968,7 @@ public class Animal : Entity {
 
 	}
 
-	public boolean equipInvintoryItemAsWeapon(int index) {
+	public bool equipInvintoryItemAsWeapon(int index) {
 
 		if (index < inventory.length && inventory[index] != entityWeapon) {
 			setEntityWeapon(inventory[index]);
@@ -974,7 +980,7 @@ public class Animal : Entity {
 
 	}
 
-	public boolean unEquipInvintoryItemAsWeapon() {
+	public bool unEquipInvintoryItemAsWeapon() {
 		//addItemToInventory(getEntityWeapon());
 		setEntityWeapon(null);
 
@@ -982,7 +988,7 @@ public class Animal : Entity {
 
 	}
 
-	private boolean inPickupDistcance(BaseItem item) {
+	private bool inPickupDistcance(BaseItem item) {
 		if (item.getDistanceFromObject(this) < 2) {
 			return true;
 
@@ -993,8 +999,8 @@ public class Animal : Entity {
 
 	}
 
-	private boolean pickUpItem(BaseItem item) {
-		boolean itemAdded = false;
+	private bool pickUpItem(BaseItem item) {
+		bool itemAdded = false;
 
 		if (inPickupDistcance(item)) {
 			itemAdded = addItemToInventory(item);
@@ -1007,8 +1013,8 @@ public class Animal : Entity {
 		return itemAdded;
 	}
 
-	public boolean pickUpItemFromInventory(Entity entity, BaseItem item) {
-		boolean itemAdded = false;
+	public bool pickUpItemFromInventory(Entity entity, BaseItem item) {
+		bool itemAdded = false;
 		BaseItem[] baseItem = entity.getInventory();
 
 		for (int i = 0; i < baseItem.length; i++) {
@@ -1023,7 +1029,7 @@ public class Animal : Entity {
 
 	}
 
-	public boolean pickUpItemOffOfGround(BaseItem item) {
+	public bool pickUpItemOffOfGround(BaseItem item) {
 		if (!item.isInInventory()) {
 			return pickUpItem(item);
 
@@ -1033,7 +1039,7 @@ public class Animal : Entity {
 
 	}
 
-	public boolean dropItem(BaseItem item) {
+	public bool dropItem(BaseItem item) {
 
 		if (itemInInventory(item)) {
 
@@ -1054,20 +1060,7 @@ public class Animal : Entity {
 	}
 	
 	
-	public boolean cockGun() {
-		
-		
-		if (entityWeapon != null && entityWeapon is Gun) {
-			((Gun) entityWeapon).cockGun();
-			this.addObjectStringEvents("\nCocked " + entityWeapon.getObjectName() + "\n");
-			return true;
-		} else {
-			return false;
-		}
-		
-		
-		
-	}
+
 
 	public String toString() {
 		String output = "";
@@ -1075,22 +1068,8 @@ public class Animal : Entity {
 		return output;
 	}
 
-	/**
-	 * Player waits for x minutes
-	 * 
-	 * @param worldMap
-	 * @param minuets
-	 */
-	public void playerWait(Map worldMap, Entity player, double minutes) {
 
-		worldMap.runThroughEntityActions(worldMap, player, minutes * 60);
-		addObjectStringEvents("\nWaited for " + minutes + " minutes.\n");
-	}
 
-	// this entities actions are run through every game loop
-	public void entityActions() {
-
-	}
 
 	public static void main(String[] args) {
 		Map tstMap = new Map(25);

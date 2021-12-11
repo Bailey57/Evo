@@ -11,9 +11,9 @@ namespace Wasteland_game.WastelandGame.Map
 
 	import java.io.Serializable;
 
-	import wasteland.GameObject;
-	import wasteland.entity.Entity;
-	import wasteland.items.BaseItem;
+	using Wasteland.GameObject;
+	using Wasteland.entity.Entity;
+	using Wasteland.items.BaseItem;
 	*/
 	public class Map {
 
@@ -275,7 +275,7 @@ namespace Wasteland_game.WastelandGame.Map
 	}
 
 	//	public void addEntityToMapList(Entity entity) {
-	//		boolean placedOnMap = false;
+	//		bool placedOnMap = false;
 	//		int entityNum = 0;
 	//
 	//		for (int i = 0; i < entityMapLimit; i++) {
@@ -303,7 +303,7 @@ namespace Wasteland_game.WastelandGame.Map
 	public String gameObjectsOnMapToString()
 	{
 		String stringOutput = "";
-		boolean done = false;
+		bool done = false;
 		int iteration = 0;
 		GameObject[] objectOnMap = getGameObjectsOnMap();
 
@@ -334,9 +334,9 @@ namespace Wasteland_game.WastelandGame.Map
 
 
 
-	public boolean addGameObjectToMapList(GameObject gameObject)
+	public bool addGameObjectToMapList(GameObject gameObject)
 	{
-		boolean placedOnMap = false;
+		bool placedOnMap = false;
 		int gameObjectNum = 0;
 
 		for (int i = 0; i < entityMapLimit; i++)
@@ -370,9 +370,9 @@ namespace Wasteland_game.WastelandGame.Map
 	}
 
 
-	public boolean removeGameObjectFromMapList(GameObject gameObject)
+	public bool removeGameObjectFromMapList(GameObject gameObject)
 	{
-		boolean removedFromMap = false;
+		bool removedFromMap = false;
 		int gameObjectNum = 0;
 
 		for (int i = 0; i < entityMapLimit; i++)
@@ -400,9 +400,9 @@ namespace Wasteland_game.WastelandGame.Map
 
 
 
-	public boolean runThroughEntityActions(Map worldMap, Entity player, double secondsPassed)
+	public bool runThroughEntityActions(Map worldMap, Entity player, double secondsPassed)
 	{
-		boolean spotted = false;
+		bool spotted = false;
 
 		for (int i = 0; i < entityMapLimit; i++)
 		{
@@ -498,7 +498,7 @@ player.setInCombat(false);
  * @param yPos
  * @param playerOnArea
  */
-public void setGameMapPlayer(int xPos, int yPos, boolean playerOnArea)
+public void setGameMapPlayer(int xPos, int yPos, bool playerOnArea)
 {
 	gameMap[yPos][xPos].playerOnArea = playerOnArea;
 }

@@ -10,12 +10,12 @@ package wasteland.calculator;
 import java.util.Scanner;
 
 import GameObjects.GameObject;
-import wasteland.entity.BodyPart;
-import wasteland.entity.Hitbox;
-import wasteland.entity.Material;
-import wasteland.entity.MaterialLayer;
-import wasteland.entity.Wound;
-import wasteland.items.ProjectileAmmo;
+using Wasteland.entity.BodyPart;
+using Wasteland.entity.Hitbox;
+using Wasteland.entity.Material;
+using Wasteland.entity.MaterialLayer;
+using Wasteland.entity.Wound;
+using Wasteland.items.ProjectileAmmo;
 */
 namespace Wasteland_game.WastelandGame.Calculator {
 public class BulletPenetration {
@@ -531,9 +531,9 @@ public class BulletPenetration {
 		return equation4_with_diameter;
 	}
 
-	// maybe return boolean
-	public boolean penetraiteBodyPart(BodyPart bodyPart) {
-		boolean penetraited = false;
+	// maybe return bool
+	public bool penetraiteBodyPart(BodyPart bodyPart) {
+		bool penetraited = false;
 		BodyPart bodyPartClone;
 		MaterialLayer materialLayerClone;
 
@@ -675,7 +675,7 @@ public class BulletPenetration {
 	// add z functionality later
 	// add percussion ie body parts behind take damage even if projectile is stopped
 	public String penetraitHitBox(Hitbox hitbox, double projectileX, double projectileY, double projectileZ) {
-		boolean hitSomething = false;
+		bool hitSomething = false;
 		
 		String output = "";
 		double projectileVelocity = this.getFinalV();
@@ -806,7 +806,7 @@ public class BulletPenetration {
 						}
 
 						if (hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getName().equals("Sternum")) {
-							boolean found;
+							bool found;
 							found = true;
 						}
 

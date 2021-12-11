@@ -9,8 +9,8 @@ namespace Wasteland_game.WastelandGame.Map
 	/*
 	package wasteland.map;
 
-	import wasteland.entity.Entity;
-	import wasteland.entity.Hitbox;
+	using Wasteland.entity.Entity;
+	using Wasteland.entity.Hitbox;
 	*/
 	/**
 	 * 
@@ -197,7 +197,7 @@ namespace Wasteland_game.WastelandGame.Map
 			entity.setGameObjectHitbox(humanHitbox);
 			entPos.setGameObject(entity);
 
-			//Entity(String objectName, double integraty, boolean alive, double energy, double movementSpeed, double accuracy, GameObjectPos GameObjectPos)
+			//Entity(String objectName, double integraty, bool alive, double energy, double movementSpeed, double accuracy, GameObjectPos GameObjectPos)
 
 			double entMapPos = 0;
 

@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wasteland_game.WastelandGame;
 
-namespace Wasteland_game.WastelandGame.GameRunner
+namespace Wasteland_game.WastelandGame.GameState
 {
 	/*
     package wasteland.gameRunner;
 
 import java.io.Serializable;
 
-import wasteland.entity.Entity;
-import wasteland.map.GameObjectPos;
-import wasteland.map.Map;
+using Wasteland.entity.Entity;
+using Wasteland.map.GameObjectPos;
+using Wasteland.map.Map;
 */
 /**
  * GameState represents the current state of play, like the map, player location, and so on.
@@ -21,7 +22,7 @@ import wasteland.map.Map;
  * @author tyler
  *
  */
-public class GameState : Serializable {
+public class GameState {
 
 	
 	
@@ -36,8 +37,8 @@ public class GameState : Serializable {
 	private String lastPosition;
 	private String thisPosition;
 	
-	private boolean isGameEnded;
-	private boolean didPlayerMoveThisTurn;
+	private bool isGameEnded;
+	private bool didPlayerMoveThisTurn;
 	
 	private double ticksPassed;
 
@@ -89,11 +90,11 @@ public class GameState : Serializable {
 		return thisPosition;
 	}
 	
-	public boolean isGameEnded() {
+	public bool isGameEnded() {
 		return isGameEnded;
 	}
 	
-	public boolean didPlayerMoveThisTurn() {
+	public bool didPlayerMoveThisTurn() {
 		return didPlayerMoveThisTurn;
 	}
 
@@ -121,11 +122,11 @@ public class GameState : Serializable {
 		this.thisPosition = thisPosition;
 	}
 
-	public void setIsGameEnded(boolean isGameEnded) {
+	public void setIsGameEnded(bool isGameEnded) {
 		this.isGameEnded = isGameEnded;
 	}
 	
-	public void setDidPlayerMoveThisTurn(boolean didPlayerMoveThisTurn) {
+	public void setDidPlayerMoveThisTurn(bool didPlayerMoveThisTurn) {
 		this.didPlayerMoveThisTurn = didPlayerMoveThisTurn;
 	}
 

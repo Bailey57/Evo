@@ -11,8 +11,8 @@ namespace Wasteland_game.WastelandGame.GameObjects
 
 import java.io.Serializable;
 
-import wasteland.GameObject;
-import wasteland.entity.Entity;
+using Wasteland.GameObject;
+using Wasteland.entity.Entity;
 */
 public class GameObjectPos {
 	/**
@@ -257,7 +257,7 @@ public class GameObjectPos {
 //	}
 
 	// rename to travelOnMapArea
-	public boolean movePositionOnMapArea(String direction, double distance) {
+	public bool movePositionOnMapArea(String direction, double distance) {
 		int oldMapX = gameObject.getGameObjectPos().getWorldMapXPos();
 		int oldMapY = gameObject.getGameObjectPos().getWorldMapYPos();
 				
@@ -266,7 +266,7 @@ public class GameObjectPos {
 		double oldMapAreaY = gameObject.getGameObjectPos().getMapAreaYPos();
 		
 		
-		boolean moved = false;
+		bool moved = false;
 		// entity.getGameObjectPos().getCurrentArea();
 
 		// MapArea oldMapArea = entity.getGameObjectPos().getCurrMapArea();
@@ -349,7 +349,7 @@ public class GameObjectPos {
 	 * @param gameObject
 	 * @return
 	 */
-	private boolean onCorrectMapArea() {
+	private bool onCorrectMapArea() {
 
 		if (gameObject.getGameObjectPos().getCurrentArea().getMapAreaX_max() < gameObject.getGameObjectPos()
 				.getMapAreaXPos()
@@ -381,7 +381,7 @@ public class GameObjectPos {
 		double seconds = minutes * 60; // convert to seconds
 		int iterations = 0;
 		
-		boolean moved = false;
+		bool moved = false;
 
 		// might need to change back to i = 0
 		for (double i = 0; i < seconds; i += secondsPassed) {

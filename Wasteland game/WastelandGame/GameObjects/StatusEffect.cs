@@ -8,7 +8,7 @@ namespace Wasteland_game.WastelandGame.GameObjects
 {
     //package wasteland.entity;
 
-	//import wasteland.GameObject;
+	//using Wasteland.GameObject;
 
 public class StatusEffect {
 	

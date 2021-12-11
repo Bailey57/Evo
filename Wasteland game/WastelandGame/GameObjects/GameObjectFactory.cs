@@ -13,9 +13,9 @@ namespace Wasteland_game.WastelandGame.GameObjects
 	/*
     package wasteland.gameObject;
 
-import wasteland.entity.Entity;
-import wasteland.items.weapons.Gun;
-import wasteland.map.GameObjectPos;
+using Wasteland.entity.Entity;
+using Wasteland.items.weapons.Gun;
+using Wasteland.map.GameObjectPos;
 	*/
 
 	public class GameObjectFactory

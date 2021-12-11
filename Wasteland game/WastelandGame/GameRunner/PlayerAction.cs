@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wasteland_game.WastelandGame;
 
 namespace Wasteland_game.WastelandGame.GameRunner
+
 {
 	/*
     package wasteland.gameRunner;
@@ -12,12 +14,12 @@ namespace Wasteland_game.WastelandGame.GameRunner
 import java.io.Serializable;
 import java.util.Scanner;
 
-import wasteland.entity.Entity;
-import wasteland.map.GameObjectPos;
-import wasteland.map.Map;
-import wasteland.map.MapArea;
+using Wasteland.entity.Entity;
+using Wasteland.map.GameObjectPos;
+using Wasteland.map.Map;
+using Wasteland.map.MapArea;
 */
-public class PlayerAction : Serializable {
+public class PlayerAction {
 	
 	
 	

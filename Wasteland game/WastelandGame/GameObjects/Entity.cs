@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wasteland_game.GameObjects.Entity;
 /*
 package wasteland.entity;
 
 import java.util.Random;
 
-import wasteland.GameObject;
-import wasteland.calculator.RandomNumbers;
-import wasteland.items.BaseItem;
-import wasteland.items.weapons.Gun;
-import wasteland.items.weapons.Magazine;
-import wasteland.map.GameObjectPos;
-import wasteland.map.Map;
-import wasteland.map.MapArea;
-import wasteland.map.MapAreaFactory;
+using Wasteland.GameObject;
+using Wasteland.calculator.RandomNumbers;
+using Wasteland.items.BaseItem;
+using Wasteland.items.weapons.Gun;
+using Wasteland.items.weapons.Magazine;
+using Wasteland.map.GameObjectPos;
+using Wasteland.map.Map;
+using Wasteland.map.MapArea;
+using Wasteland.map.MapAreaFactory;
 */
 //later: add entity levels wich affect how skilled they are ex: high lvl might have high accuracy
-namespace Wasteland_game.WastelandGame.GameObjects {
+namespace Wasteland_game.WastelandGame.Entity {
 
 public class Entity : GameObject {
 	// types: humaniod, vehicle,
@@ -30,9 +31,9 @@ public class Entity : GameObject {
 	//private static final long serialVersionUID = 1L;
 
 	// energy, health, stealth
-	boolean isThePlayer = false;
+	bool isThePlayer = false;
 
-	public boolean alive = true;
+	public bool alive = true;
 	public double energy = 100;
 	public double movementSpeed = 1;// meters per second
 	public double accuracy = 50;
@@ -51,8 +52,8 @@ public class Entity : GameObject {
 	//millileters
 
 	public double attackRange = 1.5;
-	public boolean inCombat = false;
-	public boolean inCover = false;
+	public bool inCombat = false;
+	public bool inCover = false;
 	
 	
 	public double medicalKnowlege;
@@ -76,22 +77,22 @@ public class Entity : GameObject {
 	/**
 	 * @return the isThePlayer
 	 */
-	public boolean isThePlayer() {
+	public bool isThePlayer() {
 		return isThePlayer;
 	}
 
 	/**
 	 * @param isThePlayer the isThePlayer to set
 	 */
-	public void setThePlayer(boolean isThePlayer) {
+	public void setThePlayer(bool isThePlayer) {
 		this.isThePlayer = isThePlayer;
 	}
 
-	public boolean isAlive() {
+	public bool isAlive() {
 		return alive;
 	}
 
-	public void setAlive(boolean alive) {
+	public void setAlive(bool alive) {
 		this.alive = alive;
 	}
 
@@ -206,14 +207,14 @@ public class Entity : GameObject {
 	/**
 	 * @return the inCombat
 	 */
-	public boolean isInCombat() {
+	public bool isInCombat() {
 		return inCombat;
 	}
 
 	/**
 	 * @param inCombat the inCombat to set
 	 */
-	public void setInCombat(boolean inCombat) {
+	public void setInCombat(bool inCombat) {
 		this.inCombat = inCombat;
 	}
 
@@ -234,14 +235,14 @@ public class Entity : GameObject {
 	/**
 	 * @return the inCover
 	 */
-	public boolean isInCover() {
+	public bool isInCover() {
 		return inCover;
 	}
 
 	/**
 	 * @param inCover the inCover to set
 	 */
-	public void setInCover(boolean inCover) {
+	public void setInCover(bool inCover) {
 		this.inCover = inCover;
 	}
 
@@ -300,7 +301,7 @@ public class Entity : GameObject {
 		
 	}
 
-	public boolean aliveCheck() {
+	public bool aliveCheck() {
 
 		if (integrityCheck() == true && alive == true) {
 
@@ -326,7 +327,7 @@ public class Entity : GameObject {
 		return targetGrouping;
 	}
 
-	public Entity(String objectName, boolean alive, double energy, double movementSpeed, double accuracy,
+	public Entity(String objectName, bool alive, double energy, double movementSpeed, double accuracy,
 			GameObjectPos gameObjectPos) {
 		super(gameObjectPos, objectName);
 		this.alive = alive;
@@ -338,7 +339,7 @@ public class Entity : GameObject {
 
 	public String entitiesInSightListToString(Map worldMap) {
 		String stringOutput = "";
-		// boolean done = false;
+		// bool done = false;
 		Entity[] entityList;
 		entityList = entitiesInSightList(worldMap);
 
@@ -392,7 +393,7 @@ public class Entity : GameObject {
 //
 //		int entityListCount = 0;
 //		int iterations = 0;
-//		boolean done = false;
+//		bool done = false;
 //
 //		while (!done) {
 //			if (worldEntityList[iterations] != null) {
@@ -412,7 +413,7 @@ public class Entity : GameObject {
 
 	}
 
-	public boolean entityInSight(Entity targetEntity) {
+	public bool entityInSight(Entity targetEntity) {
 		// double viewDistance = 20; // in meters
 
 		if (getDistanceFromObject(targetEntity) <= this.viewDistance) {
@@ -430,7 +431,7 @@ public class Entity : GameObject {
 
 	public String gameObjectInSightListToString(Map worldMap) {
 		String stringOutput = "";
-		// boolean done = false;
+		// bool done = false;
 		GameObject[] gameObjectList;
 		gameObjectList = gameObjectInSightList(worldMap);
 
@@ -459,7 +460,7 @@ public class Entity : GameObject {
 
 		int gameObjectListCount = 0;
 		int iterations = 0;
-		boolean done = false;
+		bool done = false;
 
 		while (!done) {
 			if (worldGameObjectList[iterations] != null) {
@@ -479,7 +480,7 @@ public class Entity : GameObject {
 
 	}
 
-	public boolean gameObjectInSight(GameObject gameObject) {
+	public bool gameObjectInSight(GameObject gameObject) {
 		// double viewDistance = 20; // in meters
 
 		if (gameObject.getGameObjectPos() != null && getDistanceFromObject(gameObject) <= this.viewDistance) {
@@ -504,7 +505,7 @@ public class Entity : GameObject {
 //
 //			int itemListCount = 0;
 //			int iterations = 0;
-//			boolean done = false;
+//			bool done = false;
 //
 //			while (!done) {
 //				if (worldItemList[iterations] != null) {
@@ -526,7 +527,7 @@ public class Entity : GameObject {
 
 	public String itemsInSightListToString(Map worldMap) {
 		String stringOutput = "";
-		// boolean done = false;
+		// bool done = false;
 		BaseItem[] itemList;
 		itemList = itemsInSightList(worldMap);
 
@@ -566,7 +567,7 @@ public class Entity : GameObject {
 		return itemsInSightList;
 	}
 
-	public boolean itemInSight(BaseItem targetItem) {
+	public bool itemInSight(BaseItem targetItem) {
 
 		// half the view distance to see objects (gonna change to be based off of the
 		// objects size)
@@ -599,7 +600,7 @@ public class Entity : GameObject {
 	 */
 	public double chaseEntityInMapArea(Map worldMap, Entity targetEntity, double secondsPassed) {
 		secondsLeft += secondsPassed;
-		boolean objectCaught = false;
+		bool objectCaught = false;
 
 //		Random random = new Random();
 //		int min = 0;
@@ -665,7 +666,7 @@ public class Entity : GameObject {
 //	 * @param ticksPassed
 //	 * @return
 //	 */
-//	public boolean inMeleRange(Map worldMap, Entity targetEntity, double ticksPassed) {
+//	public bool inMeleRange(Map worldMap, Entity targetEntity, double ticksPassed) {
 //		if (targetEntity.getGameObjectPos().getCurrentArea() == getGameObjectPos().getCurrentArea()
 //				&& (int) getGameObjectPos().getMapAreaXPos() == (int) targetEntity.getGameObjectPos().getMapAreaXPos()
 //				&& (int) getGameObjectPos().getMapAreaYPos() == (int) targetEntity.getGameObjectPos()
@@ -677,7 +678,7 @@ public class Entity : GameObject {
 //		return false;
 //	}
 
-	public boolean inAttackRange(Map worldMap, Entity targetEntity) {
+	public bool inAttackRange(Map worldMap, Entity targetEntity) {
 
 		if (getDistanceFromObject(targetEntity) <= attackRange
 				|| (entityWeapon != null && getDistanceFromObject(targetEntity) <= entityWeapon.getAttackRange())) {
@@ -747,7 +748,7 @@ public class Entity : GameObject {
 	 * @param intialMove   Dictates to use or produce ticks passed.
 	 * @return
 	 */
-	public double attackEntity(Map worldMap, Entity targetEntity, double secondsPassed, boolean intialMove) {
+	public double attackEntity(Map worldMap, Entity targetEntity, double secondsPassed, bool intialMove) {
 		RandomNumbers rand = new RandomNumbers();
 
 		if (intialMove) {
@@ -818,7 +819,7 @@ public class Entity : GameObject {
 	}
 	
 	
-	public boolean shootEntity(Entity targetEntity, boolean intialMove) {
+	public bool shootEntity(Entity targetEntity, bool intialMove) {
 		// change later
 		double distanceFromTarget = this.getDistanceFromObject(targetEntity);
 		double secondsPassed = 5 / targetEntity.getMovementSpeed();
@@ -893,7 +894,7 @@ public class Entity : GameObject {
 		return false;
 	}
 
-	public boolean equipItemAsWeapon(BaseItem item) {
+	public bool equipItemAsWeapon(BaseItem item) {
 
 		setEntityWeapon(item);
 
@@ -905,7 +906,7 @@ public class Entity : GameObject {
 	 * @param item
 	 * @return true if added
 	 */
-	public boolean addItemToInventory(BaseItem item) {
+	public bool addItemToInventory(BaseItem item) {
 
 		for (int i = 0; i < inventory.length; i++) {
 			if (inventory[i] == null) {
@@ -925,7 +926,7 @@ public class Entity : GameObject {
 
 	}
 
-	public boolean removeItemFromInventory(BaseItem item) {
+	public bool removeItemFromInventory(BaseItem item) {
 		for (int i = 0; i < inventory.length; i++) {
 			if (inventory[i] == item) {
 				inventory[i] = null;
@@ -937,7 +938,7 @@ public class Entity : GameObject {
 		return false;
 	}
 
-	public boolean itemInInventory(BaseItem item) {
+	public bool itemInInventory(BaseItem item) {
 
 		for (int i = 0; i < inventory.length; i++) {
 			if (inventory[i] == item) {
@@ -969,7 +970,7 @@ public class Entity : GameObject {
 
 	}
 
-	public boolean equipInvintoryItemAsWeapon(int index) {
+	public bool equipInvintoryItemAsWeapon(int index) {
 
 		if (index < inventory.length && inventory[index] != entityWeapon) {
 			setEntityWeapon(inventory[index]);
@@ -981,7 +982,7 @@ public class Entity : GameObject {
 
 	}
 
-	public boolean unEquipInvintoryItemAsWeapon() {
+	public bool unEquipInvintoryItemAsWeapon() {
 		//addItemToInventory(getEntityWeapon());
 		setEntityWeapon(null);
 
@@ -1005,7 +1006,7 @@ public class Entity : GameObject {
 	}
 
 
-	private boolean inPickupDistcance(BaseItem item) {
+	private bool inPickupDistcance(BaseItem item) {
 		if (item.getDistanceFromObject(this) < 2) {
 			return true;
 
@@ -1016,8 +1017,8 @@ public class Entity : GameObject {
 
 	}
 
-	private boolean pickUpItem(BaseItem item) {
-		boolean itemAdded = false;
+	private bool pickUpItem(BaseItem item) {
+		bool itemAdded = false;
 		
 		if (this.inventory == null) {
 			createNewInventory();
@@ -1035,8 +1036,8 @@ public class Entity : GameObject {
 		return itemAdded;
 	}
 
-	public boolean pickUpItemFromInventory(Entity entity, BaseItem item) {
-		boolean itemAdded = false;
+	public bool pickUpItemFromInventory(Entity entity, BaseItem item) {
+		bool itemAdded = false;
 		BaseItem[] baseItem = entity.getInventory();
 
 		for (int i = 0; i < baseItem.length; i++) {
@@ -1051,7 +1052,7 @@ public class Entity : GameObject {
 
 	}
 
-	public boolean pickUpItemOffOfGround(BaseItem item) {
+	public bool pickUpItemOffOfGround(BaseItem item) {
 		if (!item.isInInventory()) {
 			return pickUpItem(item);
 
@@ -1061,7 +1062,7 @@ public class Entity : GameObject {
 
 	}
 
-	public boolean dropItem(BaseItem item) {
+	public bool dropItem(BaseItem item) {
 
 		if (itemInInventory(item)) {
 
@@ -1082,7 +1083,7 @@ public class Entity : GameObject {
 	}
 	
 	
-	public boolean cockGun() {
+	public bool cockGun() {
 		
 		
 		if (entityWeapon != null && entityWeapon is Gun) {

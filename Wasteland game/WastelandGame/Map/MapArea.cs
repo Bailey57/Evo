@@ -11,9 +11,9 @@ namespace Wasteland_game.WastelandGame.Map
 
 	import java.io.Serializable;
 
-	import wasteland.GameObject;
-	import wasteland.entity.Entity;
-	import wasteland.items.BaseItem;
+	using Wasteland.GameObject;
+	using Wasteland.entity.Entity;
+	using Wasteland.items.BaseItem;
 	*/
 	/**
 	 * @author bailey
@@ -38,7 +38,7 @@ namespace Wasteland_game.WastelandGame.Map
 
 	public BaseItem[] spawnableItems;
 
-	boolean playerOnArea = false;
+	bool playerOnArea = false;
 
 	public Entity[] entitiesOnArea;
 
@@ -131,7 +131,7 @@ namespace Wasteland_game.WastelandGame.Map
 	/**
 	 * @return the playerOnArea
 	 */
-	public boolean isPlayerOnArea()
+	public bool isPlayerOnArea()
 	{
 		return playerOnArea;
 	}
@@ -139,7 +139,7 @@ namespace Wasteland_game.WastelandGame.Map
 	/**
 	 * @param playerOnArea the playerOnArea to set
 	 */
-	public void setPlayerOnArea(boolean playerOnArea)
+	public void setPlayerOnArea(bool playerOnArea)
 	{
 		this.playerOnArea = playerOnArea;
 	}

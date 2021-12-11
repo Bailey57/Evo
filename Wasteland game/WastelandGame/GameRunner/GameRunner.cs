@@ -8,7 +8,7 @@ namespace Wasteland_game.WastelandGame.GameRunner
 {
 	/*
     package wasteland.gameRunner;
-import wasteland.saveAndLoad.*;
+using Wasteland.saveAndLoad.*;
 import java.io.Serializable;
 import java.util.Scanner;
 
@@ -17,15 +17,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import wasteland.entity.Entity;
-import wasteland.entity.Hitbox;
-import wasteland.gui.GameGUI;
-import wasteland.items.BaseItem;
-import wasteland.items.ProjectileAmmo;
-import wasteland.items.weapons.Gun;
-import wasteland.items.weapons.Magazine;
-import wasteland.map.GameObjectPos;
-import wasteland.map.Map;
+using Wasteland.entity.Entity;
+using Wasteland.entity.Hitbox;
+using Wasteland.gui.GameGUI;
+using Wasteland.items.BaseItem;
+using Wasteland.items.ProjectileAmmo;
+using Wasteland.items.weapons.Gun;
+using Wasteland.items.weapons.Magazine;
+using Wasteland.map.GameObjectPos;
+using Wasteland.map.Map;
 */
 /**
  * 
@@ -33,7 +33,7 @@ import wasteland.map.Map;
  * @author bailey
  *
  */
-public class GameRunner : Serializable{
+public class GameRunner {
 
 	/**
 	 * 
@@ -193,7 +193,7 @@ public class GameRunner : Serializable{
 		
 		//@SuppressWarnings("resource")
 		//Scanner scn = new Scanner(System.in);
-		boolean mainMenuRunning = true;
+		bool mainMenuRunning = true;
 		String input = "";
 		Console.Writeln("Note: Loading a game file takes roughly 38 seconds\n");
 		

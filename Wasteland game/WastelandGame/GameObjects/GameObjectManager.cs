@@ -8,7 +8,7 @@ namespace Wasteland_game.WastelandGame.GameObjects
 {
 	//package wasteland.gameObject;
 
-	//import wasteland.entity.Entity;
+	//using Wasteland.entity.Entity;
 
 	public class GameObjectManager
 	{
