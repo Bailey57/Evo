@@ -1,4 +1,13 @@
-﻿/*
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+
+
+/*
 package wasteland.entity;
 
 import java.util.Random;
@@ -15,6 +24,7 @@ import wasteland.map.MapAreaFactory;
 */
 
 //later: add entity levels wich affect how skilled they are ex: high lvl might have high accuracy
+namespace Wasteland_game.WastelandGame.GameObjects {
 public class Animal : Entity {
 	// types: humaniod, vehicle,
 
@@ -1142,4 +1152,5 @@ public class Animal : Entity {
 
 	}
 
+}
 }

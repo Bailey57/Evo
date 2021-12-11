@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wasteland_game.WastelandGame
+//namespace Wasteland_game.WastelandGame
 //package wasteland;
 
 //import java.io.Serializable;
@@ -13,6 +13,7 @@ namespace Wasteland_game.WastelandGame
 //import wasteland.entity.Hitbox;
 //import wasteland.entity.Material;
 //import wasteland.map.GameObjectPos;
+namespace Wasteland_game.WastelandGame.GameObjects{ 
 
 public class GameObject{
 	// add density or hardness or make material class
@@ -449,4 +450,5 @@ public String toString()
 	return output;
 }
 
+}
 }

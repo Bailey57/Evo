@@ -6,7 +6,32 @@ using System.Threading.Tasks;
 
 namespace Wasteland_game.WastelandGame.GameObjects
 {
-    class StatusEffect
-    {
-    }
+    //package wasteland.entity;
+
+	//import wasteland.GameObject;
+
+public class StatusEffect {
+	
+	
+	
+	
+	
+	public StatusEffect() {
+		
+
+	}
+	
+	
+	public void runThroughStatusEffects(GameObject gameObject) {
+		if (gameObject is Animal) {
+			
+		}
+		
+	}
+	
+	
+	
+
+}
+
 }

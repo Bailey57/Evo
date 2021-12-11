@@ -1,8 +1,15 @@
-﻿/*
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+/*
 package wasteland.calculator;
 
 import java.util.Random;
 */
+namespace Wasteland_game.WastelandGame.Calculator {
 public class RandomNumbers {
 	
 	
@@ -40,4 +47,5 @@ public class RandomNumbers {
 		Console.Writeline(rand.rollRandDouble(20, -20));
 	}
 
+}
 }

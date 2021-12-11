@@ -1,4 +1,10 @@
-﻿/*
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+/*
 package wasteland.calculator;
 
 import java.util.Scanner;
@@ -11,7 +17,7 @@ import wasteland.entity.MaterialLayer;
 import wasteland.entity.Wound;
 import wasteland.items.ProjectileAmmo;
 */
-
+namespace Wasteland_game.WastelandGame.Calculator {
 public class BulletPenetration {
 
 	public String name = "unnamed projectile";// _9_mm, _7_62_mm, _12_7_mm
@@ -1154,4 +1160,5 @@ public class BulletPenetration {
 
 	}
 
+}
 }

@@ -1,5 +1,12 @@
-﻿//package wasteland.entity;
+﻿
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+//package wasteland.entity;
+namespace Wasteland_game.WastelandGame.GameObjects {
 public class BodyPart {
 
 	String name;
@@ -520,4 +527,5 @@ public class BodyPart {
 	}
 	
 
+}
 }

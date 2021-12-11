@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace Wasteland_game.WastelandGame.GameObjects
 {
-    class InternalOrgin
-    {
-    }
+	//package wasteland.gameObject;
+
+	//import wasteland.entity.Entity;
+
+	public class GameObjectManager
+	{
+
+		public Entity[] gameEntityList;
+
+
+
+
+	}
+
 }
+
+
