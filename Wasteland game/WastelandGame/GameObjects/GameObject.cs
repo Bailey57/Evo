@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 //using Wasteland.entity.Hitbox;
 //using Wasteland.entity.Material;
 //using Wasteland.map.GameObjectPos;
-namespace Wasteland_game.WastelandGame.GameObjects{ 
-
-public class GameObject{
+namespace Wasteland_game
+{
+    public class GameObject{
 	// add density or hardness or make material class
 	//
 	// 40in 8ft

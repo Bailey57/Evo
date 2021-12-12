@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Wasteland_game.WastelandGame;
 
-namespace Wasteland_game.WastelandGame.GameRunner
-
+namespace Wasteland_game
 {
 	/*
     package wasteland.gameRunner;
@@ -31,7 +30,7 @@ public class PlayerAction {
 		//Scanner scn = new Scanner(System.in);
 		//GameObjectPos GameObjectPos = new GameObjectPos();
 		
-		Console.Writeln("Type what direction you want to go: N, S, E or W");
+		Console.WriteLine("Type what direction you want to go: N, S, E or W");
 		scn.next();
 		
 		

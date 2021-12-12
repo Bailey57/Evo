@@ -1,23 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Wasteland_game.WastelandGame.Gun
+
+namespace Wasteland_game
 {
-	/*
-	package wasteland.items.weapons;
 
-	using Wasteland.GameObject;
-	using Wasteland.calculator.BulletPenetration;
-	using Wasteland.calculator.RandomNumbers;
-	using Wasteland.entity.Entity;
-	using Wasteland.items.BaseItem;
-	using Wasteland.items.ProjectileAmmo;
-	using Wasteland.map.GameObjectPos;
-	using Wasteland.map.Map;
-	*/
 	public class Gun : BaseItem
 	{
 
@@ -567,13 +553,13 @@ namespace Wasteland_game.WastelandGame.Gun
 		Gun gun = new Gun(objPos2, "9mm pistol", 9, true, true);
 		gun.setMagazine(_9mm_mag);
 
-		Console.Writeln(gun.getMagazine().getAmmountOfBulletsInMag());
-		Console.Writeln(gun.getMagazine().bulletsInMagToString());
-		Console.Writeln(gun.cockGun());
+		Console.WriteLine(gun.getMagazine().getAmmountOfBulletsInMag());
+		Console.WriteLine(gun.getMagazine().bulletsInMagToString());
+		Console.WriteLine(gun.cockGun());
 
-		Console.Writeln("Loaded ammo: " + gun.getLoadedProjectile().getObjectName());
-		Console.Writeln(gun.getMagazine().getAmmountOfBulletsInMag());
-		Console.Writeln(gun.getMagazine().bulletsInMagToString());
+		Console.WriteLine("Loaded ammo: " + gun.getLoadedProjectile().getObjectName());
+		Console.WriteLine(gun.getMagazine().getAmmountOfBulletsInMag());
+		Console.WriteLine(gun.getMagazine().bulletsInMagToString());
 
 		int timesShot = 6;
 		for (int i = 0; i < timesShot; i++)
@@ -583,13 +569,13 @@ namespace Wasteland_game.WastelandGame.Gun
 				int debug = 0;
 			}
 
-			Console.Writeln("\n" + gun.getMagazine().getAmmountOfBulletsInMag() + ": "
+			Console.WriteLine("\n" + gun.getMagazine().getAmmountOfBulletsInMag() + ": "
 					+ gun.getLoadedProjectile().getObjectName());
-			Console.Writeln("Target Hit: " + gun.fireGunAtGameObjectNoHitbox(shooter, target));
-			Console.Writeln("Target integraty: " + target.getIntegraty());
-			Console.Writeln("Target alive: " + target.isAlive());
-			Console.Writeln("Shooter accuracy: " + shooter.getAccuracy());
-			Console.Writeln("Shooter target group size: " + shooter.getTargetGroupSize(target));
+			Console.WriteLine("Target Hit: " + gun.fireGunAtGameObjectNoHitbox(shooter, target));
+			Console.WriteLine("Target integraty: " + target.getIntegraty());
+			Console.WriteLine("Target alive: " + target.isAlive());
+			Console.WriteLine("Shooter accuracy: " + shooter.getAccuracy());
+			Console.WriteLine("Shooter target group size: " + shooter.getTargetGroupSize(target));
 
 		}
 

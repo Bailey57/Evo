@@ -6,8 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 //package wasteland.entity;
-namespace Wasteland_game.WastelandGame.GameObjects {
-public class BodyPart {
+namespace Wasteland_game
+{
+	public class BodyPart {
 
 	String name;
 	private double xMinLocation;

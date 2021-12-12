@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Wasteland_game.WastelandGame;
 
-namespace Wasteland_game.WastelandGame.GameState
+namespace Wasteland_game
 {
 	/*
     package wasteland.gameRunner;

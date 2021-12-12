@@ -1,20 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Wasteland_game.WastelandGame.Map
+
+namespace Wasteland_game
 {
-	/*
-	package wasteland.map;
 
-	import java.io.Serializable;
-
-	using Wasteland.GameObject;
-	using Wasteland.entity.Entity;
-	using Wasteland.items.BaseItem;
-	*/
 	public class Map {
 
 	
@@ -25,7 +14,7 @@ namespace Wasteland_game.WastelandGame.Map
 	public int mapX_max;
 	public int mapY_Max;
 
-	public double[][] mapGrid;
+	public double[,] mapGrid;
 
 	/**
 	 * World ticks per second
@@ -35,7 +24,7 @@ namespace Wasteland_game.WastelandGame.Map
 	/**
 	 * The worldMap, made of MapAreas
 	 */
-	public MapArea[][] gameMap;
+	public MapArea[,] gameMap;
 
 
 
@@ -44,7 +33,7 @@ namespace Wasteland_game.WastelandGame.Map
 
 	//public Entity[] entitiesOnMap = new Entity[999000]; // limit initially 1000
 
-	public GameObject[][][] gameObjectsOnMap;
+	public GameObject[,,] gameObjectsOnMap;
 	public GameObject[] gameObjectsOnMapList = new GameObject[999000];
 
 
@@ -73,8 +62,8 @@ namespace Wasteland_game.WastelandGame.Map
 		this.mapSize = mapSize;
 
 		//mapSize = 1000;
-		gameMap = new MapArea[mapSize][mapSize];
-		gameObjectsOnMap = new GameObject[mapSize * mapAreaSize][mapSize * mapAreaSize][5];
+		gameMap = new MapArea[mapSize, mapSize];
+		gameObjectsOnMap = new GameObject[mapSize * mapAreaSize, mapSize * mapAreaSize, 5];
 
 	}
 
@@ -91,7 +80,7 @@ namespace Wasteland_game.WastelandGame.Map
 	 */
 	public void setMapX_max(int mapX_max)
 	{
-		this.mapX_max = gameMap.length;
+		this.mapX_max = gameMap.Length;
 	}
 
 	/**
@@ -107,7 +96,7 @@ namespace Wasteland_game.WastelandGame.Map
 	 */
 	public void setMapY_Max(int mapY_Max)
 	{
-		this.mapY_Max = gameMap.length;
+		this.mapY_Max = gameMap.Length;
 	}
 
 	/**
@@ -240,7 +229,7 @@ namespace Wasteland_game.WastelandGame.Map
 	/**
 	 * @param gameMap the gameMap to set
 	 */
-	public void setGameMap(MapArea[][] gameMap)
+	public void setGameMap(MapArea[,] gameMap)
 	{
 		this.gameMap = gameMap;
 	}
@@ -248,7 +237,7 @@ namespace Wasteland_game.WastelandGame.Map
 	/**
 	 * @param gameObjectsOnMap the gameObjectsOnMap to set
 	 */
-	public void setGameObjectsOnMap(GameObject[][][] gameObjectsOnMap)
+	public void setGameObjectsOnMap(GameObject[,,] gameObjectsOnMap)
 	{
 		this.gameObjectsOnMap = gameObjectsOnMap;
 	}
@@ -258,7 +247,7 @@ namespace Wasteland_game.WastelandGame.Map
 		String info = "";
 		for (int i = 0; i < gameObjectMapLimit; i++)
 		{
-			if (gameObjectsOnMap[i] != null)
+			if (gameObjectsOnMapList[i] != null)
 			{
 					info += gameObjectsOnMapList[i].getGameObjectPos().toString();
 			}
@@ -270,7 +259,7 @@ namespace Wasteland_game.WastelandGame.Map
 
 	public void printWorldGameObjectInfo()
 	{
-		Console.Writeln(getWorldGameObjectInfo());
+		Console.WriteLine(getWorldGameObjectInfo());
 
 	}
 
@@ -286,15 +275,15 @@ namespace Wasteland_game.WastelandGame.Map
 	//				break;
 	//
 	//			} else if (entitiesOnMap[i] == entity){
-	//				//Console.Writeln("Entity already on map");
+	//				//Console.WriteLine("Entity already on map");
 	//				return;
 	//			}
 	//			entityNum++;
 	//		}
 	//
 	//		if (!placedOnMap) {
-	//			// Console.Writeln("Map full, can't add any more Entities.");
-	//			Console.Writeln("Map full, can't add any more Entities." + "\nEntities on map: " + entityNum + "\n\n");
+	//			// Console.WriteLine("Map full, can't add any more Entities.");
+	//			Console.WriteLine("Map full, can't add any more Entities." + "\nEntities on map: " + entityNum + "\n\n");
 	//			return;
 	//		}
 	//
@@ -352,7 +341,7 @@ namespace Wasteland_game.WastelandGame.Map
 			}
 			else if (gameObjectsOnMapList[i] == gameObject)
 			{
-				//Console.Writeln("GameObject already on map");
+				//Console.WriteLine("GameObject already on map");
 				placedOnMap = false;
 				return placedOnMap;
 			}
@@ -361,8 +350,8 @@ namespace Wasteland_game.WastelandGame.Map
 
 		if (!placedOnMap)
 		{
-			// Console.Writeln("Map full, can't add any more Entities.");
-			Console.Writeln("Map full, can't add any more GameObjects." + "\nGameObjects on map: " + gameObjectNum + "\n\n");
+			// Console.WriteLine("Map full, can't add any more Entities.");
+			Console.WriteLine("Map full, can't add any more GameObjects." + "\nGameObjects on map: " + gameObjectNum + "\n\n");
 			placedOnMap = false;
 		}
 		return placedOnMap;
@@ -389,8 +378,8 @@ namespace Wasteland_game.WastelandGame.Map
 
 		if (!removedFromMap)
 		{
-			// Console.Writeln("Map full, can't add any more Entities.");
-			Console.Writeln("Cant remove GameObject: " + gameObject.getObjectName() + "\n");
+			// Console.WriteLine("Map full, can't add any more Entities.");
+			Console.WriteLine("Cant remove GameObject: " + gameObject.getObjectName() + "\n");
 			removedFromMap = false;
 		}
 		return removedFromMap;
@@ -407,7 +396,7 @@ namespace Wasteland_game.WastelandGame.Map
 		for (int i = 0; i < entityMapLimit; i++)
 		{
 			if (!(gameObjectsOnMapList[i] is Entity) 
-					|| gameObjectsOnMap[i] == null
+					|| gameObjectsOnMap[i,0,0] == null
 					|| (((Entity)gameObjectsOnMapList[i]).isThePlayer())) {
 			break;
 		} else
@@ -425,8 +414,8 @@ namespace Wasteland_game.WastelandGame.Map
 						player.addObjectStringEvents("\nSpotted by a " + ((Entity)gameObjectsOnMapList[i]).getEntityName() + ".\n");
 						player.addObjectStringEvents("\nEntered combat.\n");
 
-						Console.Writeln("Spotted by a " + ((Entity)gameObjectsOnMapList[i]).getEntityName() + ".");
-						Console.Writeln("Entered combat.");
+						Console.WriteLine("Spotted by a " + ((Entity)gameObjectsOnMapList[i]).getEntityName() + ".");
+						Console.WriteLine("Entered combat.");
 					}
 					player.setSpotted(true);
 					player.setInCombat(true);
@@ -444,12 +433,12 @@ namespace Wasteland_game.WastelandGame.Map
 
 	}
 		if (!spotted) {
-			//Console.Writeln("\n" + player.getObjectName() + " is hidden from view.");
+			//Console.WriteLine("\n" + player.getObjectName() + " is hidden from view.");
 			
 			player.setSpotted(false);
 			if (player.isInCombat() && player.isThePlayer()) {
 				player.addObjectStringEvents("\nExited combat.\n");
-				Console.Writeln("Exited combat.");
+				Console.WriteLine("Exited combat.");
 }
 player.setInCombat(false);
 			
@@ -486,7 +475,7 @@ player.setInCombat(false);
 	 * 
 	 * @return map
 	 */
-	public MapArea[][] getGameMap()
+	public MapArea[,] getGameMap()
 {
 	return this.gameMap;
 }
@@ -498,9 +487,9 @@ player.setInCombat(false);
  * @param yPos
  * @param playerOnArea
  */
-public void setGameMapPlayer(int xPos, int yPos, bool playerOnArea)
+public void setGameMapPlayer(int xPos, int yPos, bool playerOnArea_)
 {
-	gameMap[yPos][xPos].playerOnArea = playerOnArea;
+	gameMap[yPos, xPos].playerOnArea = playerOnArea_;
 }
 
 /**
@@ -510,13 +499,13 @@ public void makeGameMap1()
 {
 	MapAreaFactory mapFact = new MapAreaFactory(this);
 	mapFact.worldMap = this;
-	this.gameMap = new MapArea[25][25];
+	this.gameMap = new MapArea[25, 25];
 
 	for (int i = 0; i < 25; i++)
 	{
 
 
-		Console.Writeln();
+		Console.WriteLine();
 
 
 
@@ -525,25 +514,25 @@ public void makeGameMap1()
 		{
 			if (i == 9 && k > 10)
 			{
-				this.gameMap[i][k] = mapFact.makeStreet(i, k);
+				this.gameMap[i, k] = mapFact.makeStreet(i, k);
 
 			}
 			else if (k == 10)
 			{
-				this.gameMap[i][k] = mapFact.makeStreet(i, k);
+				this.gameMap[i, k] = mapFact.makeStreet(i, k);
 
 			}
 			else if (k == 9)
 			{
-				this.gameMap[i][k] = mapFact.makeTown(i, k);
+				this.gameMap[i, k] = mapFact.makeTown(i, k);
 
 			}
 			else
 			{
-				this.gameMap[i][k] = mapFact.makeForest(i, k);
+				this.gameMap[i, k] = mapFact.makeForest(i, k);
 			}
 
-			if (gameMap[i][k].playerOnArea)
+			if (gameMap[i, k].playerOnArea)
 			{
 				// Console.Write("P ");
 			}
@@ -558,9 +547,9 @@ public void makeGameMap1()
 
 
 
-	//		Console.Writeln();
-	//		Console.Writeln(map[0].length);
-	//		Console.Writeln(map[1].length);
+	//		Console.WriteLine();
+	//		Console.WriteLine(map[0].length);
+	//		Console.WriteLine(map[1].length);
 }
 
 
@@ -576,16 +565,16 @@ public String getGameMapString()
 		{
 
 
-			if (gameMap[i][k] != null)
+			if (gameMap[i, k] != null)
 			{
-				if (gameMap[i][k].playerOnArea)
+				if (gameMap[i, k].playerOnArea)
 				{
 					mapString += "P ";
 
 				}
 				else
 				{
-					mapString += gameMap[i][k].displayLetter + " ";
+					mapString += gameMap[i, k].displayLetter + " ";
 
 				}
 
@@ -606,7 +595,7 @@ public String getGameMapString()
  */
 public void printGameMapString()
 {
-	Console.Writeln(getGameMapString());
+	Console.WriteLine(getGameMapString());
 
 }
 
@@ -647,17 +636,17 @@ public static void main(String[] args)
 
 	if (US_forest.addGameObjectToMapList(zombie))
 	{
-		Console.Writeln("z added");
+		Console.WriteLine("z added");
 	}
 
 	if (US_forest.addGameObjectToMapList(player))
 	{
-		Console.Writeln("player added");
+		Console.WriteLine("player added");
 	}
 
 	if (US_forest.addGameObjectToMapList(spear))
 	{
-		Console.Writeln("spear added");
+		Console.WriteLine("spear added");
 	}
 
 
@@ -668,13 +657,13 @@ public static void main(String[] args)
 	//US_forest.printWorldGameObjectInfo();
 
 	US_forest.printGameMapString();
-	Console.Writeln("Entities on map: " + US_forest.getCurrentAmmountOfEntitiesOnMap() + "\n");
+	Console.WriteLine("Entities on map: " + US_forest.getCurrentAmmountOfEntitiesOnMap() + "\n");
 	// player start: [24][12]
 
 
 
-	Console.Writeln(player.itemInSight(spear));
-	Console.Writeln(player.itemsInSightListToString(US_forest));
+	Console.WriteLine(player.itemInSight(spear));
+	Console.WriteLine(player.itemsInSightListToString(US_forest));
 
 
 

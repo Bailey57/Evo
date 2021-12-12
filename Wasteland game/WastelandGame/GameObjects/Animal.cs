@@ -6,36 +6,13 @@ using System.Threading.Tasks;
 using Wasteland_game.WastelandGame.BaseItem;
 
 
-using Wasteland_game.Wasteland.GameObject;
-using Wasteland_game.Wasteland.Calculator.RandomNumbers;
-using Wasteland_game.Wasteland.Items.BaseItem;
-using Wasteland_game.Wasteland.Items.weapons.Gun;
-using Wasteland_game.Wasteland.Items.weapons.Magazine;
-using Wasteland_game.Wasteland.Map.GameObjectPos;
-using Wasteland_game.Wasteland.Map.Map;
-using Wasteland.Map.MapArea;
-using Wasteland.Map.MapAreaFactory;
 
 
 
-/*
-package wasteland.entity;
 
-import java.util.Random;
-
-using Wasteland.GameObject;
-using Wasteland.calculator.RandomNumbers;
-using Wasteland.items.BaseItem;
-using Wasteland.items.weapons.Gun;
-using Wasteland.items.weapons.Magazine;
-using Wasteland.map.GameObjectPos;
-using Wasteland.map.Map;
-using Wasteland.map.MapArea;
-using Wasteland.map.MapAreaFactory;
-*/
 
 //later: add entity levels wich affect how skilled they are ex: high lvl might have high accuracy
-namespace Wasteland_game.WastelandGame {
+namespace Wasteland_game {
 public class Animal : Entity {
 	// types: humaniod, vehicle,
 

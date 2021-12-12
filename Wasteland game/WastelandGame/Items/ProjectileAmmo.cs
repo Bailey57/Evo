@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wasteland_game.WastelandGame.ProjectileAmmo
+namespace Wasteland_game
 {
 
 	/*
@@ -30,9 +30,10 @@ namespace Wasteland_game.WastelandGame.ProjectileAmmo
 	//public Ammo nato7_62 = new Ammo(1, "NATO7.62, M80 FMJ", .01, 1, .1, 7.62, 850);
 
 
-	public ProjectileAmmo(GameObjectPos gameObjectPos, String objectName, double mass, double diameter, double initV)
-	{
-		super(gameObjectPos, objectName, 0);
+	public ProjectileAmmo(GameObjectPos gameObjectPos, String objectName, double mass, double diameter, double initV) 
+			: base(gameObjectPos, objectName, 0)
+		{
+		
 
 
 		this.mass = mass;
@@ -44,9 +45,9 @@ namespace Wasteland_game.WastelandGame.ProjectileAmmo
 
 
 	public ProjectileAmmo(GameObjectPos gameObjectPos, String objectName, double mass, double diameter, double length,
-			double initV)
-	{
-		super(gameObjectPos, objectName, 0);
+			double initV) : base(gameObjectPos, objectName, 0)
+		{
+		
 		this.mass = mass;
 		this.diameter = diameter;
 		this.length = length;

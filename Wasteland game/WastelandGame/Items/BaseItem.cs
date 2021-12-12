@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Wasteland_game.WastelandGame.BaseItem
+
+namespace Wasteland_game
 {
 
 	/*
@@ -51,17 +48,18 @@ namespace Wasteland_game.WastelandGame.BaseItem
 	 * 
 	 */
 
-	public BaseItem(GameObjectPos gameObjectPos, String objectName, double attackRange)
-	{
-		super(gameObjectPos, objectName);
+	public BaseItem(GameObjectPos gameObjectPos, String objectName, double attackRange) 
+			: base(gameObjectPos, objectName)
+		{
+		
 		this.attackRange = attackRange;
 
 	}
 
 	public BaseItem(GameObjectPos gameObjectPos, String objectName, double attackRange, double quality,
-			double condition)
+			double condition) : base(gameObjectPos, objectName)
+
 	{
-		super(gameObjectPos, objectName);
 		this.attackRange = attackRange;
 		this.quality = quality;
 		this.condition = condition;
@@ -143,7 +141,7 @@ namespace Wasteland_game.WastelandGame.BaseItem
 	/**
 	 * @return the isMelee
 	 */
-	public bool isMelee()
+	public bool isMeleeBool()
 	{
 		return isMelee;
 	}

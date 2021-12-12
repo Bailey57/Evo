@@ -19,7 +19,7 @@ using Wasteland_game.WastelandGame.entity.MaterialLayer;
 using Wasteland_game.WastelandGame.entity.Wound;
 using Wasteland_game.WastelandGame.Items.ProjectileAmmo;
 */
-namespace Wasteland_game.WastelandGame {
+namespace Wasteland_game {
 public class BulletPenetration {
 
 	public String name = "unnamed projectile";// _9_mm, _7_62_mm, _12_7_mm
@@ -539,7 +539,7 @@ public class BulletPenetration {
 		BodyPart bodyPartClone;
 		MaterialLayer materialLayerClone;
 
-		for (int i = 0; i < bodyPart.getLayers().length; i++) {
+		for (int i = 0; i < bodyPart.getLayers().GetLength(0); i++) {
 			materialLayerClone = bodyPart.getLayers()[i];
 
 		}
@@ -700,7 +700,7 @@ public class BulletPenetration {
 			Console.WriteLine("Target has no armor.\n");
 			output += "\nTarget has no armor.\n";
 		} else {
-			double armorHitLength = hitbox.armorHitCheck(projectileX, projectileY).length;
+			double armorHitLength = hitbox.armorHitCheck(projectileX, projectileY).GetLength(0);
 
 			// penetrait armor method
 
@@ -779,7 +779,7 @@ public class BulletPenetration {
 			output += "\nTarget has no body parts to hit.\n";
 		} else {
 
-			double bodyPartsHitLength = hitbox.bodyPartsHitCheck(projectileX, projectileY).length;
+			double bodyPartsHitLength = hitbox.bodyPartsHitCheck(projectileX, projectileY).GetLength(0);
 
 			if (projectileX <= 21.212 && projectileX >= -21.212 && projectileY <= 1430.492 && projectileY >= 1232.955) {
 				double wow;
@@ -797,7 +797,7 @@ public class BulletPenetration {
 					// break;
 				} else {
 
-					double layers = hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getLayers().length;
+					double layers = hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getLayers().GetLength(0);
 
 					if (this.getFinalV() <= 0) {
 						break;
@@ -807,7 +807,7 @@ public class BulletPenetration {
 							break;
 						}
 
-						if (hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getName().equals("Sternum")) {
+						if (hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getName().Equals("Sternum")) {
 							bool found;
 							found = true;
 						}

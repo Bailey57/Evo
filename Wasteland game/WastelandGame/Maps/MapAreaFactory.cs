@@ -1,22 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Wasteland_game.WastelandGame.Map
+
+namespace Wasteland_game
 {
-	/*
-	package wasteland.map;
 
-	using Wasteland.entity.Entity;
-	using Wasteland.entity.Hitbox;
-	*/
-	/**
-	 * 
-	 * @author bailey
-	 *
-	 */
 	public class MapAreaFactory
 	{
 		//Note: add something to keep track of entities in the map area 
@@ -110,7 +97,7 @@ namespace Wasteland_game.WastelandGame.Map
 			mapArea.setMapAreaY_min(0);
 			mapArea.setMapAreaY_max(200);
 
-			worldMap.gameMap[yCordOnGameMap][yCordOnGameMap] = mapArea;
+			worldMap.gameMap[yCordOnGameMap, yCordOnGameMap] = mapArea;
 
 
 

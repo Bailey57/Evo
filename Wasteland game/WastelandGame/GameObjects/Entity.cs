@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wasteland_game.GameObjects.Entity;
+
 /*
 package wasteland.entity;
 
@@ -20,9 +20,9 @@ using Wasteland.map.MapArea;
 using Wasteland.map.MapAreaFactory;
 */
 //later: add entity levels wich affect how skilled they are ex: high lvl might have high accuracy
-namespace Wasteland_game.WastelandGame.Entity {
-
-public class Entity : GameObject {
+namespace Wasteland_game
+{
+	public class Entity : GameObject {
 	// types: humaniod, vehicle,
 
 	/**

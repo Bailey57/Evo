@@ -1,19 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Wasteland_game.WastelandGame.Armor
+
+namespace Wasteland_game
 {
 
-	/*
-	package wasteland.items;
-
-	using Wasteland.calculator.RandomNumbers;
-	using Wasteland.entity.Material;
-	using Wasteland.map.GameObjectPos;
-	*/
+	
 	public class Armor : BaseItem
 	{
 

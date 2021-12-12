@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wasteland_game.WastelandGame.GameObjects
+namespace Wasteland_game
 {
 	/*
     package wasteland.entity;
@@ -749,7 +749,7 @@ public class Hitbox {
 		sig.setProjectileAmmo(sig_);
 		
 		BulletPenetration sig1 = new BulletPenetration("sig", 0.00745187, 9, 335.4, 0);
-		Console.Writeln(sig1.toString2());
+		Console.WriteLine(sig1.toString2());
 		
 		sig1.kruppPenFormulaInput(335.4, 0.00745187, 2300, 9);
 		
@@ -760,22 +760,22 @@ public class Hitbox {
 		
 		
 		
-		Console.Writeln("Krupp mm of pen steel: " + sig1.kruppPenFormulaInput(335.4, 0.00745187, 2300, 9));
-		Console.Writeln("Krupp velocity steel: " + sig1.kruppVelocity(0.00745187, sig1.kruppPenFormulaInput(335.4, 0.00745187, 2300, 9), 2300, 9));
-		Console.Writeln("Krupp constant steel: " + sig1.kruppConstant(0.00745187, sig1.kruppPenFormulaInput(335.4, 0.00745187, 2300, 9), 335.4, 9));
+		Console.WriteLine("Krupp mm of pen steel: " + sig1.kruppPenFormulaInput(335.4, 0.00745187, 2300, 9));
+		Console.WriteLine("Krupp velocity steel: " + sig1.kruppVelocity(0.00745187, sig1.kruppPenFormulaInput(335.4, 0.00745187, 2300, 9), 2300, 9));
+		Console.WriteLine("Krupp constant steel: " + sig1.kruppConstant(0.00745187, sig1.kruppPenFormulaInput(335.4, 0.00745187, 2300, 9), 335.4, 9));
 		
 		ProjectileAmmo federal_9mm_HST = new ProjectileAmmo(null, "federal_9mm_HST", 0.00803506, 9, 13, 335.4);
 		federal_9mm_HST.setBaseMaterial(materials.getLead());
 		BulletPenetration federal_9mm_HST_pen = new BulletPenetration("federal_9mm_HST", 0.00803506, 9, 335.4, 0);
 		federal_9mm_HST_pen.setProjectileAmmo(federal_9mm_HST);
 		
-		Console.Writeln("Krupp constant ballistic gell: " + sig1.kruppConstant(0.00745187, 464.82, 345.948, 9));
+		Console.WriteLine("Krupp constant ballistic gell: " + sig1.kruppConstant(0.00745187, 464.82, 345.948, 9));
 		
 		Hitbox testHumanHitbox = new Hitbox();
 		testHumanHitbox = testHumanHitbox.newHumanHitbox();
-		Console.Writeln(testHumanHitbox.getHitboxCenterX());
-		Console.Writeln(testHumanHitbox.getHitboxCenterY());
-		Console.Writeln(testHumanHitbox.getHitboxCenterZ());
+		Console.WriteLine(testHumanHitbox.getHitboxCenterX());
+		Console.WriteLine(testHumanHitbox.getHitboxCenterY());
+		Console.WriteLine(testHumanHitbox.getHitboxCenterZ());
 		
 		Armor testArmor = new Armor();
 		testArmor = testArmor.genericArmorPlate_TESTING();
@@ -786,10 +786,10 @@ public class Hitbox {
 		
 		
 		
-		//Console.Writeln(testHumanHitbox.bodyPartsHitCheckToString(testHumanHitbox.getHitboxCenterX(), testHumanHitbox.getHitboxCenterY()));	
+		//Console.WriteLine(testHumanHitbox.bodyPartsHitCheckToString(testHumanHitbox.getHitboxCenterX(), testHumanHitbox.getHitboxCenterY()));	
 		//testHumanHitbox.bodyPartsHitCheckToString(testHumanHitbox.getHitboxCenterX(), testHumanHitbox.getHitboxCenterY());
 	
-		//Console.Writeln(testHumanHitbox.bodyPartsHitCheckToString(testHumanHitbox.getHitboxCenterX(), 950));
+		//Console.WriteLine(testHumanHitbox.bodyPartsHitCheckToString(testHumanHitbox.getHitboxCenterX(), 950));
 		
 		
 		ProjectileAmmo ak_ = new ProjectileAmmo(null, "ak", 0.011, 9, 13, 335.4);
@@ -881,26 +881,26 @@ public class Hitbox {
 			
 			
 			Console.Write("\nSig: \n");
-			Console.Writeln("Final V: " + sig.finalVelocity());
+			Console.WriteLine("Final V: " + sig.finalVelocity());
 			sig.penetraitHitBox(testHumanHitbox, randX_Cord, randY_Cord, 0);
 			
 			Console.Write("\nAk: \n");
-			Console.Writeln("Final V: " + ak.finalVelocity());
+			Console.WriteLine("Final V: " + ak.finalVelocity());
 			ak.penetraitHitBox(testHumanHitbox, randX_Cord, randY_Cord, 0);
 			
 			Console.Write("\nPellet: \n");
-			Console.Writeln("Final V: " + pelletGun.finalVelocity());
+			Console.WriteLine("Final V: " + pelletGun.finalVelocity());
 			pelletGun.penetraitHitBox(testHumanHitbox, randX_Cord, randY_Cord, 0);
 			
 			
 			
 			
 			
-			Console.Writeln("\n\n");
+			Console.WriteLine("\n\n");
 			
 		}
 		long endTime = (System.currentTimeMillis() - startTime);
-		Console.Writeln("\nmil seconds: " + endTime + "\nseconds: " + endTime /1000);
+		Console.WriteLine("\nmil seconds: " + endTime + "\nseconds: " + endTime /1000);
 		
 		
 		//testHumanHitbox.ge

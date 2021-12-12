@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wasteland_game.WastelandGame.GameRunner
+namespace Wasteland_game
 {
 	/*
     package wasteland.gameRunner;
@@ -121,17 +121,17 @@ public class CommandHandler {
 
 	public void saveGame(GameState gameState) {
 		String input = scn.nextLine().toLowerCase();
-		Console.Writeln("Enter name of the file: ");
+		Console.WriteLine("Enter name of the file: ");
 		input = scn.nextLine();
 
 		fileManager.saveGameAs(input, gameState);
 
-		Console.Writeln("Game saved");
+		Console.WriteLine("Game saved");
 
 	}
 
 	public void printEntityList(GameState gameState) {
-		Console.Writeln(gameState.getMainMap().gameObjectsOnMapToString());
+		Console.WriteLine(gameState.getMainMap().gameObjectsOnMapToString());
 
 	}
 
@@ -178,12 +178,12 @@ public class CommandHandler {
 //		// 2: Human
 //
 //		if (gameState.getPlayer().entitiesInSightList(gameState.getMainMap())[0] != null) {
-//			Console.Writeln("Attack what enemy? ");
-//			Console.Writeln(gameState.getPlayer().entitiesInSightListToString(gameState.getMainMap()));
+//			Console.WriteLine("Attack what enemy? ");
+//			Console.WriteLine(gameState.getPlayer().entitiesInSightListToString(gameState.getMainMap()));
 //			bool done = false;
 //			while (!done) {
 //
-//				Console.Writeln("Type number you want to attack.");
+//				Console.WriteLine("Type number you want to attack.");
 //				input = scn.nextLine();
 //
 //				if (input != null && Integer.parseInt(input) >= 0 && Integer.parseInt(input) < 999000) {
@@ -197,11 +197,11 @@ public class CommandHandler {
 //										0, true);
 //						done = true;
 //					} else {
-//						Console.Writeln("Invalid input or entity doesnt exist.");
+//						Console.WriteLine("Invalid input or entity doesnt exist.");
 //					}
 //
 //				} else {
-//					Console.Writeln("Invalid input, must be a number listed.");
+//					Console.WriteLine("Invalid input, must be a number listed.");
 //				}
 //
 //			}
@@ -209,7 +209,7 @@ public class CommandHandler {
 //			
 //
 //		} else {
-//			Console.Writeln("Nothing in sight to attack.");
+//			Console.WriteLine("Nothing in sight to attack.");
 //		}
 //
 //		return "";
@@ -252,12 +252,12 @@ public class CommandHandler {
 			// 2: Human
 
 			if (gameState.getPlayer().entitiesInSightList(gameState.getMainMap())[0] != null) {
-				Console.Writeln("Attack what enemy? ");
-				Console.Writeln(gameState.getPlayer().entitiesInSightListToString(gameState.getMainMap()));
+				Console.WriteLine("Attack what enemy? ");
+				Console.WriteLine(gameState.getPlayer().entitiesInSightListToString(gameState.getMainMap()));
 				bool done = false;
 				while (!done) {
 
-					Console.Writeln("Type number you want to attack.");
+					Console.WriteLine("Type number you want to attack.");
 					input = scn.nextLine();
 
 					if (input != null && Integer.parseInt(input) >= 0 && Integer.parseInt(input) < 999000) {
@@ -270,11 +270,11 @@ public class CommandHandler {
 											true);
 							done = true;
 						} else {
-							Console.Writeln("Invalid input or entity doesnt exist.");
+							Console.WriteLine("Invalid input or entity doesnt exist.");
 						}
 
 					} else {
-						Console.Writeln("Invalid input, must be a number listed.");
+						Console.WriteLine("Invalid input, must be a number listed.");
 					}
 
 				}
@@ -282,21 +282,21 @@ public class CommandHandler {
 				setSeconds(2);
 
 			} else {
-				Console.Writeln("Nothing in sight to attack.");
+				Console.WriteLine("Nothing in sight to attack.");
 			}
 
 		} else if (input.equals("pick up item") || input.equals("pui")) {
 			// put code here
 
 			if (gameState.getPlayer().itemsInSightList(gameState.getMainMap())[0] != null) {
-				Console.Writeln("Pick up what item? ");
+				Console.WriteLine("Pick up what item? ");
 
-				Console.Writeln(gameState.getPlayer().itemsInSightListToString(gameState.getMainMap()));
+				Console.WriteLine(gameState.getPlayer().itemsInSightListToString(gameState.getMainMap()));
 
 				bool done = false;
 				while (!done) {
 
-					Console.Writeln("Type number you want to pick up. Type c to cancel.");
+					Console.WriteLine("Type number you want to pick up. Type c to cancel.");
 					input = scn.nextLine();
 					if (input.equals("C") || input.equals("c")) {
 						done = true;
@@ -318,25 +318,25 @@ public class CommandHandler {
 
 							done = true;
 						} else {
-							Console.Writeln("Invalid input or item doesnt exist.");
+							Console.WriteLine("Invalid input or item doesnt exist.");
 						}
 
 					} else {
-						Console.Writeln("Invalid input, must be a number listed.");
+						Console.WriteLine("Invalid input, must be a number listed.");
 					}
 
 				}
 
 			} else {
-				Console.Writeln("No items in sight.");
+				Console.WriteLine("No items in sight.");
 
 			}
 
 		} else if (input.equals("drop item") || input.equals("di")) {
-			Console.Writeln("Drop what item? Type c to cancel.");
+			Console.WriteLine("Drop what item? Type c to cancel.");
 
 			bool done = false;
-			Console.Writeln(gameState.getPlayer().showInventory());
+			Console.WriteLine(gameState.getPlayer().showInventory());
 
 			while (!done) {
 				input = scn.nextLine();
@@ -355,12 +355,12 @@ public class CommandHandler {
 
 			if (gameState.getPlayer().inventory[0] == null) {
 
-				Console.Writeln("\nNothing in inventory");
+				Console.WriteLine("\nNothing in inventory");
 			} else {
 
-				Console.Writeln(gameState.getPlayer().showInventory());
+				Console.WriteLine(gameState.getPlayer().showInventory());
 
-				Console.Writeln("Type number you want to equip. Type stop to exit comand.");
+				Console.WriteLine("Type number you want to equip. Type stop to exit comand.");
 				input = scn.nextLine();
 				if (input.equals("stop")) {
 
@@ -378,13 +378,13 @@ public class CommandHandler {
 			// gameState.getPlayer().getInventoryList();
 			if (gameState.getPlayer().inventory == null) {
 
-				Console.Writeln("\nNothing in inventory");
+				Console.WriteLine("\nNothing in inventory");
 			} else {
 				if (gameState.getPlayer().entityWeapon != null) {
-					Console.Writeln("Equipped weapon: " + gameState.getPlayer().entityWeapon.getObjectName());
+					Console.WriteLine("Equipped weapon: " + gameState.getPlayer().entityWeapon.getObjectName());
 				}
 
-				Console.Writeln("Inventory: \n" + gameState.getPlayer().showInventory());
+				Console.WriteLine("Inventory: \n" + gameState.getPlayer().showInventory());
 			}
 
 		}
@@ -398,10 +398,10 @@ public class CommandHandler {
 			 */
 			if (gameState.getPlayer().inCombat) {
 
-				Console.Writeln("Cant wait while in combat.");
+				Console.WriteLine("Cant wait while in combat.");
 
 			} else {
-				Console.Writeln("Wait for how many minuets? ");
+				Console.WriteLine("Wait for how many minuets? ");
 				input = scn.nextLine();
 				gameState.getPlayer().playerWait(gameState.getMainMap(), gameState.getPlayer(),
 						Double.parseDouble(input));
@@ -411,7 +411,7 @@ public class CommandHandler {
 
 		} else if (input.equals("wic") || input.equals("wait in combat")) {
 
-			Console.Writeln("Wait for how many minuets? ");
+			Console.WriteLine("Wait for how many minuets? ");
 			input = scn.nextLine();
 
 			gameState.getPlayer().playerWait(gameState.getMainMap(), gameState.getPlayer(), Double.parseDouble(input));
@@ -445,11 +445,11 @@ public class CommandHandler {
 
 				while (!correctInput) {
 
-					Console.Writeln("Type what direction you want to go: N, S, E or W");
+					Console.WriteLine("Type what direction you want to go: N, S, E or W");
 
 					directionPlayerMoves = scn.nextLine().toLowerCase();
 
-					Console.Writeln("Type how many minutes you want to travel: ");
+					Console.WriteLine("Type how many minutes you want to travel: ");
 
 					directionPlayerDistance = scn.nextLine();
 
@@ -460,7 +460,7 @@ public class CommandHandler {
 						correctInput = true;
 
 					} else {
-						Console.Writeln("\nInvalid input\n");
+						Console.WriteLine("\nInvalid input\n");
 					}
 
 				}
@@ -486,7 +486,7 @@ public class CommandHandler {
 		else if (input.equals("exit") || input.equals("end game")) {
 
 			// tell the player and the game that the game is ending
-			Console.Writeln("Game ended");
+			Console.WriteLine("Game ended");
 			gameState.setIsGameEnded(true);
 
 			// close the scanner
@@ -495,10 +495,10 @@ public class CommandHandler {
 
 		// invalid command case
 		else {
-			Console.Writeln("invalid command");
+			Console.WriteLine("invalid command");
 		}
 
-		// Console.Writeln(popGameOutput());
+		// Console.WriteLine(popGameOutput());
 
 		return gameState;
 	}
@@ -507,29 +507,29 @@ public class CommandHandler {
 	 * Print the help command
 	 */
 	private void printHelpCommand() {
-		Console.Writeln("\nGeneral coammnds: ");
+		Console.WriteLine("\nGeneral coammnds: ");
 		Console.Writef("%-20s %s%n", "h/help", "opens the help prompt");
 		Console.Writef("%-20s %s%n", "save game", "saves the game and asks for file directory and file name");
 		// add load command
 		Console.Writef("%-20s %s%n", "exit/end game", "exits the game");
 
-		Console.Writeln("\nMovement/Map commands: ");
+		Console.WriteLine("\nMovement/Map commands: ");
 		Console.Writef("%-20s %s%n", "m/move (n,e,s,w)", "move the player in a cardinal direction");
 		Console.Writef("%-20s %s%n", "pm/print map", "prints out the game map");
 		Console.Writef("%-20s %s%n", "l/look", "look around");
 		Console.Writef("%-20s %s%n", "w/wait", "player waits for x ammount of time, cant be used in combat");
 
-		Console.Writeln("\nCombat commands: ");
+		Console.WriteLine("\nCombat commands: ");
 		Console.Writef("%-20s %s%n", "wic/wait in combat", "same as wait but can be used in combat");
 		Console.Writef("%-20s %s%n", "a/attack", "gives list of things you can attack and you choose one");
 
-		Console.Writeln("\nItems/Inventory commands: ");
+		Console.WriteLine("\nItems/Inventory commands: ");
 		Console.Writef("%-20s %s%n", "i/inventory", "shows your inventory and equipped weapon if you have one");
 		Console.Writef("%-20s %s%n", "pui/pick up item", "gives a list of items you can pick up if any around you");
 		Console.Writef("%-20s %s%n", "di/drop item", "drops the selected item");
 		Console.Writef("%-20s %s%n", "ew/equip weapon", "choose an item in inventory to equip as a weapon");
 
-		Console.Writeln("\nDebugging/misc commands: ");
+		Console.WriteLine("\nDebugging/misc commands: ");
 		Console.Writef("%-20s %s%n", "pel/print entity list", "prints list of all entities on map");
 
 	}

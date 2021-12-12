@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 //package wasteland.entity;
-namespace Wasteland_game.WastelandGame.GameObjects
+namespace Wasteland_game
 {
 
 	//package wasteland.entity;

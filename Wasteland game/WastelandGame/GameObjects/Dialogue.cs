@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wasteland_game.WastelandGame.GameObjects
+namespace Wasteland_game
 {
     class Dialogue
     {

@@ -9,7 +9,7 @@ package wasteland.calculator;
 
 import java.util.Random;
 */
-namespace Wasteland_game.WastelandGame.Calculator {
+namespace Wasteland_game {
 public class RandomNumbers {
 	
 	

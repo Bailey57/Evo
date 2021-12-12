@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wasteland_game.WastelandGame.GameRunner
+namespace Wasteland_game
 {
 	/*
     package wasteland.gameRunner;
@@ -151,7 +151,7 @@ public class GameRunner {
 	public static void mainLoop() {
 
 		// initial help message
-		Console.Writeln("enter \'h\' for a list of commands");
+		Console.WriteLine("enter \'h\' for a list of commands");
 
 		// game loop, loop until the game ends
 		while (!gameState.isGameEnded()) {
@@ -195,11 +195,11 @@ public class GameRunner {
 		//Scanner scn = new Scanner(System.in);
 		bool mainMenuRunning = true;
 		String input = "";
-		Console.Writeln("Note: Loading a game file takes roughly 38 seconds\n");
+		Console.WriteLine("Note: Loading a game file takes roughly 38 seconds\n");
 		
 		while (mainMenuRunning) {
-			Console.Writeln("Type 0 to start new game.");
-			Console.Writeln("Type 1 to load from a save file.");
+			Console.WriteLine("Type 0 to start new game.");
+			Console.WriteLine("Type 1 to load from a save file.");
 			input = Console.ReadLine;
 			if (input.equals("0")) {
 				
@@ -212,7 +212,7 @@ public class GameRunner {
 				//code to load file in
 				String fileName = "";
 				Files files = new Files();
-				Console.Writeln("Enter file directory and name");
+				Console.WriteLine("Enter file directory and name");
 				fileName = scn.nextLine();
 				
 				//commandHandler = CommandHandler.getInstance();
@@ -224,7 +224,7 @@ public class GameRunner {
 				}
 				
 			}
-			Console.Writeln("Incorrect input");
+			Console.WriteLine("Incorrect input");
 			
 			
 		}

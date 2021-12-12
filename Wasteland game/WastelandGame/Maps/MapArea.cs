@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Wasteland_game.WastelandGame.Map
+
+namespace Wasteland_game
 {
 	/*
 	package wasteland.map;
@@ -19,7 +16,7 @@ namespace Wasteland_game.WastelandGame.Map
 	 * @author bailey
 	 *
 	 */
-	public class MapArea : Serializable
+	public class MapArea 
 	{
 
 	/**
@@ -38,7 +35,7 @@ namespace Wasteland_game.WastelandGame.Map
 
 	public BaseItem[] spawnableItems;
 
-	bool playerOnArea = false;
+	public bool playerOnArea = false;
 
 	public Entity[] entitiesOnArea;
 
@@ -278,7 +275,7 @@ namespace Wasteland_game.WastelandGame.Map
 
 	public void printMapAreaCordsInfo()
 	{
-		Console.Writeln(getMapAreaCordsInfo());
+		Console.WriteLine(getMapAreaCordsInfo());
 	}
 
 	public static void main(String[] args)
@@ -297,7 +294,7 @@ namespace Wasteland_game.WastelandGame.Map
 
 	public void printMapAreaInfo()
 	{
-		Console.Writeln(getMapAreaInfo());
+		Console.WriteLine(getMapAreaInfo());
 	}
 
 	public void setEntityOnMapArea(Entity entity)

@@ -1,26 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Wasteland_game.WastelandGame.Magazine
+
+namespace Wasteland_game
 {
-	/*
-	package wasteland.items.weapons;
+	
 
-	using Wasteland.items.ProjectileAmmo;
-	//using Wasteland.items.Ammo;
-	using Wasteland.items.BaseItem;
-	using Wasteland.map.GameObjectPos;
-	*/
 	//make it work same way as a stack basically 
 	public class Magazine : BaseItem
 	{
 
-	/**
-	 * 
-	 */
+	
 
 	public int ammoCapacity;
 
@@ -235,7 +224,7 @@ namespace Wasteland_game.WastelandGame.Magazine
 
 
 
-		Console.Writeln(_9mm_mag.bulletsInMagToString());
+		Console.WriteLine(_9mm_mag.bulletsInMagToString());
 
 	}
 
