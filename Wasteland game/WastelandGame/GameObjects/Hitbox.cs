@@ -738,7 +738,7 @@ public class Hitbox {
 	
 	
 
-	public static void Main(String[] args) {
+	public static void main(String[] args) {
 		Material materials = new Material();
 		//BulletPenetration calcClass = new BulletPenetration();
 		ProjectileAmmo sig_ = new ProjectileAmmo(null, "sig", 0.00745187, 9, 13, 335.4);

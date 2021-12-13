@@ -226,12 +226,13 @@ public class CommandHandler {
 		Console.Write(">");
 		setGameOutput(">");
 
-			// get user input
-		String input = Console.ReadLine().ToLower();
-		//String input = scn.nextLine().toLowerCase();
+		// get user input
+		//String input = Console.ReadLine().ToLower();
+			String input = Console.ReadLine();
+			//String input = scn.nextLine().toLowerCase();
 
-		// help command
-		if (input.Equals("h") || input.Equals("help")) {
+			// help command
+			if (input.Equals("h") || input.Equals("help")) {
 			printHelpCommand();
 
 		} else if (input.Equals("save game") || input.Equals("sg")) {
