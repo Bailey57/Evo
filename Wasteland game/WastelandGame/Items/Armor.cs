@@ -37,17 +37,17 @@ namespace Wasteland_game
 
 
 
-	public Armor()
-	{
-		super(null, null, 1);
+	public Armor() :base(null, null, 1)
+		{
+		
 	}
 
 
 	public Armor(GameObjectPos gameObjectPos, String objectName, double thicknessIn_mm,
 			double xMinCoverage, double xMaxCoverage, double yMinCoverage, double yMaxCoverage, double zMinCoverage,
-			double zMaxCoverage)
-	{
-		super(gameObjectPos, objectName, 1);
+			double zMaxCoverage) : base(gameObjectPos, objectName, 1)
+		{
+		
 		this.thicknessIn_mm = thicknessIn_mm;
 		this.xMinCoverage = xMinCoverage;
 		this.xMaxCoverage = xMaxCoverage;
@@ -60,9 +60,8 @@ namespace Wasteland_game
 
 	public Armor(String objectName, Material material, double thicknessIn_mm,
 			double xMinCoverage, double xMaxCoverage, double yMinCoverage, double yMaxCoverage, double zMinCoverage,
-			double zMaxCoverage)
-	{
-		super(null, objectName, 1);
+			double zMaxCoverage) : base(null, objectName, 1)
+		{
 		this.material = material;
 		this.thicknessIn_mm = thicknessIn_mm;
 		this.xMinCoverage = xMinCoverage;

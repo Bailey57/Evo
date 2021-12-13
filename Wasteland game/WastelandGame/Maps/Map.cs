@@ -397,7 +397,7 @@ namespace Wasteland_game
 		{
 			if (!(gameObjectsOnMapList[i] is Entity) 
 					|| gameObjectsOnMap[i,0,0] == null
-					|| (((Entity)gameObjectsOnMapList[i]).isThePlayer())) {
+					|| (((Entity)gameObjectsOnMapList[i]).getIsThePlayer())) {
 			break;
 		} else
 		{
@@ -406,7 +406,7 @@ namespace Wasteland_game
 			{
 				((Entity)gameObjectsOnMapList[i]).attackEntity(worldMap, player, secondsPassed, false);
 
-				if (player.isThePlayer())
+				if (player.getIsThePlayer())
 				{
 					if (!player.isSpotted() && !player.isInCombat())
 					{
@@ -436,7 +436,7 @@ namespace Wasteland_game
 			//Console.WriteLine("\n" + player.getObjectName() + " is hidden from view.");
 			
 			player.setSpotted(false);
-			if (player.isInCombat() && player.isThePlayer()) {
+			if (player.isInCombat() && player.getIsThePlayer()) {
 				player.addObjectStringEvents("\nExited combat.\n");
 				Console.WriteLine("Exited combat.");
 }
@@ -574,7 +574,7 @@ public String getGameMapString()
 				}
 				else
 				{
-					mapString += gameMap[i, k].displayLetter + " ";
+					mapString += gameMap[i, k].getDisplayLetter() + " ";
 
 				}
 
@@ -620,7 +620,7 @@ public static void main(String[] args)
 
 	Entity player = new Entity("player", true, 100, 1.5, 100, entPos);
 	player.setViewDistance(1000);
-	player.setThePlayer(true); ;
+	player.setIsThePlayer(true); ;
 
 	Entity zombie = new Entity("zombie", true, 100, 1.5, 100, entPos2);
 

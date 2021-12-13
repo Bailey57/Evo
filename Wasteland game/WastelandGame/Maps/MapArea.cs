@@ -39,7 +39,7 @@ namespace Wasteland_game
 
 	public Entity[] entitiesOnArea;
 
-	public GameObject[][] gameObjectsOnMapAreaCords = new GameObject[200][200];
+	public GameObject[,] gameObjectsOnMapAreaCords = new GameObject[200, 200];
 
 	public double mapAreaX_max;
 	public double mapAreaX_min;
@@ -246,7 +246,7 @@ namespace Wasteland_game
 	/**
 	 * @return the entitiesOnAreaCords
 	 */
-	public GameObject[][] getGameObjectsOnMapAreaCords()
+	public GameObject[,] getGameObjectsOnMapAreaCords()
 	{
 		return gameObjectsOnMapAreaCords;
 	}
@@ -254,7 +254,7 @@ namespace Wasteland_game
 	/**
 	 * @param entitiesOnAreaCords the entitiesOnAreaCords to set
 	 */
-	public void setGameObjectsOnMapAreaCords(GameObject[][] gameObjectsOnAreaCords)
+	public void setGameObjectsOnMapAreaCords(GameObject[,] gameObjectsOnAreaCords)
 	{
 
 

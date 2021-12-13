@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Wasteland_game.WastelandGame;
+
 
 namespace Wasteland_game
 {
@@ -40,10 +36,10 @@ public class GameState {
 	private bool isGameEnded;
 	private bool didPlayerMoveThisTurn;
 	
-	private double ticksPassed;
+	private double timePassed;
 
 	public GameState() {
-		isGameEnded = false;
+		this.isGameEnded = false;
 	}
 	
 	
@@ -90,11 +86,11 @@ public class GameState {
 		return thisPosition;
 	}
 	
-	public bool isGameEnded() {
+	public bool getIsGameEnded() {
 		return isGameEnded;
 	}
 	
-	public bool didPlayerMoveThisTurn() {
+	public bool getDidPlayerMoveThisTurn() {
 		return didPlayerMoveThisTurn;
 	}
 
@@ -131,17 +127,17 @@ public class GameState {
 	}
 
 	/**
-	 * @return the ticksPassed
+	 * @return the timePassed
 	 */
 	public double getTicksPassed() {
-		return ticksPassed;
+		return timePassed;
 	}
 
 	/**
-	 * @param ticksPassed the ticksPassed to set
+	 * @param timePassed the timePassed to set
 	 */
-	public void setTicksPassed(double ticksPassed) {
-		this.ticksPassed = ticksPassed;
+	public void setTicksPassed(double timePassed) {
+		this.timePassed = timePassed;
 	}
 	
 	

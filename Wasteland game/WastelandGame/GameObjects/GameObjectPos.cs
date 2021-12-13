@@ -323,7 +323,7 @@ public class GameObjectPos {
 				
 			}
 			
-			this.getCurrentArea().gameObjectsOnMapAreaCords[(int) oldMapAreaY  / (getWorldMapYPos() + 1)][(int) oldMapAreaX / (getWorldMapXPos() + 1)] = null;
+			this.getCurrentArea().gameObjectsOnMapAreaCords[(int) oldMapAreaY  / (getWorldMapYPos() + 1), (int) oldMapAreaX / (getWorldMapXPos() + 1)] = null;
 		
 			
 			
@@ -469,7 +469,7 @@ public class GameObjectPos {
 			gameObject.getGameObjectPos().setCurrentArea(this.currentMap.gameMap[(int) getWorldMapYPos(), (int) getWorldMapXPos()]);
 			
 			
-			this.getCurrentArea().gameObjectsOnMapAreaCords[(int) getMapAreaYPos() / (getWorldMapYPos() + 1)][(int) getMapAreaXPos() / (getWorldMapXPos() + 1)] = this.getGameObject();
+			this.getCurrentArea().gameObjectsOnMapAreaCords[(int) getMapAreaYPos() / (getWorldMapYPos() + 1), (int) getMapAreaXPos() / (getWorldMapXPos() + 1)] = this.getGameObject();
 
 			if (gameObject is Entity && ((Entity)gameObject).getIsThePlayer()) {
 				gameObject.getGameObjectPos().getCurrentArea().playerOnArea = true;
@@ -529,8 +529,8 @@ public class GameObjectPos {
 //		
 //	}
 
-	public String getPlayerAreaName(MapArea[][] currentMap) {
-		return currentMap[worldMapYPos][worldMapXPos].getAreaName();
+	public String getPlayerAreaName(MapArea[,] currentMap) {
+		return currentMap[worldMapYPos, worldMapXPos].getAreaName();
 	}
 
 	//@Override

@@ -25,7 +25,13 @@ public class RandomNumbers {
 	public int rollRandInt(int max, int min) {
 		int rngNum = 0;
 		Random random = new Random();
-		rngNum = random.Next(min, max);
+			if (min > max) {
+				rngNum = random.Next(max, min);
+			} else
+			{
+				rngNum = random.Next(min, max);
+			}
+		
 		
 		return rngNum;
 	}

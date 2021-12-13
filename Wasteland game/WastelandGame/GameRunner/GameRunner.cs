@@ -154,7 +154,7 @@ public class GameRunner {
 		Console.WriteLine("enter \'h\' for a list of commands");
 
 		// game loop, loop until the game ends
-		while (!gameState.isGameEnded()) {
+		while (!gameState.getIsGameEnded()) {
 			
 			
 			
@@ -200,23 +200,23 @@ public class GameRunner {
 		while (mainMenuRunning) {
 			Console.WriteLine("Type 0 to start new game.");
 			Console.WriteLine("Type 1 to load from a save file.");
-			input = Console.ReadLine;
-			if (input.equals("0")) {
+			input = Console.ReadLine();
+			if (input.Equals("0")) {
 				
 				
 				init();
 				mainMenuRunning = false;
 				break;
 				
-			} else if (input.equals("1")) {
+			} else if (input.Equals("1")) {
 				//code to load file in
 				String fileName = "";
-				Files files = new Files();
+				//Files files = new Files();
 				Console.WriteLine("Enter file directory and name");
-				fileName = scn.nextLine();
+				fileName = Console.ReadLine();
 				
 				//commandHandler = CommandHandler.getInstance();
-				gameState = files.loadGame(fileName);
+				//gameState = files.loadGame(fileName);
 				
 				if (gameState.getMainMap() != null && gameState.getPlayer() != null) {
 					mainMenuRunning = false;

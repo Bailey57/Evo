@@ -738,7 +738,7 @@ public class Hitbox {
 	
 	
 
-	public static void main(String[] args) {
+	public static void Main(String[] args) {
 		Material materials = new Material();
 		//BulletPenetration calcClass = new BulletPenetration();
 		ProjectileAmmo sig_ = new ProjectileAmmo(null, "sig", 0.00745187, 9, 13, 335.4);
@@ -899,13 +899,13 @@ public class Hitbox {
 		}
 		long endTime = (dt.Millisecond - startTime);
 		Console.WriteLine("\nmil seconds: " + endTime + "\nseconds: " + endTime /1000);
-		
-		
-		//testHumanHitbox.ge
-		
-		
-		//testHumanHitbox.bodyPartsHitCheck();
 
+
+			//testHumanHitbox.ge
+
+
+			//testHumanHitbox.bodyPartsHitCheck();
+			Console.ReadKey();
 	}
 
 }

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Wasteland_game.WastelandGame;
+
 
 namespace Wasteland_game
 {
@@ -31,7 +27,7 @@ public class PlayerAction {
 		//GameObjectPos GameObjectPos = new GameObjectPos();
 		
 		Console.WriteLine("Type what direction you want to go: N, S, E or W");
-		scn.next();
+		Console.ReadLine();
 		
 		
 		
@@ -41,9 +37,10 @@ public class PlayerAction {
 		
 	}
 	
+
 	public void lookAround(Map currentMap, GameObjectPos pos) {
 		
-		pos.setCurrMapArea(currentMap.gameMap);
+		//pos.setCurrMapArea(currentMap.getGameMap());
 		pos.getCurrentArea().printMapAreaInfo();
 		
 		//printMapAreaInfo

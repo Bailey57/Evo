@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections;
 
 namespace Wasteland_game
 {
@@ -119,6 +116,7 @@ public class CommandHandler {
 		return instance;
 	}
 
+	/*
 	public void saveGame(GameState gameState) {
 		String input = scn.nextLine().toLowerCase();
 		Console.WriteLine("Enter name of the file: ");
@@ -129,7 +127,7 @@ public class CommandHandler {
 		Console.WriteLine("Game saved");
 
 	}
-
+	*/
 	public void printEntityList(GameState gameState) {
 		Console.WriteLine(gameState.getMainMap().gameObjectsOnMapToString());
 
@@ -138,35 +136,35 @@ public class CommandHandler {
 	public String helpCommand() {
 		String helpCommand = "";
 		helpCommand += "\nGeneral coammnds: \n";
-		helpCommand += String.format("%-20s %s%n", "h/help", "opens the help prompt");
-		helpCommand += String.format("%-20s %s%n", "save game",
+		helpCommand += String.Format("%-20s %s%n", "h/help", "opens the help prompt");
+		helpCommand += String.Format("%-20s %s%n", "save game",
 				"saves the game and asks for file directory and file name");
 		// add load command
-		helpCommand += String.format("%-20s %s%n", "exit/end game", "exits the game");
+		helpCommand += String.Format("%-20s %s%n", "exit/end game", "exits the game");
 
-		helpCommand += String.format("\nMovement/Map commands: ");
-		helpCommand += String.format("%-20s %s%n", "m/move (n,e,s,w)", "move the player in a cardinal direction");
-		helpCommand += String.format("%-20s %s%n", "pm/print map", "prints out the game map");
-		helpCommand += String.format("%-20s %s%n", "l/look", "look around");
-		helpCommand += String.format("%-20s %s%n", "w/wait",
+		helpCommand += String.Format("\nMovement/Map commands: ");
+		helpCommand += String.Format("%-20s %s%n", "m/move (n,e,s,w)", "move the player in a cardinal direction");
+		helpCommand += String.Format("%-20s %s%n", "pm/print map", "prints out the game map");
+		helpCommand += String.Format("%-20s %s%n", "l/look", "look around");
+		helpCommand += String.Format("%-20s %s%n", "w/wait",
 				"player waits for x ammount of time, cant be used in combat");
 
-		helpCommand += String.format("\nCombat commands: ");
-		helpCommand += String.format("%-20s %s%n", "wic/wait in combat", "same as wait but can be used in combat");
-		helpCommand += String.format("%-20s %s%n", "a/attack",
+		helpCommand += String.Format("\nCombat commands: ");
+		helpCommand += String.Format("%-20s %s%n", "wic/wait in combat", "same as wait but can be used in combat");
+		helpCommand += String.Format("%-20s %s%n", "a/attack",
 				"gives list of things you can attack and you choose one");
 
-		helpCommand += String.format("\nItems/Inventory commands: ");
-		helpCommand += String.format("%-20s %s%n", "i/inventory",
+		helpCommand += String.Format("\nItems/Inventory commands: ");
+		helpCommand += String.Format("%-20s %s%n", "i/inventory",
 				"shows your inventory and equipped weapon if you have one");
-		helpCommand += String.format("%-20s %s%n", "pui/pick up item",
+		helpCommand += String.Format("%-20s %s%n", "pui/pick up item",
 				"gives a list of items you can pick up if any around you");
-		helpCommand += String.format("%-20s %s%n", "di/drop item", "drops the selected item");
-		helpCommand += String.format("%-20s %s%n", "ew/equip weapon",
+		helpCommand += String.Format("%-20s %s%n", "di/drop item", "drops the selected item");
+		helpCommand += String.Format("%-20s %s%n", "ew/equip weapon",
 				"choose an item in inventory to equip as a weapon");
 
-		helpCommand += String.format("\nDebugging/misc commands: ");
-		helpCommand += String.format("%-20s %s%n", "pel/print entity list", "prints list of all entities on map");
+		helpCommand += String.Format("\nDebugging/misc commands: ");
+		helpCommand += String.Format("%-20s %s%n", "pel/print entity list", "prints list of all entities on map");
 
 		return helpCommand;
 	}
@@ -186,14 +184,14 @@ public class CommandHandler {
 //				Console.WriteLine("Type number you want to attack.");
 //				input = scn.nextLine();
 //
-//				if (input != null && Integer.parseInt(input) >= 0 && Integer.parseInt(input) < 999000) {
+//				if (input != null && int.Parse(input) >= 0 && int.Parse(input) < 999000) {
 //
 //					if (gameState.getPlayer().entitiesInSightList(gameState.getMainMap())[Integer
 //							.parseInt(input)] != null) {
 //						gameState.getPlayer()
 //								.attackEntity(
 //										gameState.getMainMap(), gameState.getPlayer()
-//												.entitiesInSightList(gameState.getMainMap())[Integer.parseInt(input)],
+//												.entitiesInSightList(gameState.getMainMap())[int.Parse(input)],
 //										0, true);
 //						done = true;
 //					} else {
@@ -228,24 +226,25 @@ public class CommandHandler {
 		Console.Write(">");
 		setGameOutput(">");
 
-		// get user input
-		String input = scn.nextLine().toLowerCase();
+			// get user input
+		String input = Console.ReadLine().ToLower();
+		//String input = scn.nextLine().toLowerCase();
 
 		// help command
-		if (input.equals("h") || input.equals("help")) {
+		if (input.Equals("h") || input.Equals("help")) {
 			printHelpCommand();
 
-		} else if (input.equals("save game") || input.equals("sg")) {
-			saveGame(gameState);
+		} else if (input.Equals("save game") || input.Equals("sg")) {
+			//saveGame(gameState);
 		}
 
-		else if (input.equals("print entity list") || input.equals("pel")) {
+		else if (input.Equals("print entity list") || input.Equals("pel")) {
 
 			printEntityList(gameState);
 
 		}
 
-		else if (input.equals("attack") || input.equals("a")) {
+		else if (input.Equals("attack") || input.Equals("a")) {
 
 			// ex:
 			// 1: Zombie
@@ -258,15 +257,14 @@ public class CommandHandler {
 				while (!done) {
 
 					Console.WriteLine("Type number you want to attack.");
-					input = scn.nextLine();
+					input = Console.ReadLine();
 
-					if (input != null && Integer.parseInt(input) >= 0 && Integer.parseInt(input) < 999000) {
+					if (input != null && int.Parse(input) >= 0 && int.Parse(input) < 999000) {
 
-						if (gameState.getPlayer().entitiesInSightList(gameState.getMainMap())[Integer
-								.parseInt(input)] != null) {
+						if (gameState.getPlayer().entitiesInSightList(gameState.getMainMap())[int.Parse(input)] != null) {
 							gameState.getPlayer()
 									.attackEntity(gameState.getMainMap(), gameState.getPlayer()
-											.entitiesInSightList(gameState.getMainMap())[Integer.parseInt(input)], 0,
+											.entitiesInSightList(gameState.getMainMap())[int.Parse(input)], 0,
 											true);
 							done = true;
 						} else {
@@ -285,7 +283,7 @@ public class CommandHandler {
 				Console.WriteLine("Nothing in sight to attack.");
 			}
 
-		} else if (input.equals("pick up item") || input.equals("pui")) {
+		} else if (input.Equals("pick up item") || input.Equals("pui")) {
 			// put code here
 
 			if (gameState.getPlayer().itemsInSightList(gameState.getMainMap())[0] != null) {
@@ -297,24 +295,23 @@ public class CommandHandler {
 				while (!done) {
 
 					Console.WriteLine("Type number you want to pick up. Type c to cancel.");
-					input = scn.nextLine();
-					if (input.equals("C") || input.equals("c")) {
+					input = Console.ReadLine();
+					if (input.Equals("C") || input.Equals("c")) {
 						done = true;
 						break;
 					}
 
 					// add checks to make sure its an int
 
-					if (isDouble(input) && Integer.parseInt(input) >= 0 && Integer.parseInt(input) < 999000) {
+					if (isDouble(input) && int.Parse(input) >= 0 && int.Parse(input) < 999000) {
 
-						if (gameState.getPlayer().itemsInSightList(gameState.getMainMap())[Integer
-								.parseInt(input)] != null) {
+						if (gameState.getPlayer().itemsInSightList(gameState.getMainMap())[int.Parse(input)] != null) {
 
 //							gameState.getPlayer().addItemToInventory(gameState.getPlayer()
-//									.itemsInSightList(gameState.getMainMap())[Integer.parseInt(input)]);
+//									.itemsInSightList(gameState.getMainMap())[int.Parse(input)]);
 
 							gameState.getPlayer().pickUpItemOffOfGround(gameState.getPlayer()
-									.itemsInSightList(gameState.getMainMap())[Integer.parseInt(input)]);
+									.itemsInSightList(gameState.getMainMap())[int.Parse(input)]);
 
 							done = true;
 						} else {
@@ -332,26 +329,26 @@ public class CommandHandler {
 
 			}
 
-		} else if (input.equals("drop item") || input.equals("di")) {
+		} else if (input.Equals("drop item") || input.Equals("di")) {
 			Console.WriteLine("Drop what item? Type c to cancel.");
 
 			bool done = false;
 			Console.WriteLine(gameState.getPlayer().showInventory());
 
 			while (!done) {
-				input = scn.nextLine();
-				if (input.equals("C") || input.equals("c")) {
+					input = Console.ReadLine();
+				if (input.Equals("C") || input.Equals("c")) {
 					done = true;
 					break;
 				}
 
-				gameState.getPlayer().dropItem(gameState.getPlayer().getInventory()[Integer.parseInt(input)]);
+				gameState.getPlayer().dropItem(gameState.getPlayer().getInventory()[int.Parse(input)]);
 				done = true;
 
 			}
 		}
 
-		else if (input.equals("equip weapon") || input.equals("ew")) {
+		else if (input.Equals("equip weapon") || input.Equals("ew")) {
 
 			if (gameState.getPlayer().inventory[0] == null) {
 
@@ -361,19 +358,19 @@ public class CommandHandler {
 				Console.WriteLine(gameState.getPlayer().showInventory());
 
 				Console.WriteLine("Type number you want to equip. Type stop to exit comand.");
-				input = scn.nextLine();
-				if (input.equals("stop")) {
+					input = Console.ReadLine();
+				if (input.Equals("stop")) {
 
 				} else {
 
-					gameState.getPlayer().equipItemAsWeapon(gameState.getPlayer().inventory[Integer.parseInt(input)]);
+					gameState.getPlayer().equipItemAsWeapon(gameState.getPlayer().inventory[int.Parse(input)]);
 				}
 
 			}
 
 			// gameState.getPlayer().getInventoryList();
 
-		} else if (input.equals("invintory") || input.equals("i")) {
+		} else if (input.Equals("invintory") || input.Equals("i")) {
 
 			// gameState.getPlayer().getInventoryList();
 			if (gameState.getPlayer().inventory == null) {
@@ -389,7 +386,7 @@ public class CommandHandler {
 
 		}
 
-		else if (input.equals("w") || input.equals("wait")) {
+		else if (input.Equals("w") || input.Equals("wait")) {
 
 			/*
 			 * maybe move wait method to CommandHandler or choose to deal with time in
@@ -402,24 +399,24 @@ public class CommandHandler {
 
 			} else {
 				Console.WriteLine("Wait for how many minuets? ");
-				input = scn.nextLine();
+				input = Console.ReadLine();
 				gameState.getPlayer().playerWait(gameState.getMainMap(), gameState.getPlayer(),
-						Double.parseDouble(input));
+						Double.Parse(input));
 			}
 
-			// seconds = Double.parseDouble(input);
+			// seconds = Double.Parse(input);
 
-		} else if (input.equals("wic") || input.equals("wait in combat")) {
+		} else if (input.Equals("wic") || input.Equals("wait in combat")) {
 
 			Console.WriteLine("Wait for how many minuets? ");
-			input = scn.nextLine();
+			input = Console.ReadLine();
 
-			gameState.getPlayer().playerWait(gameState.getMainMap(), gameState.getPlayer(), Double.parseDouble(input));
+			gameState.getPlayer().playerWait(gameState.getMainMap(), gameState.getPlayer(), Double.Parse(input));
 
 		}
 
 		// look command
-		else if (input.equals("l") || (input.equals("look"))) {
+		else if (input.Equals("l") || (input.Equals("look"))) {
 
 			gameState.getPlayerAction().lookAround(gameState.getMainMap(), gameState.getPlayerPos());
 
@@ -431,66 +428,74 @@ public class CommandHandler {
 		}
 
 		// move command
-		else if (input.equals("m") || input.startsWith("move")) {
+		else if (input.Equals("m") || input.StartsWith("move")) {
 
-			// get the command as a list of strings separated by spaces
-			ArrayList<String> list = new ArrayList<String>(Arrays.asList(input.split(" ")));
+				// get the command as a list of strings separated by spaces
+				//ArrayList list = new ArrayList(Arrays.AsList(input.Split('_')));
 
-			// if the user just typed m or move, then ask what direction they want to go
-			if (list.size() == 1) {
-				String directionPlayerMoves = "e";
-				String directionPlayerDistance = "0";
 
-				bool correctInput = false;
+				// if the user just typed m or move, then ask what direction they want to go
+				//if (list.Size() == 1) {
+					String directionPlayerMoves = "e";
+					String directionPlayerDistance = "0";
 
-				while (!correctInput) {
+					bool correctInput = false;
 
-					Console.WriteLine("Type what direction you want to go: N, S, E or W");
+					while (!correctInput)
+					{
 
-					directionPlayerMoves = scn.nextLine().toLowerCase();
+						Console.WriteLine("Type what direction you want to go: N, S, E or W");
 
-					Console.WriteLine("Type how many minutes you want to travel: ");
+						directionPlayerMoves = Console.ReadLine().ToLower();
 
-					directionPlayerDistance = scn.nextLine();
+						Console.WriteLine("Type how many minutes you want to travel: ");
 
-					if (directionPlayerMoves.equals("n") || directionPlayerMoves.equals("s")
-							|| directionPlayerMoves.equals("e")
-							|| directionPlayerMoves.equals("w") && isDouble(directionPlayerDistance)) {
+						directionPlayerDistance = Console.ReadLine();
 
-						correctInput = true;
+						if (directionPlayerMoves.Equals("n") || directionPlayerMoves.Equals("s")
+								|| directionPlayerMoves.Equals("e")
+								|| directionPlayerMoves.Equals("w") && isDouble(directionPlayerDistance))
+						{
 
-					} else {
-						Console.WriteLine("\nInvalid input\n");
+							correctInput = true;
+
+						}
+						else
+						{
+							Console.WriteLine("\nInvalid input\n");
+						}
+
 					}
 
+					gameState = handleMoveCommand(gameState, directionPlayerMoves, Double.Parse(directionPlayerDistance));
+					// gameState = handleMoveCommand(gameState, directionPlayerMoves,
+					// int.Parse(directionPlayerDistance));
+				//}
+
+				// if the user entered their command on one line, get the direction from the
+				// second word in the command
+
+				//else
+				{
+					//gameState = handleMoveCommand(gameState, list.get(1), 0);
+					//gameState = handleMoveCommand(gameState, input, 0);
+
 				}
-
-				gameState = handleMoveCommand(gameState, directionPlayerMoves,
-						Double.parseDouble(directionPlayerDistance));
-				// gameState = handleMoveCommand(gameState, directionPlayerMoves,
-				// Integer.parseInt(directionPlayerDistance));
 			}
 
-			// if the user entered their command on one line, get the direction from the
-			// second word in the command
-			else {
-				gameState = handleMoveCommand(gameState, list.get(1), 0);
-			}
-		}
-
-		else if (input.equals("print map") || input.equals("pm")) {
+		else if (input.Equals("print map") || input.Equals("pm")) {
 			gameState.getMainMap().printGameMapString();
 		}
 
 		// exit command
-		else if (input.equals("exit") || input.equals("end game")) {
+		else if (input.Equals("exit") || input.Equals("end game")) {
 
 			// tell the player and the game that the game is ending
 			Console.WriteLine("Game ended");
 			gameState.setIsGameEnded(true);
 
 			// close the scanner
-			scn.close();
+			//scn.close();
 		}
 
 		// invalid command case
@@ -507,8 +512,9 @@ public class CommandHandler {
 	 * Print the help command
 	 */
 	private void printHelpCommand() {
+			/*
 		Console.WriteLine("\nGeneral coammnds: ");
-		Console.Writef("%-20s %s%n", "h/help", "opens the help prompt");
+		Console.Write("%-20s %s%n", "h/help", "opens the help prompt");
 		Console.Writef("%-20s %s%n", "save game", "saves the game and asks for file directory and file name");
 		// add load command
 		Console.Writef("%-20s %s%n", "exit/end game", "exits the game");
@@ -531,7 +537,7 @@ public class CommandHandler {
 
 		Console.WriteLine("\nDebugging/misc commands: ");
 		Console.Writef("%-20s %s%n", "pel/print entity list", "prints list of all entities on map");
-
+		*/
 	}
 
 	/**
@@ -546,7 +552,7 @@ public class CommandHandler {
 
 		gameState.setThisPosition(gameState.getPlayerPos().toString());
 
-		if (!gameState.getLastPosition().equals(gameState.getThisPosition())) {
+		if (!gameState.getLastPosition().Equals(gameState.getThisPosition())) {
 			gameState.setDidPlayerMoveThisTurn(true);
 			gameState.getMainMap().printGameMapString();
 		}
