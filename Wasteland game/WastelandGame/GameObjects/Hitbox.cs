@@ -87,7 +87,6 @@ public class Hitbox {
 	 * @param yMaxLocation
 	 */
 	public Hitbox(double xMinLocation, double xMaxLocation, double yMinLocation, double yMaxLocation) {
-		super();
 		this.xMinLocation = xMinLocation;
 		this.xMaxLocation = xMaxLocation;
 		this.yMinLocation = yMinLocation;
@@ -110,7 +109,6 @@ public class Hitbox {
 
 	public Hitbox(double xMinLocation, double xMaxLocation, double yMinLocation, double yMaxLocation, double zMinLocation,
 		double zMaxLocation) {
-	super();
 	this.xMinLocation = xMinLocation;
 	this.xMaxLocation = xMaxLocation;
 	this.yMinLocation = yMinLocation;
@@ -219,9 +217,9 @@ public class Hitbox {
 		if (bodyParts == null) {
 			bodyParts = new BodyPart[1];
 		}
-		for (int i = 0; i <= bodyParts.length; i++) {
+		for (int i = 0; i <= bodyParts.GetLength(0); i++) {
 			
-			if (i == bodyParts.length) {
+			if (i == bodyParts.GetLength(0)) {
 				increaseBodyParts();
 				if (bodyParts[i] == null || bodyParts[i] == bodyPart) {
 					bodyParts[i] = bodyPart;
@@ -244,7 +242,7 @@ public class Hitbox {
 		if (bodyParts == null) {
 			return;
 		}
-		for (int i = 0; i < bodyParts.length; i++) {
+		for (int i = 0; i < bodyParts.GetLength(0); i++) {
 
 			if (bodyParts[i] == bodyPart) {
 				bodyParts[i] = null;
@@ -257,8 +255,8 @@ public class Hitbox {
 	 * @param bodyParts the bodyParts to set
 	 */
 	private void increaseBodyParts() {
-		BodyPart[] bodyParts2 = new BodyPart[bodyParts.length * 2];
-		for (int i = 0; i < bodyParts.length; i++) {
+		BodyPart[] bodyParts2 = new BodyPart[bodyParts.GetLength(0) * 2];
+		for (int i = 0; i < bodyParts.GetLength(0); i++) {
 			bodyParts2[i] = this.bodyParts[i];
 
 		}
@@ -329,8 +327,8 @@ public class Hitbox {
 	public GameObject takeBodyPartOff(GameObject bodyPartOwner, BodyPart bodyPart) {
 		GameObject bodyPartObject = new GameObject(bodyPartOwner.getGameObjectPos(), bodyPart.getName());
 
-		double length = Math.abs(bodyPart.getxMaxLocation()) - Math.abs(bodyPart.getxMinLocation());
-		double height = Math.abs(bodyPart.getyMaxLocation()) - Math.abs(bodyPart.getyMinLocation());
+		double length = Math.Abs(bodyPart.getxMaxLocation()) - Math.Abs(bodyPart.getxMinLocation());
+		double height = Math.Abs(bodyPart.getyMaxLocation()) - Math.Abs(bodyPart.getyMinLocation());
 
 		bodyPartObject.setHeightY(height);
 		bodyPartObject.setLengthX(length);
@@ -349,9 +347,9 @@ public class Hitbox {
 		if (armorOnHitbox == null) {
 			armorOnHitbox = new Armor[1];
 		}
-		for (int i = 0; i <= armorOnHitbox.length; i++) {
+		for (int i = 0; i <= armorOnHitbox.GetLength(0); i++) {
 			
-			if (i == armorOnHitbox.length) {
+			if (i == armorOnHitbox.GetLength(0)) {
 				increaseArmorOnHitbox();
 				if (armorOnHitbox[i] == null || armorOnHitbox[i] == armor) {
 					armorOnHitbox[i] = armor;
@@ -370,8 +368,8 @@ public class Hitbox {
 
 	
 	private void increaseArmorOnHitbox() {
-		Armor[] armor2 = new Armor[armorOnHitbox.length * 2];
-		for (int i = 0; i < armorOnHitbox.length; i++) {
+		Armor[] armor2 = new Armor[armorOnHitbox.GetLength(0) * 2];
+		for (int i = 0; i < armorOnHitbox.GetLength(0); i++) {
 			armor2[i] = this.armorOnHitbox[i];
 
 		}
@@ -383,7 +381,7 @@ public class Hitbox {
 		if (armorOnHitbox == null) {
 			return;
 		}
-		for (int i = 0; i < armorOnHitbox.length; i++) {
+		for (int i = 0; i < armorOnHitbox.GetLength(0); i++) {
 
 			if (armorOnHitbox[i] == armor) {
 				armorOnHitbox[i] = null;
@@ -397,7 +395,7 @@ public class Hitbox {
 		if (armorOnHitbox == null) {
 			return;
 		}
-		for (int i = 0; i < armorOnHitbox.length; i++) {
+		for (int i = 0; i < armorOnHitbox.GetLength(0); i++) {
 				armorOnHitbox[i] = null;
 				
 			
@@ -559,9 +557,9 @@ public class Hitbox {
 		if (bodyParts == null) {
 			return null;
 		}
-		BodyPart[] bodyParts_ = new BodyPart[bodyParts.length];
+		BodyPart[] bodyParts_ = new BodyPart[bodyParts.GetLength(0)];
 
-		for (int i = 0; i < bodyParts.length; i++) {
+		for (int i = 0; i < bodyParts.GetLength(0); i++) {
 			if (bodyParts[i] == null) {
 				break;
 			}
@@ -585,7 +583,7 @@ public class Hitbox {
 		BodyPart[] bodyParts = new BodyPart[0];
 		bodyParts = bodyPartsHitCheck(xPosOnHitbox, yPosOnHitbox);
 		
-		for (int i = 0; i < bodyPartsHitCheck(xPosOnHitbox, yPosOnHitbox).length; i++) {
+		for (int i = 0; i < bodyPartsHitCheck(xPosOnHitbox, yPosOnHitbox).GetLength(0); i++) {
 			bodyParts[i] = bodyPartsHitCheck(xPosOnHitbox, yPosOnHitbox)[i];
 			
 			
@@ -593,7 +591,7 @@ public class Hitbox {
 		}
 	
 		if (bodyParts != null) {
-			for (int i = 0; i < bodyParts.length; i++) {
+			for (int i = 0; i < bodyParts.GetLength(0); i++) {
 				if (bodyParts[i] != null) {
 					
 					output += bodyParts[i].getName();
@@ -620,10 +618,10 @@ public class Hitbox {
 			return null;
 		}
 		
-		Armor[] armorHit = new Armor[armorOnHitbox.length];
+		Armor[] armorHit = new Armor[armorOnHitbox.GetLength(0)];
 
 		
-		for (int i = 0; i < armorOnHitbox.length; i++) {
+		for (int i = 0; i < armorOnHitbox.GetLength(0); i++) {
 			if (xPosOnHitbox <= armorOnHitbox[i].getxMaxCoverage() && xPosOnHitbox >= armorOnHitbox[i].getxMinCoverage()) {
 
 				if (yPosOnHitbox <= armorOnHitbox[i].getyMaxCoverage() && yPosOnHitbox >= armorOnHitbox[i].getyMinCoverage()) {
@@ -644,7 +642,7 @@ public class Hitbox {
 			return output;
 		}
 		
-		for (int i = 0; i < armorHitCheck(xPosOnHitbox, yPosOnHitbox).length; i++) {
+		for (int i = 0; i < armorHitCheck(xPosOnHitbox, yPosOnHitbox).GetLength(0); i++) {
 			armor[i] = armorHitCheck(xPosOnHitbox, yPosOnHitbox)[i];
 			
 			
@@ -652,7 +650,7 @@ public class Hitbox {
 		}
 	
 		if (armor != null) {
-			for (int i = 0; i < armor.length; i++) {
+			for (int i = 0; i < armor.GetLength(0); i++) {
 				if (armor[i] != null) {
 					
 					output += armor[i].getObjectName();
@@ -688,11 +686,11 @@ public class Hitbox {
 		if (bodyParts == null) {
 			return;
 		}
-		BodyPart[] bodyParts_ = new BodyPart[bodyParts.length];
+		BodyPart[] bodyParts_ = new BodyPart[bodyParts.GetLength(0)];
 		
 		if (armorOnHitbox != null) {
 			
-			for (int i = 0; i < armorOnHitbox.length; i++) {
+			for (int i = 0; i < armorOnHitbox.GetLength(0); i++) {
 				if (xPosOnHitbox <= armorOnHitbox[i].getxMaxCoverage() && xPosOnHitbox >= armorOnHitbox[i].getxMinCoverage()) {
 
 					if (yPosOnHitbox <= armorOnHitbox[i].getyMaxCoverage() && yPosOnHitbox >= armorOnHitbox[i].getyMinCoverage()) {
@@ -709,7 +707,7 @@ public class Hitbox {
 		
 
 
-		for (int i = 0; i < bodyParts.length; i++) {
+		for (int i = 0; i < bodyParts.GetLength(0); i++) {
 			if (xPosOnHitbox <= bodyParts[i].getxMaxLocation() && xPosOnHitbox >= bodyParts[i].getxMinLocation()) {
 
 				if (yPosOnHitbox <= bodyParts[i].getyMaxLocation() && yPosOnHitbox >= bodyParts[i].getyMinLocation()) {
@@ -809,11 +807,11 @@ public class Hitbox {
 		double xMax = 347.5;
 		double yMin = 0;
 		double yMax = 1750;
-		
 
-		
-		long startTime = System.currentTimeMillis();
-		
+
+		DateTime dt = DateTime.Now;
+		long startTime = dt.Millisecond;
+
 		RandomNumbers randNum = new RandomNumbers();
 		double distance = 0;
 		for (int i = 0; i < 10000; i++) {
@@ -899,7 +897,7 @@ public class Hitbox {
 			Console.WriteLine("\n\n");
 			
 		}
-		long endTime = (System.currentTimeMillis() - startTime);
+		long endTime = (dt.Millisecond - startTime);
 		Console.WriteLine("\nmil seconds: " + endTime + "\nseconds: " + endTime /1000);
 		
 		

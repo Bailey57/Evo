@@ -31,7 +31,6 @@ public class Wound {
 	 * @param info
 	 */
 	public Wound(String name, double depth, double length, double width, String info) {
-		super();
 		this.name = name;
 		this.depth = depth;
 		this.length = length;

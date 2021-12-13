@@ -27,9 +27,9 @@ public class CommandHandler {
 	private static CommandHandler instance;
 
 	// scanner for user input
-	private Scanner scn;
+	//private Scanner scn;
 
-	private Files fileManager;
+	//private Files fileManager;
 
 	private String gameOutput;
 
@@ -76,7 +76,7 @@ public class CommandHandler {
 	public CommandHandler() {
 
 		//scn = new Scanner(System.in);
-		fileManager = new Files();
+		//fileManager = new Files();
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class CommandHandler {
 		this.gameState = gammeState;
 
 		//scn = new Scanner(System.in);
-		fileManager = new Files();
+		//fileManager = new Files();
 	}
 
 	// doesnt work for some reason
@@ -95,12 +95,12 @@ public class CommandHandler {
 			return false;
 		}
 
-		try {
-			Double.parseDouble(output);
+		//try {
+			Double.Parse(output);
 			return true;
-		} catch (NumberFormatException ex) {
-			return false;
-		}
+		//} //catch (NumberFormatException ex) {
+			//return false;
+		//}
 	}
 
 	/**

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 /*
 package wasteland.calculator;
@@ -27,7 +24,8 @@ public class RandomNumbers {
 	 */
 	public int rollRandInt(int max, int min) {
 		int rngNum = 0;
-		rngNum = (int) (Math.random() * (max - min + 1) + min);
+		Random random = new Random();
+		rngNum = random.Next(min, max);
 		
 		return rngNum;
 	}
@@ -35,7 +33,7 @@ public class RandomNumbers {
 	public double rollRandDouble(double max, double min) {
 		double rngNum = 0;
 		Random rand = new Random(); 
-		rngNum = min + (max - min) * rand.nextDouble();
+		rngNum = min + (max - min) * rand.NextDouble();
 		
 		return rngNum;
 	}
@@ -44,7 +42,7 @@ public class RandomNumbers {
 	public static void main(String[] args) {
 		RandomNumbers rand = new RandomNumbers();
 		
-		Console.Writeline(rand.rollRandDouble(20, -20));
+		Console.WriteLine(rand.rollRandDouble(20, -20));
 	}
 
 }

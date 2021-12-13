@@ -93,7 +93,7 @@ String objectStringEvents = "";
 
 public GameObject(GameObjectPos gameObjectPos, String objectName)
 {
-	super();
+	
 	this.gameObjectPos = gameObjectPos;
 	this.objectName = objectName;
 	this.gameObjectPos = gameObjectPos;
@@ -109,7 +109,7 @@ public GameObject(GameObjectPos gameObjectPos, String objectName)
 
 public GameObject(GameObjectPos gameObjectPos, String objectName, Hitbox gameObjectHitbox)
 {
-	super();
+	
 	this.gameObjectPos = gameObjectPos;
 	this.objectName = objectName;
 	this.gameObjectHitbox = gameObjectHitbox;
@@ -427,9 +427,9 @@ public double getDistanceFromObject(GameObject gameObject)
 	//		Math.pow(entity.getGameObjectPos().getMapAreaXPos() - getGameObjectPos().getMapAreaXPos(), 2);
 	//		Math.pow(entity.getGameObjectPos().getMapAreaYPos() - getGameObjectPos().getMapAreaYPos(), 2);
 
-	distance = Math.sqrt(
-			Math.pow(gameObject.getGameObjectPos().getMapAreaXPos() - getGameObjectPos().getMapAreaXPos(), 2) + Math
-					.pow(gameObject.getGameObjectPos().getMapAreaYPos() - getGameObjectPos().getMapAreaYPos(), 2));
+	distance = Math.Sqrt(
+			Math.Pow(gameObject.getGameObjectPos().getMapAreaXPos() - getGameObjectPos().getMapAreaXPos(), 2) + Math
+					.Pow(gameObject.getGameObjectPos().getMapAreaYPos() - getGameObjectPos().getMapAreaYPos(), 2));
 
 	return distance;
 }

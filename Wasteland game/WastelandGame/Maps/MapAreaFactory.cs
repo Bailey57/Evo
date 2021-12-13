@@ -23,6 +23,7 @@ namespace Wasteland_game
 		 */
 		public MapAreaFactory(Map worldMap)
 		{
+			RandomNumbers rn = new RandomNumbers();
 			this.worldMap = worldMap;
 		}
 
@@ -109,7 +110,7 @@ namespace Wasteland_game
 		{
 			difficulty = 5;
 			elevation = 1000;
-			int entitiesOnMapArea = entitiesOnMapArea(difficulty);
+			int entitiesOnMapArea = entitiesOnMapAreaNum(difficulty);
 
 			MapArea newMapArea = new MapArea("forest", "F", entitiesOnMapArea, elevation, xPosOnMap, yPosOnMap);
 
@@ -122,7 +123,7 @@ namespace Wasteland_game
 		{
 			difficulty = 5;
 			elevation = 1000;
-			int entitiesOnMapArea = entitiesOnMapArea(difficulty);
+			int entitiesOnMapArea = entitiesOnMapAreaNum(difficulty);
 
 			MapArea newMapArea = new MapArea("town", "T", entitiesOnMapArea, elevation, xPosOnMap, yPosOnMap);
 			makeMultipleEntitieOnMapArea(entitiesOnMapArea, newMapArea, 5);
@@ -133,7 +134,7 @@ namespace Wasteland_game
 		{
 			difficulty = 5;
 			elevation = 1000;
-			int entitiesOnMapArea = entitiesOnMapArea(difficulty);
+			int entitiesOnMapArea = entitiesOnMapAreaNum(difficulty);
 
 			MapArea newMapArea = new MapArea("street", "S", entitiesOnMapArea, elevation, xPosOnMap, yPosOnMap);
 			makeMultipleEntitieOnMapArea(entitiesOnMapArea, newMapArea, 5);
@@ -146,12 +147,15 @@ namespace Wasteland_game
 		 * @param areaDifficulty
 		 * @return
 		 */
-		public int entitiesOnMapArea(int areaDifficulty)
+		public int entitiesOnMapAreaNum(int areaDifficulty)
 		{
 			int entitiesOnAra = 0;
 			int max = areaDifficulty;
 			int min = 0;
-			entitiesOnAra = (int)(Math.random() * (max - min + 1) + min);
+			Random random = new Random();
+			//entitiesOnAra = (int)(Math.Random() * (max - min + 1) + min);
+			entitiesOnAra = random.Next((int)min, (int)max);
+
 			return entitiesOnAra;
 		}
 
@@ -173,7 +177,7 @@ namespace Wasteland_game
 		{
 			double max = 0;
 			double min = 0;
-
+			Random random = new Random();
 
 			GameObjectPos entPos = new GameObjectPos(worldMap, mapArea.getPosOnMapX(), mapArea.getPosOnMapY(), 0, 0);
 
@@ -191,7 +195,12 @@ namespace Wasteland_game
 
 			max = mapArea.getMapAreaX_max();
 			min = mapArea.getMapAreaX_min();
-			entMapPos = (int)(Math.random() * (max - min + 1) + min);
+			entMapPos = random.Next((int)min, (int)max);
+			//entMapPos = (int)(Math.random() * (max - min + 1) + min);
+			
+
+
+
 
 			entPos.setMapAreaXPos(entMapPos);
 
@@ -199,7 +208,10 @@ namespace Wasteland_game
 			max = mapArea.getMapAreaY_max();
 			min = mapArea.getMapAreaY_min();
 
-			entMapPos = (int)(Math.random() * (max - min + 1) + min);
+			entMapPos = random.Next((int)min, (int)max);
+			//entMapPos = (int)(Math.random() * (max - min + 1) + min);
+
+
 			entPos.setMapAreaYPos(entMapPos);
 
 			this.worldMap.addGameObjectToMapList(entity);

@@ -19,11 +19,11 @@ namespace Wasteland_game
 
 	ProjectileAmmo loadedProjectile;// aka bullet in chamber
 
-	boolean cockable;
+	bool cockable;
 
-	boolean magazineFed;
+	bool magazineFed;
 
-	boolean boltAction;
+	bool boltAction;
 
 	public double meanTimeBetweenFailure;
 
@@ -36,16 +36,15 @@ namespace Wasteland_game
 	// might move to Ammo class, ammoDispersion
 	public double bulletDispersion;
 
-	public Gun(GameObjectPos gameObjectPos, String objectName, double ammoSize)
-	{
-		super(gameObjectPos, objectName, 1.4);
+	public Gun(GameObjectPos gameObjectPos, String objectName, double ammoSize) : base(gameObjectPos, objectName, 1.4)
+		{
 		this.ammoSize = ammoSize;
 
 	}
 
-	public Gun(GameObjectPos gameObjectPos, String objectName, double ammoSize, boolean cockable, boolean magazineFed)
-	{
-		super(gameObjectPos, objectName, 1.4);
+	public Gun(GameObjectPos gameObjectPos, String objectName, double ammoSize, bool cockable, bool magazineFed) :
+			base(gameObjectPos, objectName, 1.4) {
+		
 		this.ammoSize = ammoSize;
 		this.cockable = cockable;
 		this.magazineFed = magazineFed;
@@ -104,7 +103,7 @@ namespace Wasteland_game
 	/**
 	 * @return the cockable
 	 */
-	public boolean isCockable()
+	public bool isCockable()
 	{
 		return cockable;
 	}
@@ -112,7 +111,7 @@ namespace Wasteland_game
 	/**
 	 * @param cockable the cockable to set
 	 */
-	public void setCockable(boolean cockable)
+	public void setCockable(bool cockable)
 	{
 		this.cockable = cockable;
 	}
@@ -120,7 +119,7 @@ namespace Wasteland_game
 	/**
 	 * @return the magazineFed
 	 */
-	public boolean isMagazineFed()
+	public bool isMagazineFed()
 	{
 		return magazineFed;
 	}
@@ -128,7 +127,7 @@ namespace Wasteland_game
 	/**
 	 * @param magazineFed the magazineFed to set
 	 */
-	public void setMagazineFed(boolean magazineFed)
+	public void setMagazineFed(bool magazineFed)
 	{
 		this.magazineFed = magazineFed;
 	}
@@ -136,7 +135,7 @@ namespace Wasteland_game
 	/**
 	 * @return the boltAction
 	 */
-	public boolean isBoltAction()
+	public bool isBoltAction()
 	{
 		return boltAction;
 	}
@@ -144,7 +143,7 @@ namespace Wasteland_game
 	/**
 	 * @param boltAction the boltAction to set
 	 */
-	public void setBoltAction(boolean boltAction)
+	public void setBoltAction(bool boltAction)
 	{
 		this.boltAction = boltAction;
 	}
@@ -231,12 +230,12 @@ namespace Wasteland_game
 	}
 
 	// cock gun that have mags
-	public boolean cockGun()
+	public bool cockGun()
 	{
 		// takes 1 sec
 		// maybe return a number 0 to x based on what didnt pass in if statements to
 		// give more info about gun
-		boolean cocked = false;
+		bool cocked = false;
 
 		if (cockable && loadedProjectile == null && magazine != null)
 		{
@@ -254,15 +253,15 @@ namespace Wasteland_game
 		return cocked;
 	}
 
-	public boolean rackGun()
+	public bool rackGun()
 	{
-		boolean racked = false;
+		bool racked = false;
 		return racked;
 	}
 
-	public boolean cycleMag()
+	public bool cycleMag()
 	{
-		boolean cycled = false;
+		bool cycled = false;
 		if (magazine != null)
 		{
 
@@ -281,19 +280,19 @@ namespace Wasteland_game
 		return cycled;
 	}
 
-	public boolean ejectMag()
+	public bool ejectMag()
 	{
 		return false;
 	}
 
-	public boolean reload()
+	public bool reload()
 	{
 		return false;
 	}
 
-	public boolean cycleGunAfterFiring()
+	public bool cycleGunAfterFiring()
 	{
-		boolean cycled = false;
+		bool cycled = false;
 		loadedProjectile = null;
 		if (magazine != null)
 		{
@@ -322,11 +321,11 @@ namespace Wasteland_game
 	}
 
 	// fires gun and projectile hits targets hitbox
-	public boolean fireGunAtGameObject(Entity shooter, GameObject target)
+	public bool fireGunAtGameObject(Entity shooter, GameObject target)
 	{
 		//double 0
 
-		boolean targetHit = false;
+		bool targetHit = false;
 		double distanceFromTarget = shooter.getDistanceFromObject(target);
 
 
@@ -341,11 +340,11 @@ namespace Wasteland_game
 
 
 			double distanceIn_mm_fromAimPoint = randNum.rollRandDouble(shooter.getTargetGroupSize(target), 0);
-			//c = sqrt(a^2 + b^2), a^2 + b^2 = c^2
+			//c = Sqrt(a^2 + b^2), a^2 + b^2 = c^2
 			//b^2 = c^2 - a^2, rng a
 
 			double side_y = randNum.rollRandDouble(distanceIn_mm_fromAimPoint, 0);
-			double base_x = Math.pow(distanceIn_mm_fromAimPoint, 2) - Math.pow(side_y, 2);
+			double base_x = Math.Pow(distanceIn_mm_fromAimPoint, 2) - Math.Pow(side_y, 2);
 
 			double yPosHit = 0;
 			double xPosHit = 0;
@@ -400,7 +399,7 @@ namespace Wasteland_game
 
 
 
-			if (!Double.isNaN(damage))
+			if (!Double.IsNaN(damage))
 			{
 				target.setIntegraty(target.getIntegraty() - damage);
 				targetHit = true;
@@ -446,9 +445,9 @@ namespace Wasteland_game
 	}
 
 	// fires gun and projectile hits target not reguarding hitbox
-	public boolean fireGunAtGameObjectNoHitbox(Entity shooter, GameObject target)
+	public bool fireGunAtGameObjectNoHitbox(Entity shooter, GameObject target)
 	{
-		boolean targetHit = false;
+		bool targetHit = false;
 		double distanceFromTarget = shooter.getDistanceFromObject(target);
 
 		if (loadedProjectile != null)
@@ -477,7 +476,7 @@ namespace Wasteland_game
 
 
 
-				if (!Double.isNaN(damage))
+				if (!Double.IsNaN(damage))
 				{
 					target.setIntegraty(target.getIntegraty() - damage);
 					targetHit = true;

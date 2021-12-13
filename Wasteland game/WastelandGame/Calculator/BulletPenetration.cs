@@ -1,24 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-/*
-package wasteland.calculator;
-
-import java.util.Scanner;
-
-import GameObjects.GameObject;
-*/
-/*
-using Wasteland_game.WastelandGame.entity.BodyPart;
-using Wasteland_game.WastelandGame.entity.Hitbox;
-using Wasteland_game.WastelandGame.entity.Material;
-using Wasteland_game.WastelandGame.entity.MaterialLayer;
-using Wasteland_game.WastelandGame.entity.Wound;
-using Wasteland_game.WastelandGame.Items.ProjectileAmmo;
-*/
 namespace Wasteland_game {
 public class BulletPenetration {
 
@@ -426,7 +407,7 @@ public class BulletPenetration {
 	 * 
 	 * returns armor penetration in mm of projectile
 	 * 
-	 * B = (V * sqrt(P)) / (K * sqrt(D))
+	 * B = (V * Sqrt(P)) / (K * Sqrt(D))
 	 * 
 	 * B = thickness of armor penetrated in decimeters V = Velocity of projectile on
 	 * impact (m/s) P = mass of projectile (kg) K = resistance constant (use 2400 by
@@ -447,7 +428,7 @@ public class BulletPenetration {
 		double K = 2400;
 		double D = diameter;
 
-		B = (V * Math.sqrt(P)) / (K * Math.sqrt(D));
+		B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
 
 		B = 1000 * B; // convert to mm
 
@@ -459,7 +440,7 @@ public class BulletPenetration {
 	 * 
 	 * returns armor penetration in mm of projectile
 	 * 
-	 * B = (V * sqrt(P)) / (K * sqrt(D))
+	 * B = (V * Sqrt(P)) / (K * Sqrt(D))
 	 * 
 	 * B = thickness of armor penetrated in decimeters V = Velocity of projectile on
 	 * impact (m/s) P = mass of projectile (kg) K = resistance constant (use 2400 by
@@ -475,7 +456,7 @@ public class BulletPenetration {
 
 		double B;
 
-		B = (V * Math.sqrt(P)) / (K * Math.sqrt(D));
+		B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
 
 		B = (1000 * B); // convert to mm
 
@@ -491,8 +472,8 @@ public class BulletPenetration {
 		double K;
 		double D = diameter;
 
-		// B = (V * Math.sqrt(P)) / (K * Math.sqrt(D));
-		K = (V * Math.sqrt(P)) / ((1000 * B) * Math.sqrt(D));
+		// B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
+		K = (V * Math.Sqrt(P)) / ((1000 * B) * Math.Sqrt(D));
 		K *= 1000000;
 		return K;
 	}
@@ -510,7 +491,7 @@ public class BulletPenetration {
 		double K = kruppConstant;
 		double D = diameter;
 
-		V = ((B) * Math.sqrt(D) * K) / Math.sqrt(P);
+		V = ((B) * Math.Sqrt(D) * K) / Math.Sqrt(P);
 		V /= 1000;
 
 		return V;
@@ -940,7 +921,7 @@ public class BulletPenetration {
 
 	public String toString3() {
 
-		return String.format(
+		return String.Format(
 				"Mass: %.4f kg \nDiameter: %.4f mm \nVelocity: %.4f m/s "
 						+ "\nDistance from target: %.4f m \nArea of projectile:  %.4f mm^2 "
 						+ "\nFinal Velocity: %.4f m/s^2 \nInitial pen value: %.4f mm " + "\nFinal pen value: %.4f mm ",
@@ -972,8 +953,8 @@ public class BulletPenetration {
 		double K = 2400;
 		double D = 9;
 
-		// B = (V * Math.sqrt(P)) / (K * Math.sqrt(D));
-		K = (V * Math.sqrt(P)) / (B * Math.sqrt(D));
+		// B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
+		K = (V * Math.Sqrt(P)) / (B * Math.Sqrt(D));
 
 		B = 1000 * B; // convert to mm
 
@@ -985,8 +966,8 @@ public class BulletPenetration {
 		P = 0.00804;
 		D = 9;
 
-		// B = (V * Math.sqrt(P)) / (K * Math.sqrt(D));
-		K = (V * Math.sqrt(P)) / (B * Math.sqrt(D));
+		// B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
+		K = (V * Math.Sqrt(P)) / (B * Math.Sqrt(D));
 
 		B = 1000 * B; // convert to mm
 
@@ -998,7 +979,7 @@ public class BulletPenetration {
 
 		// double K = 2400;
 		D = 9;
-		B = (V * Math.sqrt(P)) / (K * Math.sqrt(D));
+		B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
 		Console.WriteLine("B.1: " + B);
 
 		// "calc 1", 0.011, 7.62, 800, 40);
@@ -1008,7 +989,7 @@ public class BulletPenetration {
 
 		// double K = 2400;
 		D = 7.62;
-		B = (V * Math.sqrt(P)) / (K * Math.sqrt(D));
+		B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
 		Console.WriteLine("B2: " + B);
 
 		// "pelletGun", 0.00055, 4.5, 292, 10.1346);
@@ -1018,7 +999,7 @@ public class BulletPenetration {
 
 		// double K = 2400;
 		D = 4.5;
-		B = (V * Math.sqrt(P)) / (K * Math.sqrt(D));
+		B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
 		Console.WriteLine("B3: " + B);
 
 		// "slug12Gauge", 0.028349523, 18.53, 564, 200);
@@ -1028,7 +1009,7 @@ public class BulletPenetration {
 
 		// double K = 2400;
 		D = 18.53;
-		B = (V * Math.sqrt(P)) / (K * Math.sqrt(D));
+		B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
 		Console.WriteLine("B4: " + B);
 
 		// "M1 carbine", 0.007127885, 7.62, 604, 10.1346);
@@ -1038,7 +1019,7 @@ public class BulletPenetration {
 
 		// double K = 2400;
 		D = 7.62;
-		B = (V * Math.sqrt(P)) / (K * Math.sqrt(D));
+		B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
 		Console.WriteLine("B5: " + B);
 
 		V = 350;
@@ -1048,7 +1029,7 @@ public class BulletPenetration {
 		D = 9;
 
 		B = 1.5;
-		K = (V * Math.sqrt(P)) / (B * Math.sqrt(D));
+		K = (V * Math.Sqrt(P)) / (B * Math.Sqrt(D));
 
 		Console.WriteLine("K: " + K);
 
@@ -1059,7 +1040,7 @@ public class BulletPenetration {
 
 		// double K = 2400;
 		D = 7.62;
-		B = (V * Math.sqrt(P)) / (K * Math.sqrt(D));
+		B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
 		Console.WriteLine("B1_1: " + B);
 
 		// 9mm
@@ -1068,7 +1049,7 @@ public class BulletPenetration {
 
 		// double K = 2400;
 		D = 9;
-		B = (V * Math.sqrt(P)) / (K * Math.sqrt(D));
+		B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
 		Console.WriteLine("B2_1: " + B);
 
 		// ("M1 carbine 200", 0.007127885, 7.62, 604, 200);
@@ -1077,7 +1058,7 @@ public class BulletPenetration {
 
 		// double K = 2400;
 		D = 7.62;
-		B = (V * Math.sqrt(P)) / (K * Math.sqrt(D));
+		B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
 		Console.WriteLine("B2_2: " + B);
 		
 		
@@ -1144,19 +1125,19 @@ public class BulletPenetration {
 		Console.WriteLine("Penetraition Calculator v2.1a \nmod: 2/24/2021 \n\n");
 
 		Console.WriteLine("Enter mass of projectile in kg: ");
-		double mass = scn.nextDouble();
+		double mass = Convert.ToDouble(Console.ReadLine());
 
 		Console.WriteLine("Enter diameter of projectile in mm: ");
-		double diameter = scn.nextDouble();
+		double diameter = Convert.ToDouble(Console.ReadLine());
 
 		Console.WriteLine("Enter velocity projectile in m/s^2: ");
-		double initV = scn.nextDouble();
+		double initV = Convert.ToDouble(Console.ReadLine());
 
 		Console.WriteLine("Enter distance from target in meters: ");
-		double distance = scn.nextDouble();
+		double distance = Convert.ToDouble(Console.ReadLine());
 
 		BulletPenetration calc = new BulletPenetration(mass, diameter, initV, distance);
-		scn.close();
+		//scn.close();
 
 		Console.WriteLine(calc.toString());
 

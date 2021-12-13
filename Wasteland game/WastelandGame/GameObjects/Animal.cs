@@ -1,14 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Wasteland_game.WastelandGame.BaseItem;
-
-
-
-
-
 
 
 //later: add entity levels wich affect how skilled they are ex: high lvl might have high accuracy
@@ -22,7 +12,7 @@ public class Animal : Entity {
 	//private static final long serialVersionUID = 1L;
 
 	// energy, health, stealth
-	bool isThePlayer = false;
+	private bool isThePlayer = false;
 
 
 
@@ -57,12 +47,23 @@ public class Animal : Entity {
 
 
 
+
+
+	/**
+	 * 
+	 */
+	public bool isThePlayerBool() {
+		return this.isThePlayer;
+	}
+
 	/**
 	 * @param isThePlayer the isThePlayer to set
 	 */
 	public void setThePlayer(bool isThePlayer) {
 		this.isThePlayer = isThePlayer;
 	}
+
+
 
 	public bool isAlive() {
 		return alive;
@@ -312,9 +313,9 @@ public class Animal : Entity {
 	
 
 	public Animal(String objectName, bool alive, double energy, double movementSpeed, double accuracy,
-			GameObjectPos gameObjectPos) {
-		super(objectName,  alive,  energy,  movementSpeed,  accuracy,
-				 gameObjectPos);
+			GameObjectPos gameObjectPos) : base(objectName, alive, energy, movementSpeed, accuracy,
+				 gameObjectPos)
+		{
 		this.alive = alive;
 		this.energy = energy;
 		this.accuracy = accuracy;
@@ -361,7 +362,7 @@ public class Animal : Entity {
 
 		int iterations = 0;
 
-		for (int i = 0; i < worldGameObjectList.length; i++) {
+		for (int i = 0; i < worldGameObjectList.Length; i++) {
 			if (worldGameObjectList[i] is Entity) {
 				entitiesInSightList[iterations] = (Entity) worldGameObjectList[i];
 				iterations++;
@@ -541,7 +542,7 @@ public class Animal : Entity {
 
 		int iterations = 0;
 
-		for (int i = 0; i < worldGameObjectList.length; i++) {
+		for (int i = 0; i < worldGameObjectList.GetLength(0); i++) {
 			if (worldGameObjectList[i] is BaseItem && !((BaseItem) worldGameObjectList[i]).isInInventory()) {
 				itemsInSightList[iterations] = (BaseItem) worldGameObjectList[i];
 				iterations++;
@@ -890,7 +891,7 @@ public class Animal : Entity {
 
 //	private bool addItemToInventory(BaseItem item) {
 //
-//		for (int i = 0; i < inventory.length; i++) {
+//		for (int i = 0; i < inventory.GetLength(0); i++) {
 //			if (inventory[i] == null) {
 //				inventory[i] = item;
 //				return true;
@@ -903,7 +904,7 @@ public class Animal : Entity {
 //	}
 
 	public bool removeItemFromInventory(BaseItem item) {
-		for (int i = 0; i < inventory.length; i++) {
+		for (int i = 0; i < inventory.GetLength(0); i++) {
 			if (inventory[i] == item) {
 				inventory[i] = null;
 				return true;
@@ -915,7 +916,7 @@ public class Animal : Entity {
 
 	public bool itemInInventory(BaseItem item) {
 
-		for (int i = 0; i < inventory.length; i++) {
+		for (int i = 0; i < inventory.GetLength(0); i++) {
 			if (inventory[i] == item) {
 				return true;
 			}
@@ -928,7 +929,7 @@ public class Animal : Entity {
 		String inventoryString = "\n";
 		int objInInv = 0;
 
-		for (int i = 0; i < inventory.length; i++) {
+		for (int i = 0; i < inventory.GetLength(0); i++) {
 			if (inventory[i] != null) {
 
 				inventoryString += i + ": " + inventory[i].objectName + "\n";
@@ -947,7 +948,7 @@ public class Animal : Entity {
 
 	public bool equipInvintoryItemAsWeapon(int index) {
 
-		if (index < inventory.length && inventory[index] != entityWeapon) {
+		if (index < inventory.GetLength(0) && inventory[index] != entityWeapon) {
 			setEntityWeapon(inventory[index]);
 			//removeItemFromInventory(entityWeapon);
 			return true;
@@ -994,7 +995,7 @@ public class Animal : Entity {
 		bool itemAdded = false;
 		BaseItem[] baseItem = entity.getInventory();
 
-		for (int i = 0; i < baseItem.length; i++) {
+		for (int i = 0; i < baseItem.GetLength(0); i++) {
 			if (baseItem[i] == item) {
 				entity.getInventory()[i] = null;
 				itemAdded = pickUpItem(item);
@@ -1062,7 +1063,7 @@ public class Animal : Entity {
 		Entity zombie2 = new Entity("Zombie 2", true, 100, 1.5, 100, entPos3);
 
 		tstMap.addGameObjectToMapList(player);
-		player.setThePlayer(true);
+		player.setIsThePlayer(true);
 		player.setInCombat(true);
 		player.setSpotted(true);
 		tstMap.addGameObjectToMapList(zombie);

@@ -98,7 +98,7 @@ public class GameRunner {
 		gameState.getPlayer().setGameObjectHitbox(hitbox.newHumanHitbox());
 		//ask player to enter the name of their character 
 
-		gameState.getPlayer().setThePlayer(true);
+		gameState.getPlayer().setIsThePlayer(true);
 		gameState.getMainMap().setGameMapPlayer(initMapX, initMapY, true);
 
 		gameState.getMainMap().printGameMapString();

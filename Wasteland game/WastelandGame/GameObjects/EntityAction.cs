@@ -19,7 +19,7 @@ namespace Wasteland_game
 	
 	public void bandageWound(Animal wounded, BodyPart bodyPart, Wound wound) {
 		
-		for (int i = 0; i < wounded.bodyParts.length; i++) {
+		for (int i = 0; i < wounded.bodyParts.GetLength(0); i++) {
 			if (wounded.bodyParts[i] == bodyPart) {
 				wounded.bodyParts[i].removeWound(wound);
 			}

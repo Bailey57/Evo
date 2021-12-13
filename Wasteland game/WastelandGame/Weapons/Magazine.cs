@@ -19,9 +19,9 @@ namespace Wasteland_game
 
 	public double magProjectileDiamiter;
 
-	public Magazine(GameObjectPos gameObjectPos, String objectName, double mass, int ammoCapacity, double magProjectileDiamiter)
-	{
-		super(gameObjectPos, objectName, 0);
+	public Magazine(GameObjectPos gameObjectPos, String objectName, double mass, int ammoCapacity, double magProjectileDiamiter) : 
+			base(gameObjectPos, objectName, 0)
+		{
 
 		this.ammoCapacity = ammoCapacity;
 		this.magProjectileDiamiter = magProjectileDiamiter;
@@ -94,7 +94,7 @@ namespace Wasteland_game
 	}
 
 
-	public boolean fillMagazine(ProjectileAmmo[] projectile)
+	public bool fillMagazine(ProjectileAmmo[] projectile)
 	{
 		//ammoCapacity
 		for (int i = 0; i < ammoCapacity; i++)
@@ -119,9 +119,9 @@ namespace Wasteland_game
 	 * 
 	 * @param projectile
 	 */
-	public boolean addBullet(ProjectileAmmo projectile)
+	public bool addBullet(ProjectileAmmo projectile)
 	{
-		boolean added = false;
+		bool added = false;
 
 		if (projectile.getDiameter() == magProjectileDiamiter && ammountOfBulletsInMag < ammoCapacity)
 		{
@@ -158,7 +158,7 @@ namespace Wasteland_game
 	 */
 	public ProjectileAmmo removeBullet()
 	{
-		boolean removed = false;
+		bool removed = false;
 		ProjectileAmmo projectile = null;
 
 		if (ammountOfBulletsInMag >= 1)
@@ -190,7 +190,7 @@ namespace Wasteland_game
 	{
 		String output = "\n";
 
-		for (int i = 0; i < bulletsInMag.length; i++)
+		for (int i = 0; i < bulletsInMag.GetLength(0); i++)
 		{
 			if (bulletsInMag[i] != null)
 			{

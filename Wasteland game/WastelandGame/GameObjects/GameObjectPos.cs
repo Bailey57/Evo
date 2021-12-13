@@ -62,7 +62,7 @@ public class GameObjectPos {
 		this.mapAreaYPos = mapAreaYPos;
 		
 		if (currentMap != null) {
-			this.currentArea = currentMap.gameMap[worldMapYPos][worldMapXPos];
+			this.currentArea = currentMap.gameMap[worldMapYPos, worldMapXPos];
 		}
 
 
@@ -210,9 +210,9 @@ public class GameObjectPos {
 //		int newYPos = worldMapYPos + yMove;
 //
 //		// check to see if at edge of map
-//		if (currentMap[1].length <= newXPos || newXPos < 0) {
+//		if (currentMap[1].GetLength(0) <= newXPos || newXPos < 0) {
 //			Console.WriteLine("You cant go that way on the x axis");
-//		} else if (currentMap[0].length <= newYPos || newYPos < 0) {
+//		} else if (currentMap[0].GetLength(0) <= newYPos || newYPos < 0) {
 //			Console.WriteLine("You cant go that way on the y axis");
 //		} else {
 //			currentMap[worldMapYPos][worldMapXPos].playerOnArea = false;
@@ -242,13 +242,13 @@ public class GameObjectPos {
 
 //	public void movePositionOnMap(String direction) {
 //
-//		if (direction.equals("n") || direction.equals("N")) {
+//		if (direction.Equals("n") || direction.Equals("N")) {
 //			changePlayerPos(currentMap.gameMap, 0, -1);
-//		} else if (direction.equals("s") || direction.equals("S")) {
+//		} else if (direction.Equals("s") || direction.Equals("S")) {
 //			changePlayerPos(currentMap.gameMap, 0, 1);
-//		} else if (direction.equals("e") || direction.equals("E")) {
+//		} else if (direction.Equals("e") || direction.Equals("E")) {
 //			changePlayerPos(currentMap.gameMap, 1, 0);
-//		} else if (direction.equals("w") || direction.equals("W")) {
+//		} else if (direction.Equals("w") || direction.Equals("W")) {
 //			changePlayerPos(currentMap.gameMap, -1, 0);
 //		} else {
 //			Console.WriteLine("input invalid");
@@ -273,19 +273,19 @@ public class GameObjectPos {
 
 		int yMove = 0;
 		int xMove = 0;
-		if (direction.equals("n") || direction.equals("N")) {
+		if (direction.Equals("n") || direction.Equals("N")) {
 			// changePlayerPos(currentMap, 0, -1);
 			yMove = -1;
 			//moveGameObjectOnMapAreaY(currentMap, gameObject, -distance);
-		} else if (direction.equals("s") || direction.equals("S")) {
+		} else if (direction.Equals("s") || direction.Equals("S")) {
 			// changePlayerPos(currentMap, 0, 1);
 			yMove = 1;
 			//moveGameObjectOnMapAreaY(currentMap, gameObject, distance);
-		} else if (direction.equals("e") || direction.equals("E")) {
+		} else if (direction.Equals("e") || direction.Equals("E")) {
 			xMove = 1;
 			// changePlayerPos(currentMap, 1, 0);
 			//moveGameObjectOnMapAreaX(currentMap, gameObject, distance);
-		} else if (direction.equals("w") || direction.equals("W")) {
+		} else if (direction.Equals("w") || direction.Equals("W")) {
 			// changePlayerPos(currentMap, -1, 0);
 			xMove = -1;
 			//moveGameObjectOnMapAreaX(currentMap, gameObject, -distance);
@@ -300,11 +300,11 @@ public class GameObjectPos {
 		double newMapAreaXPos = gameObject.getGameObjectPos().mapAreaXPos + xMove;
 
 
-		if (currentMap.gameMap.length * 199 >= newMapAreaXPos && newMapAreaXPos >= 0) {
+		if (currentMap.gameMap.GetLength(0) * 199 >= newMapAreaXPos && newMapAreaXPos >= 0) {
 
 			gameObject.getGameObjectPos().mapAreaXPos = newMapAreaXPos;
 
-		} if (currentMap.gameMap.length * 199 >= newMapAreaYPos && newMapAreaYPos >= 0) {
+		} if (currentMap.gameMap.GetLength(0) * 199 >= newMapAreaYPos && newMapAreaYPos >= 0) {
 
 			gameObject.getGameObjectPos().mapAreaYPos = newMapAreaYPos;
 
@@ -315,9 +315,11 @@ public class GameObjectPos {
 		}
 
 		if (onCorrectMapArea()) {
-			if (oldMapY < currentMap.gameMap.length && oldMapX < currentMap.gameMap.length) {
-				currentMap.gameMap[oldMapY][oldMapX].playerOnArea = false;
-				currentMap.gameObjectsOnMap[(int) oldMapAreaY][(int) oldMapAreaX] = null;
+			if (oldMapY < currentMap.gameMap.GetLength(0) && oldMapX < currentMap.gameMap.GetLength(0)) {
+				currentMap.gameMap[oldMapY, oldMapX].playerOnArea = false;
+				
+				//change later to accept z values in last place
+				currentMap.gameObjectsOnMap[(int) oldMapAreaY, (int) oldMapAreaX, 0] = null;
 				
 			}
 			
@@ -458,18 +460,18 @@ public class GameObjectPos {
 		// maybe add check to see if on same map
 		//gameObject.getGameObjectPos().getCurrentMap().map[(int) getMapAreaYPos()][(int) getMapAreaXPos()].playerOnArea = false;
 		
-		if((int) Math.floor(getMapAreaXPos() / 199) < mapMaxSize && (int) Math.floor(getMapAreaYPos() / 199) < mapMaxSize) {
+		if((int) Math.Floor(getMapAreaXPos() / 199) < mapMaxSize && (int) Math.Floor(getMapAreaYPos() / 199) < mapMaxSize) {
 			
-			gameObject.getGameObjectPos().setWorldMapXPos((int) Math.floor(getMapAreaXPos() / 199));
-			gameObject.getGameObjectPos().setWorldMapYPos((int) Math.floor(getMapAreaYPos() / 199));
+			gameObject.getGameObjectPos().setWorldMapXPos((int) Math.Floor(getMapAreaXPos() / 199));
+			gameObject.getGameObjectPos().setWorldMapYPos((int) Math.Floor(getMapAreaYPos() / 199));
 			
 
-			gameObject.getGameObjectPos().setCurrentArea(this.currentMap.gameMap[(int) getWorldMapYPos()][(int) getWorldMapXPos()]);
+			gameObject.getGameObjectPos().setCurrentArea(this.currentMap.gameMap[(int) getWorldMapYPos(), (int) getWorldMapXPos()]);
 			
 			
 			this.getCurrentArea().gameObjectsOnMapAreaCords[(int) getMapAreaYPos() / (getWorldMapYPos() + 1)][(int) getMapAreaXPos() / (getWorldMapXPos() + 1)] = this.getGameObject();
 
-			if (gameObject is Entity && ((Entity)gameObject).isThePlayer()) {
+			if (gameObject is Entity && ((Entity)gameObject).getIsThePlayer()) {
 				gameObject.getGameObjectPos().getCurrentArea().playerOnArea = true;
 			}
 			
@@ -483,11 +485,11 @@ public class GameObjectPos {
 //		double newMapAreaYPos = gameObject.getGameObjectPos().mapAreaYPos + yMove;
 //		double newMapAreaXPos = gameObject.getGameObjectPos().mapAreaXPos + xMove;
 //
-//		if (currentMap.gameMap.length * 199 >= newMapAreaXPos && newMapAreaXPos >= 0) {
+//		if (currentMap.gameMap.GetLength(0) * 199 >= newMapAreaXPos && newMapAreaXPos >= 0) {
 //
 //			gameObject.getGameObjectPos().mapAreaXPos = newMapAreaXPos;
 //
-//		} else if (currentMap.gameMap.length * 199 >= newMapAreaYPos && newMapAreaYPos >= 0) {
+//		} else if (currentMap.gameMap.GetLength(0) * 199 >= newMapAreaYPos && newMapAreaYPos >= 0) {
 //
 //			gameObject.getGameObjectPos().mapAreaYPos = newMapAreaYPos;
 //
@@ -505,7 +507,7 @@ public class GameObjectPos {
 //
 //		double newMapAreaYPos = gameObject.getGameObjectPos().mapAreaYPos + yMove;
 //
-//		if (currentMap.gameMap.length * 199 >= newMapAreaYPos && newMapAreaYPos >= 0) {
+//		if (currentMap.gameMap.GetLength(0) * 199 >= newMapAreaYPos && newMapAreaYPos >= 0) {
 //
 //			gameObject.getGameObjectPos().mapAreaYPos = newMapAreaYPos;
 //
@@ -528,7 +530,7 @@ public class GameObjectPos {
 //	}
 
 	public String getPlayerAreaName(MapArea[][] currentMap) {
-		return currentMap[worldMapYPos][worldMapXPos].areaName;
+		return currentMap[worldMapYPos][worldMapXPos].getAreaName();
 	}
 
 	//@Override
@@ -555,7 +557,7 @@ public class GameObjectPos {
 		GameObjectPos newPlayerPos = new GameObjectPos( newMap, 0, 0, 0, 0);
 
 		Entity player = new Entity("Player", true, 100, 1.5, 100, newPlayerPos);
-		player.setThePlayer(true);
+		player.setIsThePlayer(true);
 //		newPlayerPos.currentArea = newMap.map[0][0];
 //		newPlayerPos.setMapAreaXPos(0);
 //		newPlayerPos.setMapAreaYPos(0);

@@ -355,12 +355,12 @@ namespace Wasteland_game
 		if (layers == null) {
 			layers = new MaterialLayer[1];
 		}
-		for (int i = 0; i < layers.length; i++) {
+		for (int i = 0; i < layers.GetLength(0); i++) {
 
 			if (layers[i] == null || layers[i] == materialLayer) {
 				layers[i] = materialLayer;
 				break;
-			} else if (i - 1 == layers.length) {
+			} else if (i - 1 == layers.GetLength(0)) {
 				increaseMaterialLayers();
 
 			}
@@ -373,8 +373,8 @@ namespace Wasteland_game
 	 * @param bodyParts the bodyParts to set
 	 */
 	private void increaseMaterialLayers() {
-		MaterialLayer[] layers2 = new MaterialLayer[layers.length * 2];
-		for (int i = 0; i < layers.length; i++) {
+		MaterialLayer[] layers2 = new MaterialLayer[layers.GetLength(0) * 2];
+		for (int i = 0; i < layers.GetLength(0); i++) {
 			layers2[i] = this.layers[i];
 
 		}
@@ -398,12 +398,7 @@ namespace Wasteland_game
 
 
 
-	/**
-	 * @param integrity the integrity to set
-	 */
-	public void setIntegrity(double integrity) {
-		this.integrity = integrity;
-	}
+	
 
 	/**
 	 * @return the coveragePercent
@@ -442,12 +437,12 @@ namespace Wasteland_game
 		if (wounds == null) {
 			wounds = new Wound[1];
 		}
-		for (int i = 0; i < wounds.length; i++) {
+		for (int i = 0; i < wounds.GetLength(0); i++) {
 
 			if (wounds[i] == null || wounds[i] == wound) {
 				wounds[i] = wound;
 				break;
-			} else if (i - 1 == wounds.length) {
+			} else if (i - 1 == wounds.GetLength(0)) {
 				increaseWoundAmmount();
 
 			}
@@ -460,8 +455,8 @@ namespace Wasteland_game
 	 * 
 	 */
 	private void increaseWoundAmmount() {
-		Wound[] layers2 = new Wound[wounds.length * 2];
-		for (int i = 0; i < wounds.length; i++) {
+		Wound[] layers2 = new Wound[wounds.GetLength(0) * 2];
+		for (int i = 0; i < wounds.GetLength(0); i++) {
 			layers2[i] = this.wounds[i];
 
 		}
@@ -479,7 +474,7 @@ namespace Wasteland_game
 		if (wounds == null) {
 			wounds = new Wound[1];
 		}
-		for (int i = 0; i < wounds.length; i++) {
+		for (int i = 0; i < wounds.GetLength(0); i++) {
 
 			if (wounds[i] == wound) {
 				wounds[i] = null;
@@ -496,8 +491,8 @@ namespace Wasteland_game
 	 * sorts wounds array
 	 */
 	private void sortWoundAmmount() {
-		Wound[] layers2 = new Wound[wounds.length];
-		for (int i = 0; i < wounds.length; i++) {
+		Wound[] layers2 = new Wound[wounds.GetLength(0)];
+		for (int i = 0; i < wounds.GetLength(0); i++) {
 			if (wounds[i] != null) {
 				layers2[i] = this.wounds[i];
 			}
@@ -514,7 +509,7 @@ namespace Wasteland_game
 //		
 //		
 //		
-//		for (int i = 0; i < wounded.bodyParts.length; i++) {
+//		for (int i = 0; i < wounded.bodyParts.GetLength(0); i++) {
 //			if (wounded.bodyParts[i] == bodyPart) {
 //				wounded.bodyParts[i].removeWound(wound);
 //			}

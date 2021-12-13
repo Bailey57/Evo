@@ -1,24 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-/*
-package wasteland.entity;
-
-import java.util.Random;
-
-using Wasteland.GameObject;
-using Wasteland.calculator.RandomNumbers;
-using Wasteland.items.BaseItem;
-using Wasteland.items.weapons.Gun;
-using Wasteland.items.weapons.Magazine;
-using Wasteland.map.GameObjectPos;
-using Wasteland.map.Map;
-using Wasteland.map.MapArea;
-using Wasteland.map.MapAreaFactory;
-*/
 //later: add entity levels wich affect how skilled they are ex: high lvl might have high accuracy
 namespace Wasteland_game
 {
@@ -31,7 +12,7 @@ namespace Wasteland_game
 	//private static final long serialVersionUID = 1L;
 
 	// energy, health, stealth
-	bool isThePlayer = false;
+	public bool isThePlayer = false;
 
 	public bool alive = true;
 	public double energy = 100;
@@ -70,23 +51,18 @@ namespace Wasteland_game
 	public BodyPart[] bodyParts;
 	//public statusEffects;
 
-	//private final double TIME_MOVE_TAKES = 2.5;// change to where its based on speed
-	
-	
+	private double TIME_MOVE_TAKES = 2.5;// change to where its based on speed
 
-	/**
-	 * @return the isThePlayer
-	 */
-	public bool isThePlayer() {
-		return isThePlayer;
+
+
+	public bool getIsThePlayer() {
+		return this.isThePlayer;
 	}
 
-	/**
-	 * @param isThePlayer the isThePlayer to set
-	 */
-	public void setThePlayer(bool isThePlayer) {
+	public void setIsThePlayer(bool isThePlayer) {
 		this.isThePlayer = isThePlayer;
 	}
+
 
 	public bool isAlive() {
 		return alive;
@@ -278,14 +254,14 @@ namespace Wasteland_game
 	 * @param sorts inventory
 	 */
 	public void sortInventory() {
-		for (int i = 0; i < getInventory().length; i++) {
+		for (int i = 0; i < getInventory().GetLength(0); i++) {
 			
 			
 			
 			
 			if (getInventory()[i] != null && i > 0) {
 				
-				for (int k = 0; k < getInventory().length; k++) {	
+				for (int k = 0; k < getInventory().GetLength(0); k++) {	
 					if (getInventory()[k] == null && k > 0 && k < i) {
 						getInventory()[k] = getInventory()[i];
 						getInventory()[i] = null;
@@ -328,8 +304,8 @@ namespace Wasteland_game
 	}
 
 	public Entity(String objectName, bool alive, double energy, double movementSpeed, double accuracy,
-			GameObjectPos gameObjectPos) {
-		super(gameObjectPos, objectName);
+			GameObjectPos gameObjectPos) : base(gameObjectPos, objectName)
+		{
 		this.alive = alive;
 		this.energy = energy;
 		this.accuracy = accuracy;
@@ -376,7 +352,7 @@ namespace Wasteland_game
 
 		int iterations = 0;
 
-		for (int i = 0; i < worldGameObjectList.length; i++) {
+		for (int i = 0; i < worldGameObjectList.GetLength(0); i++) {
 			if (worldGameObjectList[i] is Entity) {
 				entitiesInSightList[iterations] = (Entity) worldGameObjectList[i];
 				iterations++;
@@ -556,7 +532,7 @@ namespace Wasteland_game
 
 		int iterations = 0;
 
-		for (int i = 0; i < worldGameObjectList.length; i++) {
+		for (int i = 0; i < worldGameObjectList.GetLength(0); i++) {
 			if (worldGameObjectList[i] is BaseItem && !((BaseItem) worldGameObjectList[i]).isInInventory()) {
 				itemsInSightList[iterations] = (BaseItem) worldGameObjectList[i];
 				iterations++;
@@ -908,14 +884,14 @@ namespace Wasteland_game
 	 */
 	public bool addItemToInventory(BaseItem item) {
 
-		for (int i = 0; i < inventory.length; i++) {
+		for (int i = 0; i < inventory.GetLength(0); i++) {
 			if (inventory[i] == null) {
 				inventory[i] = item;
 				
 				item.setGameObjectPos(null);
 				sortInventory();
 				return true;
-			} else if (i == inventory.length) {
+			} else if (i == inventory.GetLength(0)) {
 				this.increaseInventoryLength();
 			}
 
@@ -927,7 +903,7 @@ namespace Wasteland_game
 	}
 
 	public bool removeItemFromInventory(BaseItem item) {
-		for (int i = 0; i < inventory.length; i++) {
+		for (int i = 0; i < inventory.GetLength(0); i++) {
 			if (inventory[i] == item) {
 				inventory[i] = null;
 				sortInventory();
@@ -940,7 +916,7 @@ namespace Wasteland_game
 
 	public bool itemInInventory(BaseItem item) {
 
-		for (int i = 0; i < inventory.length; i++) {
+		for (int i = 0; i < inventory.GetLength(0); i++) {
 			if (inventory[i] == item) {
 				return true;
 			}
@@ -953,7 +929,7 @@ namespace Wasteland_game
 		String inventoryString = "\n";
 		int objInInv = 0;
 
-		for (int i = 0; i < inventory.length; i++) {
+		for (int i = 0; i < inventory.GetLength(0); i++) {
 			if (inventory[i] != null) {
 
 				inventoryString += i + ": " + inventory[i].objectName + "\n";
@@ -972,7 +948,7 @@ namespace Wasteland_game
 
 	public bool equipInvintoryItemAsWeapon(int index) {
 
-		if (index < inventory.length && inventory[index] != entityWeapon) {
+		if (index < inventory.GetLength(0) && inventory[index] != entityWeapon) {
 			setEntityWeapon(inventory[index]);
 			//removeItemFromInventory(entityWeapon);
 			return true;
@@ -995,9 +971,9 @@ namespace Wasteland_game
 	}
 	
 	private void increaseInventoryLength() {
-		BaseItem[] newInventory = new BaseItem[(this.inventory.length * 2)];
+		BaseItem[] newInventory = new BaseItem[(this.inventory.GetLength(0) * 2)];
 		
-		for (int i = 0; i < this.inventory.length; i++) {
+		for (int i = 0; i < this.inventory.GetLength(0); i++) {
 			newInventory[i] = inventory[i];
 			
 		}
@@ -1040,7 +1016,7 @@ namespace Wasteland_game
 		bool itemAdded = false;
 		BaseItem[] baseItem = entity.getInventory();
 
-		for (int i = 0; i < baseItem.length; i++) {
+		for (int i = 0; i < baseItem.GetLength(0); i++) {
 			if (baseItem[i] == item) {
 				entity.getInventory()[i] = null;
 				itemAdded = pickUpItem(item);
@@ -1135,7 +1111,7 @@ namespace Wasteland_game
 		Entity zombie2 = new Entity("Zombie 2", true, 100, 1.5, 100, entPos3);
 
 		tstMap.addGameObjectToMapList(player);
-		player.setThePlayer(true);
+		player.setIsThePlayer(true);
 		player.setInCombat(true);
 		player.setSpotted(true);
 		tstMap.addGameObjectToMapList(zombie);
