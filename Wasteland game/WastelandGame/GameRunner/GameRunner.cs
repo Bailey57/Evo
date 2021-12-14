@@ -65,6 +65,7 @@ public class GameRunner {
 
 		// create new game state
 		gameState = new GameState();
+			
 
 		// set game state values
 		gameState.setPlayerAction(new PlayerAction());
@@ -138,8 +139,8 @@ public class GameRunner {
 		gun.setMagazine(_9mm_mag);
 		gun.setAttackRange(50);
 
-		
-		
+
+		UnityGUI unityGUI = new UnityGUI(gameState);
 	}
 	
 	

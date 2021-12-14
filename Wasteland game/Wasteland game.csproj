@@ -52,6 +52,7 @@
     <Compile Include="WastelandGame\GameObjects\MaterialLayer.cs" />
     <Compile Include="WastelandGame\GameObjects\StatusEffect.cs" />
     <Compile Include="WastelandGame\GameObjects\Wound.cs" />
+    <Compile Include="WastelandGame\UnityHandler\UnityGUI.cs" />
     <Compile Include="WastelandGame\GameRunner\CommandHandler.cs" />
     <Compile Include="WastelandGame\GameRunner\EntityManager.cs" />
     <Compile Include="WastelandGame\GameRunner\GameRunner.cs" />
