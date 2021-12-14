@@ -86,6 +86,8 @@ double directionInDegrees = 0;
 double camouflage = 0;
 double cover = 0;
 
+        public String directionFacing;
+
 
 String objectDescription = "An object";
 
