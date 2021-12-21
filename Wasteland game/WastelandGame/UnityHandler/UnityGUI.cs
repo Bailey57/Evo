@@ -7,46 +7,61 @@ namespace Wasteland_game
 {
     public class UnityGUI : MonoBehaviour
     {
+        public int counter = 1;
+
         //public static GameState gameState = new GameState();
         public GameState gameState;
         public Text consoleOutput;
+        public Text playerDirection;
         public int timePlayerMoving;
 
 
         //gameState.getMainMap().printGameMapString();
 
         public UnityGUI(GameState gameState) {
-            setGameState(gameState);
+            SetGameState(gameState);
         }
 
 
-        public GameState getGameState() {
+        public GameState GetGameState() {
             return this.gameState;
         }
-        public void setGameState(GameState gameState) {
+        public void SetGameState(GameState gameState) {
             this.gameState = gameState;
         }
 
-        public Text getConsoleOutput() {
+        public Text GetConsoleOutput() {
             return this.consoleOutput;
         }
-        public void setConsoleOutput(Text consoleOutput) {
+        public void SetConsoleOutput(Text consoleOutput) {
             this.consoleOutput = consoleOutput;
         }
 
 
         void Update() {
-            consoleOutput.text = getGameState().getPlayer().getObjectStringEvents();
+            //gameState.getPlayer().directionFacing = "N";
+            gameState.getPlayer().setObjectStringEvents("lol" + gameState.getPlayer().getObjectStringEvents());
 
+
+
+            // if (this.gameState != null) {
+            consoleOutput.text = GetGameState().getPlayer().getObjectStringEvents();
+                
+            playerDirection.text = GetGameState().getPlayer().directionFacing;
+            //playerDirection.text = "N";
+
+            //}
+
+            //gameState.getPlayer().setObjectStringEvents("going");
+            //consoleOutput.text = "wow";
         }
 
 
 
-        public void initializeGame() {
-
-
-            gameState = new GameState();
-
+        void Start() {
+            // GameState mainGameState = new GameState();
+            this.gameState = new GameState();
+            
 
             // set game state values
             gameState.setPlayerAction(new PlayerAction());
@@ -86,7 +101,7 @@ namespace Wasteland_game
             gameState.getMainMap().printGameMapString();
             gameState.getPlayer().getGameObjectPos().getCurrentArea().printMapAreaCordsInfo();
             //gameState.getPlayer().getGameObjectPos();
-
+            gameState.getPlayer().setObjectStringEvents("start");
 
             //make a spear
             BaseItem spear = new BaseItem(startPos2, "Spear", 10);
@@ -122,36 +137,51 @@ namespace Wasteland_game
             gun.setAttackRange(50);
 
 
-            UnityGUI unityGUI = new UnityGUI(gameState);
-
-
+            //UnityGUI unityGUI = new UnityGUI(gameState);
+            gameState.getPlayer().directionFacing = "?";
 
         }
 
 
 
-        public void getPlayerString()
+        public void GetPlayerString()
         {
-            consoleOutput.text = getGameState().getPlayer().getObjectStringEvents();
+            consoleOutput.text = GetGameState().getPlayer().getObjectStringEvents();
         }
 
+ 
 
-        public void movePlayer() {
+
+        public void MovePlayer() {
 
             //getGameState().getPlayer().getGameObjectPos().movePositionOnMapArea(gameState.getPlayer().directionFacing, timePlayerMoving);
-            getGameState().getPlayer().getGameObjectPos().movePositionOnMapArea(gameState.getPlayer().directionFacing, 1);
+            GetGameState().getPlayer().getGameObjectPos().movePositionOnMapArea(gameState.getPlayer().directionFacing, 1);
         }
 
 
-        public void setPlayerDirectionNorth() {
+        public void SetPlayerDirectionNorth() {
             gameState.getPlayer().directionFacing = "N";
             //gameState.getPlayerPos().movePlayerOnMapArea(gameState.getMainMap(), gameState.getPlayer(), direction,
                     //minuetsTraveling);
+        }
 
+        public void SetPlayerDirectionEast()
+        {
+            gameState.getPlayer().directionFacing = "E";
+            //gameState.getPlayerPos().movePlayerOnMapArea(gameState.getMainMap(), gameState.getPlayer(), direction,
+            //minuetsTraveling);
         }
 
 
-        
+
+        public void ClearConsole()
+        {
+            gameState.getPlayer().setObjectStringEvents("");
+            //gameState.getPlayerPos().movePlayerOnMapArea(gameState.getMainMap(), gameState.getPlayer(), direction,
+            //minuetsTraveling);
+        }
+
+
 
 
 
