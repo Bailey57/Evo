@@ -88,13 +88,7 @@ namespace Wasteland_game
 		this.accuracy = accuracy;
 	}
 
-	public GameObjectPos getGameObjectPos() {
-		return gameObjectPos;
-	}
 
-	public void setGameObjectPos(GameObjectPos gameObjectPos) {
-		this.gameObjectPos = gameObjectPos;
-	}
 
 	/**
 	 * @return the viewDistance

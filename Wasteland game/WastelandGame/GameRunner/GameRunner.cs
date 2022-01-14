@@ -140,7 +140,7 @@ public class GameRunner {
 		gun.setAttackRange(50);
 
 
-		UnityGUI unityGUI = new UnityGUI(gameState);
+		//UnityGUI unityGUI = new UnityGUI(gameState);
 	}
 	
 	

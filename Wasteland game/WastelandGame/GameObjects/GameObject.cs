@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 //namespace Wasteland_game.WastelandGame
 //package wasteland;
@@ -406,6 +403,17 @@ public void setGameObjectHitbox(Hitbox gameObjectHitbox)
 {
 	this.gameObjectHitbox = gameObjectHitbox;
 }
+
+
+        public void setDirectionFacing(String directionFacing)
+        {
+            this.directionFacing = directionFacing;
+        }
+
+        public String getDirectionFacing()
+        {
+            return this.directionFacing;
+        }
 
 //	public GameObject(GameObjectPos gameObjectPos, int integraty, String objectName, double mass, double xSize, double ySize,
 //			double zSize) {
