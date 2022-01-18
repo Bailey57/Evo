@@ -21,7 +21,7 @@ public class BulletPenetration {
 
 	private double acceleration; // in m/s
 
-	private double cd; // coefficent of drag
+	private double cd;  // coefficent of drag
 
 	// private double currentV;
 
