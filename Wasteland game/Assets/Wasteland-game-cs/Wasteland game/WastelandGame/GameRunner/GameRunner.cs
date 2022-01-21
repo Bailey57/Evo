@@ -185,7 +185,7 @@ public class GameRunner {
 	 * 
 	 * @param args command line arguments
 	 */
-	public static void Main(String[] args) {
+	public static void main(String[] args) {
 		
 		//GameGUI.main(args);
 		

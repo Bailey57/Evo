@@ -10,7 +10,7 @@ namespace Wasteland_game
         public int counter = 1;
 
         //public static GameState gameState = new GameState();
-        public static GameState GameState { get => GameState; set => GameState = value; }
+        public GameState GameState;
         //private static GameState gameState;
         public Text consoleOutput;
         public Text playerDirection;
@@ -51,6 +51,7 @@ namespace Wasteland_game
 
         //Update
          void Update() {
+            
             //gameState.getPlayer().directionFacing = "N";
             //GameState.getPlayer().setObjectStringEvents("lol" + GameState.getPlayer().getObjectStringEvents());
 
@@ -72,11 +73,14 @@ namespace Wasteland_game
 
             //gameState.getPlayer().setObjectStringEvents("going");
             //consoleOutput.text = "wow";
+            
         }
 
 
 
         void Start() {
+            
+            Debug.Log("Game started");
             // GameState mainGameState = new GameState();
             GameState = new GameState();
             
@@ -161,7 +165,7 @@ namespace Wasteland_game
 
             GameState.getPlayer().setDirectionFacing("?");
             
-            Debug.Log("Game started");
+            Debug.Log("Game finished starting");
         }
 
 
