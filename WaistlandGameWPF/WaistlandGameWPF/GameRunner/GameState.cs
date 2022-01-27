@@ -1,8 +1,7 @@
 ﻿using System;
-using UnityEngine;
-using UnityEngine.UI;
 
-namespace Wasteland_game
+
+namespace WaistlandGameWPF
 {
 	/*
     package wasteland.gameRunner;
@@ -20,7 +19,7 @@ using Wasteland.map.Map;
 	 *
 	 */
 	[System.Serializable]
-	public class GameState : MonoBehaviour
+	public class GameState 
 	{
 
 

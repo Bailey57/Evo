@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace Wasteland_game
+namespace WaistlandGameWPF
 {
 	/*
     package wasteland.gameRunner;

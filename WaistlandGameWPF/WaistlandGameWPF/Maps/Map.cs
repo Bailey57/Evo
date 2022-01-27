@@ -1,11 +1,10 @@
 ﻿using System;
-using UnityEngine;
 
 
-namespace Wasteland_game
+namespace WaistlandGameWPF
 {
 	[System.Serializable]
-	public class Map : MonoBehaviour
+	public class Map
 	{
 
 	

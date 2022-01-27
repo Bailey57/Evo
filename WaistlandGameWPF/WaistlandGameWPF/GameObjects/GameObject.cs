@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-//namespace Wasteland_game.WastelandGame
+//namespace WaistlandGameWPF.WastelandGame
 //package wasteland;
 
 //import java.io.Serializable;
@@ -10,7 +10,7 @@
 //using Wasteland.entity.Hitbox;
 //using Wasteland.entity.Material;
 //using Wasteland.map.GameObjectPos;
-namespace Wasteland_game
+namespace WaistlandGameWPF
 {
 	[System.Serializable]
 	public class GameObject{

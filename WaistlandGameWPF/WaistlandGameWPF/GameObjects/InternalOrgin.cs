@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 //package wasteland.entity;
-namespace Wasteland_game
+namespace WaistlandGameWPF
 {
 
 	//package wasteland.entity;

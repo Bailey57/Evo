@@ -1,7 +1,7 @@
 using System;
 
 
-namespace Wasteland_game
+namespace WaistlandGameWPF
 {
 	[System.Serializable]
 	public class Gun : BaseItem

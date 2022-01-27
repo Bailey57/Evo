@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Wasteland_game {
+namespace WaistlandGameWPF {
 public class BulletPenetration {
 
 	public String name = "unnamed projectile";// _9_mm, _7_62_mm, _12_7_mm
@@ -483,7 +483,7 @@ public class BulletPenetration {
 	 * @return velocuty of projectile with known penetration
 	 */
 	public double kruppVelocity(double mass, double penetrationIn_mm, double kruppConstant, double diameter) {
-
+			
 		double B = penetrationIn_mm;
 		double V;
 		double P = mass;

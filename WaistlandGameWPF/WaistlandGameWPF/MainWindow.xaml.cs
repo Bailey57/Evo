@@ -23,6 +23,11 @@ namespace WaistlandGameWPF
         public MainWindow()
         {
             InitializeComponent();
+
+
+            Hitbox tst = new Hitbox();
+            Console.WriteLine(tst.testingMethod());
+            
         }
     }
 }

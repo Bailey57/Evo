@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wasteland_game
+namespace WaistlandGameWPF
 {
 	/*
     package wasteland.entity;
@@ -728,18 +728,189 @@ using Wasteland.items.ProjectileAmmo;
 		
 		return;
 	}
-	
-	
-	
-//	public String projectileImpactHitboxToString() {
-//		
-//	}
-	
-	
-	
+
+
+
+		//	public String projectileImpactHitboxToString() {
+		//		
+		//	}
+
+
+
+
+
+
+		public string testingMethod() 
+		{
+			//output =  + "\n";
+			string output = "";
+
+			Material materials = new Material();
+			//BulletPenetration calcClass = new BulletPenetration();
+			ProjectileAmmo sig_ = new ProjectileAmmo(null, "sig", 0.00745187, 9, 13, 335.4);
+			sig_.setBaseMaterial(materials.getLead());
+			BulletPenetration sig = new BulletPenetration("sig", 0.00745187, 9, 335.4, 0);
+			sig.setProjectileAmmo(sig_);
+
+			BulletPenetration sig1 = new BulletPenetration("sig", 0.00745187, 9, 335.4, 0);
+			output = sig1.toString2() + "\n";
+
+			sig1.kruppPenFormulaInput(335.4, 0.00745187, 2300, 9);
+
+			sig1.kruppVelocity(0.00745187, sig1.kruppPenFormulaInput(335.4, 0.00745187, 2300, 9), 2300, 9);
+
+			//double mass, double penetrationIn_mm, double velocity, double diameter
+			sig1.kruppConstant(0.00745187, sig1.kruppPenFormulaInput(335.4, 0.00745187, 2300, 9), 335.4, 9);
+
+
+
+			Console.WriteLine("Krupp mm of pen steel: " + sig1.kruppPenFormulaInput(335.4, 0.00745187, 2300, 9));
+			Console.WriteLine("Krupp velocity steel: " + sig1.kruppVelocity(0.00745187, sig1.kruppPenFormulaInput(335.4, 0.00745187, 2300, 9), 2300, 9));
+			Console.WriteLine("Krupp constant steel: " + sig1.kruppConstant(0.00745187, sig1.kruppPenFormulaInput(335.4, 0.00745187, 2300, 9), 335.4, 9));
+
+
+			output = "Krupp mm of pen steel: " + sig1.kruppPenFormulaInput(335.4, 0.00745187, 2300, 9) + "\n";
+			output = "Krupp velocity steel: " + sig1.kruppVelocity(0.00745187, sig1.kruppPenFormulaInput(335.4, 0.00745187, 2300, 9), 2300, 9) + "\n";
+
+
+			ProjectileAmmo federal_9mm_HST = new ProjectileAmmo(null, "federal_9mm_HST", 0.00803506, 9, 13, 335.4);
+			federal_9mm_HST.setBaseMaterial(materials.getLead());
+			BulletPenetration federal_9mm_HST_pen = new BulletPenetration("federal_9mm_HST", 0.00803506, 9, 335.4, 0);
+			federal_9mm_HST_pen.setProjectileAmmo(federal_9mm_HST);
+
+			output = "Krupp constant ballistic gell: " + sig1.kruppConstant(0.00745187, 464.82, 345.948, 9) + "\n";
+
+			Hitbox testHumanHitbox = new Hitbox();
+			testHumanHitbox = testHumanHitbox.newHumanHitbox();
+			
+			output = testHumanHitbox.getHitboxCenterX() + "\n";
+			output = testHumanHitbox.getHitboxCenterY() + "\n";
+			output = testHumanHitbox.getHitboxCenterZ() + "\n";
+
+			Armor testArmor = new Armor();
+			testArmor = testArmor.genericArmorPlate_TESTING();
+			testHumanHitbox.addArmorToHitbox(testArmor.randomArmor());
+
+
+
+
+
+
+			//Console.WriteLine(testHumanHitbox.bodyPartsHitCheckToString(testHumanHitbox.getHitboxCenterX(), testHumanHitbox.getHitboxCenterY()));	
+			//testHumanHitbox.bodyPartsHitCheckToString(testHumanHitbox.getHitboxCenterX(), testHumanHitbox.getHitboxCenterY());
+
+			//Console.WriteLine(testHumanHitbox.bodyPartsHitCheckToString(testHumanHitbox.getHitboxCenterX(), 950));
+
+
+			ProjectileAmmo ak_ = new ProjectileAmmo(null, "ak", 0.011, 9, 13, 335.4);
+
+			BulletPenetration ak = new BulletPenetration("ak", 0.011, 7.62, 800, 40);
+
+
+			ProjectileAmmo pelletGunAmmo = new ProjectileAmmo(null, "pelletGun", 0.00055, 4.5, 3, 335.4);
+
+			BulletPenetration pelletGun = new BulletPenetration("pelletGun", 0.00055, 4.5, 292, 40);
+			//BulletPenetration pelletGun = new BulletPenetration("pelletGun", 0.00055, 4.5, 292, 10.1346);
+
+			//-347.5, 347.5, 0, 1750
+			RandomNumbers rn = new RandomNumbers();
+
+			double xMin = -347.5;
+			double xMax = 347.5;
+			double yMin = 0;
+			double yMax = 1750;
+
+
+			DateTime dt = DateTime.Now;
+			long startTime = dt.Millisecond;
+
+			RandomNumbers randNum = new RandomNumbers();
+			double distance = 0;
+			for (int i = 0; i < 10000; i++)
+			{
+
+				distance = randNum.rollRandInt(1000, 0);
+
+				//sig = new BulletPenetration("sig", 0.00745187, 9, 335.4, 0);
+
+
+				sig_ = new ProjectileAmmo(null, "sig", 0.00745187, 9, 13, 335.4);
+				sig_.setBaseMaterial(materials.getLead());
+				sig_.setCurrentV(335.4);
+				sig = new BulletPenetration("sig", 0.00745187, 9, 335.4, distance);
+				sig.setProjectileAmmo(sig_);
+
+
+
+
+				ak_ = new ProjectileAmmo(null, "ak", 0.011, 7.62, 13, 800);
+				ak_.setBaseMaterial(materials.getLead());
+				ak_.setCurrentV(800);
+				ak = new BulletPenetration("ak", 0.011, 7.62, 800, distance);
+				ak.setProjectileAmmo(ak_);
+
+
+				pelletGunAmmo = new ProjectileAmmo(null, "pelletGun", 0.000479512, 4.5, 3, 335.4);
+				pelletGunAmmo.setBaseMaterial(materials.getLead());
+				pelletGunAmmo.setCurrentV(292);
+				pelletGun = new BulletPenetration("pelletGun", 0.000479512, 4.5, 292, distance);
+				pelletGun.setProjectileAmmo(pelletGunAmmo);
+
+
+				testHumanHitbox.removeAndDeleteAllArmorOnHitbox();
+
+				testHumanHitbox.addArmorToHitbox(testArmor.randomArmor());
+
+
+				double randX_Cord = rn.rollRandDouble(xMax, xMin);
+				double randY_Cord = rn.rollRandDouble(yMax, yMin);
+
+				//randX_Cord = 0;
+				//randY_Cord = 1205;
+
+
+
+				output = "Test " + i + ":\n" + "Distance: " + distance + "m\n" + testHumanHitbox.armorHitCheckToString(randX_Cord, randY_Cord) + "\n";
+				output = testHumanHitbox.bodyPartsHitCheckToString(randX_Cord, randY_Cord) + "\n" + "\n";
+
+
+
+				output = "\nSig: \n" + "\n";
+				output = "Final V: " + sig.finalVelocity() + "\n";
+				sig.penetraitHitBox(testHumanHitbox, randX_Cord, randY_Cord, 0);
+
+				output = "\nAk: \n" + "\n";
+				output = "Final V: " + ak.finalVelocity() + "\n";
+				ak.penetraitHitBox(testHumanHitbox, randX_Cord, randY_Cord, 0);
+
+
+				output = "\nPellet: \n" + "\n";
+				output = "Final V: " + pelletGun.finalVelocity() + "\n";
+				pelletGun.penetraitHitBox(testHumanHitbox, randX_Cord, randY_Cord, 0);
+
+
+				output = "\n\n" + "\n";
+
+			}
+			long endTime = (dt.Millisecond - startTime);
+			output = "\nmil seconds: " + endTime + "\nseconds: " + endTime / 1000 + "\n";
+
+
+			//testHumanHitbox.ge
+
+
+			//testHumanHitbox.bodyPartsHitCheck();
+			//Console.ReadKey();
+			return output;
+		}
+
+
 	
 
-	public static void Main(String[] args) {
+
+
+
+	public static void main(String[] args) {
 		Material materials = new Material();
 		//BulletPenetration calcClass = new BulletPenetration();
 		ProjectileAmmo sig_ = new ProjectileAmmo(null, "sig", 0.00745187, 9, 13, 335.4);

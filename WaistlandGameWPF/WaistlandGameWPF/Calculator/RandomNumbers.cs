@@ -6,7 +6,8 @@ package wasteland.calculator;
 
 import java.util.Random;
 */
-namespace Wasteland_game {
+namespace WaistlandGameWPF
+{
 public class RandomNumbers {
 	
 	

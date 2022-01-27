@@ -1,7 +1,7 @@
 ﻿using System;
 
 //later: add entity levels wich affect how skilled they are ex: high lvl might have high accuracy
-namespace Wasteland_game
+namespace WaistlandGameWPF
 {
 	[System.Serializable]
 	public class Entity : GameObject {
