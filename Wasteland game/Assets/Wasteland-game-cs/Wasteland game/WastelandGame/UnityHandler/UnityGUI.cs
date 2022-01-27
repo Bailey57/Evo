@@ -7,10 +7,38 @@ namespace Wasteland_game
 {
     public class UnityGUI : MonoBehaviour
     {
+
+        public static GameState gameState;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public int counter = 1;
 
         //public static GameState gameState = new GameState();
-        public GameState gameState;
+        
         //private static GameState gameState;
         public Text consoleOutput;
         public Text playerDirection;
@@ -87,7 +115,7 @@ namespace Wasteland_game
 
             // set game state values
             //gameState.setPlayerAction(new PlayerAction());
-            this.gameState = gameObject.AddComponent<GameState>();
+            gameState = gameObject.AddComponent<GameState>();
             gameState.SetMainMap(new Map(25));
 
             int initMapX = 0;
