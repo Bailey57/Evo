@@ -15,7 +15,8 @@ using Wasteland.calculator.RandomNumbers;
 using Wasteland.items.Armor;
 using Wasteland.items.ProjectileAmmo;
 */
-public class Hitbox {
+	[System.Serializable]
+	public class Hitbox {
 
 	// heavy/light bleed
 	// heavy: 6.4L per min

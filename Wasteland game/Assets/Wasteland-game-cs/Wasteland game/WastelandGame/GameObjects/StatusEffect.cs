@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Wasteland_game
 {
-    //package wasteland.entity;
+	//package wasteland.entity;
 
 	//using Wasteland.GameObject;
-
-public class StatusEffect {
+	[System.Serializable]
+	public class StatusEffect {
 	
 	
 	

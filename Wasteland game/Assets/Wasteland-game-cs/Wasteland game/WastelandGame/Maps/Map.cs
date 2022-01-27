@@ -1,10 +1,12 @@
 ﻿using System;
+using UnityEngine;
 
 
 namespace Wasteland_game
 {
-
-	public class Map {
+	[System.Serializable]
+	public class Map : MonoBehaviour
+	{
 
 	
 
@@ -57,6 +59,7 @@ namespace Wasteland_game
 	 * 
 	 * @param mapSize
 	 */
+	
 	public Map(int mapSize)
 	{
 		this.mapSize = mapSize;

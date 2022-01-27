@@ -16,6 +16,7 @@ namespace Wasteland_game
 	 * @author bailey
 	 *
 	 */
+	[System.Serializable]
 	public class MapArea 
 	{
 

@@ -38,28 +38,28 @@ public class CommandHandler {
 	/**
 	 * @return the gameOutpu
 	 */
-	public String getGameOutput() {
+	public String GetGameOutput() {
 		return gameOutput;
 	}
 
 	/**
 	 * @return the gameState
 	 */
-	public GameState getGameState() {
+	public GameState GetGameState() {
 		return gameState;
 	}
 
 	/**
-	 * @param gameState the gameState to set
+	 * @param gameState the gameState to Set
 	 */
-	public void setGameState(GameState gameState) {
+	public void SetGameState(GameState gameState) {
 		this.gameState = gameState;
 	}
 
 	/**
-	 * @param gameOutpu the gameOutpu to set
+	 * @param gameOutpu the gameOutpu to Set
 	 */
-	public void setGameOutput(String gameOutput) {
+	public void SetGameOutput(String gameOutput) {
 		this.gameOutput = gameOutput;
 	}
 
@@ -105,7 +105,7 @@ public class CommandHandler {
 	 * 
 	 * @return an instance of the command handler
 	 */
-	public static CommandHandler getInstance() {
+	public static CommandHandler GetInstance() {
 
 		// create a new instance if not created already
 		if (instance == null) {
@@ -129,7 +129,7 @@ public class CommandHandler {
 	}
 	*/
 	public void printEntityList(GameState gameState) {
-		Console.WriteLine(gameState.getMainMap().gameObjectsOnMapToString());
+		Console.WriteLine(gameState.GetMainMap().gameObjectsOnMapToString());
 
 	}
 
@@ -175,9 +175,9 @@ public class CommandHandler {
 //		// 1: Zombie
 //		// 2: Human
 //
-//		if (gameState.getPlayer().entitiesInSightList(gameState.getMainMap())[0] != null) {
+//		if (gameState.GetPlayer().entitiesInSightList(gameState.GetMainMap())[0] != null) {
 //			Console.WriteLine("Attack what enemy? ");
-//			Console.WriteLine(gameState.getPlayer().entitiesInSightListToString(gameState.getMainMap()));
+//			Console.WriteLine(gameState.GetPlayer().entitiesInSightListToString(gameState.GetMainMap()));
 //			bool done = false;
 //			while (!done) {
 //
@@ -186,12 +186,12 @@ public class CommandHandler {
 //
 //				if (input != null && int.Parse(input) >= 0 && int.Parse(input) < 999000) {
 //
-//					if (gameState.getPlayer().entitiesInSightList(gameState.getMainMap())[Integer
+//					if (gameState.GetPlayer().entitiesInSightList(gameState.GetMainMap())[Integer
 //							.parseInt(input)] != null) {
-//						gameState.getPlayer()
+//						gameState.GetPlayer()
 //								.attackEntity(
-//										gameState.getMainMap(), gameState.getPlayer()
-//												.entitiesInSightList(gameState.getMainMap())[int.Parse(input)],
+//										gameState.GetMainMap(), gameState.GetPlayer()
+//												.entitiesInSightList(gameState.GetMainMap())[int.Parse(input)],
 //										0, true);
 //						done = true;
 //					} else {
@@ -220,13 +220,13 @@ public class CommandHandler {
 	 * @return an updated game state after the command is handled
 	 */
 	public GameState handleConsoleCommand(GameState gameState) {
-		// GameState gameState = gameRunner.getGameState();
-		setSeconds(0);
+		// GameState gameState = gameRunner.GetGameState();
+		SetSeconds(0);
 		// enter command prompt
 		Console.Write(">");
-		setGameOutput(">");
+		SetGameOutput(">");
 
-		// get user input
+		// Get user input
 		//String input = Console.ReadLine().ToLower();
 			String input = Console.ReadLine();
 			//String input = scn.nextLine().toLowerCase();
@@ -251,9 +251,9 @@ public class CommandHandler {
 			// 1: Zombie
 			// 2: Human
 
-			if (gameState.getPlayer().entitiesInSightList(gameState.getMainMap())[0] != null) {
+			if (gameState.GetPlayer().entitiesInSightList(gameState.GetMainMap())[0] != null) {
 				Console.WriteLine("Attack what enemy? ");
-				Console.WriteLine(gameState.getPlayer().entitiesInSightListToString(gameState.getMainMap()));
+				Console.WriteLine(gameState.GetPlayer().entitiesInSightListToString(gameState.GetMainMap()));
 				bool done = false;
 				while (!done) {
 
@@ -262,10 +262,10 @@ public class CommandHandler {
 
 					if (input != null && int.Parse(input) >= 0 && int.Parse(input) < 999000) {
 
-						if (gameState.getPlayer().entitiesInSightList(gameState.getMainMap())[int.Parse(input)] != null) {
-							gameState.getPlayer()
-									.attackEntity(gameState.getMainMap(), gameState.getPlayer()
-											.entitiesInSightList(gameState.getMainMap())[int.Parse(input)], 0,
+						if (gameState.GetPlayer().entitiesInSightList(gameState.GetMainMap())[int.Parse(input)] != null) {
+							gameState.GetPlayer()
+									.attackEntity(gameState.GetMainMap(), gameState.GetPlayer()
+											.entitiesInSightList(gameState.GetMainMap())[int.Parse(input)], 0,
 											true);
 							done = true;
 						} else {
@@ -278,7 +278,7 @@ public class CommandHandler {
 
 				}
 
-				setSeconds(2);
+				SetSeconds(2);
 
 			} else {
 				Console.WriteLine("Nothing in sight to attack.");
@@ -287,10 +287,10 @@ public class CommandHandler {
 		} else if (input.Equals("pick up item") || input.Equals("pui")) {
 			// put code here
 
-			if (gameState.getPlayer().itemsInSightList(gameState.getMainMap())[0] != null) {
+			if (gameState.GetPlayer().itemsInSightList(gameState.GetMainMap())[0] != null) {
 				Console.WriteLine("Pick up what item? ");
 
-				Console.WriteLine(gameState.getPlayer().itemsInSightListToString(gameState.getMainMap()));
+				Console.WriteLine(gameState.GetPlayer().itemsInSightListToString(gameState.GetMainMap()));
 
 				bool done = false;
 				while (!done) {
@@ -306,13 +306,13 @@ public class CommandHandler {
 
 					if (isDouble(input) && int.Parse(input) >= 0 && int.Parse(input) < 999000) {
 
-						if (gameState.getPlayer().itemsInSightList(gameState.getMainMap())[int.Parse(input)] != null) {
+						if (gameState.GetPlayer().itemsInSightList(gameState.GetMainMap())[int.Parse(input)] != null) {
 
-//							gameState.getPlayer().addItemToInventory(gameState.getPlayer()
-//									.itemsInSightList(gameState.getMainMap())[int.Parse(input)]);
+//							gameState.GetPlayer().addItemToInventory(gameState.GetPlayer()
+//									.itemsInSightList(gameState.GetMainMap())[int.Parse(input)]);
 
-							gameState.getPlayer().pickUpItemOffOfGround(gameState.getPlayer()
-									.itemsInSightList(gameState.getMainMap())[int.Parse(input)]);
+							gameState.GetPlayer().pickUpItemOffOfGround(gameState.GetPlayer()
+									.itemsInSightList(gameState.GetMainMap())[int.Parse(input)]);
 
 							done = true;
 						} else {
@@ -334,7 +334,7 @@ public class CommandHandler {
 			Console.WriteLine("Drop what item? Type c to cancel.");
 
 			bool done = false;
-			Console.WriteLine(gameState.getPlayer().showInventory());
+			Console.WriteLine(gameState.GetPlayer().showInventory());
 
 			while (!done) {
 					input = Console.ReadLine();
@@ -343,7 +343,7 @@ public class CommandHandler {
 					break;
 				}
 
-				gameState.getPlayer().dropItem(gameState.getPlayer().getInventory()[int.Parse(input)]);
+				gameState.GetPlayer().dropItem(gameState.GetPlayer().getInventory()[int.Parse(input)]);
 				done = true;
 
 			}
@@ -351,12 +351,12 @@ public class CommandHandler {
 
 		else if (input.Equals("equip weapon") || input.Equals("ew")) {
 
-			if (gameState.getPlayer().inventory[0] == null) {
+			if (gameState.GetPlayer().inventory[0] == null) {
 
 				Console.WriteLine("\nNothing in inventory");
 			} else {
 
-				Console.WriteLine(gameState.getPlayer().showInventory());
+				Console.WriteLine(gameState.GetPlayer().showInventory());
 
 				Console.WriteLine("Type number you want to equip. Type stop to exit comand.");
 					input = Console.ReadLine();
@@ -364,25 +364,25 @@ public class CommandHandler {
 
 				} else {
 
-					gameState.getPlayer().equipItemAsWeapon(gameState.getPlayer().inventory[int.Parse(input)]);
+					gameState.GetPlayer().equipItemAsWeapon(gameState.GetPlayer().inventory[int.Parse(input)]);
 				}
 
 			}
 
-			// gameState.getPlayer().getInventoryList();
+			// gameState.GetPlayer().GetInventoryList();
 
 		} else if (input.Equals("invintory") || input.Equals("i")) {
 
-			// gameState.getPlayer().getInventoryList();
-			if (gameState.getPlayer().inventory == null) {
+			// gameState.GetPlayer().GetInventoryList();
+			if (gameState.GetPlayer().inventory == null) {
 
 				Console.WriteLine("\nNothing in inventory");
 			} else {
-				if (gameState.getPlayer().entityWeapon != null) {
-					Console.WriteLine("Equipped weapon: " + gameState.getPlayer().entityWeapon.getObjectName());
+				if (gameState.GetPlayer().entityWeapon != null) {
+					Console.WriteLine("Equipped weapon: " + gameState.GetPlayer().entityWeapon.getObjectName());
 				}
 
-				Console.WriteLine("Inventory: \n" + gameState.getPlayer().showInventory());
+				Console.WriteLine("Inventory: \n" + gameState.GetPlayer().showInventory());
 			}
 
 		}
@@ -394,14 +394,14 @@ public class CommandHandler {
 			 * CommandHandler only or make field in entity that keeps track of time passed
 			 * after performing an action
 			 */
-			if (gameState.getPlayer().inCombat) {
+			if (gameState.GetPlayer().inCombat) {
 
 				Console.WriteLine("Cant wait while in combat.");
 
 			} else {
 				Console.WriteLine("Wait for how many minuets? ");
 				input = Console.ReadLine();
-				gameState.getPlayer().playerWait(gameState.getMainMap(), gameState.getPlayer(),
+				gameState.GetPlayer().playerWait(gameState.GetMainMap(), gameState.GetPlayer(),
 						Double.Parse(input));
 			}
 
@@ -412,26 +412,26 @@ public class CommandHandler {
 			Console.WriteLine("Wait for how many minuets? ");
 			input = Console.ReadLine();
 
-			gameState.getPlayer().playerWait(gameState.getMainMap(), gameState.getPlayer(), Double.Parse(input));
+			gameState.GetPlayer().playerWait(gameState.GetMainMap(), gameState.GetPlayer(), Double.Parse(input));
 
 		}
 
 		// look command
 		else if (input.Equals("l") || (input.Equals("look"))) {
 
-			gameState.getPlayerAction().lookAround(gameState.getMainMap(), gameState.getPlayerPos());
+			gameState.GetPlayerAction().lookAround(gameState.GetMainMap(), gameState.GetPlayerPos());
 
-			// gameState.getPlayer().getGameObjectPos().getCurrentArea().printMapAreaCordsInfo();
-			gameState.getPlayer().getGameObjectPos().printToString();
-			// get Items in sight
-			// gameState.getPlayer().getGame
+			// gameState.GetPlayer().GetGameObjectPos().GetCurrentArea().printMapAreaCordsInfo();
+			gameState.GetPlayer().getGameObjectPos().printToString();
+			// Get Items in sight
+			// gameState.GetPlayer().GetGame
 
 		}
 
 		// move command
 		else if (input.Equals("m") || input.StartsWith("move")) {
 
-				// get the command as a list of strings separated by spaces
+				// Get the command as a list of strings separated by spaces
 				//ArrayList list = new ArrayList(Arrays.AsList(input.Split('_')));
 
 
@@ -473,19 +473,19 @@ public class CommandHandler {
 					// int.Parse(directionPlayerDistance));
 				//}
 
-				// if the user entered their command on one line, get the direction from the
+				// if the user entered their command on one line, Get the direction from the
 				// second word in the command
 
 				//else
 				{
-					//gameState = handleMoveCommand(gameState, list.get(1), 0);
+					//gameState = handleMoveCommand(gameState, list.Get(1), 0);
 					//gameState = handleMoveCommand(gameState, input, 0);
 
 				}
 			}
 
 		else if (input.Equals("print map") || input.Equals("pm")) {
-			gameState.getMainMap().printGameMapString();
+			gameState.GetMainMap().printGameMapString();
 		}
 
 		// exit command
@@ -493,7 +493,8 @@ public class CommandHandler {
 
 			// tell the player and the game that the game is ending
 			Console.WriteLine("Game ended");
-			gameState.setIsGameEnded(true);
+			gameState.SetIsGameEnded(true);
+				gameState.SetIsGameEnded(true);
 
 			// close the scanner
 			//scn.close();
@@ -545,27 +546,27 @@ public class CommandHandler {
 	 * Handle the move command by moving the player
 	 */
 	private GameState handleMoveCommand(GameState gameState, String direction, double minutesWalking) {
-		gameState.setLastPosition(gameState.getPlayerPos().toString());
-		// gameState.getPlayer().GameObjectPos.movePosition(gameState.getMainMap().map,
+		gameState.SetLastPosition(gameState.GetPlayerPos().toString());
+		// gameState.GetPlayer().GameObjectPos.movePosition(gameState.GetMainMap().map,
 		// direction);
-		gameState.getPlayer().gameObjectPos.movePlayerOnMapArea(gameState.getMainMap(), gameState.getPlayer(),
+		gameState.GetPlayer().gameObjectPos.movePlayerOnMapArea(gameState.GetMainMap(), gameState.GetPlayer(),
 				direction, minutesWalking);
 
-		gameState.setThisPosition(gameState.getPlayerPos().toString());
+		gameState.SetThisPosition(gameState.GetPlayerPos().toString());
 
-		if (!gameState.getLastPosition().Equals(gameState.getThisPosition())) {
-			gameState.setDidPlayerMoveThisTurn(true);
-			gameState.getMainMap().printGameMapString();
+		if (!gameState.GetLastPosition().Equals(gameState.GetThisPosition())) {
+			gameState.SetDidPlayerMoveThisTurn(true);
+			gameState.GetMainMap().printGameMapString();
 		}
 
 		return gameState;
 	}
 
-	public double getSeconds() {
+	public double GetSeconds() {
 		return seconds;
 	}
 
-	public void setSeconds(double seconds) {
+	public void SetSeconds(double seconds) {
 		this.seconds = seconds;
 	}
 }

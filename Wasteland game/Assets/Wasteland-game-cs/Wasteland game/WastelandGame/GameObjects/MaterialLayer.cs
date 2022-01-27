@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Wasteland_game
 {
-    //package wasteland.entity;
-
-public class MaterialLayer {
+	//package wasteland.entity;
+	[System.Serializable]
+	public class MaterialLayer {
 
 	Material material;
 	double thicknessIn_mm;

@@ -12,7 +12,8 @@
 //using Wasteland.map.GameObjectPos;
 namespace Wasteland_game
 {
-    public class GameObject{
+	[System.Serializable]
+	public class GameObject{
 	// add density or hardness or make material class
 	//
 	// 40in 8ft

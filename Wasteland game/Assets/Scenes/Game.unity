@@ -1478,7 +1478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 953f1b7e729d4f646920bd6dd11a2bfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: 1
+  counter: 0
+  gameState: {fileID: 0}
   consoleOutput: {fileID: 0}
   playerDirection: {fileID: 0}
   timePlayerMoving: 0

@@ -10,7 +10,7 @@ namespace Wasteland_game
         public int counter = 1;
 
         //public static GameState gameState = new GameState();
-        public GameState GameState;
+        public GameState gameState;
         //private static GameState gameState;
         public Text consoleOutput;
         public Text playerDirection;
@@ -57,11 +57,11 @@ namespace Wasteland_game
 
 
 
-            if (GameState != null)
+            if (gameState != null)
             {
-                consoleOutput.text = GameState.getPlayer().getObjectStringEvents();
+               consoleOutput.text = gameState.GetPlayer().getObjectStringEvents();
 
-                playerDirection.text = GameState.getPlayer().directionFacing;
+                playerDirection.text = gameState.GetPlayer().directionFacing;
 
                 //playerDirection.text = "N";
 
@@ -82,46 +82,45 @@ namespace Wasteland_game
             
             Debug.Log("Game started");
             // GameState mainGameState = new GameState();
-            GameState = new GameState();
+            //GameState gameState = new GameState();
             
 
             // set game state values
             //gameState.setPlayerAction(new PlayerAction());
-            GameState.setMainMap(new Map(25));
+            this.gameState = gameObject.AddComponent<GameState>();
+            gameState.SetMainMap(new Map(25));
 
             int initMapX = 0;
             int initMapY = 0;
             int initMapAreaX = 0;
             int initMapAreaY = 0;
-            GameState.getMainMap().makeGameMap1();
-            GameObjectPos startPos = new GameObjectPos(GameState.getMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
-            GameObjectPos startPos2 = new GameObjectPos(GameState.getMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
+            gameState.GetMainMap().makeGameMap1();
+            GameObjectPos startPos = new GameObjectPos(gameState.GetMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
+            GameObjectPos startPos2 = new GameObjectPos(gameState.GetMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
 
 
             //gameState.getMainMap().makeMap1(gameState.getMainMap());
-            GameState.setPlayerPos(startPos);
-
-
-            GameState.setLastPosition("");
-            GameState.setThisPosition("");
+            gameState.SetPlayerPos(startPos);
 
 
 
-            GameState.setPlayer(new Entity("Player", true, 100, 1.5, .1, GameState.getPlayerPos()));
+
+
+            gameState.SetPlayer(new Entity("Player", true, 100, 1.5, .1, gameState.GetPlayerPos()));
             //gameState.getPlayer().getGameObjectPos().setGameObject(gameState.getPlayer());
-            GameState.getPlayer().setObjectName("Player");
-            GameState.getPlayer().setEntityName("Player");
-            GameState.getPlayer().setStrength(25);
+            gameState.GetPlayer().setObjectName("Player");
+            gameState.GetPlayer().setEntityName("Player");
+            gameState.GetPlayer().setStrength(25);
 
             Hitbox hitbox = new Hitbox();
-            GameState.getPlayer().setGameObjectHitbox(hitbox.newHumanHitbox());
+            gameState.GetPlayer().setGameObjectHitbox(hitbox.newHumanHitbox());
             //ask player to enter the name of their character 
 
-            GameState.getPlayer().setIsThePlayer(true);
-            GameState.getMainMap().setGameMapPlayer(initMapX, initMapY, true);
+            gameState.GetPlayer().setIsThePlayer(true);
+            gameState.GetMainMap().setGameMapPlayer(initMapX, initMapY, true);
 
-            GameState.getMainMap().printGameMapString();
-            GameState.getPlayer().getGameObjectPos().getCurrentArea().printMapAreaCordsInfo();
+            gameState.GetMainMap().printGameMapString();
+            gameState.GetPlayer().getGameObjectPos().getCurrentArea().printMapAreaCordsInfo();
             //gameState.getPlayer().getGameObjectPos();
             
 
@@ -130,10 +129,10 @@ namespace Wasteland_game
             spear.setInInventory(false);
             spear.setPierce(20);
             spear.setSlash(5);
-            GameState.getMainMap().addGameObjectToMapList(spear);
+            gameState.GetMainMap().addGameObjectToMapList(spear);
 
 
-            GameObjectPos startPos3 = new GameObjectPos(GameState.getMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
+            GameObjectPos startPos3 = new GameObjectPos(gameState.GetMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
             Magazine _9mm_mag = new Magazine(startPos3, "9mm mag", .95, 6, 9);
             _9mm_mag.setInInventory(false);
 
@@ -143,27 +142,27 @@ namespace Wasteland_game
 
             for (int i = 0; i < 8; i++)
             {
-                startPos3 = new GameObjectPos(GameState.getMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
+                startPos3 = new GameObjectPos(gameState.GetMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
                 ProjectileAmmo bullet = new ProjectileAmmo(startPos3, "9mm Federal FMJ:" + i, 0.00804, 9, 350);
                 _9mm_mag.addBullet(bullet);
 
                 bullet = new ProjectileAmmo(startPos3, "9mm Federal FMJ:" + i, 0.00804, 9, 350);
                 _9mm_mag2.addBullet(bullet);
             }
-            GameState.getMainMap().addGameObjectToMapList(_9mm_mag);
-            startPos3 = new GameObjectPos(GameState.getMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
+            gameState.GetMainMap().addGameObjectToMapList(_9mm_mag);
+            startPos3 = new GameObjectPos(gameState.GetMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
             Gun gun = new Gun(startPos3, "9mm pistol", 9, true, true);
             gun.setInInventory(false);
-            GameState.getMainMap().addGameObjectToMapList(gun);
+            gameState.GetMainMap().addGameObjectToMapList(gun);
             gun.setMagazine(_9mm_mag);
             gun.setAttackRange(50);
 
 
             //UnityGUI unityGUI = new UnityGUI(gameState);
             //GameState.getPlayer().setObjectStringEvents("start");
-            GameState.getPlayer().setObjectStringEvents("start" + GameState.getPlayer().getObjectStringEvents());
+            gameState.GetPlayer().setObjectStringEvents("start" + gameState.GetPlayer().getObjectStringEvents());
 
-            GameState.getPlayer().setDirectionFacing("?");
+            gameState.GetPlayer().setDirectionFacing("?");
             
             Debug.Log("Game finished starting");
         }
@@ -181,13 +180,13 @@ namespace Wasteland_game
         public void MovePlayer() {
 
             //getGameState().getPlayer().getGameObjectPos().movePositionOnMapArea(gameState.getPlayer().directionFacing, timePlayerMoving);
-            GameState.getPlayer().getGameObjectPos().movePositionOnMapArea(GameState.getPlayer().directionFacing, 1);
+            gameState.GetPlayer().getGameObjectPos().movePositionOnMapArea(gameState.GetPlayer().directionFacing, 1);
             Debug.Log("Player moved");
         }
 
 
         public void SetPlayerDirectionNorth() {
-            GameState.getPlayer().setDirectionFacing("N");
+            gameState.GetPlayer().setDirectionFacing("N");
             //gameState.getPlayerPos().movePlayerOnMapArea(gameState.getMainMap(), gameState.getPlayer(), direction,
             //minuetsTraveling);
             
@@ -196,7 +195,7 @@ namespace Wasteland_game
 
         public void SetPlayerDirectionEast()
         {
-            GameState.getPlayer().setDirectionFacing("E");
+            gameState.GetPlayer().setDirectionFacing("E");
             //gameState.getPlayerPos().movePlayerOnMapArea(gameState.getMainMap(), gameState.getPlayer(), direction,
             //minuetsTraveling);
             Debug.Log("direction set to E");
@@ -206,7 +205,7 @@ namespace Wasteland_game
 
         public void ClearConsole()
         {
-            GameState.getPlayer().setObjectStringEvents("");
+            gameState.GetPlayer().setObjectStringEvents("");
             //gameState.getPlayerPos().movePlayerOnMapArea(gameState.getMainMap(), gameState.getPlayer(), direction,
             //minuetsTraveling);
             Debug.Log("Console cleared");

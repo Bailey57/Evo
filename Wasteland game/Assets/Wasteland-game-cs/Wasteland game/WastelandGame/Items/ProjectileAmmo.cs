@@ -13,6 +13,7 @@ namespace Wasteland_game
 	using Wasteland.calculator.BulletPenetration;
 	using Wasteland.map.GameObjectPos;
 	*/
+	[System.Serializable]
 	public class ProjectileAmmo : BaseItem
 	{
 

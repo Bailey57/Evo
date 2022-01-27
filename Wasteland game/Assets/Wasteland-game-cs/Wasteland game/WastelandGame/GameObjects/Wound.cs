@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Wasteland_game
 {
-    //package wasteland.entity;
-
-public class Wound {
+	//package wasteland.entity;
+	[System.Serializable]
+	public class Wound {
 	
 	private String name;
 	private double depth;

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Wasteland_game
 {
+    [System.Serializable]
     class Dialogue
     {
     }

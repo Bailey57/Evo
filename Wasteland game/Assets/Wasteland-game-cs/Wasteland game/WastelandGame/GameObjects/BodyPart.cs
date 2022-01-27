@@ -6,8 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 //package wasteland.entity;
+
 namespace Wasteland_game
 {
+	[System.Serializable]
 	public class BodyPart {
 
 	String name;

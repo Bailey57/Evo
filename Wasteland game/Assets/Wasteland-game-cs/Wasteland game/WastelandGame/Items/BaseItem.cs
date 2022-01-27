@@ -12,6 +12,7 @@ namespace Wasteland_game
 	using Wasteland.GameObject;
 	using Wasteland.map.GameObjectPos;
 	*/
+	[System.Serializable]
 	public class BaseItem : GameObject
 	{
 

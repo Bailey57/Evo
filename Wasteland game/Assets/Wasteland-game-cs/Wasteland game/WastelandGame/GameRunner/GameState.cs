@@ -1,5 +1,6 @@
 ﻿using System;
-
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Wasteland_game
 {
@@ -12,135 +13,157 @@ using Wasteland.entity.Entity;
 using Wasteland.map.GameObjectPos;
 using Wasteland.map.Map;
 */
-/**
- * GameState represents the current state of play, like the map, player location, and so on.
- * 
- * @author tyler
- *
- */
-public class GameState {
-
-	
-	
-	public String gameStateSaveName;
-	
-	private PlayerAction playerAction;
-	private Map mainMap;
-	private Entity player;
-
-	private GameObjectPos playerPos;
-
-	private String lastPosition;
-	private String thisPosition;
-	
-	private bool isGameEnded;
-	private bool didPlayerMoveThisTurn;
-	
-	private double timePassed;
-
-	public GameState() {
-		this.isGameEnded = false;
-	}
-	
-	
-
 	/**
-	 * @return the gameStateSaveName
+	 * GameState represents the current state of play, like the map, player location, and so on.
+	 * 
+	 * @author tyler
+	 *
 	 */
-	public String getGameStateSaveName() {
-		return gameStateSaveName;
-	}
+	[System.Serializable]
+	public class GameState : MonoBehaviour
+	{
 
 
 
-	/**
-	 * @param gameStateSaveName the gameStateSaveName to set
-	 */
-	public void setGameStateSaveName(String gameStateSaveName) {
-		this.gameStateSaveName = gameStateSaveName;
-	}
+		public String gameStateSaveName;
+
+		private PlayerAction playerAction;
+		private Map mainMap;
+		private Entity player;
+
+		private GameObjectPos playerPos;
+
+		private String lastPosition;
+		private String thisPosition;
+		private bool isGameEnded;
+
+		private bool didPlayerMoveThisTurn;
+
+
+		private double timePassed;
 
 
 
-	public PlayerAction getPlayerAction() {
-		return playerAction;
-	}
 
-	public Map getMainMap() {
-		return mainMap;
-	}
 
-	public Entity getPlayer() {
-		return player;
-	}
 
-	public GameObjectPos getPlayerPos() {
-		return playerPos;
-	}
+		/**
+		 * @return the gameStateSaveName
+		 */
+		public String GetGameStateSaveName()
+		{
+			return gameStateSaveName;
+		}
 
-	public String getLastPosition() {
-		return lastPosition;
-	}
 
-	public String getThisPosition() {
-		return thisPosition;
-	}
-	
-	public bool getIsGameEnded() {
-		return isGameEnded;
-	}
-	
-	public bool getDidPlayerMoveThisTurn() {
-		return didPlayerMoveThisTurn;
-	}
 
-	public void setPlayerAction(PlayerAction playerAction) {
-		this.playerAction = playerAction;
-	}
+		/**
+		 * @param gameStateSaveName the gameStateSaveName to set
+		 */
+		public void SetGameStateSaveName(String gameStateSaveName)
+		{
+			this.gameStateSaveName = gameStateSaveName;
+		}
 
-	public void setMainMap(Map mainMap) {
-		this.mainMap = mainMap;
-	}
 
-	public void setPlayer(Entity player) {
-		this.player = player;
-	}
 
-	public void setPlayerPos(GameObjectPos playerPos) {
-		this.playerPos = playerPos;
-	}
+		public PlayerAction GetPlayerAction()
+		{
+			return playerAction;
+		}
 
-	public void setLastPosition(String lastPosition) {
-		this.lastPosition = lastPosition;
-	}
+		public Map GetMainMap()
+		{
+			return mainMap;
+		}
 
-	public void setThisPosition(String thisPosition) {
-		this.thisPosition = thisPosition;
-	}
+		public Entity GetPlayer()
+		{
+			return player;
+		}
 
-	public void setIsGameEnded(bool isGameEnded) {
-		this.isGameEnded = isGameEnded;
-	}
-	
-	public void setDidPlayerMoveThisTurn(bool didPlayerMoveThisTurn) {
-		this.didPlayerMoveThisTurn = didPlayerMoveThisTurn;
-	}
+		public GameObjectPos GetPlayerPos()
+		{
+			return playerPos;
+		}
+		public String GetLastPosition()
+		{
+			return lastPosition;
+		}
 
-	/**
-	 * @return the timePassed
-	 */
-	public double getTicksPassed() {
-		return timePassed;
-	}
+		public String GetThisPosition()
+		{
+			return thisPosition;
+		}
+		public bool GetIsGameEnded()
+		{
+			return isGameEnded;
+		}
 
-	/**
-	 * @param timePassed the timePassed to set
-	 */
-	public void setTicksPassed(double timePassed) {
-		this.timePassed = timePassed;
+		public bool GetDidPlayerMoveThisTurn()
+		{
+			return didPlayerMoveThisTurn;
+		}
+
+
+		public void SetPlayerAction(PlayerAction playerAction)
+		{
+			this.playerAction = playerAction;
+		}
+
+		public void SetMainMap(Map mainMap)
+		{
+			this.mainMap = mainMap;
+		}
+
+		public void SetPlayer(Entity player)
+		{
+			this.player = player;
+		}
+
+		public void SetPlayerPos(GameObjectPos playerPos)
+		{
+			this.playerPos = playerPos;
+		}
+
+		public void SetLastPosition(String lastPosition)
+		{
+			this.lastPosition = lastPosition;
+		}
+
+		public void SetThisPosition(String thisPosition)
+		{
+			this.thisPosition = thisPosition;
+		}
+		public void SetIsGameEnded(bool isGameEnded)
+		{
+			this.isGameEnded = isGameEnded;
+		}
+
+		public void SetDidPlayerMoveThisTurn(bool didPlayerMoveThisTurn)
+		{
+			this.didPlayerMoveThisTurn = didPlayerMoveThisTurn;
+		}
+
+
+		/**
+		 * @return the timePassed
+		 */
+		public double GetTicksPassed()
+		{
+			return timePassed;
+		}
+
+		/**
+		 * @param timePassed the timePassed to set
+		 */
+		public void SetTicksPassed(double timePassed)
+		{
+			this.timePassed = timePassed;
+		}
+
 	}
-	
-	
 }
 
-}
+
+

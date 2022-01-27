@@ -10,6 +10,7 @@ namespace Wasteland_game.WastelandGame.GameObjects
 
 	//using Wasteland.entity.Entity;
 
+	[System.Serializable]
 	public class GameObjectManager
 	{
 

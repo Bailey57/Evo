@@ -14,7 +14,8 @@ import java.io.Serializable;
 using Wasteland.GameObject;
 using Wasteland.entity.Entity;
 */
-public class GameObjectPos {
+	[System.Serializable]
+	public class GameObjectPos {
 	/**
 	 * 
 	 */

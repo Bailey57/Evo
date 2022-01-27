@@ -3,9 +3,10 @@ using System;
 
 namespace Wasteland_game
 {
-	
+
 
 	//make it work same way as a stack basically 
+	[System.Serializable]
 	public class Magazine : BaseItem
 	{
 
