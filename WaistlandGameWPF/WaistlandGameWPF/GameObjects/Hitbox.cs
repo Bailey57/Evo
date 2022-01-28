@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace WaistlandGameWPF
 {
@@ -826,7 +827,7 @@ using Wasteland.items.ProjectileAmmo;
 
 			RandomNumbers randNum = new RandomNumbers();
 			double distance = 0;
-			for (int i = 0; i < 10000; i++)
+			for (int i = 0; i < 100; i++)
 			{
 
 				distance = randNum.rollRandInt(1000, 0);
@@ -872,28 +873,47 @@ using Wasteland.items.ProjectileAmmo;
 
 				output = "Test " + i + ":\n" + "Distance: " + distance + "m\n" + testHumanHitbox.armorHitCheckToString(randX_Cord, randY_Cord) + "\n";
 				output = testHumanHitbox.bodyPartsHitCheckToString(randX_Cord, randY_Cord) + "\n" + "\n";
+				Debug.WriteLine("Test " + i + ":\n" + "Distance: " + distance + "m\n" + testHumanHitbox.armorHitCheckToString(randX_Cord, randY_Cord) + "\n");
+				Debug.WriteLine(testHumanHitbox.bodyPartsHitCheckToString(randX_Cord, randY_Cord) + "\n" + "\n");
 
 
+				
 
+				
 				output = "\nSig: \n" + "\n";
-				output = "Final V: " + sig.finalVelocity() + "\n";
+				output = "Init V: " + sig.getInitV() + "\nFinal V: " + sig.finalVelocity() + "\n";
+
+				Debug.WriteLine("\nSig: \n" + "\n");
+				Debug.WriteLine("Init V: " + sig.getInitV() + "\nFinal V: " + sig.finalVelocity() + "\n");
 				sig.penetraitHitBox(testHumanHitbox, randX_Cord, randY_Cord, 0);
 
+
+				
 				output = "\nAk: \n" + "\n";
-				output = "Final V: " + ak.finalVelocity() + "\n";
+				output = "Init V: " + sig.getInitV() + "\nFinal V: " + ak.finalVelocity() + "\n";
+
+				Debug.WriteLine("\nAk: \n" + "\n");
+				Debug.WriteLine("Init V: " + ak.getInitV() + "\nFinal V: " + ak.finalVelocity() + "\n");
 				ak.penetraitHitBox(testHumanHitbox, randX_Cord, randY_Cord, 0);
 
 
+				
 				output = "\nPellet: \n" + "\n";
-				output = "Final V: " + pelletGun.finalVelocity() + "\n";
+				output = "Init V: " + sig.getInitV() + "\nFinal V: " + pelletGun.finalVelocity() + "\n";
+
+				Debug.WriteLine("\nPellet: \n" + "\n");
+				Debug.WriteLine("Init V: " + pelletGun.getInitV() + "\nFinal V: " + pelletGun.finalVelocity() + "\n");
 				pelletGun.penetraitHitBox(testHumanHitbox, randX_Cord, randY_Cord, 0);
 
 
+
 				output = "\n\n" + "\n";
+				Debug.WriteLine("\n\n" + "\n");
 
 			}
 			long endTime = (dt.Millisecond - startTime);
 			output = "\nmil seconds: " + endTime + "\nseconds: " + endTime / 1000 + "\n";
+			Debug.WriteLine("\nmil seconds: " + endTime + "\nseconds: " + endTime / 1000 + "\n");
 
 
 			//testHumanHitbox.ge

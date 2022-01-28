@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace WaistlandGameWPF {
 public class BulletPenetration {
@@ -285,15 +286,15 @@ public class BulletPenetration {
 			distance -= instantVcorrectTime;
 			time += .001;
 			
-			//Console.WriteLine("Acceleration: " + acceleration);
-			//Console.WriteLine("InstantV: " + instantV);
-			//Console.WriteLine("Drag: " + drag);
-			//Console.WriteLine("Distance1: " + distance1 + "\n");
+			//Debug.WriteLine("Acceleration: " + acceleration);
+			//Debug.WriteLine("InstantV: " + instantV);
+			//Debug.WriteLine("Drag: " + drag);
+			//Debug.WriteLine("Distance1: " + distance1 + "\n");
 			
 			
 		}
 		
-		//Console.WriteLine("Time: " + time);
+		//Debug.WriteLine("Time: " + time);
 		
 		
 		
@@ -678,7 +679,7 @@ public class BulletPenetration {
 		// double diameter; //add when bullet deformation mechanic added
 
 		if (hitbox.armorHitCheck(projectileX, projectileY) == null) {
-			Console.WriteLine("Target has no armor.\n");
+			Debug.WriteLine("Target has no armor.\n");
 			output += "\nTarget has no armor.\n";
 		} else {
 			double armorHitLength = hitbox.armorHitCheck(projectileX, projectileY).GetLength(0);
@@ -716,7 +717,7 @@ public class BulletPenetration {
 
 						mmPenetratedOverall += mmOfArmorPierced;
 
-						Console.WriteLine("Projectile Stopped by: "
+						Debug.WriteLine("Projectile Stopped by: "
 								+ hitbox.armorHitCheck(projectileX, projectileY)[i].getMaterial().getName() + "\n");
 						output += "\n" + "Projectile Stopped by: "
 								+ hitbox.armorHitCheck(projectileX, projectileY)[i].getMaterial().getName() + "\n";
@@ -732,7 +733,7 @@ public class BulletPenetration {
 						setFinalV(kruppVelocity(mass, remainingPen, kruppConstant, diameter));
 						this.projectileAmmo.setCurrentV(this.getFinalV());
 						projectileVelocity = this.getFinalV();
-						Console.WriteLine("New Projectile Velocity after penetrating "
+						Debug.WriteLine("New Projectile Velocity after penetrating "
 								+ hitbox.armorHitCheck(projectileX, projectileY)[i].getMaterial().getName() + ": "
 								+ kruppVelocity(mass, remainingPen, kruppConstant, diameter) + "\n");
 						output += "\nNew Projectile Velocity after penetrating "
@@ -756,7 +757,7 @@ public class BulletPenetration {
 		}
 
 		if (hitbox.bodyPartsHitCheck(projectileX, projectileY) == null) {
-			Console.WriteLine("Target has no body parts to hit.\n");
+			Debug.WriteLine("Target has no body parts to hit.\n");
 			output += "\nTarget has no body parts to hit.\n";
 		} else {
 
@@ -805,7 +806,7 @@ public class BulletPenetration {
 						Wound bulletWound = new Wound("bullet wound", mmOfBodyPierced, radius, radius, "");
 						hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].addWound(bulletWound);
 						output += "\nwound added: " + bulletWound.getAndSetBleedRate() + "ml/sec\n";
-						Console.WriteLine("\nwound added\n"  + bulletWound.getAndSetBleedRate() + "ml/sec\n");
+						Debug.WriteLine("\nwound added\n"  + bulletWound.getAndSetBleedRate() + "ml/sec\n");
 								
 						
 
@@ -815,7 +816,7 @@ public class BulletPenetration {
 							if (hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].isVital() == true) {
 								output += "damaged vital organ, killed\n";
 								
-								Console.WriteLine("damaged vital organ, killed\n");
+								Debug.WriteLine("damaged vital organ, killed\n");
 							}
 							projectileVelocity = this.getFinalV();
 							
@@ -825,7 +826,7 @@ public class BulletPenetration {
 
 						if (remainingPen <= 0 || projectileVelocity <= 60) {
 							mmPenetratedOverall += mmOfBodyPierced;
-							Console.WriteLine("Projectile Stopped by "
+							Debug.WriteLine("Projectile Stopped by "
 									+ hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getLayers()[k].getMaterial()
 											.getName()
 									+ "\n");
@@ -841,7 +842,7 @@ public class BulletPenetration {
 							setFinalV(kruppVelocity(mass, remainingPen, kruppConstant, diameter));
 							this.projectileAmmo.setCurrentV(this.getFinalV());
 							projectileVelocity = this.getFinalV();
-							Console.WriteLine("New Velocity after penetrating "
+							Debug.WriteLine("New Velocity after penetrating "
 									+ hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getLayers()[k].getMaterial()
 											.getName()
 									+ ": " + kruppVelocity(mass, remainingPen, kruppConstant, diameter) + "\n");
@@ -866,12 +867,12 @@ public class BulletPenetration {
 			}
 		}
 
-		Console.WriteLine(
+		Debug.WriteLine(
 				"Penetraited Layers: " + pennetraitedLayers + "\n" + "mm penetraited: " + mmPenetratedOverall + "\n");
 		output += "\nPenetraited Layers: " + pennetraitedLayers + "\n" + "mm penetraited: " + mmPenetratedOverall
 				+ "\n";
 		if (!hitSomething) {
-			Console.WriteLine("Hit nothing\n");
+			Debug.WriteLine("Hit nothing\n");
 			output += "\nHit nothing\n";
 		}
 		
@@ -958,7 +959,7 @@ public class BulletPenetration {
 
 		B = 1000 * B; // convert to mm
 
-		Console.WriteLine("K: " + K);
+		Debug.WriteLine("K: " + K);
 
 		//
 		B = 153;
@@ -971,7 +972,7 @@ public class BulletPenetration {
 
 		B = 1000 * B; // convert to mm
 
-		Console.WriteLine("K2: " + K);
+		Debug.WriteLine("K2: " + K);
 
 		B = 153;
 		V = 30;// 350
@@ -980,7 +981,7 @@ public class BulletPenetration {
 		// double K = 2400;
 		D = 9;
 		B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
-		Console.WriteLine("B.1: " + B);
+		Debug.WriteLine("B.1: " + B);
 
 		// "calc 1", 0.011, 7.62, 800, 40);
 		// B = 153;
@@ -990,7 +991,7 @@ public class BulletPenetration {
 		// double K = 2400;
 		D = 7.62;
 		B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
-		Console.WriteLine("B2: " + B);
+		Debug.WriteLine("B2: " + B);
 
 		// "pelletGun", 0.00055, 4.5, 292, 10.1346);
 		// B = 153;
@@ -1000,7 +1001,7 @@ public class BulletPenetration {
 		// double K = 2400;
 		D = 4.5;
 		B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
-		Console.WriteLine("B3: " + B);
+		Debug.WriteLine("B3: " + B);
 
 		// "slug12Gauge", 0.028349523, 18.53, 564, 200);
 		// B = 153;
@@ -1010,7 +1011,7 @@ public class BulletPenetration {
 		// double K = 2400;
 		D = 18.53;
 		B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
-		Console.WriteLine("B4: " + B);
+		Debug.WriteLine("B4: " + B);
 
 		// "M1 carbine", 0.007127885, 7.62, 604, 10.1346);
 		// B = 153;
@@ -1020,7 +1021,7 @@ public class BulletPenetration {
 		// double K = 2400;
 		D = 7.62;
 		B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
-		Console.WriteLine("B5: " + B);
+		Debug.WriteLine("B5: " + B);
 
 		V = 350;
 		P = 0.00804;
@@ -1031,7 +1032,7 @@ public class BulletPenetration {
 		B = 1.5;
 		K = (V * Math.Sqrt(P)) / (B * Math.Sqrt(D));
 
-		Console.WriteLine("K: " + K);
+		Debug.WriteLine("K: " + K);
 
 		// "calc 1", 0.011, 7.62, 800, 40);
 		// B = 153;
@@ -1041,7 +1042,7 @@ public class BulletPenetration {
 		// double K = 2400;
 		D = 7.62;
 		B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
-		Console.WriteLine("B1_1: " + B);
+		Debug.WriteLine("B1_1: " + B);
 
 		// 9mm
 		V = 350;// 350
@@ -1050,7 +1051,7 @@ public class BulletPenetration {
 		// double K = 2400;
 		D = 9;
 		B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
-		Console.WriteLine("B2_1: " + B);
+		Debug.WriteLine("B2_1: " + B);
 
 		// ("M1 carbine 200", 0.007127885, 7.62, 604, 200);
 		V = 604;// 350
@@ -1059,7 +1060,7 @@ public class BulletPenetration {
 		// double K = 2400;
 		D = 7.62;
 		B = (V * Math.Sqrt(P)) / (K * Math.Sqrt(D));
-		Console.WriteLine("B2_2: " + B);
+		Debug.WriteLine("B2_2: " + B);
 		
 		
 		double travelDistance = 1;
@@ -1067,79 +1068,79 @@ public class BulletPenetration {
 		
 		BulletPenetration _380ACP = new BulletPenetration("_380ACP", 0.0061559, 9, 300, 13.716);//13.716
 		_380ACP.finalVelocity();
-		Console.WriteLine("pen: " + _380ACP.kruppPenFormula());
-		Console.WriteLine(_380ACP.toString2());
+		Debug.WriteLine("pen: " + _380ACP.kruppPenFormula());
+		Debug.WriteLine(_380ACP.toString2());
 		
 		
 		BulletPenetration M855 = new BulletPenetration("M855", 0.00401753, 5.56, 944.88, travelDistance);
 		M855.finalVelocity();
-		Console.WriteLine("pen: " + M855.kruppPenFormula());
-		Console.WriteLine(M855.toString2());
+		Debug.WriteLine("pen: " + M855.kruppPenFormula());
+		Debug.WriteLine(M855.toString2());
 		
 		BulletPenetration ak_762_standard = new BulletPenetration("ak_762_standard", 0.00797027, 7.62, 715.9752, travelDistance);
 		ak_762_standard.finalVelocity();
-		Console.WriteLine("pen: " + ak_762_standard.kruppPenFormula());
-		Console.WriteLine(ak_762_standard.toString2());
+		Debug.WriteLine("pen: " + ak_762_standard.kruppPenFormula());
+		Debug.WriteLine(ak_762_standard.toString2());
 		
 
 		BulletPenetration FMJ_9mm = new BulletPenetration("FMJ_9mm", 0.00804, 9, 350, 0);
-		Console.WriteLine(FMJ_9mm.kruppPenFormula());
-		Console.WriteLine(FMJ_9mm.toString2());
+		Debug.WriteLine(FMJ_9mm.kruppPenFormula());
+		Debug.WriteLine(FMJ_9mm.toString2());
 
 		BulletPenetration calc1 = new BulletPenetration("calc 1", 0.011, 7.62, 800, 40);
-		Console.WriteLine(calc1.kruppPenFormula());
-		Console.WriteLine(calc1.toString2());
+		Debug.WriteLine(calc1.kruppPenFormula());
+		Debug.WriteLine(calc1.toString2());
 
 		BulletPenetration slug12Gauge = new BulletPenetration("slug12Gauge", 0.028349523, 18.53, 564, 200);
-		Console.WriteLine(slug12Gauge.toString2());
+		Debug.WriteLine(slug12Gauge.toString2());
 
 		BulletPenetration m1Carbine = new BulletPenetration("M1 carbine", 0.007127885, 7.62, 604, 10.1346);
-		Console.WriteLine(m1Carbine.toString2());
+		Debug.WriteLine(m1Carbine.toString2());
 
 		BulletPenetration m1Carbine2 = new BulletPenetration("M1 carbine 200", 0.007127885, 7.62, 604, 200);
-		Console.WriteLine(m1Carbine2.toString2());
+		Debug.WriteLine(m1Carbine2.toString2());
 
 		BulletPenetration sig = new BulletPenetration("sig", 0.00745187, 9, 335.4, 10.1346);
-		Console.WriteLine("pen: " + sig.kruppPenFormula());
-		Console.WriteLine(sig.toString2());
+		Debug.WriteLine("pen: " + sig.kruppPenFormula());
+		Debug.WriteLine(sig.toString2());
 
 		BulletPenetration sigAt60 = new BulletPenetration("sig at 60mps", 0.00745187, 9, 60, 10.1346);
-		Console.WriteLine(sigAt60.toString2());
+		Debug.WriteLine(sigAt60.toString2());
 
 		BulletPenetration sig2 = new BulletPenetration("sig 200", 0.00745187, 9, 335.4, 200);
-		Console.WriteLine(sig2.toString2());
+		Debug.WriteLine(sig2.toString2());
 
 		BulletPenetration pelletGun = new BulletPenetration("pelletGun", 0.00055, 4.5, 292, 10.1346);
-		Console.WriteLine(pelletGun.toString2());
+		Debug.WriteLine(pelletGun.toString2());
 
 		BulletPenetration M2HB_50cal = new BulletPenetration("M2HB_50cal", 0.04, 12.7, 929, 10.1346);
-		Console.WriteLine(M2HB_50cal.kruppPenFormula());
-		Console.WriteLine(M2HB_50cal.toString2());
+		Debug.WriteLine(M2HB_50cal.kruppPenFormula());
+		Debug.WriteLine(M2HB_50cal.toString2());
 
 		BulletPenetration M2HB_50cal_SLAP = new BulletPenetration("M2HB_50cal", 0.04, 7.7, 929, 500);
 
-		Console.WriteLine(M2HB_50cal_SLAP.toString2());
-		Console.WriteLine(M2HB_50cal_SLAP.kruppPenFormula());
+		Debug.WriteLine(M2HB_50cal_SLAP.toString2());
+		Debug.WriteLine(M2HB_50cal_SLAP.kruppPenFormula());
 
 		//Scanner scn = new Scanner(System.in); // Create a Scanner object
-		Console.WriteLine("Penetraition Calculator v2.1a \nmod: 2/24/2021 \n\n");
+		Debug.WriteLine("Penetraition Calculator v2.1a \nmod: 2/24/2021 \n\n");
 
-		Console.WriteLine("Enter mass of projectile in kg: ");
+		Debug.WriteLine("Enter mass of projectile in kg: ");
 		double mass = Convert.ToDouble(Console.ReadLine());
 
-		Console.WriteLine("Enter diameter of projectile in mm: ");
+		Debug.WriteLine("Enter diameter of projectile in mm: ");
 		double diameter = Convert.ToDouble(Console.ReadLine());
 
-		Console.WriteLine("Enter velocity projectile in m/s^2: ");
+		Debug.WriteLine("Enter velocity projectile in m/s^2: ");
 		double initV = Convert.ToDouble(Console.ReadLine());
 
-		Console.WriteLine("Enter distance from target in meters: ");
+		Debug.WriteLine("Enter distance from target in meters: ");
 		double distance = Convert.ToDouble(Console.ReadLine());
 
 		BulletPenetration calc = new BulletPenetration(mass, diameter, initV, distance);
 		//scn.close();
 
-		Console.WriteLine(calc.toString());
+		Debug.WriteLine(calc.toString());
 
 	}
 

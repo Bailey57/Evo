@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace WaistlandGameWPF
 {
@@ -26,7 +27,7 @@ namespace WaistlandGameWPF
 
 
             Hitbox tst = new Hitbox();
-            Console.WriteLine(tst.testingMethod());
+            tst.testingMethod();
             
         }
     }
