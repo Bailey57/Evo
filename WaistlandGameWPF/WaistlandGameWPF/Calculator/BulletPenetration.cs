@@ -423,7 +423,7 @@ public class BulletPenetration {
 	public double kruppPenFormula() {
 
 		double B;
-		double V = this.finalV;
+		double V = this.instantV;
 		double P = mass;
 
 		double K = 2400;

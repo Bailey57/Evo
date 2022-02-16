@@ -21,14 +21,31 @@ namespace WaistlandGameWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private GameState gameState = new GameState();
         public MainWindow()
         {
+            //Hitbox tst = new Hitbox();
+            //tst.testingMethod();
             InitializeComponent();
+            gameState = gameState.MakeBuild1();
+
+            consoleOutput.Text = gameState.GetPlayer().getObjectStringEvents();
+            playerDirection.Text = gameState.GetPlayer().getDirectionFacing();
 
 
-            Hitbox tst = new Hitbox();
-            tst.testingMethod();
-            
+
+
         }
+
+
+
+        private void FaceNorth(object sender, RoutedEventArgs e) 
+        {
+            gameState.GetPlayer().setDirectionFacing("N");
+        }
+
+
+
+
     }
 }
