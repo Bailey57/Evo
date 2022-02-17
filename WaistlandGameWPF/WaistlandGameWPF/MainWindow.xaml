@@ -11,8 +11,8 @@
             <ColumnDefinition Width="91*"/>
             <ColumnDefinition Width="709*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="faceNorth" Content="N" HorizontalAlignment="Left" Margin="270,117,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <ListView x:Name="itemsInSight" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="26,180,612,9" Grid.ColumnSpan="2">
+        <Button x:Name="faceNorth" Content="N" HorizontalAlignment="Left" Margin="216,75,0,0" VerticalAlignment="Top" Grid.Column="1" Click="FaceNorth"/>
+        <ListView x:Name="itemsInSight" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="18,207,620,61" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -20,7 +20,21 @@
             </ListView.View>
         </ListView>
         <TextBox x:Name="consoleOutput" HorizontalAlignment="Left" Margin="401,21,0,0" TextWrapping="Wrap" Text="consoleOutput" VerticalAlignment="Top" Width="298" Height="147" Grid.Column="1"/>
-        <TextBox x:Name="playerDirection" Grid.Column="1" HorizontalAlignment="Left" Margin="244,85,0,0" TextWrapping="Wrap" Text="playerDirection" VerticalAlignment="Top" Width="120"/>
-        <Label Grid.Column="1" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="187,247,0,0"/>
+        <TextBox x:Name="playerDirection" Grid.Column="1" HorizontalAlignment="Left" Margin="190,43,0,0" TextWrapping="Wrap" Text="playerDirection" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="itemsInSightLabel" Content="Items In Sight" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="53,181,0,0" Grid.ColumnSpan="2"/>
+        <Button x:Name="faceSouth" Content="S" HorizontalAlignment="Left" Margin="219,123,0,0" VerticalAlignment="Top" Grid.Column="1" Click="FaceSouth"/>
+        <Button x:Name="faceEast" Content="E" HorizontalAlignment="Left" Margin="242,106,0,0" VerticalAlignment="Top" Grid.Column="1" Click="FaceEast"/>
+        <Button x:Name="faceWest" Content="W" HorizontalAlignment="Left" Margin="190,106,0,0" VerticalAlignment="Top" Grid.Column="1" Click="FaceWest"/>
+        <Button x:Name="travelButton" Grid.Column="1" Content="Travel" HorizontalAlignment="Left" Margin="265,133,0,0" VerticalAlignment="Top" Click="MovePlayer"/>
+        <Button x:Name="pickUpItemButton" Content="Pick Up Item" HorizontalAlignment="Left" Margin="18,373,0,0" VerticalAlignment="Top" Click="PickUpItemOffOfGround"/>
+        <ListView x:Name="playerInventory" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="202,204,345,64" Grid.Column="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label x:Name="playerInventoryLabel" Content="Inventory" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="253,176,0,0" Grid.Column="1"/>
+        <Button x:Name="equipWeaponButton" Content="Equip Weapon" HorizontalAlignment="Left" Margin="202,368,0,0" VerticalAlignment="Top" Click="EquipItemAsWeapon" Grid.Column="1"/>
     </Grid>
 </Window>

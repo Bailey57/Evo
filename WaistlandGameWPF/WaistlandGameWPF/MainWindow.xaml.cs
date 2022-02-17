@@ -31,9 +31,19 @@ namespace WaistlandGameWPF
 
             consoleOutput.Text = gameState.GetPlayer().getObjectStringEvents();
             playerDirection.Text = gameState.GetPlayer().getDirectionFacing();
+            itemsInSight.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
+            playerInventory.ItemsSource = gameState.GetPlayer().getInventory();
+            //itemsInSight.ItemsSource = gameState.GetPlayer().itemsInSightListToString(gameState.GetMainMap());
 
 
+        }
 
+        public void GameLoop() 
+        {
+            consoleOutput.Text = gameState.GetPlayer().getObjectStringEvents();
+            playerDirection.Text = gameState.GetPlayer().getDirectionFacing();
+            itemsInSight.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
+            playerInventory.ItemsSource = gameState.GetPlayer().getInventory();
 
         }
 
@@ -42,6 +52,57 @@ namespace WaistlandGameWPF
         private void FaceNorth(object sender, RoutedEventArgs e) 
         {
             gameState.GetPlayer().setDirectionFacing("N");
+            GameLoop();
+        }
+        private void FaceSouth(object sender, RoutedEventArgs e)
+        {
+            gameState.GetPlayer().setDirectionFacing("S");
+            GameLoop();
+        }
+        private void FaceEast(object sender, RoutedEventArgs e)
+        {
+            gameState.GetPlayer().setDirectionFacing("E");
+            GameLoop();
+        }
+        private void FaceWest(object sender, RoutedEventArgs e)
+        {
+            gameState.GetPlayer().setDirectionFacing("W");
+            GameLoop();
+        }
+
+        private void PickUpItemOffOfGround(object sender, RoutedEventArgs e) 
+        {
+            gameState.GetPlayer().pickUpItemOffOfGround((BaseItem) itemsInSight.SelectedItems);
+            GameLoop();
+        }
+
+        private void EquipItemAsWeapon(object sender, RoutedEventArgs e)
+        {
+            gameState.GetPlayer().equipItemAsWeapon((BaseItem)playerInventory.SelectedItem);
+            GameLoop();
+        }
+
+
+        private void MovePlayer(object sender, RoutedEventArgs e)
+        {
+            double minutesWalking = 15;
+
+            gameState.SetLastPosition(gameState.GetPlayerPos().toString());
+            // gameState.GetPlayer().GameObjectPos.movePosition(gameState.GetMainMap().map,
+            // direction);
+            gameState.GetPlayer().gameObjectPos.movePlayerOnMapArea(gameState.GetMainMap(), gameState.GetPlayer(),
+                    gameState.GetPlayer().getDirectionFacing(), minutesWalking);
+
+            gameState.SetThisPosition(gameState.GetPlayerPos().toString());
+
+            if (!gameState.GetLastPosition().Equals(gameState.GetThisPosition()))
+            {
+                gameState.SetDidPlayerMoveThisTurn(true);
+                gameState.GetMainMap().printGameMapString();
+            }
+            GameLoop();
+
+
         }
 
 

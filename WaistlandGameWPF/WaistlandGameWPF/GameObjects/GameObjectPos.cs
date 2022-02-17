@@ -336,13 +336,13 @@ using Wasteland.entity.Entity;
 		} else {
 			moved = true;
 		}
-		
-		
-		
-		
-		
-		
-		return moved;
+
+
+
+
+
+			//this.gameObject.addObjectStringEvents("\nTraveled " + direction + " " + distance + " meters." + "\n");
+			return moved;
 
 	}
 
