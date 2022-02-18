@@ -40,10 +40,12 @@ namespace WaistlandGameWPF
 
         public void GameLoop() 
         {
+            double seconds = 5;
             consoleOutput.Text = gameState.GetPlayer().getObjectStringEvents();
             playerDirection.Text = gameState.GetPlayer().getDirectionFacing();
             itemsInSight.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
             playerInventory.ItemsSource = gameState.GetPlayer().getInventory();
+            gameState.GetMainMap().runThroughEntityActions(gameState.GetMainMap(), gameState.GetPlayer(), seconds);
 
         }
 
