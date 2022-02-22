@@ -1024,7 +1024,7 @@ namespace WaistlandGameWPF
 	}
 
 	public bool pickUpItemOffOfGround(BaseItem item) {
-		if (!item.isInInventory()) {
+		if (item != null && !item.isInInventory()) {
 			return pickUpItem(item);
 
 		} else {

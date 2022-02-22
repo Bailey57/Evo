@@ -74,13 +74,13 @@ namespace WaistlandGameWPF
 
         private void PickUpItemOffOfGround(object sender, RoutedEventArgs e) 
         {
-            gameState.GetPlayer().pickUpItemOffOfGround((BaseItem) itemsInSight.SelectedItems);
+            gameState.GetPlayer().pickUpItemOffOfGround((BaseItem) itemsInSight.SelectedItem);
             GameLoop();
         }
 
         private void EquipItemAsWeapon(object sender, RoutedEventArgs e)
         {
-            gameState.GetPlayer().equipItemAsWeapon((BaseItem)playerInventory.SelectedItem);
+            gameState.GetPlayer().equipItemAsWeapon((BaseItem) playerInventory.SelectedItem);
             GameLoop();
         }
 

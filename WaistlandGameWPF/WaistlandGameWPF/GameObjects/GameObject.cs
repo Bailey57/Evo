@@ -445,18 +445,18 @@ public double getDistanceFromObject(GameObject gameObject)
 	return distance;
 }
 
-//	public Material breakDownObject() {
-//		this.
-//		this.getMassInKg();
-//		
-//		
-//		return 
-//	}
+        //	public Material breakDownObject() {
+        //		this.
+        //		this.getMassInKg();
+        //		
+        //		
+        //		return 
+        //	}
 
 
-public String toString()
-{
-	String output = "\nintegraty: " + integraty + "\n objectName: " + objectName;
+        public override string ToString()
+        {
+	String output = objectName;
 
 	return output;
 }
