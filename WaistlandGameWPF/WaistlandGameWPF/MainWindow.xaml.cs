@@ -32,7 +32,14 @@ namespace WaistlandGameWPF
             consoleOutput.Text = gameState.GetPlayer().getObjectStringEvents();
             playerDirection.Text = gameState.GetPlayer().getDirectionFacing();
             itemsInSight.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
+
+
             playerInventory.ItemsSource = gameState.GetPlayer().getInventory();
+
+
+
+            
+            //playerInventory.ItemsSource = gameState.GetPlayer().getGameObjectHitbox().getBodyParts(); //player body parts
             //itemsInSight.ItemsSource = gameState.GetPlayer().itemsInSightListToString(gameState.GetMainMap());
 
 
@@ -45,7 +52,21 @@ namespace WaistlandGameWPF
             playerDirection.Text = gameState.GetPlayer().getDirectionFacing();
             itemsInSight.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
             playerInventory.ItemsSource = gameState.GetPlayer().getInventory();
+            //playerInventory.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
+            //playerInventory.
+
+
+            entitiesInSightList.ItemsSource = gameState.GetPlayer().entitiesInSightList(gameState.GetMainMap());
+
             gameState.GetMainMap().runThroughEntityActions(gameState.GetMainMap(), gameState.GetPlayer(), seconds);
+            
+
+        }
+
+        private void scrollConsoleDown() 
+        {
+            //consoleOutput.Text.
+
 
         }
 
@@ -85,9 +106,52 @@ namespace WaistlandGameWPF
         }
 
 
+        private void AttackEntity(object sender, RoutedEventArgs e)
+        {
+
+            if (gameState.GetPlayer().getEntityWeapon() != null) 
+            {
+                gameState.GetPlayer().attackEntity(gameState.GetMainMap(), (Entity)entitiesInSightList.SelectedItem, 0, true);
+            }         
+
+            GameLoop();
+        }
+
+        private void FireAtEntity(object sender, RoutedEventArgs e)
+        {
+
+            if (gameState.GetPlayer().getEntityWeapon() != null && gameState.GetPlayer().getEntityWeapon().GetType() is Gun)
+            {
+                ((Gun)gameState.GetPlayer().getEntityWeapon()).fireGunAtGameObject(gameState.GetPlayer(), (Entity)entitiesInSightList.SelectedItem);
+            }
+
+            GameLoop();
+        }
+
+
+
+
+        private void RackGun(object sender, RoutedEventArgs e)
+        {
+            if (gameState.GetPlayer().getEntityWeapon() != null && gameState.GetPlayer().getEntityWeapon().GetType() is Gun) 
+            {
+                ((Gun)gameState.GetPlayer().getEntityWeapon()).cockGun();
+                GameLoop();
+            }  
+        }
+        private void LoadMagazine(object sender, RoutedEventArgs e)
+        {
+            if (gameState.GetPlayer().getEntityWeapon() != null && gameState.GetPlayer().getEntityWeapon().GetType() is Gun)
+            {
+                ((Gun)gameState.GetPlayer().getEntityWeapon()).reload();
+                GameLoop();
+            }
+        }
+
+
         private void MovePlayer(object sender, RoutedEventArgs e)
         {
-            double minutesWalking = 15;
+            double minutesWalking = 5;
 
             gameState.SetLastPosition(gameState.GetPlayerPos().toString());
             // gameState.GetPlayer().GameObjectPos.movePosition(gameState.GetMainMap().map,

@@ -351,7 +351,7 @@ public class CommandHandler {
 
 		else if (input.Equals("equip weapon") || input.Equals("ew")) {
 
-			if (gameState.GetPlayer().inventory[0] == null) {
+			if (gameState.GetPlayer().getInventory()[0] == null) {
 
 				Console.WriteLine("\nNothing in inventory");
 			} else {
@@ -364,7 +364,7 @@ public class CommandHandler {
 
 				} else {
 
-					gameState.GetPlayer().equipItemAsWeapon(gameState.GetPlayer().inventory[int.Parse(input)]);
+					gameState.GetPlayer().equipItemAsWeapon(gameState.GetPlayer().getInventory()[int.Parse(input)]);
 				}
 
 			}
@@ -374,7 +374,7 @@ public class CommandHandler {
 		} else if (input.Equals("invintory") || input.Equals("i")) {
 
 			// gameState.GetPlayer().GetInventoryList();
-			if (gameState.GetPlayer().inventory == null) {
+			if (gameState.GetPlayer().getInventory() == null) {
 
 				Console.WriteLine("\nNothing in inventory");
 			} else {

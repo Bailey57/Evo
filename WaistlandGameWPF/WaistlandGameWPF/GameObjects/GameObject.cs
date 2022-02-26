@@ -459,7 +459,7 @@ public double getDistanceFromObject(GameObject gameObject)
 	String output = objectName;
 
 	return output;
-}
+	}
 
 }
 }
