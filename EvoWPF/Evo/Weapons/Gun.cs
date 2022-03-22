@@ -447,8 +447,8 @@ namespace WaistlandGameWPF
 			}
 			else if (loadedProjectile == null)
 			{
-				this.addObjectStringEvents("\nThe gun made clicking noise but nothing happened\n");
-				shooter.addObjectStringEvents("\nThe gun made clicking noise but nothing happened\n");
+				this.addObjectStringEvents("\nThe gun made a clicking noise but nothing happened\n");
+				shooter.addObjectStringEvents("\nThe gun made a clicking noise but nothing happened\n");
 			}
 
 		return targetHit;
