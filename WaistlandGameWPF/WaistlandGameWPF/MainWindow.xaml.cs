@@ -59,8 +59,20 @@ namespace WaistlandGameWPF
             entitiesInSightList.ItemsSource = gameState.GetPlayer().entitiesInSightList(gameState.GetMainMap());
 
             gameState.GetMainMap().runThroughEntityActions(gameState.GetMainMap(), gameState.GetPlayer(), seconds);
-            
+            consoleOutput.ScrollToEnd();
 
+            if (gameState.GetPlayer().getEntityWeapon() != null)
+            {
+                equippedWeapon.Content = gameState.GetPlayer().getEntityWeapon().getObjectName();
+            }
+            else 
+            {
+                equippedWeapon.Content = "nothing";
+            }
+
+            //add to overall map loading so every gameObject gets this
+            //gameState.GetPlayer().addObjectStringEvents("\n<-day: ?-------Time: ?->\n
+            gameState.GetPlayer().addObjectStringEvents("\n<-------------------->\n");
         }
 
         private void scrollConsoleDown() 
@@ -120,7 +132,7 @@ namespace WaistlandGameWPF
         private void FireAtEntity(object sender, RoutedEventArgs e)
         {
 
-            if (gameState.GetPlayer().getEntityWeapon() != null && gameState.GetPlayer().getEntityWeapon().GetType() is Gun)
+            if (gameState.GetPlayer().getEntityWeapon() != null && gameState.GetPlayer().getEntityWeapon() is Gun)
             {
                 ((Gun)gameState.GetPlayer().getEntityWeapon()).fireGunAtGameObject(gameState.GetPlayer(), (Entity)entitiesInSightList.SelectedItem);
             }
@@ -133,7 +145,7 @@ namespace WaistlandGameWPF
 
         private void RackGun(object sender, RoutedEventArgs e)
         {
-            if (gameState.GetPlayer().getEntityWeapon() != null && gameState.GetPlayer().getEntityWeapon().GetType() is Gun) 
+            if (gameState.GetPlayer().getEntityWeapon() != null && gameState.GetPlayer().getEntityWeapon() is Gun) 
             {
                 ((Gun)gameState.GetPlayer().getEntityWeapon()).cockGun();
                 GameLoop();
