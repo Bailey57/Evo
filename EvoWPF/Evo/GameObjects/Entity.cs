@@ -1065,7 +1065,7 @@ namespace WaistlandGameWPF
 		
 		
 		if (entityWeapon != null && entityWeapon is Gun) {
-			((Gun) entityWeapon).cockGun();
+			((Gun) entityWeapon).cockGun(this);
 			this.addObjectStringEvents("\nCocked " + entityWeapon.getObjectName() + "\n");
 			return true;
 		} else {

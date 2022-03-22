@@ -230,7 +230,7 @@ namespace WaistlandGameWPF
 	}
 
 	// cock gun that have mags
-	public bool cockGun()
+	public bool cockGun(GameObject shooter)
 	{
 		// takes 1 sec
 		// maybe return a number 0 to x based on what didnt pass in if statements to
@@ -242,8 +242,10 @@ namespace WaistlandGameWPF
 			loadedProjectile = magazine.removeBullet();
 
 			cocked = true;
+			this.addObjectStringEvents("\nThe gun was racked\n");
+			shooter.addObjectStringEvents("\nThe gun was racked\n");
 
-			if (loadedProjectile != null)
+				if (loadedProjectile != null)
 			{
 				// loaded = true;
 				// cocked = true;
@@ -294,22 +296,12 @@ namespace WaistlandGameWPF
 	{
 		bool cycled = false;
 		loadedProjectile = null;
-		if (magazine != null)
-		{
+		cycleMag();
+		cycled = true;
+		
 
-			if (loadedProjectile == null)
-			{
-				loadedProjectile = magazine.removeBullet();
-				if (loadedProjectile != null)
-				{
-					cycled = true;
-				}
 
-			}
-
-		}
-
-		return cycled;
+			return cycled;
 	}
 
 	// fires gun and projectile flies on map, checks for collisions and takes angle
@@ -328,127 +320,136 @@ namespace WaistlandGameWPF
 		bool targetHit = false;
 		double distanceFromTarget = shooter.getDistanceFromObject(target);
 
-		
 
-		if (loadedProjectile != null && target.getGameObjectHitbox() != null)
-		{
+
+			if (loadedProjectile != null && target.getGameObjectHitbox() != null)
+			{
 
 				//add code to perception check and if failed they dont know what it is
-				if (this.getMagazine() != null && this.getMagazine().getBulletsInMag()[0] != null) 
+				if (this.getMagazine() != null && this.getMagazine().getBulletsInMag()[0] != null)
 				{
 					shooter.addObjectStringEvents("\nShot at " + target + " using " + this.getObjectName() + " with " + this.getMagazine().getBulletsInMag()[0].getObjectName() + "\n");
 					target.addObjectStringEvents("\nShot at by " + shooter.getObjectName() + " using " + this.getObjectName() + " with " + this.getMagazine().getBulletsInMag()[0].getObjectName() + "\n");
 				}
 				else
-				{ 	
+				{
 					shooter.addObjectStringEvents("\nShot at " + target + " using " + this.getObjectName() + "\n");
 					target.addObjectStringEvents("\nShot at by " + shooter.getObjectName() + " using " + this.getObjectName() + "\n");
 				}
-				
-				
-			RandomNumbers randNum = new RandomNumbers();
-			BulletPenetration panCalc = new BulletPenetration(loadedProjectile, distanceFromTarget);
 
 
-			double distanceIn_mm_fromAimPoint = randNum.rollRandDouble(shooter.getTargetGroupSize(target), 0);
-			//c = Sqrt(a^2 + b^2), a^2 + b^2 = c^2
-			//b^2 = c^2 - a^2, rng a
-
-			double side_y = randNum.rollRandDouble(distanceIn_mm_fromAimPoint, 0);
-			double base_x = Math.Pow(distanceIn_mm_fromAimPoint, 2) - Math.Pow(side_y, 2);
-
-			double yPosHit = 0;
-			double xPosHit = 0;
-
-			if (randNum.rollRandInt(1, 0) == 1)
-			{
-				side_y *= -1;
-			}
-			if (randNum.rollRandInt(1, 0) == 1)
-			{
-				base_x *= -1;
-			}
+				RandomNumbers randNum = new RandomNumbers();
+				BulletPenetration panCalc = new BulletPenetration(loadedProjectile, distanceFromTarget);
 
 
-			//target.getGameObjectHitbox().onHitboxCheck(base_x, side_y);
+				double distanceIn_mm_fromAimPoint = randNum.rollRandDouble(shooter.getTargetGroupSize(target), 0);
+				//c = Sqrt(a^2 + b^2), a^2 + b^2 = c^2
+				//b^2 = c^2 - a^2, rng a
+
+				double side_y = randNum.rollRandDouble(distanceIn_mm_fromAimPoint, 0);
+				double base_x = Math.Pow(distanceIn_mm_fromAimPoint, 2) - Math.Pow(side_y, 2);
+
+				double yPosHit = 0;
+				double xPosHit = 0;
+
+				if (randNum.rollRandInt(1, 0) == 1)
+				{
+					side_y *= -1;
+				}
+				if (randNum.rollRandInt(1, 0) == 1)
+				{
+					base_x *= -1;
+				}
 
 
-			//each chance to be negative
+				//target.getGameObjectHitbox().onHitboxCheck(base_x, side_y);
 
 
-			//yPosHit = target.getGameObjectHitbox().getHitboxCenterY() + side_y;
-			//1180 is center y pos of human hitbox
-
-			yPosHit = 1180 + side_y;
-			xPosHit = target.getGameObjectHitbox().getHitboxCenterX() + base_x;
-
-			panCalc.setFinalV(panCalc.finalVelocity());
-			panCalc.setDistance(0);
-			double damage = panCalc.currentKeneticEnergy();
-			setLastDamage(damage);
+				//each chance to be negative
 
 
+				//yPosHit = target.getGameObjectHitbox().getHitboxCenterY() + side_y;
+				//1180 is center y pos of human hitbox
 
+				yPosHit = 1180 + side_y;
+				xPosHit = target.getGameObjectHitbox().getHitboxCenterX() + base_x;
 
-			;
-
-
-			target.getGameObjectHitbox().getHitboxCenterY();
+				panCalc.setFinalV(panCalc.finalVelocity());
+				panCalc.setDistance(0);
+				double damage = panCalc.currentKeneticEnergy();
+				setLastDamage(damage);
 
 
 
-			if (target.getGameObjectHitbox().bodyPartsHitCheck(xPosHit, yPosHit) != null)
-			{
-				//target is hit
 
-				//target.gameObjectHitbox.projectileImpactHitbox(loadedProjectile, side_y, base_x);
+				//;
 
-				shooter.addObjectStringEvents(panCalc.penetraitHitBox(target.getGameObjectHitbox(), xPosHit, yPosHit, 0));
-				//add damage/wound
 
-			}
+				target.getGameObjectHitbox().getHitboxCenterY();
 
 
 
-			if (!Double.IsNaN(damage))
-			{
-				target.setIntegraty(target.getIntegraty() - damage);
-				targetHit = true;
+				if (target.getGameObjectHitbox().bodyPartsHitCheck(xPosHit, yPosHit) != null)
+				{
+					//target is hit
 
-				// gain accuracy when you hit things successfully, get more for hitting
-				// something alive
-				if (target is Entity) {
-					if (((Entity)target).isAlive())
+					//target.gameObjectHitbox.projectileImpactHitbox(loadedProjectile, side_y, base_x);
+
+					shooter.addObjectStringEvents(panCalc.penetraitHitBox(target.getGameObjectHitbox(), xPosHit, yPosHit, 0));
+					//add damage/wound
+
+				}
+
+
+
+				if (!Double.IsNaN(damage))
+				{
+					target.setIntegraty(target.getIntegraty() - damage);
+					targetHit = true;
+
+					// gain accuracy when you hit things successfully, get more for hitting
+					// something alive
+					if (target is Entity)
 					{
-						shooter.setAccuracy(shooter.getAccuracy() + ((distanceFromTarget + 1) / 100));
+						if (((Entity)target).isAlive())
+						{
+							shooter.setAccuracy(shooter.getAccuracy() + ((distanceFromTarget + 1) / 100));
+						}
+						else
+						{
+							shooter.setAccuracy(shooter.getAccuracy() + ((distanceFromTarget + 1) / 200));
+						}
+
 					}
 					else
 					{
 						shooter.setAccuracy(shooter.getAccuracy() + ((distanceFromTarget + 1) / 200));
 					}
 
-				} else
-				{
-					shooter.setAccuracy(shooter.getAccuracy() + ((distanceFromTarget + 1) / 200));
+					if (target is Entity)
+					{
+
+						((Entity)target).aliveCheck();
+
+					}
+					else
+					{
+						target.integrityCheck();
+					}
+
 				}
 
-				if (target is Entity) {
+				cycleGunAfterFiring();
 
-					((Entity)target).aliveCheck();
 
-				} else
-				{
-					target.integrityCheck();
-				}
+
 
 			}
-
-			cycleGunAfterFiring();
-
-
-
-
-		}
+			else if (loadedProjectile == null)
+			{
+				this.addObjectStringEvents("\nThe gun made a clicking noise but nothing happened\n");
+				shooter.addObjectStringEvents("\nThe gun made a clicking noise but nothing happened\n");
+			}
 
 		return targetHit;
 		// double targetGroupSize = shooter.getTargetGroupSize(target);
@@ -565,7 +566,7 @@ namespace WaistlandGameWPF
 
 		Console.WriteLine(gun.getMagazine().getAmmountOfBulletsInMag());
 		Console.WriteLine(gun.getMagazine().bulletsInMagToString());
-		Console.WriteLine(gun.cockGun());
+		Console.WriteLine(gun.cockGun(shooter));
 
 		Console.WriteLine("Loaded ammo: " + gun.getLoadedProjectile().getObjectName());
 		Console.WriteLine(gun.getMagazine().getAmmountOfBulletsInMag());

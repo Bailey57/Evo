@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace WaistlandGameWPF
 {
-    //package wasteland.entity;
-
+	//package wasteland.entity;
+	
 	public class EntityAction {
 	
 	
