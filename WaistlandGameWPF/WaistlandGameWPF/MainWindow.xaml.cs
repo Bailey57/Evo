@@ -22,6 +22,7 @@ namespace WaistlandGameWPF
     public partial class MainWindow : Window
     {
         private GameState gameState = new GameState();
+        private SaveLoad saveLoad = new SaveLoad();
         public MainWindow()
         {
             //Hitbox tst = new Hitbox();
@@ -30,10 +31,10 @@ namespace WaistlandGameWPF
             gameState = gameState.MakeBuild1();
 
             consoleOutput.Text = gameState.GetPlayer().getObjectStringEvents();
-            playerDirection.Text = gameState.GetPlayer().getDirectionFacing();
+            playerDirection.Content = gameState.GetPlayer().getDirectionFacing();
             itemsInSight.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
 
-
+            
             playerInventory.ItemsSource = gameState.GetPlayer().getInventory();
 
 
@@ -47,9 +48,10 @@ namespace WaistlandGameWPF
 
         public void GameLoop() 
         {
+            loadingStatusLabel.Content = "Loading Status: in progress";
             double seconds = 5;
             consoleOutput.Text = gameState.GetPlayer().getObjectStringEvents();
-            playerDirection.Text = gameState.GetPlayer().getDirectionFacing();
+            playerDirection.Content = gameState.GetPlayer().getDirectionFacing();
             itemsInSight.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
             playerInventory.ItemsSource = gameState.GetPlayer().getInventory();
             //playerInventory.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
@@ -73,14 +75,34 @@ namespace WaistlandGameWPF
             //add to overall map loading so every gameObject gets this
             //gameState.GetPlayer().addObjectStringEvents("\n<-day: ?-------Time: ?->\n
             gameState.GetPlayer().addObjectStringEvents("\n<-------------------->\n");
+            loadingStatusLabel.Content = "Loading Status: done";
         }
 
-        private void scrollConsoleDown() 
+
+
+        private void NewGame(object sender, RoutedEventArgs e)
         {
-            //consoleOutput.Text.
+            loadingStatusLabel.Content = "Loading Status: in progress";
 
-
+            gameState = gameState.MakeBuild1();
+            GameLoop();
         }
+
+        private void SaveGame(object sender, RoutedEventArgs e) 
+        {
+            loadingStatusLabel.Content = "Loading Status: in progress";
+            saveLoad.SaveGame(gameState);
+            GameLoop();
+        }
+
+        private void LoadGame(object sender, RoutedEventArgs e)
+        {
+            loadingStatusLabel.Content = "Loading Status: in progress";
+
+            gameState = saveLoad.LoadGame();
+            GameLoop();
+        }
+
 
 
 
@@ -147,7 +169,7 @@ namespace WaistlandGameWPF
         {
             if (gameState.GetPlayer().getEntityWeapon() != null && gameState.GetPlayer().getEntityWeapon() is Gun) 
             {
-                ((Gun)gameState.GetPlayer().getEntityWeapon()).cockGun();
+                ((Gun)gameState.GetPlayer().getEntityWeapon()).cockGun(gameState.GetPlayer());
                 GameLoop();
             }  
         }

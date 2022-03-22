@@ -14,7 +14,8 @@ using Wasteland.map.GameObjectPos;
 using Wasteland.map.Map;
 using Wasteland.map.MapArea;
 */
-public class PlayerAction {
+	[System.Serializable]
+	public class PlayerAction {
 	
 	
 	

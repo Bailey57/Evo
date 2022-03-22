@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WaistlandGameWPF
 {
-    //package wasteland.entity;
-
-public class Material {
+	//package wasteland.entity;
+	[System.Serializable]
+	public class Material {
 	
 	
 	
