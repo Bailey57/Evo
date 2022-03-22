@@ -328,13 +328,24 @@ namespace WaistlandGameWPF
 		bool targetHit = false;
 		double distanceFromTarget = shooter.getDistanceFromObject(target);
 
-
+		
 
 		if (loadedProjectile != null && target.getGameObjectHitbox() != null)
 		{
 
-
-
+				//add code to perception check and if failed they dont know what it is
+				if (this.getMagazine() != null && this.getMagazine().getBulletsInMag()[0] != null) 
+				{
+					shooter.addObjectStringEvents("\nShot at " + target + " using " + this.getObjectName() + " with " + this.getMagazine().getBulletsInMag()[0].getObjectName() + "\n");
+					target.addObjectStringEvents("\nShot at by " + shooter.getObjectName() + " using " + this.getObjectName() + " with " + this.getMagazine().getBulletsInMag()[0].getObjectName() + "\n");
+				}
+				else
+				{ 	
+					shooter.addObjectStringEvents("\nShot at " + target + " using " + this.getObjectName() + "\n");
+					target.addObjectStringEvents("\nShot at by " + shooter.getObjectName() + " using " + this.getObjectName() + "\n");
+				}
+				
+				
 			RandomNumbers randNum = new RandomNumbers();
 			BulletPenetration panCalc = new BulletPenetration(loadedProjectile, distanceFromTarget);
 

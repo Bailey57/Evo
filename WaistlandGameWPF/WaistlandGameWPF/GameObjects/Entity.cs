@@ -43,18 +43,19 @@ namespace WaistlandGameWPF
 	// carrie over seconds
 	public double secondsLeft = 0;
 
-	// change to be based off of mass and volume
-	public BaseItem[] inventory = new BaseItem[99];
+		// change to be based off of mass and volume
+		private BaseItem[] inventory;
+		//private BaseItem[] inventory = new BaseItem[99];
 
-	// maybe make an array for duel wielding
-	public BaseItem entityWeapon;
+		// maybe make an array for duel wielding
+		public BaseItem entityWeapon;
 	
 	public BodyPart[] bodyParts;
 	//public statusEffects;
 
 	private double TIME_MOVE_TAKES = 2.5;// change to where its based on speed
 
-
+	private BaseItem[] itemsInSight;
 
 	public bool getIsThePlayer() {
 		return this.isThePlayer;
@@ -534,7 +535,7 @@ namespace WaistlandGameWPF
 			}
 
 		}
-
+		this.itemsInSight = itemsInSightList;
 		return itemsInSightList;
 	}
 
@@ -868,8 +869,9 @@ namespace WaistlandGameWPF
 	public bool equipItemAsWeapon(BaseItem item) {
 
 		setEntityWeapon(item);
+		this.addObjectStringEvents("\nEquiped " + item.getObjectName() + " as a weapon\n");
 
-		return false;
+			return false;
 	}
 
 	/**
@@ -878,6 +880,10 @@ namespace WaistlandGameWPF
 	 * @return true if added
 	 */
 	public bool addItemToInventory(BaseItem item) {
+		if (this.getInventory()[getInventory().Length - 1] != null) 
+		{
+			this.increaseInventoryLength();
+		}
 
 		for (int i = 0; i < inventory.GetLength(0); i++) {
 			if (inventory[i] == null) {
@@ -945,7 +951,8 @@ namespace WaistlandGameWPF
 
 		if (index < inventory.GetLength(0) && inventory[index] != entityWeapon) {
 			setEntityWeapon(inventory[index]);
-			//removeItemFromInventory(entityWeapon);
+				//removeItemFromInventory(entityWeapon);
+				this.addObjectStringEvents("Equiped " + inventory[index].getObjectName() + " as a weapon");
 			return true;
 		}
 
@@ -1024,7 +1031,7 @@ namespace WaistlandGameWPF
 	}
 
 	public bool pickUpItemOffOfGround(BaseItem item) {
-		if (!item.isInInventory()) {
+		if (item != null && !item.isInInventory()) {
 			return pickUpItem(item);
 
 		} else {
