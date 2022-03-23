@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WaistlandGameWPF.WastelandGame.GameObjects
+namespace Evo
 {
 	/*
     package wasteland.gameObject;

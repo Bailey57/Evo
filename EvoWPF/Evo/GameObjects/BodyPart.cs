@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 //package wasteland.entity;
 
-namespace WaistlandGameWPF
+namespace Evo
 {
 	[System.Serializable]
 	public class BodyPart {

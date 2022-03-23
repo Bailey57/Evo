@@ -10,7 +10,7 @@
 //using Wasteland.entity.Hitbox;
 //using Wasteland.entity.Material;
 //using Wasteland.map.GameObjectPos;
-namespace WaistlandGameWPF
+namespace Evo
 {
 	[System.Serializable]
 	public class GameObject{

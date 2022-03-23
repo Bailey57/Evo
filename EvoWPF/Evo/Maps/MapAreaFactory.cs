@@ -1,7 +1,7 @@
 using System;
 
 
-namespace WaistlandGameWPF
+namespace Evo
 {
 
 	public class MapAreaFactory

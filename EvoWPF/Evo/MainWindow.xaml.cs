@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 
-namespace WaistlandGameWPF
+namespace Evo
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
