@@ -26,21 +26,48 @@ namespace Evo
 			
 		}		
 	}
-	
-	
-	
-	
-	
-	//public bool putOnWearable() {
-		//return false;
-	//}
-	
-	
-	
-	
-	
-	
 
-}
+
+
+		public void PatrollArea(Entity entity, double patrollRadius)
+		{
+			
+		}
+
+		public void GuardArea(Entity entity, double patrollRadius)
+		{
+
+		}
+
+		public void GuardGameObject() 
+		{
+		
+		}
+
+		public void FollowGameObject() 
+		{
+		
+		}
+
+		public void ApproachGameObject()
+		{
+
+		}
+
+
+
+
+
+		//public bool putOnWearable() {
+		//return false;
+		//}
+
+
+
+
+
+
+
+	}
 
 }
