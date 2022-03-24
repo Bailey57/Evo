@@ -114,6 +114,8 @@ namespace Evo
             int playerMapX = gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapX();
             int playerMapY = gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapY();
 
+
+            //add checks in if statements for max mapPos
             if (playerMapX >= 0 && playerMapY >= 0)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX, playerMapY].getAreaName();
