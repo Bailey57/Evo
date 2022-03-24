@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Evo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280">
-    <Grid Margin="0,0,0,-6">
+        Title="MainWindow" Height="1080" Width="1920">
+    <Grid Margin="646,365,10,-6" HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="0*"/>
             <RowDefinition Height="599*"/>
@@ -17,8 +17,8 @@
             <ColumnDefinition Width="91*"/>
             <ColumnDefinition Width="709*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="faceNorth" Content="N" HorizontalAlignment="Left" Margin="369,139,0,0" VerticalAlignment="Top" Grid.Column="1" Click="FaceNorth" Grid.RowSpan="2" Height="20" Width="24"/>
-        <ListView x:Name="itemsInSight" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="47,291,1014,181" Grid.ColumnSpan="2" Grid.RowSpan="2">
+        <Button x:Name="faceNorth" Content="N" HorizontalAlignment="Left" Margin="458,174,0,0" VerticalAlignment="Top" Grid.Column="1" Click="FaceNorth" Grid.RowSpan="2" Height="20" Width="24"/>
+        <ListView x:Name="itemsInSight" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="-40,291,0,181" Grid.ColumnSpan="2" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="174">
             <ListView.Style>
                 <Style/>
             </ListView.Style>
@@ -28,18 +28,18 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBox x:Name="consoleOutput" HorizontalAlignment="Left" Margin="631,106,0,0" TextWrapping="Wrap" Text="consoleOutput" VerticalAlignment="Top" Width="461" Height="364" Grid.Column="1" VerticalScrollBarVisibility="Auto" Grid.RowSpan="2">
+        <TextBox x:Name="consoleOutput" HorizontalAlignment="Center" Margin="649,0,0,0" TextWrapping="Wrap" Text="consoleOutput" VerticalAlignment="Center" Width="461" Height="364" Grid.Column="1" VerticalScrollBarVisibility="Auto" Grid.Row="1">
             <TextBox.Style>
                 <Style/>
             </TextBox.Style>
         </TextBox>
-        <Label x:Name="itemsInSightLabel" Content="Items In Sight" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="115,264,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="26" Width="83"/>
-        <Button x:Name="faceSouth" Content="S" HorizontalAlignment="Left" Margin="369,179,0,0" VerticalAlignment="Top" Grid.Column="1" Click="FaceSouth" Grid.RowSpan="2" Height="20" Width="24"/>
-        <Button x:Name="faceEast" Content="E" HorizontalAlignment="Left" Margin="393,159,0,0" VerticalAlignment="Top" Grid.Column="1" Click="FaceEast" Grid.RowSpan="2" Height="20" Width="24"/>
-        <Button x:Name="faceWest" Content="W" HorizontalAlignment="Left" Margin="345,159,0,0" VerticalAlignment="Top" Grid.Column="1" Click="FaceWest" Grid.RowSpan="2" Height="20" Width="24"/>
-        <Button x:Name="travelButton" Grid.Column="1" Content="Travel" HorizontalAlignment="Left" Margin="415,186,0,0" VerticalAlignment="Top" Click="MovePlayer" Grid.RowSpan="2" Height="20" Width="34"/>
-        <Button x:Name="pickUpItemButton" Content="Pick Up Item" HorizontalAlignment="Left" Margin="47,502,0,0" VerticalAlignment="Top" Click="PickUpItemOffOfGround" Grid.RowSpan="2" Height="20" Width="71"/>
-        <ListView x:Name="playerInventory" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="138,291,773,181" Grid.RowSpan="2" >
+        <Label x:Name="itemsInSightLabel" Content="Items In Sight" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-36,259,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="26" Width="83"/>
+        <Button x:Name="faceSouth" Content="S" HorizontalAlignment="Left" Margin="458,214,0,0" VerticalAlignment="Top" Grid.Column="1" Click="FaceSouth" Grid.RowSpan="2" Height="20" Width="24"/>
+        <Button x:Name="faceEast" Content="E" HorizontalAlignment="Left" Margin="482,194,0,0" VerticalAlignment="Top" Grid.Column="1" Click="FaceEast" Grid.RowSpan="2" Height="20" Width="24"/>
+        <Button x:Name="faceWest" Content="W" HorizontalAlignment="Left" Margin="434,194,0,0" VerticalAlignment="Top" Grid.Column="1" Click="FaceWest" Grid.RowSpan="2" Height="20" Width="24"/>
+        <Button x:Name="travelButton" Grid.Column="1" Content="Travel" HorizontalAlignment="Left" Margin="504,221,0,0" VerticalAlignment="Top" Click="MovePlayer" Grid.RowSpan="2" Height="20" Width="34"/>
+        <Button x:Name="pickUpItemButton" Content="Pick Up Item" HorizontalAlignment="Left" Margin="-40,439,0,0" VerticalAlignment="Top" Click="PickUpItemOffOfGround" Grid.RowSpan="2" Height="20" Width="71" Grid.ColumnSpan="2"/>
+        <ListView x:Name="playerInventory" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="158,291,0,0" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="186" Height="206" >
             <ListView.Style>
                 <Style/>
             </ListView.Style>
@@ -49,9 +49,9 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label x:Name="playerInventoryLabel" Content="Inventory" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="222,264,0,0" Grid.Column="1" Grid.RowSpan="2" Height="26" Width="59"/>
-        <Button x:Name="equipWeaponButton" Content="Equip Weapon" HorizontalAlignment="Left" Margin="138,503,0,0" VerticalAlignment="Top" Click="EquipItemAsWeapon" Grid.Column="1" Grid.RowSpan="2" Height="20" Width="81"/>
-        <ListView x:Name="entitiesInSightList" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="377,291,523,181" Grid.RowSpan="2">
+        <Label x:Name="playerInventoryLabel" Content="Inventory" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="221,264,0,0" Grid.Column="1" Grid.RowSpan="2" Height="26" Width="59"/>
+        <Button x:Name="equipWeaponButton" Content="Equip Weapon" HorizontalAlignment="Left" Margin="158,500,0,0" VerticalAlignment="Top" Click="EquipItemAsWeapon" Grid.Column="1" Grid.RowSpan="2" Height="20" Width="81"/>
+        <ListView x:Name="entitiesInSightList" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="386,291,0,0" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top" Height="200" Width="187">
             <ListView.Style>
                 <Style/>
             </ListView.Style>
@@ -61,19 +61,35 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label x:Name="entitiesInSightLabel" Grid.Column="1" Content="entitiesInSightLabel" HorizontalAlignment="Left" Margin="423,260,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="26" Width="113"/>
-        <Button x:Name="attackEntityButton" Grid.Column="1" Content="Attack Entity Mele" HorizontalAlignment="Left" Margin="495,502,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Click="AttackEntity" Height="20" Width="100"/>
-        <Button x:Name="rackGunButton" Grid.Column="1" Content="Rack Gun" HorizontalAlignment="Left" Margin="274,503,0,0" Grid.RowSpan="2" VerticalAlignment="Top" RenderTransformOrigin="-0.58,-0.198" Click="RackGun" Height="20" Width="53"/>
-        <Button x:Name="dropItemButton" Content="DropItem Button" HorizontalAlignment="Left" Margin="138,531,0,0" VerticalAlignment="Top" Click="EquipItemAsWeapon" Grid.Column="1" Grid.RowSpan="2" Height="20" Width="93"/>
-        <Button x:Name="loadMagazineButton" Grid.Column="1" Content="Load Magazine " HorizontalAlignment="Left" Margin="274,531,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="LoadMagazine" Height="20" Width="87"/>
-        <Button x:Name="fireAtEntityButton" Grid.Column="1" Content="Shoot At Entity" HorizontalAlignment="Left" Margin="494,531,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Click="FireAtEntity" Height="20" Width="83"/>
-        <Label x:Name="equippedWeaponLabel" Grid.Column="1" Content="Equipped Weapon: " HorizontalAlignment="Left" Margin="138,566,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="26" Width="113" RenderTransformOrigin="0.729,0.502"/>
-        <Label x:Name="equippedWeapon" Grid.Column="1" Content="nothing" HorizontalAlignment="Left" Margin="257,566,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="144" Height="26"/>
-        <Button x:Name="saveGameButton" Content="Save Game" HorizontalAlignment="Left" Margin="115,10,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="SaveGame" Grid.ColumnSpan="2"/>
-        <Button x:Name="loadGameButton" Content="Load Game" HorizontalAlignment="Left" Margin="115,37,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="LoadGame" Grid.ColumnSpan="2"/>
-        <Button x:Name="newGameButton" Content="New Game" HorizontalAlignment="Left" Margin="20,10,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="NewGame"/>
-        <Label x:Name="playerDirectionLabel" Grid.Column="1" Content="Player Direction:" HorizontalAlignment="Left" Margin="398,122,0,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
-        <Label x:Name="playerDirection" Grid.Column="1" Content="?" HorizontalAlignment="Left" Margin="499,122,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="23"/>
-        <Label x:Name="loadingStatusLabel" Grid.Column="1" Content="Loading Status: done" HorizontalAlignment="Left" Margin="38,19,0,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
+        <Label x:Name="entitiesInSightLabel" Grid.Column="1" Content="entitiesInSightLabel" HorizontalAlignment="Left" Margin="425,264,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="26" Width="113"/>
+        <Button x:Name="attackEntityButton" Grid.Column="1" Content="Attack Entity Mele" HorizontalAlignment="Left" Margin="390,500,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Click="AttackEntity" Height="20" Width="100"/>
+        <Button x:Name="rackGunButton" Grid.Column="1" Content="Rack Gun" HorizontalAlignment="Left" Margin="268,500,0,0" Grid.RowSpan="2" VerticalAlignment="Top" RenderTransformOrigin="-0.58,-0.198" Click="RackGun" Height="20" Width="53"/>
+        <Button x:Name="dropItemButton" Content="DropItem Button" HorizontalAlignment="Left" Margin="158,528,0,0" VerticalAlignment="Top" Click="EquipItemAsWeapon" Grid.Column="1" Grid.RowSpan="2" Height="20" Width="93"/>
+        <Button x:Name="loadMagazineButton" Grid.Column="1" Content="Load Magazine " HorizontalAlignment="Left" Margin="268,528,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="LoadMagazine" Height="20" Width="87"/>
+        <Button x:Name="fireAtEntityButton" Grid.Column="1" Content="Shoot At Entity" HorizontalAlignment="Left" Margin="390,528,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Click="FireAtEntity" Height="20" Width="83"/>
+        <Label x:Name="equippedWeaponLabel" Grid.Column="1" Content="Equipped Weapon: " HorizontalAlignment="Left" Margin="158,566,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="26" Width="113" RenderTransformOrigin="0.729,0.502"/>
+        <Label x:Name="equippedWeapon" Grid.Column="1" Content="nothing" HorizontalAlignment="Left" Margin="271,565,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="144" Height="26"/>
+        <Button x:Name="saveGameButton" Content="Save Game" HorizontalAlignment="Left" Margin="-545,-364,0,0" VerticalAlignment="Top" Click="SaveGame"/>
+        <Button x:Name="loadGameButton" Content="Load Game" HorizontalAlignment="Left" Margin="-545,-337,0,0" VerticalAlignment="Top" Click="LoadGame"/>
+        <Button x:Name="newGameButton" Content="New Game" HorizontalAlignment="Left" Margin="-640,-364,0,0" VerticalAlignment="Top" Click="NewGame"/>
+        <Label x:Name="playerDirectionLabel" Grid.Column="1" Content="Player Direction:" HorizontalAlignment="Left" Margin="487,157,0,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
+        <Label x:Name="playerDirection" Grid.Column="1" Content="?" HorizontalAlignment="Left" Margin="588,157,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="23"/>
+        <Label x:Name="loadingStatusLabel" Content="Loading Status: done" HorizontalAlignment="Left" Margin="-478,-355,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="accurateFireRB" Grid.Column="1" Content="Accurate Fire" HorizontalAlignment="Left" Margin="458,562,0,0" Grid.RowSpan="2" VerticalAlignment="Top" GroupName="fireMode"/>
+        <Label x:Name="fireModeLabel" Grid.Column="1" Content="Fire Mode" HorizontalAlignment="Left" Margin="388,559,0,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
+        <RadioButton x:Name="fastFireRB" Grid.Column="1" Content="Fast Fire" HorizontalAlignment="Left" Margin="457,580,0,0" Grid.RowSpan="2" VerticalAlignment="Top" GroupName="fireMode"/>
+        <RadioButton x:Name="supressiveFireRB" Grid.Column="1" Content="Supressive Fire " HorizontalAlignment="Left" Margin="459,600,0,0" Grid.RowSpan="2" VerticalAlignment="Top" GroupName="fireMode"/>
+        <Grid Margin="-545,-232,101,461" Grid.RowSpan="2">
+            <Image x:Name="mapArea_x0_y0" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/forest.png" RenderTransformOrigin="0.5,0.5" Margin="195,155,0,0"/>
+            <Image x:Name="mapArea_x_1_y_1" HorizontalAlignment="Left" Height="100" Margin="96,255,0,0" VerticalAlignment="Top" Width="100" Source="/forest.png" RenderTransformOrigin="0.5,0.5"/>
+            <Image x:Name="mapArea_x1_y0" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/forest.png" Margin="295,155,0,0" RenderTransformOrigin="0.5,0.5"/>
+            <Image x:Name="mapArea_x_1_y1" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/forest.png" Margin="96,55,0,0" RenderTransformOrigin="0.5,0.5"/>
+            <Image x:Name="mapArea_x_1_y0" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/forest.png" Margin="96,155,0,0" RenderTransformOrigin="0.5,0.5"/>
+            <Image x:Name="mapArea_x0_y1" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/forest.png" Margin="195,55,0,0" RenderTransformOrigin="0.5,0.5"/>
+            <Image x:Name="mapArea_x1_y1" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/forest.png" Margin="295,55,0,0" RenderTransformOrigin="0.5,0.5"/>
+            <Image x:Name="mapArea_x0_y_1" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/forest.png" Margin="195,255,0,0" RenderTransformOrigin="0.5,0.5"/>
+            <Image x:Name="mapArea_x1_y_1" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/forest.png" Margin="295,255,0,0" RenderTransformOrigin="0.5,0.5"/>
+            <Label x:Name="_600x600_map_viewLabel" Content="600x600 map view" HorizontalAlignment="Left" Margin="191,29,0,0" VerticalAlignment="Top"/>
+        </Grid>
     </Grid>
 </Window>

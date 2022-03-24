@@ -38,6 +38,8 @@ namespace Evo
 	public GameObject[] gameObjectsOnMapList = new GameObject[999000];
 
 
+
+
 	public int currentAmmountOfGameObjectsOnMap = 0;
 	public int gameObjectMapLimit = 999000;
 

@@ -7,4 +7,16 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="forest.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="WPF_GUI\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="forest.png" />
+  </ItemGroup>
+
 </Project>
