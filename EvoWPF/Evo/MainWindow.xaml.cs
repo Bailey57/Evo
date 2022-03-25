@@ -34,9 +34,14 @@ namespace Evo
 
             consoleOutput.Text = gameState.GetPlayer().getObjectStringEvents();
             playerDirection.Content = gameState.GetPlayer().getDirectionFacing();
-            itemsInSight.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
 
-            
+
+            itemsInSight.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
+            //?
+            itemsInSightListBox.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
+
+
+
             playerInventory.ItemsSource = gameState.GetPlayer().getInventory();
             DrawMap();
             
@@ -54,7 +59,14 @@ namespace Evo
             double seconds = 5;
             consoleOutput.Text = gameState.GetPlayer().getObjectStringEvents();
             playerDirection.Content = gameState.GetPlayer().getDirectionFacing();
+
+
+
             itemsInSight.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
+            //?
+            itemsInSightListBox.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
+
+
             playerInventory.ItemsSource = gameState.GetPlayer().getInventory();
             //playerInventory.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
             //playerInventory.
