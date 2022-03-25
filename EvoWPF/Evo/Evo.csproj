@@ -9,6 +9,10 @@
 
   <ItemGroup>
     <None Remove="forest.png" />
+    <None Remove="gameMapBorder.png" />
+    <None Remove="street.png" />
+    <None Remove="town.png" />
+    <None Remove="WIP_MapSquare.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,6 +21,10 @@
 
   <ItemGroup>
     <Resource Include="forest.png" />
+    <Resource Include="gameMapBorder.png" />
+    <Resource Include="street.png" />
+    <Resource Include="town.png" />
+    <Resource Include="WIP_MapSquare.png" />
   </ItemGroup>
 
 </Project>
