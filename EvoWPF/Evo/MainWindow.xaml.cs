@@ -27,8 +27,9 @@ namespace Evo
         {
             //Hitbox tst = new Hitbox();
             //tst.testingMethod();
+            //DrawButtons();
             InitializeComponent();
-            gameVersionLabel.Content = "v0.4.0";
+            gameVersionLabel.Content = "v0.4.1";
 
             gameState = gameState.MakeBuild1();
 
@@ -38,13 +39,13 @@ namespace Evo
 
             itemsInSight.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
             //?
-            itemsInSightListBox.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
+            //itemsInSightListBox.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
 
 
 
             playerInventory.ItemsSource = gameState.GetPlayer().getInventory();
             DrawMap();
-            
+            DrawButtons();
 
 
             //playerInventory.ItemsSource = gameState.GetPlayer().getGameObjectHitbox().getBodyParts(); //player body parts
@@ -64,7 +65,7 @@ namespace Evo
 
             itemsInSight.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
             //?
-            itemsInSightListBox.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
+            //itemsInSightListBox.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
 
 
             playerInventory.ItemsSource = gameState.GetPlayer().getInventory();
@@ -122,7 +123,18 @@ namespace Evo
 
 
 
+        private void DrawButtons() 
+        {
 
+            /*pickUpItemButton.Background = new BitmapImage(new Uri(@"/Assets/images/gui/buttons/gameButton1_green_up.png", UriKind.Relative));
+            equipWeaponButton.Content = new BitmapImage(new Uri(@"/Assets/images/gui/buttons/gameButton1_green_up.png", UriKind.Relative));
+            dropItemButton.Content = new BitmapImage(new Uri(@"/Assets/images/gui/buttons/gameButton1_green_up.png", UriKind.Relative));
+            rackGunButton.Content = new BitmapImage(new Uri(@"/Assets/images/gui/buttons/gameButton1_green_up.png", UriKind.Relative));
+            loadMagazineButton.Content = new BitmapImage(new Uri(@"/Assets/images/gui/buttons/gameButton1_green_up.png", UriKind.Relative));
+            fillMagazineButton.Content = new BitmapImage(new Uri(@"/Assets/images/gui/buttons/gameButton1_green_up.png", UriKind.Relative));
+            attackEntityButton.Content = new BitmapImage(new Uri(@"/Assets/images/gui/buttons/gameButton1_green_up.png", UriKind.Relative));
+            fireAtEntityButton.Content = new BitmapImage(new Uri(@"/Assets/images/gui/buttons/gameButton1_green_up.png", UriKind.Relative));*/
+        }
 
         private void DrawMap() 
         {
