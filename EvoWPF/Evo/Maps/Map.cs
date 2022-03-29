@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace WaistlandGameWPF
+namespace Evo
 {
 	[System.Serializable]
 	public class Map
@@ -13,7 +13,7 @@ namespace WaistlandGameWPF
 	public int mapAreaSize = 200; //200x200 meters by default
 
 	public int mapX_max;
-	public int mapY_Max;
+	public int mapY_max;
 
 	public double[,] mapGrid;
 
@@ -36,6 +36,8 @@ namespace WaistlandGameWPF
 
 	public GameObject[,,] gameObjectsOnMap;
 	public GameObject[] gameObjectsOnMapList = new GameObject[999000];
+
+
 
 
 	public int currentAmmountOfGameObjectsOnMap = 0;
@@ -64,6 +66,8 @@ namespace WaistlandGameWPF
 		this.mapSize = mapSize;
 
 		//mapSize = 1000;
+		mapX_max = mapSize;
+		mapY_max = mapSize;
 		gameMap = new MapArea[mapSize, mapSize];
 		gameObjectsOnMap = new GameObject[mapSize * mapAreaSize, mapSize * mapAreaSize, 5];
 
@@ -88,17 +92,17 @@ namespace WaistlandGameWPF
 	/**
 	 * @return the mapY_Max
 	 */
-	public int getMapY_Max()
+	public int getMapY_max()
 	{
-		return mapY_Max;
+		return mapY_max;
 	}
 
 	/**
 	 * @param mapY_Max the mapY_Max to set
 	 */
-	public void setMapY_Max(int mapY_Max)
+	public void setMapY_max(int mapY_Max)
 	{
-		this.mapY_Max = gameMap.Length;
+		this.mapY_max = gameMap.Length;
 	}
 
 	/**
@@ -503,7 +507,7 @@ public void makeGameMap1()
 	mapFact.worldMap = this;
 	this.gameMap = new MapArea[25, 25];
 
-	for (int i = 0; i < 25; i++)
+	for (int x = 0; x < 25; x++)
 	{
 
 
@@ -512,29 +516,29 @@ public void makeGameMap1()
 
 
 
-		for (int k = 0; k < 25; k++)
+		for (int y = 0; y < 25; y++)
 		{
-			if (i == 9 && k > 10)
+			if (x == 9 && y > 10)
 			{
-				this.gameMap[i, k] = mapFact.makeStreet(i, k);
+				this.gameMap[y, x] = mapFact.makeStreet(x, y);
 
 			}
-			else if (k == 10)
+			else if (y == 10)
 			{
-				this.gameMap[i, k] = mapFact.makeStreet(i, k);
+				this.gameMap[y, x] = mapFact.makeStreet(x, y);
 
 			}
-			else if (k == 9)
+			else if (y == 9)
 			{
-				this.gameMap[i, k] = mapFact.makeTown(i, k);
+				this.gameMap[y, x] = mapFact.makeTown(x, y);
 
 			}
 			else
 			{
-				this.gameMap[i, k] = mapFact.makeForest(i, k);
+				this.gameMap[y, x] = mapFact.makeForest(x, y);
 			}
 
-			if (gameMap[i, k].playerOnArea)
+			if (gameMap[y, x].playerOnArea)
 			{
 				// Console.Write("P ");
 			}

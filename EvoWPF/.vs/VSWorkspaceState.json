@@ -1,10 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\WaistlandGameWPF",
-    "\\WaistlandGameWPF\\Maps",
-    "\\WaistlandGameWPF\\Weapons"
+    "\\Evo",
+    "\\Evo\\Calculator",
+    "\\Evo\\GameObjects",
+    "\\Evo\\GameRunner",
+    "\\Evo\\Items",
+    "\\Evo\\Maps",
+    "\\Evo\\SaveLoad",
+    "\\Evo\\Weapons"
   ],
-  "SelectedNode": "\\WaistlandGameWPF\\MainWindow.xaml.cs",
   "PreviewInSolutionExplorer": false
 }

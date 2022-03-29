@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace WaistlandGameWPF {
+namespace Evo {
 public class BulletPenetration {
 
 	public String name = "unnamed projectile";// _9_mm, _7_62_mm, _12_7_mm

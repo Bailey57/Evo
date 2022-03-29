@@ -1,7 +1,7 @@
 using System;
 
 
-namespace WaistlandGameWPF
+namespace Evo
 {
 	[System.Serializable]
 	public class GunAttachments 
