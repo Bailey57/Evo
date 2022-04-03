@@ -408,13 +408,20 @@ namespace Evo
 		} else
 		{
 
+					//run through the actual actions here
+					//gameObjectsOnMapList[i].
+
+			
+
+
+
 			if (((Entity)gameObjectsOnMapList[i]).entityInSight(player) && (((Entity)gameObjectsOnMapList[i]).alive))
 			{
 				((Entity)gameObjectsOnMapList[i]).attackEntity(worldMap, player, secondsPassed, false);
 
 				if (player.getIsThePlayer())
 				{
-					if (!player.isSpotted() && !player.isInCombat())
+					if (player.isSpotted() && player.isInCombat())
 					{
 
 						player.addObjectStringEvents("\nSpotted by a " + ((Entity)gameObjectsOnMapList[i]).getEntityName() + ".\n");
@@ -442,11 +449,12 @@ namespace Evo
 			//Console.WriteLine("\n" + player.getObjectName() + " is hidden from view.");
 			
 			player.setSpotted(false);
-			if (player.isInCombat() && player.getIsThePlayer()) {
+			if (player.isInCombat() && player.getIsThePlayer()) 
+			{
 				player.addObjectStringEvents("\nExited combat.\n");
 				Console.WriteLine("Exited combat.");
-}
-player.setInCombat(false);
+			}
+			player.setInCombat(false);
 			
 			
 		}
