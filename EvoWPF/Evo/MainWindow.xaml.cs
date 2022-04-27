@@ -29,7 +29,7 @@ namespace Evo
             //tst.testingMethod();
             //DrawButtons();
             InitializeComponent();
-            gameVersionLabel.Content = "v0.4.1";
+            gameVersionLabel.Content = "v0.4.2";
 
             gameState = gameState.MakeBuild1();
 
@@ -44,6 +44,7 @@ namespace Evo
 
 
             playerInventory.ItemsSource = gameState.GetPlayer().getInventory();
+            inventoryListBox.ItemsSource = gameState.GetPlayer().getInventory();
             DrawMap();
             DrawButtons();
 
@@ -69,6 +70,8 @@ namespace Evo
 
 
             playerInventory.ItemsSource = gameState.GetPlayer().getInventory();
+
+            inventoryListBox.ItemsSource = gameState.GetPlayer().getInventory();
             //playerInventory.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
             //playerInventory.
 
@@ -285,9 +288,17 @@ namespace Evo
             GameLoop();
         }
 
+        private void DropItem(object sender, RoutedEventArgs e)
+        {
+            gameState.GetPlayer().dropItem((BaseItem)playerInventory.SelectedItem);
+            //gameState.GetPlayer().removeItemFromInventory
+            GameLoop();
+        }
+
         private void EquipItemAsWeapon(object sender, RoutedEventArgs e)
         {
             gameState.GetPlayer().equipItemAsWeapon((BaseItem) playerInventory.SelectedItem);
+
             GameLoop();
         }
 
