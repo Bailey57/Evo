@@ -29,7 +29,7 @@ namespace Evo
             //tst.testingMethod();
             //DrawButtons();
             InitializeComponent();
-            gameVersionLabel.Content = "v0.5.0";
+            gameVersionLabel.Content = "v0.5.1";
 
             gameState = gameState.MakeBuild1();
 
