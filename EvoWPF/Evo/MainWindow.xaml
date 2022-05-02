@@ -140,13 +140,48 @@
         <Label x:Name="loadingNoteLabel" Content="Note: Takes 7~ seconds to load a save" HorizontalAlignment="Left" Margin="-243,-78,0,0" VerticalAlignment="Top"/>
         <Label x:Name="gameVersionLabel" Content="v0" HorizontalAlignment="Left" Margin="-406,-106,0,0" VerticalAlignment="Top"/>
         <Button x:Name="mainMenuButton" Content="Main Menu" HorizontalAlignment="Left" Margin="-493,-131,0,0" VerticalAlignment="Top" Click="NewGame"/>
-        <ListBox x:Name="inventoryListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="-213,713,214,11" Grid.Row="1"/>
+        <ListBox x:Name="inventoryListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="-170,710,171,14" Grid.Row="1">
+
+        </ListBox>
         <Label x:Name="consoleLabel" Grid.Column="1" Content="Console" HorizontalAlignment="Left" Margin="959,285,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="26" Width="56"/>
-        <Button x:Name="talkToEntityButton" Grid.Column="1" Content="Talk To Entity" HorizontalAlignment="Left" Margin="538,182,0,0" VerticalAlignment="Top" Click="FireAtEntity" Height="36" Width="119" Grid.Row="1">
+        <Button x:Name="talkToEntityButton" Grid.Column="1" Content="Talk To Entity" HorizontalAlignment="Left" Margin="526,592,0,0" VerticalAlignment="Top" Click="FireAtEntity" Height="36" Width="119" Grid.Row="1">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
-        <Label x:Name="playerInventoryLabel_Copy" Content="Inventory TEST" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-191,684,0,0" Height="26" Width="112" Grid.Row="1"/>
+        <Label x:Name="playerInventoryLabel_Copy" Content="Inventory TEST" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-148,681,0,0" Height="26" Width="112" Grid.Row="1"/>
+        <ListView x:Name="pointsOfInterestListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="70,57,0,500" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="174" Grid.Column="1">
+            <ListView.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0"/>
+                </TransformGroup>
+            </ListView.RenderTransform>
+            <ListView.Style>
+                <Style/>
+            </ListView.Style>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label x:Name="poi_Label" Content="Points of Interest" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="106,25,0,0" Grid.RowSpan="2" Height="26" Width="102" Grid.Column="1"/>
+        <TextBox x:Name="poi_desc" HorizontalAlignment="Left" Margin="249,57,0,0" TextWrapping="Wrap" Text="POI description" VerticalAlignment="Top" Width="212" Height="214" Grid.Column="1" VerticalScrollBarVisibility="Auto" Grid.Row="1" BorderBrush="#FF97ADED">
+            <TextBox.Background>
+                <ImageBrush/>
+            </TextBox.Background>
+            <TextBox.Style>
+                <Style/>
+            </TextBox.Style>
+        </TextBox>
+        <Label x:Name="poi_Label_Copy" Content="Points of Interest Desciption" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="271,25,0,0" Grid.RowSpan="2" Height="26" Width="164" Grid.Column="1"/>
+        <Button x:Name="selcetPOI_Button" Content="Selcet POI" HorizontalAlignment="Left" Margin="70,271,0,0" VerticalAlignment="Top" Click="ReloadGUI" Height="35" Width="87" Grid.Row="1" BorderBrush="Black" Grid.Column="1">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

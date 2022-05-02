@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.ObjectModel;
 
 namespace Evo
 {
@@ -44,6 +44,8 @@ namespace Evo
 	public int gameObjectMapLimit = 999000;
 
 
+	//public PointOfInterest poi = new PointOfInterest("", "", null);
+	public ObservableCollection<PointOfInterest> pointOfInterests = new ObservableCollection<PointOfInterest>();
 
 	//	
 	//	/**
@@ -60,7 +62,7 @@ namespace Evo
 	 * 
 	 * @param mapSize
 	 */
-	
+
 	public Map(int mapSize)
 	{
 		this.mapSize = mapSize;

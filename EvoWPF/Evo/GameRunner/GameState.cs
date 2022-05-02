@@ -183,8 +183,19 @@ using Wasteland.map.Map;
 			int initMapAreaX = 0;
 			int initMapAreaY = 0;
 			gameState.GetMainMap().makeGameMap1();
+
+			
+
+
 			GameObjectPos startPos = new GameObjectPos(gameState.GetMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
 			GameObjectPos startPos2 = new GameObjectPos(gameState.GetMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
+
+
+			GameObjectPos rand1 = new GameObjectPos(gameState.GetMainMap(), 3, 3, initMapAreaX, initMapAreaY);
+			PointOfInterest poi1 = new PointOfInterest("POI_1", "Test poi 1", startPos);
+			PointOfInterest poi2 = new PointOfInterest("POI_2", "Test poi 2", rand1);
+			gameState.GetMainMap().pointOfInterests.Add(poi1);
+			gameState.GetMainMap().pointOfInterests.Add(poi2);
 
 
 			//gameState.GetMainMap().makeMap1(gameState.GetMainMap());
