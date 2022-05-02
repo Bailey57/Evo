@@ -64,9 +64,12 @@ namespace Evo
             playerDirection.Content = gameState.GetPlayer().getDirectionFacing();
 
             //(BaseItem)playerInventory.SelectedItem
+            if (pointsOfInterestListView.SelectedItem != null) 
+            {
+                poi_desc.Text = ((PointOfInterest)pointsOfInterestListView.SelectedItem).getDescription();
+                pointsOfInterestListView.ItemsSource = gameState.GetMainMap().pointOfInterests;
+            }
             
-            poi_desc.Text = ((PointOfInterest)pointsOfInterestListView.SelectedItem).getDescription();
-            pointsOfInterestListView.ItemsSource = gameState.GetMainMap().pointOfInterests;
 
 
             itemsInSight.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
@@ -351,7 +354,7 @@ namespace Evo
                 GameLoop();
             }
         }
-
+        
 
         private void MovePlayer(object sender, RoutedEventArgs e)
         {
