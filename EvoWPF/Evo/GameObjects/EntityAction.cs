@@ -10,17 +10,27 @@ namespace Evo
 	
 	public class EntityAction {
 
+		//highest number action is prioritized 0-100
+		private double priority;
+
+		//action being performed on
+		private GameObject target;
 
 
-	
-	
+		//performer - the entity performing the action 
 
-	
-	
-	//public void bandageSelfWound() {		
-	//}
-	
-	public void bandageWound(Animal wounded, BodyPart bodyPart, Wound wound) {
+
+
+
+		public void AttackGameObject(Entity performer, GameObject target)
+		{
+
+		}
+
+		//public void bandageSelfWound() {		
+		//}
+
+		public void bandageWound(Animal wounded, BodyPart bodyPart, Wound wound) {
 		
 		for (int i = 0; i < wounded.bodyParts.GetLength(0); i++) {
 			if (wounded.bodyParts[i] == bodyPart) {
@@ -32,27 +42,27 @@ namespace Evo
 
 
 
-		public void PatrollArea(Entity entity, double patrollRadius)
+		public void PatrollArea(Entity performer, double patrollRadius)
 		{
 			
 		}
 
-		public void GuardArea(Entity entity, double patrollRadius)
+		public void GuardArea(Entity performer, double patrollRadius)
 		{
 
 		}
 
-		public void GuardGameObject() 
-		{
-		
-		}
-
-		public void FollowGameObject() 
+		public void GuardGameObject(Entity performer, GameObject target) 
 		{
 		
 		}
 
-		public void ApproachGameObject()
+		public void FollowGameObject(Entity performer, GameObject target) 
+		{
+		
+		}
+
+		public void ApproachGameObject(Entity performer, GameObject target)
 		{
 
 		}

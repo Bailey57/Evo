@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 //later: add entity levels wich affect how skilled they are ex: high lvl might have high accuracy
 namespace Evo
@@ -44,7 +46,10 @@ namespace Evo
 	public double secondsLeft = 0;
 
 		// change to be based off of mass and volume
-		private BaseItem[] inventory;
+
+		//private BaseItem[] inventory;
+		private ObservableCollection<BaseItem> inventory = new ObservableCollection<BaseItem>();
+
 		//private BaseItem[] inventory = new BaseItem[99];
 
 		// maybe make an array for duel wielding
@@ -235,20 +240,21 @@ namespace Evo
 	/**
 	 * @return the inventory
 	 */
-	public BaseItem[] getInventory() {
+	public ObservableCollection<BaseItem> getInventory() {
 		return inventory;
 	}
 
 	/**
 	 * @param inventory the inventory to set
 	 */
-	public void setInventory(BaseItem[] inventory) {
+	public void setInventory(ObservableCollection<BaseItem> inventory) {
 		this.inventory = inventory;
 	}
 	
 	/**
 	 * @param sorts inventory
 	 */
+	/*
 	public void sortInventory() {
 		for (int i = 0; i < getInventory().GetLength(0); i++) {
 			
@@ -272,7 +278,7 @@ namespace Evo
 		}
 		
 	}
-
+	*/
 	public bool aliveCheck() {
 
 		if (integrityCheck() == true && alive == true) {
@@ -880,44 +886,33 @@ namespace Evo
 	 * @return true if added
 	 */
 	public bool addItemToInventory(BaseItem item) {
-		if (this.getInventory()[getInventory().Length - 1] != null) 
-		{
-			this.increaseInventoryLength();
-		}
 
-		for (int i = 0; i < inventory.GetLength(0); i++) {
-			if (inventory[i] == null) {
-				inventory[i] = item;
-				
-				item.setGameObjectPos(null);
-				sortInventory();
-				return true;
-			} else if (i == inventory.GetLength(0)) {
-				this.increaseInventoryLength();
-			}
 
-		}
+			inventory.Add(item);
+			item.setGameObjectPos(null);
+		
 		// Console.WriteLine("Could not add item to inventory.");
-		sortInventory();
-		return false;
+		
+		return true;
 
 	}
 
 	public bool removeItemFromInventory(BaseItem item) {
-		for (int i = 0; i < inventory.GetLength(0); i++) {
+
+		for (int i = 0; i < inventory.Count; i++) {
 			if (inventory[i] == item) {
 				inventory[i] = null;
-				sortInventory();
+				
 				return true;
 			}
 		}
-		sortInventory();
+		
 		return false;
 	}
 
 	public bool itemInInventory(BaseItem item) {
 
-		for (int i = 0; i < inventory.GetLength(0); i++) {
+		for (int i = 0; i < inventory.Count; i++) {
 			if (inventory[i] == item) {
 				return true;
 			}
@@ -930,7 +925,7 @@ namespace Evo
 		String inventoryString = "\n";
 		int objInInv = 0;
 
-		for (int i = 0; i < inventory.GetLength(0); i++) {
+		for (int i = 0; i < inventory.Count; i++) {
 			if (inventory[i] != null) {
 
 				inventoryString += i + ": " + inventory[i].objectName + "\n";
@@ -949,7 +944,7 @@ namespace Evo
 
 	public bool equipInvintoryItemAsWeapon(int index) {
 
-		if (index < inventory.GetLength(0) && inventory[index] != entityWeapon) {
+		if (index < inventory.Count && inventory[index] != entityWeapon) {
 			setEntityWeapon(inventory[index]);
 				//removeItemFromInventory(entityWeapon);
 				this.addObjectStringEvents("Equiped " + inventory[index].getObjectName() + " as a weapon");
@@ -969,13 +964,13 @@ namespace Evo
 	}
 	
 	private void createNewInventory() {
-		this.inventory = new BaseItem[1];
+		this.inventory = new ObservableCollection<BaseItem>();
 	}
 	
 	private void increaseInventoryLength() {
-		BaseItem[] newInventory = new BaseItem[(this.inventory.GetLength(0) * 2)];
+			ObservableCollection<BaseItem> newInventory = new ObservableCollection<BaseItem>();
 		
-		for (int i = 0; i < this.inventory.GetLength(0); i++) {
+		for (int i = 0; i < this.inventory.Count; i++) {
 			newInventory[i] = inventory[i];
 			
 		}
@@ -1016,9 +1011,9 @@ namespace Evo
 
 	public bool pickUpItemFromInventory(Entity entity, BaseItem item) {
 		bool itemAdded = false;
-		BaseItem[] baseItem = entity.getInventory();
+			ObservableCollection<BaseItem> baseItem = entity.getInventory();
 
-		for (int i = 0; i < baseItem.GetLength(0); i++) {
+		for (int i = 0; i < baseItem.Count; i++) {
 			if (baseItem[i] == item) {
 				entity.getInventory()[i] = null;
 				itemAdded = pickUpItem(item);
@@ -1049,7 +1044,7 @@ namespace Evo
 
 			}
 
-			removeItemFromInventory(item);
+			inventory.Remove(item);
 			item.setGameObjectPos(getGameObjectPos());
 			item.setInInventory(false);
 			addObjectStringEvents("\nDropped " + item.getObjectName());

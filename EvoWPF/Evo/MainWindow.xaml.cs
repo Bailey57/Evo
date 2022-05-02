@@ -29,7 +29,7 @@ namespace Evo
             //tst.testingMethod();
             //DrawButtons();
             InitializeComponent();
-            gameVersionLabel.Content = "v0.4.1";
+            gameVersionLabel.Content = "v0.5.0";
 
             gameState = gameState.MakeBuild1();
 
@@ -42,8 +42,10 @@ namespace Evo
             //itemsInSightListBox.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
 
 
+            pointsOfInterestListView.ItemsSource = gameState.GetMainMap().pointOfInterests;
 
             playerInventory.ItemsSource = gameState.GetPlayer().getInventory();
+            inventoryListBox.ItemsSource = gameState.GetPlayer().getInventory();
             DrawMap();
             DrawButtons();
 
@@ -54,13 +56,17 @@ namespace Evo
 
         }
 
-        public void GameLoop() 
+        public void GameLoop()
         {
             loadingStatusLabel.Content = "Loading Status: in progress";
             double seconds = 5;
             consoleOutput.Text = gameState.GetPlayer().getObjectStringEvents();
             playerDirection.Content = gameState.GetPlayer().getDirectionFacing();
 
+            //(BaseItem)playerInventory.SelectedItem
+            
+            poi_desc.Text = ((PointOfInterest)pointsOfInterestListView.SelectedItem).getDescription();
+            pointsOfInterestListView.ItemsSource = gameState.GetMainMap().pointOfInterests;
 
 
             itemsInSight.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
@@ -69,6 +75,8 @@ namespace Evo
 
 
             playerInventory.ItemsSource = gameState.GetPlayer().getInventory();
+
+            inventoryListBox.ItemsSource = gameState.GetPlayer().getInventory();
             //playerInventory.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
             //playerInventory.
 
@@ -96,6 +104,7 @@ namespace Evo
             loadingStatusLabel.Content = "Loading Status: done";
         }
 
+        
 
 
         private void NewGame(object sender, RoutedEventArgs e)
@@ -105,6 +114,7 @@ namespace Evo
             gameState = gameState.MakeBuild1();
             GameLoop();
         }
+
 
         private void SaveGame(object sender, RoutedEventArgs e) 
         {
@@ -285,9 +295,17 @@ namespace Evo
             GameLoop();
         }
 
+        private void DropItem(object sender, RoutedEventArgs e)
+        {
+            gameState.GetPlayer().dropItem((BaseItem)playerInventory.SelectedItem);
+            //gameState.GetPlayer().removeItemFromInventory
+            GameLoop();
+        }
+
         private void EquipItemAsWeapon(object sender, RoutedEventArgs e)
         {
             gameState.GetPlayer().equipItemAsWeapon((BaseItem) playerInventory.SelectedItem);
+
             GameLoop();
         }
 
@@ -355,6 +373,18 @@ namespace Evo
             GameLoop();
 
 
+        }
+
+
+        private void ReloadGUI(object sender, RoutedEventArgs e)
+        {
+            GameLoop();
+        }
+
+
+        private void SelectPOI(object sender, RoutedEventArgs e)
+        {
+            GameLoop();
         }
 
 

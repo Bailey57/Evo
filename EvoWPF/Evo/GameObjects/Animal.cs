@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 
 //later: add entity levels wich affect how skilled they are ex: high lvl might have high accuracy
@@ -995,9 +997,9 @@ public class Animal : Entity {
 
 	public bool pickUpItemFromInventory(Entity entity, BaseItem item) {
 		bool itemAdded = false;
-		BaseItem[] baseItem = entity.getInventory();
+	    ObservableCollection<BaseItem> baseItem = entity.getInventory();
 
-		for (int i = 0; i < baseItem.GetLength(0); i++) {
+		for (int i = 0; i < baseItem.Count; i++) {
 			if (baseItem[i] == item) {
 				entity.getInventory()[i] = null;
 				itemAdded = pickUpItem(item);

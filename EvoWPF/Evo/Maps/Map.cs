@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.ObjectModel;
 
 namespace Evo
 {
@@ -44,6 +44,8 @@ namespace Evo
 	public int gameObjectMapLimit = 999000;
 
 
+	//public PointOfInterest poi = new PointOfInterest("", "", null);
+	public ObservableCollection<PointOfInterest> pointOfInterests = new ObservableCollection<PointOfInterest>();
 
 	//	
 	//	/**
@@ -60,7 +62,7 @@ namespace Evo
 	 * 
 	 * @param mapSize
 	 */
-	
+
 	public Map(int mapSize)
 	{
 		this.mapSize = mapSize;
@@ -408,13 +410,20 @@ namespace Evo
 		} else
 		{
 
+					//run through the actual actions here
+					//gameObjectsOnMapList[i].
+
+			
+
+
+
 			if (((Entity)gameObjectsOnMapList[i]).entityInSight(player) && (((Entity)gameObjectsOnMapList[i]).alive))
 			{
 				((Entity)gameObjectsOnMapList[i]).attackEntity(worldMap, player, secondsPassed, false);
 
 				if (player.getIsThePlayer())
 				{
-					if (!player.isSpotted() && !player.isInCombat())
+					if (player.isSpotted() && player.isInCombat())
 					{
 
 						player.addObjectStringEvents("\nSpotted by a " + ((Entity)gameObjectsOnMapList[i]).getEntityName() + ".\n");
@@ -442,11 +451,12 @@ namespace Evo
 			//Console.WriteLine("\n" + player.getObjectName() + " is hidden from view.");
 			
 			player.setSpotted(false);
-			if (player.isInCombat() && player.getIsThePlayer()) {
+			if (player.isInCombat() && player.getIsThePlayer()) 
+			{
 				player.addObjectStringEvents("\nExited combat.\n");
 				Console.WriteLine("Exited combat.");
-}
-player.setInCombat(false);
+			}
+			player.setInCombat(false);
 			
 			
 		}
