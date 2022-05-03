@@ -523,7 +523,13 @@ namespace Evo
 		
 		return 0.0;
 	}
-	
 
-}
+
+
+        public override string ToString()
+        {
+            return this.getName();
+        }
+
+    }
 }

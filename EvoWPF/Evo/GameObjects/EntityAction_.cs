@@ -8,13 +8,13 @@ namespace Evo
 {
 	//package wasteland.entity;
 	
-	public class EntityAction {
+	public class EntityAction_ {
 
 		//highest number action is prioritized 0-100
 		private double priority;
 
 		//action being performed on
-		private GameObject target;
+		//private GameObject target;
 
 
 		//performer - the entity performing the action 
@@ -24,6 +24,12 @@ namespace Evo
 
 		public void AttackGameObject(Entity performer, GameObject target)
 		{
+
+		}
+
+		public void ApproachGameObject(Entity performer, GameObject target)
+		{
+
 
 		}
 
@@ -62,7 +68,7 @@ namespace Evo
 		
 		}
 
-		public void ApproachGameObject(Entity performer, GameObject target)
+		public void GameObject(Entity performer, GameObject target)
 		{
 
 		}

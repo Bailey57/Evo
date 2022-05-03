@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
+using System.Media;
 
 namespace Evo
 {
@@ -21,15 +22,27 @@ namespace Evo
     /// </summary>
     public partial class MainWindow : Window
     {
+
         private GameState gameState = new GameState();
         private SaveLoad saveLoad = new SaveLoad();
+
+        private SoundPlayer buttonPressSound;
+        
         public MainWindow()
         {
             //Hitbox tst = new Hitbox();
             //tst.testingMethod();
             //DrawButtons();
             InitializeComponent();
-            gameVersionLabel.Content = "v0.5.1";
+
+           // buttonPressSound = new SoundPlayer(@"/Resources/sounds/gui/buttons/buttonClick_1.wav");
+            buttonPressSound = new SoundPlayer(@"/buttonClick_1.wav");
+            //buttonPressSound.Source = new Uri(@"/Resources/sounds/gui/buttons/buttonClick_1.mp3", UriKind.Relative);
+            // buttonPress.routedevent
+            //selcetPOI_Button.AddToEventRoute();
+
+
+            gameVersionLabel.Content = "v0.5.2";
 
             gameState = gameState.MakeBuild1();
 
@@ -105,6 +118,8 @@ namespace Evo
             mapPosLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapX()
                 + "Y: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapY();
             loadingStatusLabel.Content = "Loading Status: done";
+
+            //buttonPressSound.Play();
         }
 
         
@@ -387,6 +402,7 @@ namespace Evo
 
         private void SelectPOI(object sender, RoutedEventArgs e)
         {
+           // buttonPressSound.Play();
             GameLoop();
         }
 
