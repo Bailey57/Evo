@@ -81,7 +81,11 @@ namespace Evo
 	public void setMagazine(Magazine magazine)
 	{
 		this.magazine = magazine;
-		magazine.setInInventory(true);
+			if (magazine != null) 
+			{
+				magazine.setInInventory(true);
+			}
+		
 	}
 
 	/**
