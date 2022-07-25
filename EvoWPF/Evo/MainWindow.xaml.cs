@@ -43,7 +43,7 @@ namespace Evo
             //selcetPOI_Button.AddToEventRoute();
 
 
-            gameVersionLabel.Content = "v0.5.3";
+            gameVersionLabel.Content = "v0.5.4";
 
             gameState = gameState.MakeBuild1();
 
