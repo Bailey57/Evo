@@ -40,6 +40,49 @@ namespace Evo
 		}		
 	}
 
+		public bool LoadGun(Entity performer, Gun gun, Magazine magazine) 
+		{
+			if (TakeOutMagazine(performer, gun, magazine)) 
+			{
+				performer.addObjectStringEvents("Ejected " + magazine.getObjectName() + " from " + gun.getObjectName() + ".\n");
+			}
+			gun.setMagazine(magazine);
+			performer.getInventory().Remove(magazine);
+
+			performer.addObjectStringEvents("Loaded " + magazine.getObjectName() + " into " + gun.getObjectName() + ".");
+			return true;
+		}
+
+		public bool TakeOutMagazine(Entity performer, Gun gun, Magazine magazine)
+		{
+			if (gun.getMagazine() != null)
+			{
+				performer.addItemToInventory(magazine);
+				gun.setMagazine(null);
+				return true;
+			}
+
+
+
+			return false;
+		}
+
+		public int FillMagazine(Entity performer, Magazine magazine)
+		{
+			int numberLoaded = 0;
+			for (int i = 0; i < performer.getInventory().Count; i ++) 
+			{
+				if (performer.getInventory()[i] is ProjectileAmmo && ((ProjectileAmmo)performer.getInventory()[i]).getDiameter() ==  magazine.getMagProjectileDiamiter()) 
+				{
+					magazine.addBullet(((ProjectileAmmo)performer.getInventory()[i]));
+					performer.getInventory().Remove(performer.getInventory()[i]);
+					numberLoaded++;
+				}
+			}
+			performer.addObjectStringEvents("Filled " + magazine.getObjectName() + " with " + numberLoaded + " rounds.");
+			return numberLoaded;
+		}
+
 
 
 		public void PatrollArea(Entity performer, double patrollRadius)

@@ -81,7 +81,11 @@ namespace Evo
 	public void setMagazine(Magazine magazine)
 	{
 		this.magazine = magazine;
-		magazine.setInInventory(true);
+		if (magazine != null) 
+		{
+			magazine.setInInventory(true);
+		}
+		
 	}
 
 	/**
@@ -282,15 +286,7 @@ namespace Evo
 		return cycled;
 	}
 
-	public bool ejectMag()
-	{
-		return false;
-	}
 
-	public bool reload()
-	{
-		return false;
-	}
 
 	public bool cycleGunAfterFiring()
 	{

@@ -96,7 +96,7 @@
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="loadMagazineButton" Grid.Column="1" Content="Load Magazine " HorizontalAlignment="Left" Margin="392,676,0,0" VerticalAlignment="Top" Click="LoadMagazine" Height="41" Width="109" Grid.Row="1">
+        <Button x:Name="loadGunButton" Grid.Column="1" Content="Load Gun" HorizontalAlignment="Left" Margin="392,676,0,0" VerticalAlignment="Top" Click="LoadGun" Height="41" Width="109" Grid.Row="1">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
@@ -132,7 +132,7 @@
             <Image x:Name="mapArea_x1_y1_Copy" HorizontalAlignment="Center" Height="614" VerticalAlignment="Top" Width="593" Source="/Resources/images/gui/map_display1.png" Margin="0,-92,0,0" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="-1"/>
         </Grid>
         <Label x:Name="mapPosLabel" Content="X:? Y:?" HorizontalAlignment="Left" Margin="-148,476,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="94" Foreground="#FF70D200"/>
-        <Button x:Name="fillMagazineButton" Grid.Column="1" Content="Fill Magazine" HorizontalAlignment="Left" Margin="392,717,0,0" VerticalAlignment="Top" Click="LoadMagazine" Height="43" Width="109" Grid.Row="1">
+        <Button x:Name="fillMagazineButton" Click ="FillMagazine" Grid.Column="1" Content="Fill Magazine" HorizontalAlignment="Left" Margin="392,717,0,0" VerticalAlignment="Top" Height="43" Width="109" Grid.Row="1">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
@@ -140,16 +140,12 @@
         <Label x:Name="loadingNoteLabel" Content="Note: Takes 7~ seconds to load a save" HorizontalAlignment="Left" Margin="-243,-78,0,0" VerticalAlignment="Top"/>
         <Label x:Name="gameVersionLabel" Content="v0" HorizontalAlignment="Left" Margin="-406,-106,0,0" VerticalAlignment="Top"/>
         <Button x:Name="mainMenuButton" Content="Main Menu" HorizontalAlignment="Left" Margin="-493,-131,0,0" VerticalAlignment="Top" Click="NewGame"/>
-        <ListBox x:Name="inventoryListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="-170,710,171,14" Grid.Row="1">
-
-        </ListBox>
         <Label x:Name="consoleLabel" Grid.Column="1" Content="Console" HorizontalAlignment="Left" Margin="959,285,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="26" Width="56"/>
         <Button x:Name="talkToEntityButton" Grid.Column="1" Content="Talk To Entity" HorizontalAlignment="Left" Margin="526,592,0,0" VerticalAlignment="Top" Click="FireAtEntity" Height="36" Width="119" Grid.Row="1">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
-        <Label x:Name="playerInventoryLabel_Copy" Content="Inventory TEST" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-148,681,0,0" Height="26" Width="112" Grid.Row="1"/>
         <ListView x:Name="pointsOfInterestListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="70,57,0,500" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="174" Grid.Column="1">
             <ListView.RenderTransform>
                 <TransformGroup>
