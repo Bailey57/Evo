@@ -493,8 +493,8 @@ public class CommandHandler {
 
 			// tell the player and the game that the game is ending
 			Console.WriteLine("Game ended");
-			gameState.SetIsGameEnded(true);
-				gameState.SetIsGameEnded(true);
+			//gameState.SetIsGameEnded(true);
+				//gameState.SetIsGameEnded(true);
 
 			// close the scanner
 			//scn.close();

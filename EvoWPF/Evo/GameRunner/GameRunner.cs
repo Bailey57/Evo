@@ -157,7 +157,7 @@ using Wasteland.map.Map;
 			Console.WriteLine("enter \'h\' for a list of commands");
 
 			// game loop, loop until the game ends
-			while (!gameState.GetIsGameEnded())
+			while (true)
 			{
 
 

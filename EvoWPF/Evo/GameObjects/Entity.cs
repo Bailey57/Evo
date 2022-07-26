@@ -250,36 +250,60 @@ namespace Evo
 	public void setInventory(ObservableCollection<BaseItem> inventory) {
 		this.inventory = inventory;
 	}
-	
-	/**
-	 * @param sorts inventory
-	 */
-	/*
-	public void sortInventory() {
-		for (int i = 0; i < getInventory().GetLength(0); i++) {
-			
-			
-			
-			
-			if (getInventory()[i] != null && i > 0) {
-				
-				for (int k = 0; k < getInventory().GetLength(0); k++) {	
-					if (getInventory()[k] == null && k > 0 && k < i) {
-						getInventory()[k] = getInventory()[i];
-						getInventory()[i] = null;
-						break;
-					}
-				}
-				
-			}
-						
-			
-			
+
+
+
+		public double GetSecondsLeft()
+		{
+			return secondsLeft;
 		}
-		
-	}
-	*/
-	public bool aliveCheck() {
+
+		/**
+		 * @param secondsLeft the secondsLeft to set
+		 */
+		public void SetSecondsLeft(double secondsLeft)
+		{
+			this.secondsLeft = secondsLeft;
+		}
+
+		public void AddSecondsLeft(double secondsLeft)
+		{
+
+			this.secondsLeft += secondsLeft;
+		}
+
+
+
+
+		/**
+		 * @param sorts inventory
+		 */
+		/*
+		public void sortInventory() {
+			for (int i = 0; i < getInventory().GetLength(0); i++) {
+
+
+
+
+				if (getInventory()[i] != null && i > 0) {
+
+					for (int k = 0; k < getInventory().GetLength(0); k++) {	
+						if (getInventory()[k] == null && k > 0 && k < i) {
+							getInventory()[k] = getInventory()[i];
+							getInventory()[i] = null;
+							break;
+						}
+					}
+
+				}
+
+
+
+			}
+
+		}
+		*/
+		public bool aliveCheck() {
 
 		if (integrityCheck() == true && alive == true) {
 

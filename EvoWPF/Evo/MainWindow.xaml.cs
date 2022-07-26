@@ -28,7 +28,8 @@ namespace Evo
         private EntityAction entityAction = new EntityAction();
 
         private SoundPlayer buttonPressSound;
-        
+
+        private double secondsPassed = 0;
         public MainWindow()
         {
             //Hitbox tst = new Hitbox();
@@ -73,7 +74,7 @@ namespace Evo
         public void GameLoop()
         {
             loadingStatusLabel.Content = "Loading Status: in progress";
-            double seconds = 5;
+           
             consoleOutput.Text = gameState.GetPlayer().getObjectStringEvents();
             playerDirection.Content = gameState.GetPlayer().getDirectionFacing();
 
@@ -100,7 +101,8 @@ namespace Evo
 
             entitiesInSightList.ItemsSource = gameState.GetPlayer().entitiesInSightList(gameState.GetMainMap());
 
-            gameState.GetMainMap().runThroughEntityActions(gameState.GetMainMap(), gameState.GetPlayer(), seconds);
+            gameState.GetMainMap().runThroughEntityActions(gameState.GetMainMap(), gameState.GetPlayer(), secondsPassed);
+            gameState.GetGameTime().PassSeconds(secondsPassed);
             consoleOutput.ScrollToEnd();
 
             if (gameState.GetPlayer().getEntityWeapon() != null)
@@ -114,12 +116,13 @@ namespace Evo
 
             //add to overall map loading so every gameObject gets this
             //gameState.GetPlayer().addObjectStringEvents("\n<-day: ?-------Time: ?->\n
-            gameState.GetPlayer().addObjectStringEvents("\n<-------------------->\nDate: 01/01/2095\nTime: 1300\n\n");
+            gameState.GetPlayer().addObjectStringEvents("\n<-------------------->\n" + gameState.GetGameTime().ToString() + "\n");
             DrawMap();
             mapPosLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapX()
                 + "Y: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapY();
             loadingStatusLabel.Content = "Loading Status: done";
 
+            secondsPassed = 0;
             //buttonPressSound.Play();
         }
 
@@ -311,6 +314,7 @@ namespace Evo
         private void PickUpItemOffOfGround(object sender, RoutedEventArgs e) 
         {
             gameState.GetPlayer().pickUpItemOffOfGround((BaseItem) itemsInSight.SelectedItem);
+            secondsPassed += 3;
             GameLoop();
         }
 
@@ -318,13 +322,15 @@ namespace Evo
         {
             gameState.GetPlayer().dropItem((BaseItem)playerInventory.SelectedItem);
             //gameState.GetPlayer().removeItemFromInventory
+            secondsPassed += 3;
             GameLoop();
+            
         }
 
         private void EquipItemAsWeapon(object sender, RoutedEventArgs e)
         {
             gameState.GetPlayer().equipItemAsWeapon((BaseItem) playerInventory.SelectedItem);
-
+            secondsPassed += 3;
             GameLoop();
         }
 
@@ -335,8 +341,8 @@ namespace Evo
             if (gameState.GetPlayer().getEntityWeapon() != null) 
             {
                 gameState.GetPlayer().attackEntity(gameState.GetMainMap(), (Entity)entitiesInSightList.SelectedItem, 0, true);
-            }         
-
+            }
+            secondsPassed += 2;
             GameLoop();
         }
 
@@ -347,7 +353,7 @@ namespace Evo
             {
                 ((Gun)gameState.GetPlayer().getEntityWeapon()).fireGunAtGameObject(gameState.GetPlayer(), (Entity)entitiesInSightList.SelectedItem);
             }
-
+            secondsPassed += 2;
             GameLoop();
         }
 
@@ -359,6 +365,7 @@ namespace Evo
             if (gameState.GetPlayer().getEntityWeapon() != null && gameState.GetPlayer().getEntityWeapon() is Gun)
             {
                 ((Gun)gameState.GetPlayer().getEntityWeapon()).cockGun(gameState.GetPlayer());
+                secondsPassed += 1;
                 GameLoop();
             }
         }
@@ -373,7 +380,7 @@ namespace Evo
                     //((Gun)gameState.GetPlayer().getEntityWeapon()).reload();
 
                 }
-
+                secondsPassed += 6;
                 GameLoop();
             }
         }
@@ -383,8 +390,10 @@ namespace Evo
             if (playerInventory.SelectedItem != null && playerInventory.SelectedItem is Magazine)
             {
                 entityAction.FillMagazine(gameState.GetPlayer(), ((Magazine)playerInventory.SelectedItem));
+                secondsPassed += 15;
                 GameLoop();
             }
+
         }
 
 
@@ -405,6 +414,7 @@ namespace Evo
                 gameState.SetDidPlayerMoveThisTurn(true);
                 gameState.GetMainMap().printGameMapString();
             }
+            secondsPassed += 300;
             GameLoop();
 
 

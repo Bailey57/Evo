@@ -413,10 +413,11 @@ namespace Evo
 					//run through the actual actions here
 					//gameObjectsOnMapList[i].
 
-			
 
 
 
+					//secondsPassed
+			//((Entity)gameObjectsOnMapList[i]).AddSecondsLeft(secondsPassed);
 			if (((Entity)gameObjectsOnMapList[i]).entityInSight(player) && (((Entity)gameObjectsOnMapList[i]).alive))
 			{
 				((Entity)gameObjectsOnMapList[i]).attackEntity(worldMap, player, secondsPassed, false);
