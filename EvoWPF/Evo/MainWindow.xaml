@@ -48,7 +48,7 @@
         <Button x:Name="faceSouth" Content="S" HorizontalAlignment="Left" Margin="-225,639,0,0" VerticalAlignment="Top" Click="FaceSouth" Grid.RowSpan="2" Height="20" Width="24"/>
         <Button x:Name="faceEast" Content="E" HorizontalAlignment="Left" Margin="-163,579,0,0" VerticalAlignment="Top" Click="FaceEast" Grid.RowSpan="2" Height="20" Width="24"/>
         <Button x:Name="faceWest" Content="W" HorizontalAlignment="Left" Margin="-287,579,0,0" VerticalAlignment="Top" Click="FaceWest" Grid.RowSpan="2" Height="20" Width="24"/>
-        <Button x:Name="travelButton" Content="Travel" HorizontalAlignment="Left" Margin="-168,619,0,0" VerticalAlignment="Top" Click="MovePlayer" Grid.RowSpan="2" Height="20" Width="34"/>
+        <Button x:Name="travelButton" Content="Travel" HorizontalAlignment="Left" Margin="-168,619,0,0" VerticalAlignment="Top" Click="MovePlayer" Grid.RowSpan="2" Height="40" Width="92"/>
         <Button x:Name="pickUpItemButton" Content="Pick Up Item" HorizontalAlignment="Left" Margin="70,598,0,0" VerticalAlignment="Top" Click="PickUpItemOffOfGround" Height="35" Width="87" Grid.Column="1" Grid.Row="1" BorderBrush="Black">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
@@ -118,7 +118,7 @@
         <Label x:Name="fireModeLabel" Grid.Column="1" Content="Fire Mode" HorizontalAlignment="Left" Margin="557,691,0,0" VerticalAlignment="Top" Grid.Row="1"/>
         <RadioButton x:Name="fastFireRB" Grid.Column="1" Content="Fast Fire" HorizontalAlignment="Left" Margin="626,717,0,0" VerticalAlignment="Top" GroupName="fireMode" Grid.Row="1"/>
         <RadioButton x:Name="supressiveFireRB" Grid.Column="1" Content="Supressive Fire " HorizontalAlignment="Left" Margin="626,737,0,0" VerticalAlignment="Top" GroupName="fireMode" Grid.Row="1"/>
-        <Grid Margin="-436,25,90,254" Grid.RowSpan="2">
+        <Grid Margin="-436,25,90,254" Grid.RowSpan="2" RenderTransformOrigin="0,0.5">
             <Image x:Name="mapArea_x0_y0" HorizontalAlignment="Center" Height="100" VerticalAlignment="Top" Width="100" Source="/forest.png" RenderTransformOrigin="0.5,0.5" Margin="0,146,0,0"/>
             <Image x:Name="mapArea_x_1_y_1" HorizontalAlignment="Left" Height="100" Margin="102,46,0,0" VerticalAlignment="Top" Width="100" Source="Resources\images\map\forest.png" RenderTransformOrigin="0.5,0.5"/>
             <Image x:Name="mapArea_x1_y0" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="Resources\images\map\forest.png" Margin="301,146,0,0" RenderTransformOrigin="0.5,0.5"/>
@@ -128,11 +128,11 @@
             <Image x:Name="mapArea_x1_y1" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/Resources/images/map/forest.png" Margin="301,246,0,0" RenderTransformOrigin="0.5,0.5"/>
             <Image x:Name="mapArea_x0_y_1" HorizontalAlignment="Center" Height="100" VerticalAlignment="Top" Width="100" Source="Resources\images\map\forest.png" Margin="0,46,0,0" RenderTransformOrigin="0.5,0.5"/>
             <Image x:Name="mapArea_x1_y_1" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="Resources\images\map\forest.png" Margin="301,46,0,0" RenderTransformOrigin="0.5,0.5"/>
-            <Label x:Name="_600x600_map_viewLabel" Content="600x600 map view" HorizontalAlignment="Left" Margin="178,450,0,0" VerticalAlignment="Top" Foreground="#FF70D200"/>
+            <Label x:Name="_600x600_map_viewLabel" Content="600x600 map view" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="#FF70D200"/>
             <Image x:Name="mapArea_x1_y1_Copy" HorizontalAlignment="Center" Height="614" VerticalAlignment="Top" Width="593" Source="/Resources/images/gui/map_display1.png" Margin="0,-92,0,0" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="-1"/>
-            <Image x:Name="playerMapIcon" HorizontalAlignment="Center" Height="25" VerticalAlignment="Top" Width="25" Source="/Resources/images/map/icons/player/playerIcon_64.png" RenderTransformOrigin="0.5,0.5" Margin="0,183,0,0"/>
+            <Image x:Name="playerMapIcon" HorizontalAlignment="Center" Height="25" VerticalAlignment="Top" Width="25" Source="/Resources/images/map/icons/player/playerIcon_64.png" RenderTransformOrigin="0.5,0.5" Margin="0,183,0,0" Opacity="0.695"/>
         </Grid>
-        <Label x:Name="mapPosLabel" Content="X:? Y:?" HorizontalAlignment="Left" Margin="-148,476,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="94" Foreground="#FF70D200"/>
+        <Label x:Name="mapPosLabel" Content="X:? Y:?" HorizontalAlignment="Left" Margin="-328,376,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="65" Foreground="#FF70D200"/>
         <Button x:Name="fillMagazineButton" Click ="FillMagazine" Grid.Column="1" Content="Fill Magazine" HorizontalAlignment="Left" Margin="392,717,0,0" VerticalAlignment="Top" Height="43" Width="109" Grid.Row="1">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
@@ -181,5 +181,12 @@
             </Button.Background>
         </Button>
         <Image x:Name="compass" HorizontalAlignment="Left" Height="100" Margin="-263,539,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="100" Source="/Resources/images/gui/compass/compassBackGround_64.png"/>
+        <Label x:Name="mapOverallPositionLabel" Content="X:? Y:?" HorizontalAlignment="Left" Margin="-182,376,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="170" Foreground="#FF70D200"/>
+        <Button x:Name="waitButton" Click ="PlayerWait" Content="Wait for 5 min" HorizontalAlignment="Left" Margin="-213,691,0,0" VerticalAlignment="Top" Height="35" Width="104" Grid.Row="1" BorderBrush="Black">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
+            </Button.Background>
+        </Button>
+        <Label x:Name="mapOverallPositionLabelEntity" Content="X:? Y:?" HorizontalAlignment="Left" Margin="676,350,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="122" Foreground="#FF70D200" Grid.Column="1"/>
     </Grid>
 </Window>

@@ -326,6 +326,7 @@ namespace Evo
 
 		double targetGrouping = getDistanceFromObject(targetGameObject) / groupingFalloff;
 
+		targetGrouping += 100; //temporary
 		return targetGrouping;
 	}
 
@@ -680,10 +681,10 @@ namespace Evo
 //		return false;
 //	}
 
-	public bool inAttackRange(Map worldMap, Entity targetEntity) {
+	public bool inAttackRange(GameObject target) {
 
-		if (getDistanceFromObject(targetEntity) <= attackRange
-				|| (entityWeapon != null && getDistanceFromObject(targetEntity) <= entityWeapon.getAttackRange())) {
+		if (getDistanceFromObject(target) <= attackRange
+				|| (entityWeapon != null && getDistanceFromObject(target) <= entityWeapon.getAttackRange())) {
 			return true;
 
 		} else {
@@ -763,7 +764,7 @@ namespace Evo
 
 			if (entityInSight(targetEntity)) {
 
-				if (!inAttackRange(worldMap, targetEntity)) {
+				if (!inAttackRange(targetEntity)) {
 
 					if (isThePlayer) {
 						
@@ -839,7 +840,7 @@ namespace Evo
 
 			if (entityInSight(targetEntity)) {
 
-				if (!inAttackRange(this.getGameObjectPos().getCurrentMap(), targetEntity)) {
+				if (!inAttackRange(targetEntity)) {
 
 					if (isThePlayer) {
 						

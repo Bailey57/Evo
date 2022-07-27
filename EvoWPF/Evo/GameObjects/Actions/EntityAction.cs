@@ -8,14 +8,14 @@ namespace Evo
 {
 	//package wasteland.entity;
 
-	public class EntityAction
+	public static class EntityAction
 	{
 
 		//highest number action is prioritized 0-100
-		private double priority;
+		//private double priority;
 
 		//action being performed on
-		private GameObject target;
+		//private GameObject target;
 
 
 		//performer - the entity performing the action 
@@ -23,7 +23,7 @@ namespace Evo
 
 
 
-		public void AttackGameObject(Entity performer, GameObject target)
+		public static void AttackGameObject(Entity performer, GameObject target)
 		{
 
 		}
@@ -31,7 +31,7 @@ namespace Evo
 		//public void bandageSelfWound() {		
 		//}
 
-		public void bandageWound(Animal wounded, BodyPart bodyPart, Wound wound)
+		public static void bandageWound(Animal wounded, BodyPart bodyPart, Wound wound)
 		{
 
 			for (int i = 0; i < wounded.bodyParts.GetLength(0); i++)
@@ -44,7 +44,7 @@ namespace Evo
 			}
 		}
 
-		public bool LoadGun(Entity performer, Gun gun, Magazine magazine)
+		public static bool LoadGun(Entity performer, Gun gun, Magazine magazine)
 		{
 			if (TakeOutMagazine(performer, gun, magazine))
 			{
@@ -57,7 +57,7 @@ namespace Evo
 			return true;
 		}
 
-		public bool TakeOutMagazine(Entity performer, Gun gun, Magazine magazine)
+		public static bool TakeOutMagazine(Entity performer, Gun gun, Magazine magazine)
 		{
 			if (gun.getMagazine() != null)
 			{
@@ -71,7 +71,7 @@ namespace Evo
 			return false;
 		}
 
-		public int FillMagazine(Entity performer, Magazine magazine)
+		public static int FillMagazine(Entity performer, Magazine magazine)
 		{
 			int numberLoaded = 0;
 			for (int i = 0; i < performer.getInventory().Count; i++)
@@ -87,31 +87,99 @@ namespace Evo
 			return numberLoaded;
 		}
 
+		 
 
 
-		public void PatrollArea(Entity performer, double patrollRadius)
+		public static bool AttackGameObjectMelee(Entity performer, GameObject target) 
+		{
+			if (!performer.inAttackRange(target)) 
+			{
+				return false;
+			}
+			//later add dodge and block checks 
+
+			return true;
+		}
+
+
+
+		
+		public static void AttackAndPursueGameObjectMelee(Entity performer, GameObject target)
+		{
+			if (performer.getAttackRange() < performer.getDistanceFromObject(target)) 
+			{
+				ApproachGameObject(performer, target);
+			}
+			else 
+			{
+				//add more calculations regurarding kenetic energy based on strength or whatever attack is used 
+				if (performer.getEntityWeapon() == null) 
+				{
+					Wound punchWound = new Wound("Punch wound", 0, 0, 0, "hurts but didnt really do anything");
+
+					target.getGameObjectHitbox().getBodyParts()[0].addWound(punchWound);
+
+					performer.addObjectStringEvents("Punched " + target.getObjectName());
+					target.addObjectStringEvents("Got punched by " + performer.getObjectName());
+				}
+				else 
+				{
+					
+				}
+			}
+
+		}
+
+		public static void PatrollArea(Entity performer, double patrollRadius)
 		{
 
 		}
 
-		public void GuardArea(Entity performer, double patrollRadius)
+		public static void GuardArea(Entity performer, double patrollRadius)
 		{
 
 		}
 
-		public void GuardGameObject(Entity performer, GameObject target)
+		public static void GuardGameObject(Entity performer, GameObject target)
 		{
 
 		}
 
-		public void FollowGameObject(Entity performer, GameObject target)
+		public static void FollowGameObject(Entity performer, GameObject target)
 		{
 
 		}
 
-		public void ApproachGameObject(Entity performer, GameObject target)
+		public static void ApproachGameObject(Entity performer, GameObject target)
 		{
+			if (performer.getAttackRange() < performer.getDistanceFromObject(target)) 
+			{
+				//performer.getMovementSpeed()
 
+				if (performer.getGameObjectPos().GetOverallYPosition() > target.getGameObjectPos().GetOverallYPosition())
+				{
+					performer.getGameObjectPos().movePositionOnMapArea("N", performer.getMovementSpeed() * performer.GetSecondsLeft());
+				}
+				else if (performer.getGameObjectPos().GetOverallYPosition() < target.getGameObjectPos().GetOverallYPosition())
+				{
+					performer.getGameObjectPos().movePositionOnMapArea("S", performer.getMovementSpeed() * performer.GetSecondsLeft());
+				}
+				else if (performer.getGameObjectPos().GetOverallXPosition() < target.getGameObjectPos().GetOverallXPosition()) 
+				{
+					performer.getGameObjectPos().movePositionOnMapArea("E", performer.getMovementSpeed() * performer.GetSecondsLeft());
+				}
+				else if (performer.getGameObjectPos().GetOverallXPosition() > target.getGameObjectPos().GetOverallXPosition())
+				{
+					performer.getGameObjectPos().movePositionOnMapArea("W", performer.getMovementSpeed() * performer.GetSecondsLeft());
+				}
+				performer.addObjectStringEvents("Got closer to " + target.getObjectName());
+			}
+
+		}
+
+		public static void HorizontalDegreesToGameObject(Entity performer, GameObject target) 
+		{
+			
 		}
 
 

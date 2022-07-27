@@ -25,7 +25,7 @@ namespace Evo
 
         private GameState gameState = new GameState();
         private SaveLoad saveLoad = new SaveLoad();
-        private EntityAction entityAction = new EntityAction();
+        //private EntityAction entityAction = new EntityAction();
 
         private SoundPlayer buttonPressSound;
 
@@ -44,7 +44,7 @@ namespace Evo
             //selcetPOI_Button.AddToEventRoute();
 
 
-            gameVersionLabel.Content = "v0.5.5";
+            gameVersionLabel.Content = "v0.5.6";
 
             gameState = gameState.MakeBuild1();
 
@@ -70,6 +70,8 @@ namespace Evo
 
 
         }
+
+
 
         public void GameLoop()
         {
@@ -101,7 +103,12 @@ namespace Evo
 
             entitiesInSightList.ItemsSource = gameState.GetPlayer().entitiesInSightList(gameState.GetMainMap());
 
+
+            //change later to be more robust and organized(ie, move from map and organize entity decision making)
             gameState.GetMainMap().runThroughEntityActions(gameState.GetMainMap(), gameState.GetPlayer(), secondsPassed);
+
+
+
             gameState.GetGameTime().PassSeconds(secondsPassed);
             consoleOutput.ScrollToEnd();
 
@@ -111,7 +118,7 @@ namespace Evo
             }
             else 
             {
-                equippedWeapon.Content = "nothing";
+                equippedWeapon.Content = "nothing equipped";
             }
 
             //add to overall map loading so every gameObject gets this
@@ -120,6 +127,17 @@ namespace Evo
             DrawMap();
             mapPosLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapX()
                 + "Y: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapY();
+            mapOverallPositionLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().GetOverallXPosition()
+                + "Y: " + gameState.GetPlayer().getGameObjectPos().GetOverallYPosition();
+
+            if (entitiesInSightList.SelectedItem != null) 
+            {
+                mapOverallPositionLabelEntity.Content = "X: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallXPosition()
+                + "Y: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallYPosition();
+            }
+            
+            
+
             loadingStatusLabel.Content = "Loading Status: done";
 
             secondsPassed = 0;
@@ -287,8 +305,15 @@ namespace Evo
             //mapArea_x0_y0.Source = new BitmapImage(new Uri(@"/street.png", UriKind.Relative));
         }
 
-
-
+        
+        private void PlayerWait(object sender, RoutedEventArgs e)
+        {
+            
+            //waitButton
+            //gameState.GetPlayer()
+            secondsPassed = 5 * 60;
+            GameLoop();
+        }
 
         private void FaceNorth(object sender, RoutedEventArgs e) 
         {
@@ -375,7 +400,7 @@ namespace Evo
             {
                 if (playerInventory.SelectedItem is Magazine)
                 {
-                    entityAction.LoadGun(gameState.GetPlayer(), ((Gun)gameState.GetPlayer().getEntityWeapon()),
+                    EntityAction.LoadGun(gameState.GetPlayer(), ((Gun)gameState.GetPlayer().getEntityWeapon()),
                         ((Magazine)playerInventory.SelectedItem));
                     //((Gun)gameState.GetPlayer().getEntityWeapon()).reload();
 
@@ -389,7 +414,7 @@ namespace Evo
         {
             if (playerInventory.SelectedItem != null && playerInventory.SelectedItem is Magazine)
             {
-                entityAction.FillMagazine(gameState.GetPlayer(), ((Magazine)playerInventory.SelectedItem));
+                EntityAction.FillMagazine(gameState.GetPlayer(), ((Magazine)playerInventory.SelectedItem));
                 secondsPassed += 15;
                 GameLoop();
             }

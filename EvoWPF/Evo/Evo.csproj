@@ -42,6 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Windows\" />
     <Folder Include="WPF_GUI\" />
   </ItemGroup>
 

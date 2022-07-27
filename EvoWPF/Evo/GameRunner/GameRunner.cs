@@ -240,15 +240,7 @@ using Wasteland.map.Map;
 			}
 
 
-
-
-
-
 			mainLoop();
-
-
-
-
 
 		}
 
