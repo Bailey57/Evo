@@ -199,66 +199,83 @@ using Wasteland.entity.Entity;
 		this.currentMap = currentMap;
 	}
 
-//	/**
-//	 * Moves player on the map
-//	 * 
-//	 * @param currentMap
-//	 * @param xMove
-//	 * @param yMove
-//	 */
-//	public void changePlayerPos(MapArea currentMap[][], int xMove, int yMove) {
-//		int newXPos = worldMapXPos + xMove;
-//		int newYPos = worldMapYPos + yMove;
-//
-//		// check to see if at edge of map
-//		if (currentMap[1].GetLength(0) <= newXPos || newXPos < 0) {
-//			Console.WriteLine("You cant go that way on the x axis");
-//		} else if (currentMap[0].GetLength(0) <= newYPos || newYPos < 0) {
-//			Console.WriteLine("You cant go that way on the y axis");
-//		} else {
-//			currentMap[worldMapYPos][worldMapXPos].playerOnArea = false;
-//			currentArea.getGameObjectsOnMapAreaCords()[(int) mapAreaYPos / 200][(int) mapAreaXPos / 200] = null;
-//
-//			if (newXPos > worldMapXPos) {
-//				mapAreaXPos = 0;
-//			}
-//			if (newXPos < worldMapXPos) {
-//				mapAreaXPos += 200;
-//			}
-//			if (newYPos > worldMapYPos) {
-//				mapAreaYPos = 200;
-//			}
-//			if (newYPos < worldMapYPos) {
-//				mapAreaYPos = 0;
-//			}
-//			this.worldMapXPos = newXPos;
-//			this.worldMapYPos = newYPos;
-//			currentMap[newYPos][newXPos].playerOnArea = true;
-//			currentArea = currentMap[newYPos][newXPos];
-//
-//			currentArea.getGameObjectsOnMapAreaCords()[worldMapYPos / 200][worldMapXPos / 200] = null;
-//		}
-//
-//	}
+		//	/**
+		//	 * Moves player on the map
+		//	 * 
+		//	 * @param currentMap
+		//	 * @param xMove
+		//	 * @param yMove
+		//	 */
+		//	public void changePlayerPos(MapArea currentMap[][], int xMove, int yMove) {
+		//		int newXPos = worldMapXPos + xMove;
+		//		int newYPos = worldMapYPos + yMove;
+		//
+		//		// check to see if at edge of map
+		//		if (currentMap[1].GetLength(0) <= newXPos || newXPos < 0) {
+		//			Console.WriteLine("You cant go that way on the x axis");
+		//		} else if (currentMap[0].GetLength(0) <= newYPos || newYPos < 0) {
+		//			Console.WriteLine("You cant go that way on the y axis");
+		//		} else {
+		//			currentMap[worldMapYPos][worldMapXPos].playerOnArea = false;
+		//			currentArea.getGameObjectsOnMapAreaCords()[(int) mapAreaYPos / 200][(int) mapAreaXPos / 200] = null;
+		//
+		//			if (newXPos > worldMapXPos) {
+		//				mapAreaXPos = 0;
+		//			}
+		//			if (newXPos < worldMapXPos) {
+		//				mapAreaXPos += 200;
+		//			}
+		//			if (newYPos > worldMapYPos) {
+		//				mapAreaYPos = 200;
+		//			}
+		//			if (newYPos < worldMapYPos) {
+		//				mapAreaYPos = 0;
+		//			}
+		//			this.worldMapXPos = newXPos;
+		//			this.worldMapYPos = newYPos;
+		//			currentMap[newYPos][newXPos].playerOnArea = true;
+		//			currentArea = currentMap[newYPos][newXPos];
+		//
+		//			currentArea.getGameObjectsOnMapAreaCords()[worldMapYPos / 200][worldMapXPos / 200] = null;
+		//		}
+		//
+		//	}
 
-//	public void movePositionOnMap(String direction) {
-//
-//		if (direction.Equals("n") || direction.Equals("N")) {
-//			changePlayerPos(currentMap.gameMap, 0, -1);
-//		} else if (direction.Equals("s") || direction.Equals("S")) {
-//			changePlayerPos(currentMap.gameMap, 0, 1);
-//		} else if (direction.Equals("e") || direction.Equals("E")) {
-//			changePlayerPos(currentMap.gameMap, 1, 0);
-//		} else if (direction.Equals("w") || direction.Equals("W")) {
-//			changePlayerPos(currentMap.gameMap, -1, 0);
-//		} else {
-//			Console.WriteLine("input invalid");
-//		}
-//
-//	}
+		//	public void movePositionOnMap(String direction) {
+		//
+		//		if (direction.Equals("n") || direction.Equals("N")) {
+		//			changePlayerPos(currentMap.gameMap, 0, -1);
+		//		} else if (direction.Equals("s") || direction.Equals("S")) {
+		//			changePlayerPos(currentMap.gameMap, 0, 1);
+		//		} else if (direction.Equals("e") || direction.Equals("E")) {
+		//			changePlayerPos(currentMap.gameMap, 1, 0);
+		//		} else if (direction.Equals("w") || direction.Equals("W")) {
+		//			changePlayerPos(currentMap.gameMap, -1, 0);
+		//		} else {
+		//			Console.WriteLine("input invalid");
+		//		}
+		//
+		//	}
 
-	// rename to travelOnMapArea
-	public bool movePositionOnMapArea(String direction, double distance) {
+
+
+
+
+
+
+		public double GetOverallXPosition() 
+		{
+			//return this.getMapAreaXPos() + (this.sizeOfMapArea()  this.getWorldMapXPos());
+			return this.getMapAreaXPos() + (200 * getWorldMapXPos());
+		}
+		public double GetOverallYPosition()
+		{
+			//return this.getMapAreaXPos() + (this.sizeOfMapArea()  this.getWorldMapXPos());
+			return this.getMapAreaYPos() + (200 * getWorldMapYPos());
+		}
+
+		// rename to travelOnMapArea
+		public bool movePositionOnMapArea(String direction, double distance) {
 		int oldMapX = gameObject.getGameObjectPos().getWorldMapXPos();
 		int oldMapY = gameObject.getGameObjectPos().getWorldMapYPos();
 				
@@ -353,6 +370,16 @@ using Wasteland.entity.Entity;
 	 * @return
 	 */
 	private bool onCorrectMapArea() {
+			if (gameObject.getGameObjectPos() != null && gameObject.getGameObjectPos().getCurrentArea() == null)
+			{
+				gameObject.getGameObjectPos().setCurrentArea(gameObject.getGameObjectPos().getCurrentMap().getGameMap()[gameObject.getGameObjectPos().getWorldMapXPos(),
+					gameObject.getGameObjectPos().getWorldMapYPos()]);
+
+
+			} else if (gameObject.getGameObjectPos() == null) 
+			{
+				return false;
+			}
 
 		if (gameObject.getGameObjectPos().getCurrentArea().getMapAreaX_max() < gameObject.getGameObjectPos()
 				.getMapAreaXPos()

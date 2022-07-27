@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Evo
+namespace Evo.GameObjects.Dialogues
 {
-    [System.Serializable]
-    class Dialogue
+    internal class GenerateDialogue
     {
     }
 }
-
-

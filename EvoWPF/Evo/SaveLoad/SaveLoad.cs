@@ -18,9 +18,10 @@ namespace Evo
         public void SaveGame(GameState gameState) 
         {
             BinaryFormatter formatter = new BinaryFormatter();
-            string path = Directory.GetCurrentDirectory() + "/gamesaves/save1.evogamesave";
+            string path = Directory.GetCurrentDirectory() + @"/gamesaves/save1.evogamesave";
+            string savePath = Environment.CurrentDirectory + @"\gamesaves\save1.evogamesave";
             //string path = Application
-            FileStream fs = new FileStream(path, FileMode.Create);
+            FileStream fs = new FileStream(savePath, FileMode.Create);
             
             formatter.Serialize(fs, gameState);
             fs.Close();
@@ -31,11 +32,12 @@ namespace Evo
         public GameState LoadGame() 
         {
 
-            string path = Directory.GetCurrentDirectory() + "/gamesaves/save1.evogamesave";
-            if (File.Exists(path))
+            string path = Directory.GetCurrentDirectory() + @"/gamesaves/save1.evogamesave";
+            string savePath = Environment.CurrentDirectory + @"\gamesaves\save1.evogamesave";
+            if (File.Exists(savePath))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                FileStream fs = new FileStream(path, FileMode.Open);
+                FileStream fs = new FileStream(savePath, FileMode.Open);
                 GameState gameState = formatter.Deserialize(fs) as GameState;
                 fs.Close();
                 return gameState;

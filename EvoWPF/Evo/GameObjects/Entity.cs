@@ -250,36 +250,60 @@ namespace Evo
 	public void setInventory(ObservableCollection<BaseItem> inventory) {
 		this.inventory = inventory;
 	}
-	
-	/**
-	 * @param sorts inventory
-	 */
-	/*
-	public void sortInventory() {
-		for (int i = 0; i < getInventory().GetLength(0); i++) {
-			
-			
-			
-			
-			if (getInventory()[i] != null && i > 0) {
-				
-				for (int k = 0; k < getInventory().GetLength(0); k++) {	
-					if (getInventory()[k] == null && k > 0 && k < i) {
-						getInventory()[k] = getInventory()[i];
-						getInventory()[i] = null;
-						break;
-					}
-				}
-				
-			}
-						
-			
-			
+
+
+
+		public double GetSecondsLeft()
+		{
+			return secondsLeft;
 		}
-		
-	}
-	*/
-	public bool aliveCheck() {
+
+		/**
+		 * @param secondsLeft the secondsLeft to set
+		 */
+		public void SetSecondsLeft(double secondsLeft)
+		{
+			this.secondsLeft = secondsLeft;
+		}
+
+		public void AddSecondsLeft(double secondsLeft)
+		{
+
+			this.secondsLeft += secondsLeft;
+		}
+
+
+
+
+		/**
+		 * @param sorts inventory
+		 */
+		/*
+		public void sortInventory() {
+			for (int i = 0; i < getInventory().GetLength(0); i++) {
+
+
+
+
+				if (getInventory()[i] != null && i > 0) {
+
+					for (int k = 0; k < getInventory().GetLength(0); k++) {	
+						if (getInventory()[k] == null && k > 0 && k < i) {
+							getInventory()[k] = getInventory()[i];
+							getInventory()[i] = null;
+							break;
+						}
+					}
+
+				}
+
+
+
+			}
+
+		}
+		*/
+		public bool aliveCheck() {
 
 		if (integrityCheck() == true && alive == true) {
 
@@ -302,6 +326,7 @@ namespace Evo
 
 		double targetGrouping = getDistanceFromObject(targetGameObject) / groupingFalloff;
 
+		targetGrouping += 100; //temporary
 		return targetGrouping;
 	}
 
@@ -656,10 +681,10 @@ namespace Evo
 //		return false;
 //	}
 
-	public bool inAttackRange(Map worldMap, Entity targetEntity) {
+	public bool inAttackRange(GameObject target) {
 
-		if (getDistanceFromObject(targetEntity) <= attackRange
-				|| (entityWeapon != null && getDistanceFromObject(targetEntity) <= entityWeapon.getAttackRange())) {
+		if (getDistanceFromObject(target) <= attackRange
+				|| (entityWeapon != null && getDistanceFromObject(target) <= entityWeapon.getAttackRange())) {
 			return true;
 
 		} else {
@@ -739,7 +764,7 @@ namespace Evo
 
 			if (entityInSight(targetEntity)) {
 
-				if (!inAttackRange(worldMap, targetEntity)) {
+				if (!inAttackRange(targetEntity)) {
 
 					if (isThePlayer) {
 						
@@ -815,7 +840,7 @@ namespace Evo
 
 			if (entityInSight(targetEntity)) {
 
-				if (!inAttackRange(this.getGameObjectPos().getCurrentMap(), targetEntity)) {
+				if (!inAttackRange(targetEntity)) {
 
 					if (isThePlayer) {
 						

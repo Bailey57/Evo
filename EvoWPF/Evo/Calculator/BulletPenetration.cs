@@ -518,7 +518,7 @@ public class BulletPenetration {
 	// maybe return bool
 	public bool penetraiteBodyPart(BodyPart bodyPart) {
 		bool penetraited = false;
-		BodyPart bodyPartClone;
+		//BodyPart bodyPartClone;
 		MaterialLayer materialLayerClone;
 
 		for (int i = 0; i < bodyPart.getLayers().GetLength(0); i++) {
@@ -779,6 +779,9 @@ public class BulletPenetration {
 					// break;
 				} else {
 
+					
+
+
 					double layers = hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getLayers().GetLength(0);
 
 					if (this.getFinalV() <= 0) {
@@ -803,10 +806,12 @@ public class BulletPenetration {
 						
 						//damage bodyParts
 						double radius = getDiameter();
+						double bleedRate = 0;
 						Wound bulletWound = new Wound("bullet wound", mmOfBodyPierced, radius, radius, "");
 						hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].addWound(bulletWound);
-						output += "\nwound added: " + bulletWound.getAndSetBleedRate() + "ml/sec\n";
-						Debug.WriteLine("\nwound added\n"  + bulletWound.getAndSetBleedRate() + "ml/sec\n");
+						bleedRate = Math.Round(bulletWound.getAndSetBleedRate(), 2);
+						output += "\nWound added: bleeding " + bleedRate + " ml/sec\n";
+						Debug.WriteLine("\nWound added: bleeding" + bleedRate + " ml/sec\n");
 								
 						
 
@@ -817,6 +822,7 @@ public class BulletPenetration {
 								output += "damaged vital organ, killed\n";
 								
 								Debug.WriteLine("damaged vital organ, killed\n");
+								//kill the target
 							}
 							projectileVelocity = this.getFinalV();
 							
@@ -830,6 +836,8 @@ public class BulletPenetration {
 									+ hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getLayers()[k].getMaterial()
 											.getName()
 									+ "\n");
+
+							output += "\nProjectile stopped on " + hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getName() + "\n";
 							hitSomething = true;
 							setFinalV(0);
 							// apply wounds, set bullet position in body
@@ -838,6 +846,8 @@ public class BulletPenetration {
 
 							mmPenetratedOverall += layerThickness;
 
+							output += "\nPenetraited " + hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getName() + "\n";
+
 							// calculate new velocity
 							setFinalV(kruppVelocity(mass, remainingPen, kruppConstant, diameter));
 							this.projectileAmmo.setCurrentV(this.getFinalV());
@@ -845,12 +855,12 @@ public class BulletPenetration {
 							Debug.WriteLine("New Velocity after penetrating "
 									+ hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getLayers()[k].getMaterial()
 											.getName()
-									+ ": " + kruppVelocity(mass, remainingPen, kruppConstant, diameter) + "\n");
+									+ ": " +  Math.Round(kruppVelocity(mass, remainingPen, kruppConstant, diameter), 2) + "\n");
 							// this.ve
 							output += "\nNew Velocity after penetrating "
 									+ hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getLayers()[k].getMaterial()
 											.getName()
-									+ ": " + kruppVelocity(mass, remainingPen, kruppConstant, diameter) + "\n";
+									+ ": " + Math.Round(kruppVelocity(mass, remainingPen, kruppConstant, diameter), 2) + "\n";
 							hitSomething = true;
 						}
 

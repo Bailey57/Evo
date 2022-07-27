@@ -34,7 +34,7 @@ namespace Evo
 
 	//public Entity[] entitiesOnMap = new Entity[999000]; // limit initially 1000
 
-	public GameObject[,,] gameObjectsOnMap;
+	public GameObject[,,] gameObjectsOnMap;//delete 7/26/2022
 	public GameObject[] gameObjectsOnMapList = new GameObject[999000];
 
 
@@ -399,13 +399,14 @@ namespace Evo
 
 	public bool runThroughEntityActions(Map worldMap, Entity player, double secondsPassed)
 	{
+		
 		bool spotted = false;
 
-		for (int i = 0; i < entityMapLimit; i++)
+			for (int i = 0; i < worldMap.getGameObjectsOnMapList().Length; i++)
 		{
-			if (!(gameObjectsOnMapList[i] is Entity) 
-					|| gameObjectsOnMap[i,0,0] == null
-					|| (((Entity)gameObjectsOnMapList[i]).getIsThePlayer())) {
+			if (!(gameObjectsOnMapList[i] is Entity) || 
+					//gameObjectsOnMap[i,0,0] == null || 
+						(((Entity)gameObjectsOnMapList[i]).getIsThePlayer())) {
 			break;
 		} else
 		{
@@ -413,13 +414,18 @@ namespace Evo
 					//run through the actual actions here
 					//gameObjectsOnMapList[i].
 
-			
 
 
 
+					//secondsPassed
+			//((Entity)gameObjectsOnMapList[i]).AddSecondsLeft(secondsPassed);
 			if (((Entity)gameObjectsOnMapList[i]).entityInSight(player) && (((Entity)gameObjectsOnMapList[i]).alive))
 			{
-				((Entity)gameObjectsOnMapList[i]).attackEntity(worldMap, player, secondsPassed, false);
+				
+				//((Entity)gameObjectsOnMapList[i]).attackEntity(worldMap, player, secondsPassed, false);
+				EntityAction.AttackAndPursueGameObjectMelee(((Entity)gameObjectsOnMapList[i]), player);
+				spotted = true;
+
 
 				if (player.getIsThePlayer())
 				{

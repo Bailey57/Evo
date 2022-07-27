@@ -32,15 +32,15 @@ using Wasteland.map.Map;
 
 		private String lastPosition;
 		private String thisPosition;
-		private bool isGameEnded;
-
-		private bool didPlayerMoveThisTurn;
 
 
+		private GameTime gameTime;
+
+		
 		private double timePassed;
 
 
-
+		private bool didPlayerMoveThisTurn;
 
 
 
@@ -92,15 +92,6 @@ using Wasteland.map.Map;
 		{
 			return thisPosition;
 		}
-		public bool GetIsGameEnded()
-		{
-			return isGameEnded;
-		}
-
-		public bool GetDidPlayerMoveThisTurn()
-		{
-			return didPlayerMoveThisTurn;
-		}
 
 
 		public void SetPlayerAction(PlayerAction playerAction)
@@ -132,15 +123,7 @@ using Wasteland.map.Map;
 		{
 			this.thisPosition = thisPosition;
 		}
-		public void SetIsGameEnded(bool isGameEnded)
-		{
-			this.isGameEnded = isGameEnded;
-		}
 
-		public void SetDidPlayerMoveThisTurn(bool didPlayerMoveThisTurn)
-		{
-			this.didPlayerMoveThisTurn = didPlayerMoveThisTurn;
-		}
 
 
 		/**
@@ -159,9 +142,25 @@ using Wasteland.map.Map;
 			this.timePassed = timePassed;
 		}
 
+		public bool GetDidPlayerMoveThisTurn()
+		{
+			return didPlayerMoveThisTurn;
+		}
 
+		public void SetDidPlayerMoveThisTurn(bool didPlayerMoveThisTurn)
+		{
+			this.didPlayerMoveThisTurn = didPlayerMoveThisTurn;
+		}
 
+		public void SetGameTime(GameTime gameTime)
+		{
+			this.gameTime = gameTime;
+		}
 
+		public GameTime GetGameTime()
+		{
+			return this.gameTime;
+		}
 
 
 
@@ -172,7 +171,9 @@ using Wasteland.map.Map;
 
 			// create new game state
 			GameState gameState = new GameState();
+			GameTime gameTime = new GameTime();
 
+			gameState.SetGameTime(gameTime);
 
 			// Set game state values
 			gameState.SetPlayerAction(new PlayerAction());

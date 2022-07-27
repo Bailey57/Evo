@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
+using System.Media;
+using Evo.Windows;
 
 namespace Evo
 {
@@ -21,15 +23,29 @@ namespace Evo
     /// </summary>
     public partial class MainWindow : Window
     {
+
         private GameState gameState = new GameState();
         private SaveLoad saveLoad = new SaveLoad();
+        //private EntityAction entityAction = new EntityAction();
+
+        private SoundPlayer buttonPressSound;
+
+        private double secondsPassed = 0;
         public MainWindow()
         {
             //Hitbox tst = new Hitbox();
             //tst.testingMethod();
             //DrawButtons();
             InitializeComponent();
-            gameVersionLabel.Content = "v0.5.1";
+
+           // buttonPressSound = new SoundPlayer(@"/Resources/sounds/gui/buttons/buttonClick_1.wav");
+            buttonPressSound = new SoundPlayer(@"/buttonClick_1.wav");
+            //buttonPressSound.Source = new Uri(@"/Resources/sounds/gui/buttons/buttonClick_1.mp3", UriKind.Relative);
+            // buttonPress.routedevent
+            //selcetPOI_Button.AddToEventRoute();
+
+
+            gameVersionLabel.Content = "v0.6.0";
 
             gameState = gameState.MakeBuild1();
 
@@ -45,7 +61,7 @@ namespace Evo
             pointsOfInterestListView.ItemsSource = gameState.GetMainMap().pointOfInterests;
 
             playerInventory.ItemsSource = gameState.GetPlayer().getInventory();
-            inventoryListBox.ItemsSource = gameState.GetPlayer().getInventory();
+            //inventoryListBox.ItemsSource = gameState.GetPlayer().getInventory();
             DrawMap();
             DrawButtons();
 
@@ -56,20 +72,73 @@ namespace Evo
 
         }
 
+
+
         public void GameLoop()
         {
             loadingStatusLabel.Content = "Loading Status: in progress";
-            double seconds = 5;
+            System.Threading.Thread.Sleep(50);
+
+
+            UpdateGUI();
+            
+
+
+            //change later to be more robust and organized(ie, move from map and organize entity decision making)
+            gameState.GetMainMap().runThroughEntityActions(gameState.GetMainMap(), gameState.GetPlayer(), secondsPassed);
+
+
+
+            gameState.GetGameTime().PassSeconds(secondsPassed);
+            
+
+            if (gameState.GetPlayer().getEntityWeapon() != null)
+            {
+                equippedWeapon.Content = gameState.GetPlayer().getEntityWeapon().getObjectName();
+            }
+            else 
+            {
+                equippedWeapon.Content = "nothing equipped";
+            }
             consoleOutput.Text = gameState.GetPlayer().getObjectStringEvents();
+            //add to overall map loading so every gameObject gets this
+            //gameState.GetPlayer().addObjectStringEvents("\n<-day: ?-------Time: ?->\n
+            gameState.GetPlayer().addObjectStringEvents("\n<-------------------->\n" + gameState.GetGameTime().ToString() + "\n");
+            DrawMap();
+            mapPosLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapX()
+                + "Y: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapY();
+            mapOverallPositionLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().GetOverallXPosition()
+                + "Y: " + gameState.GetPlayer().getGameObjectPos().GetOverallYPosition();
+
+            if (entitiesInSightList.SelectedItem != null) 
+            {
+                mapOverallPositionLabelEntity.Content = "X: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallXPosition()
+                + "Y: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallYPosition();
+            }
+
+
+            
+            loadingStatusLabel.Content = "Loading Status: done";
+
+            
+            consoleOutput.ScrollToEnd();
+            secondsPassed = 0;
+            //buttonPressSound.Play();
+        }
+
+
+        private void UpdateGUI() 
+        {
+            //consoleOutput.Text = gameState.GetPlayer().getObjectStringEvents();
             playerDirection.Content = gameState.GetPlayer().getDirectionFacing();
 
             //(BaseItem)playerInventory.SelectedItem
-            if (pointsOfInterestListView.SelectedItem != null) 
+            if (pointsOfInterestListView.SelectedItem != null)
             {
-                poi_desc.Text = ((PointOfInterest)pointsOfInterestListView.SelectedItem).getDescription();
+                poi_desc.Text = ((PointOfInterest)pointsOfInterestListView.SelectedItem).GetInfo();
                 pointsOfInterestListView.ItemsSource = gameState.GetMainMap().pointOfInterests;
             }
-            
+
 
 
             itemsInSight.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
@@ -79,42 +148,56 @@ namespace Evo
 
             playerInventory.ItemsSource = gameState.GetPlayer().getInventory();
 
-            inventoryListBox.ItemsSource = gameState.GetPlayer().getInventory();
+            //inventoryListBox.ItemsSource = gameState.GetPlayer().getInventory();
             //playerInventory.ItemsSource = gameState.GetPlayer().itemsInSightList(gameState.GetMainMap());
             //playerInventory.
 
 
             entitiesInSightList.ItemsSource = gameState.GetPlayer().entitiesInSightList(gameState.GetMainMap());
-
-            gameState.GetMainMap().runThroughEntityActions(gameState.GetMainMap(), gameState.GetPlayer(), seconds);
             consoleOutput.ScrollToEnd();
 
             if (gameState.GetPlayer().getEntityWeapon() != null)
             {
                 equippedWeapon.Content = gameState.GetPlayer().getEntityWeapon().getObjectName();
             }
-            else 
+            else
             {
-                equippedWeapon.Content = "nothing";
+                equippedWeapon.Content = "nothing equipped";
             }
-
-            //add to overall map loading so every gameObject gets this
-            //gameState.GetPlayer().addObjectStringEvents("\n<-day: ?-------Time: ?->\n
-            gameState.GetPlayer().addObjectStringEvents("\n<-------------------->\n");
             DrawMap();
             mapPosLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapX()
                 + "Y: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapY();
-            loadingStatusLabel.Content = "Loading Status: done";
+            mapOverallPositionLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().GetOverallXPosition()
+                + "Y: " + gameState.GetPlayer().getGameObjectPos().GetOverallYPosition();
+
+            if (entitiesInSightList.SelectedItem != null)
+            {
+                mapOverallPositionLabelEntity.Content = "X: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallXPosition()
+                + "Y: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallYPosition();
+            }
+
         }
 
-        
+        private void UpdateGUI(object sender, RoutedEventArgs e) 
+        {
+            UpdateGUI();
+        }
 
+        private void GoToMainMenu(object sender, RoutedEventArgs e)
+        {
+            Sounds.PlayButtonSound1();
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.Show();
+            this.Close();
+            GameLoop();
+        }
 
         private void NewGame(object sender, RoutedEventArgs e)
         {
             loadingStatusLabel.Content = "Loading Status: in progress";
 
             gameState = gameState.MakeBuild1();
+            Sounds.PlayButtonSound1();
             GameLoop();
         }
 
@@ -123,6 +206,7 @@ namespace Evo
         {
             loadingStatusLabel.Content = "Loading Status: in progress";
             saveLoad.SaveGame(gameState);
+            Sounds.PlayButtonSound1();
             GameLoop();
         }
 
@@ -131,6 +215,7 @@ namespace Evo
             loadingStatusLabel.Content = "Loading Status: in progress";
 
             gameState = saveLoad.LoadGame();
+            Sounds.PlayButtonSound1();
             GameLoop();
         }
 
@@ -268,46 +353,84 @@ namespace Evo
             //mapArea_x0_y0.Source = new BitmapImage(new Uri(@"/street.png", UriKind.Relative));
         }
 
+        
+        private void PlayerWait(object sender, RoutedEventArgs e)
+        {
 
+            //waitButton
+            //gameState.GetPlayer()
+            Sounds.PlayButtonSound1();
+            secondsPassed = 5 * 60;
+            gameState.GetPlayer().addObjectStringEvents("Waited for 5 minutes");
 
+            GameLoop();
+        }
 
         private void FaceNorth(object sender, RoutedEventArgs e) 
         {
             gameState.GetPlayer().setDirectionFacing("N");
-            GameLoop();
+            Sounds.PlayButtonSound1();
+            UpdateGUI();
         }
         private void FaceSouth(object sender, RoutedEventArgs e)
         {
             gameState.GetPlayer().setDirectionFacing("S");
-            GameLoop();
+            Sounds.PlayButtonSound1();
+            UpdateGUI();
         }
         private void FaceEast(object sender, RoutedEventArgs e)
         {
             gameState.GetPlayer().setDirectionFacing("E");
-            GameLoop();
+            Sounds.PlayButtonSound1();
+            UpdateGUI();
         }
         private void FaceWest(object sender, RoutedEventArgs e)
         {
             gameState.GetPlayer().setDirectionFacing("W");
-            GameLoop();
+            Sounds.PlayButtonSound1();
+            UpdateGUI();
         }
 
         private void PickUpItemOffOfGround(object sender, RoutedEventArgs e) 
         {
-            gameState.GetPlayer().pickUpItemOffOfGround((BaseItem) itemsInSight.SelectedItem);
+            Sounds.PlayButtonSound1();
+            if (itemsInSight.SelectedItem != null)
+            {
+                gameState.GetPlayer().pickUpItemOffOfGround((BaseItem)itemsInSight.SelectedItem);
+                secondsPassed += 3;
+            }
+            else 
+            {
+                gameState.GetPlayer().addObjectStringEvents("No item on ground selected");
+            }
+            
+           
             GameLoop();
         }
 
         private void DropItem(object sender, RoutedEventArgs e)
         {
+            Sounds.PlayButtonSound1();
             gameState.GetPlayer().dropItem((BaseItem)playerInventory.SelectedItem);
             //gameState.GetPlayer().removeItemFromInventory
+            secondsPassed += 3;
+            
             GameLoop();
+            
         }
 
         private void EquipItemAsWeapon(object sender, RoutedEventArgs e)
         {
-            gameState.GetPlayer().equipItemAsWeapon((BaseItem) playerInventory.SelectedItem);
+            Sounds.PlayButtonSound1();
+            if (playerInventory.SelectedItem != null) 
+            {
+                gameState.GetPlayer().equipItemAsWeapon((BaseItem)playerInventory.SelectedItem);
+                secondsPassed += 3;
+            }
+            else
+            {
+                gameState.GetPlayer().addObjectStringEvents("Need to select something in inventory first to equip as weapon");
+            }
 
             GameLoop();
         }
@@ -315,23 +438,35 @@ namespace Evo
 
         private void AttackEntity(object sender, RoutedEventArgs e)
         {
-
+            Sounds.PlayButtonSound1();
             if (gameState.GetPlayer().getEntityWeapon() != null) 
             {
                 gameState.GetPlayer().attackEntity(gameState.GetMainMap(), (Entity)entitiesInSightList.SelectedItem, 0, true);
-            }         
-
+            }
+            secondsPassed += 2;
+            
             GameLoop();
         }
 
         private void FireAtEntity(object sender, RoutedEventArgs e)
         {
-
+            Sounds.PlayButtonSound1();
             if (gameState.GetPlayer().getEntityWeapon() != null && gameState.GetPlayer().getEntityWeapon() is Gun)
             {
+                if (((Gun)gameState.GetPlayer().getEntityWeapon()).getLoadedProjectile() != null) 
+                {
+                    Sounds.PlayFireSingleSig9mm();
+                }
                 ((Gun)gameState.GetPlayer().getEntityWeapon()).fireGunAtGameObject(gameState.GetPlayer(), (Entity)entitiesInSightList.SelectedItem);
+                
+                secondsPassed += 2;
             }
-
+            else 
+            {
+                gameState.GetPlayer().addObjectStringEvents("No firearm equipped");
+            }
+            
+            
             GameLoop();
         }
 
@@ -340,21 +475,58 @@ namespace Evo
 
         private void RackGun(object sender, RoutedEventArgs e)
         {
-            if (gameState.GetPlayer().getEntityWeapon() != null && gameState.GetPlayer().getEntityWeapon() is Gun) 
+            Sounds.PlayButtonSound1();
+            if (gameState.GetPlayer().getEntityWeapon() != null && gameState.GetPlayer().getEntityWeapon() is Gun)
             {
                 ((Gun)gameState.GetPlayer().getEntityWeapon()).cockGun(gameState.GetPlayer());
-                GameLoop();
-            }  
-        }
-        private void LoadMagazine(object sender, RoutedEventArgs e)
-        {
-            if (gameState.GetPlayer().getEntityWeapon() != null && gameState.GetPlayer().getEntityWeapon().GetType() is Gun)
-            {
-                ((Gun)gameState.GetPlayer().getEntityWeapon()).reload();
+                secondsPassed += 1;
+                Sounds.PlayRackSig9mm();
                 GameLoop();
             }
+            else
+            {
+                gameState.GetPlayer().addObjectStringEvents("No firearm equipped");
+            }
+
         }
-        
+        private void LoadGun(object sender, RoutedEventArgs e)
+        {
+            Sounds.PlayButtonSound1();
+            if (gameState.GetPlayer().getEntityWeapon() != null && gameState.GetPlayer().getEntityWeapon() is Gun)
+            {
+                if (playerInventory.SelectedItem is Magazine)
+                {
+                    EntityAction.LoadGun(gameState.GetPlayer(), ((Gun)gameState.GetPlayer().getEntityWeapon()),
+                        ((Magazine)playerInventory.SelectedItem));
+                    //((Gun)gameState.GetPlayer().getEntityWeapon()).reload();
+                    secondsPassed += 6;
+                    
+                }
+                else if (!(playerInventory.SelectedItem is Magazine))
+                {
+                    gameState.GetPlayer().addObjectStringEvents("Need to select a magazine");
+                }  
+            }
+            else
+            {
+                gameState.GetPlayer().addObjectStringEvents("No firearm equipped");
+            }
+            GameLoop();
+        }
+
+        private void FillMagazine(object sender, RoutedEventArgs e)
+        {
+            Sounds.PlayButtonSound1();
+            if (playerInventory.SelectedItem != null && playerInventory.SelectedItem is Magazine)
+            {
+                EntityAction.FillMagazine(gameState.GetPlayer(), ((Magazine)playerInventory.SelectedItem));
+                secondsPassed += 15;
+                
+                GameLoop();
+            }
+
+        }
+
 
         private void MovePlayer(object sender, RoutedEventArgs e)
         {
@@ -373,6 +545,8 @@ namespace Evo
                 gameState.SetDidPlayerMoveThisTurn(true);
                 gameState.GetMainMap().printGameMapString();
             }
+            secondsPassed += 300;
+            Sounds.PlayButtonSound1();
             GameLoop();
 
 
@@ -381,12 +555,15 @@ namespace Evo
 
         private void ReloadGUI(object sender, RoutedEventArgs e)
         {
+            Sounds.PlayButtonSound1();
             GameLoop();
         }
 
 
         private void SelectPOI(object sender, RoutedEventArgs e)
         {
+            Sounds.PlayButtonSound1();
+            // buttonPressSound.Play();
             GameLoop();
         }
 

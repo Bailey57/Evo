@@ -17,7 +17,7 @@ namespace Evo
 
 	Magazine magazine;
 
-	ProjectileAmmo loadedProjectile;// aka bullet in chamber
+	private ProjectileAmmo loadedProjectile;// aka bullet in chamber
 
 	bool cockable;
 
@@ -81,7 +81,11 @@ namespace Evo
 	public void setMagazine(Magazine magazine)
 	{
 		this.magazine = magazine;
-		magazine.setInInventory(true);
+			if (magazine != null) 
+			{
+				magazine.setInInventory(true);
+			}
+		
 	}
 
 	/**
