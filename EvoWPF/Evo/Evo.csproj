@@ -8,10 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="buttonClick_1.wav" />
     <None Remove="forest.png" />
     <None Remove="gameButton1_greenUp.png" />
     <None Remove="gameButton1_green_down.png" />
+    <None Remove="gameButton1_green_up.png" />
     <None Remove="gameMapBorder.png" />
     <None Remove="Resources\forest.png" />
     <None Remove="Resources\gameMapBorder.png" />
@@ -32,17 +32,17 @@
     <None Remove="Resources\Logo1.png" />
     <None Remove="Resources\m1Carbine_v1.png" />
     <None Remove="Resources\sounds\gui\buttons\buttonClick_1.mp3" />
-    <None Remove="Resources\sounds\gui\buttons\buttonClick_1.wav" />
     <None Remove="Resources\street.png" />
     <None Remove="Resources\town.png" />
     <None Remove="Resources\WIP_MapSquare.png" />
     <None Remove="street.png" />
     <None Remove="town.png" />
+    <None Remove="Windows\gameButton1_green_up.png" />
+    <None Remove="Windows\Logo1.png" />
     <None Remove="WIP_MapSquare.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Windows\" />
     <Folder Include="WPF_GUI\" />
   </ItemGroup>
 
@@ -50,6 +50,7 @@
     <Resource Include="forest.png" />
     <Resource Include="gameButton1_greenUp.png" />
     <Resource Include="gameButton1_green_down.png" />
+    <Resource Include="gameButton1_green_up.png" />
     <Resource Include="gameMapBorder.png" />
     <Resource Include="Resources\forest.png" />
     <Resource Include="Resources\gameMapBorder.png" />
@@ -70,14 +71,23 @@
     <Resource Include="Resources\Logo1.png" />
     <Resource Include="Resources\m1Carbine_v1.png" />
     <Resource Include="Resources\sounds\gui\buttons\buttonClick_1.mp3" />
-    <EmbeddedResource Include="buttonClick_1.wav" />
-    <EmbeddedResource Include="Resources\sounds\gui\buttons\buttonClick_1.wav" />
     <Resource Include="Resources\street.png" />
     <Resource Include="Resources\town.png" />
     <Resource Include="Resources\WIP_MapSquare.png" />
     <Resource Include="street.png" />
     <Resource Include="town.png" />
+    <Resource Include="Windows\gameButton1_green_up.png" />
+    <Resource Include="Windows\Logo1.png" />
     <Resource Include="WIP_MapSquare.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="buttonClick_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\sounds\gui\buttons\buttonClick_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

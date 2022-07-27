@@ -17,7 +17,11 @@
             <ColumnDefinition Width="91*"/>
             <ColumnDefinition Width="709*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="faceNorth" Content="N" HorizontalAlignment="Left" Margin="-225,519,0,0" VerticalAlignment="Top" Click="FaceNorth" Grid.RowSpan="2" Height="20" Width="24"/>
+        <Button x:Name="faceNorth" Content="N" HorizontalAlignment="Left" Margin="-225,519,0,0" VerticalAlignment="Top" Click="FaceNorth" Grid.RowSpan="2" Height="20" Width="24">
+            <Button.Background>
+                <ImageBrush ImageSource="/gameButton1_green_up.png"/>
+            </Button.Background>
+        </Button>
         <ListView x:Name="itemsInSight" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="70,376,0,181" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="174" Grid.Column="1">
             <ListView.RenderTransform>
                 <TransformGroup>
@@ -45,10 +49,26 @@
             </TextBox.Style>
         </TextBox>
         <Label x:Name="itemsInSightLabel" Content="Items In Sight" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="116,349,0,0" Grid.RowSpan="2" Height="26" Width="82" Grid.Column="1"/>
-        <Button x:Name="faceSouth" Content="S" HorizontalAlignment="Left" Margin="-225,639,0,0" VerticalAlignment="Top" Click="FaceSouth" Grid.RowSpan="2" Height="20" Width="24"/>
-        <Button x:Name="faceEast" Content="E" HorizontalAlignment="Left" Margin="-163,579,0,0" VerticalAlignment="Top" Click="FaceEast" Grid.RowSpan="2" Height="20" Width="24"/>
-        <Button x:Name="faceWest" Content="W" HorizontalAlignment="Left" Margin="-287,579,0,0" VerticalAlignment="Top" Click="FaceWest" Grid.RowSpan="2" Height="20" Width="24"/>
-        <Button x:Name="travelButton" Content="Travel" HorizontalAlignment="Left" Margin="-168,619,0,0" VerticalAlignment="Top" Click="MovePlayer" Grid.RowSpan="2" Height="40" Width="92"/>
+        <Button x:Name="faceSouth" Content="S" HorizontalAlignment="Left" Margin="-225,639,0,0" VerticalAlignment="Top" Click="FaceSouth" Grid.RowSpan="2" Height="20" Width="24">
+            <Button.Background>
+                <ImageBrush ImageSource="/gameButton1_green_up.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="faceEast" Content="E" HorizontalAlignment="Left" Margin="-163,579,0,0" VerticalAlignment="Top" Click="FaceEast" Grid.RowSpan="2" Height="20" Width="24">
+            <Button.Background>
+                <ImageBrush ImageSource="/gameButton1_green_up.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="faceWest" Content="W" HorizontalAlignment="Left" Margin="-287,579,0,0" VerticalAlignment="Top" Click="FaceWest" Grid.RowSpan="2" Height="20" Width="24">
+            <Button.Background>
+                <ImageBrush ImageSource="/gameButton1_green_up.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="travelButton" Content="Travel" HorizontalAlignment="Left" Margin="-168,619,0,0" VerticalAlignment="Top" Click="MovePlayer" Grid.RowSpan="2" Height="40" Width="92">
+            <Button.Background>
+                <ImageBrush ImageSource="/gameButton1_green_up.png"/>
+            </Button.Background>
+        </Button>
         <Button x:Name="pickUpItemButton" Content="Pick Up Item" HorizontalAlignment="Left" Margin="70,598,0,0" VerticalAlignment="Top" Click="PickUpItemOffOfGround" Height="35" Width="87" Grid.Column="1" Grid.Row="1" BorderBrush="Black">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
@@ -140,7 +160,7 @@
         </Button>
         <Label x:Name="loadingNoteLabel" Content="Note: Takes 7~ seconds to load a save" HorizontalAlignment="Left" Margin="-243,-78,0,0" VerticalAlignment="Top"/>
         <Label x:Name="gameVersionLabel" Content="v0" HorizontalAlignment="Left" Margin="-406,-106,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="mainMenuButton" Content="Main Menu" HorizontalAlignment="Left" Margin="-493,-131,0,0" VerticalAlignment="Top" Click="NewGame"/>
+        <Button x:Name="mainMenuButton" Click ="GoToMainMenu" Content="Main Menu" HorizontalAlignment="Left" Margin="-493,-131,0,0" VerticalAlignment="Top" Height="39" Width="73"/>
         <Label x:Name="consoleLabel" Grid.Column="1" Content="Console" HorizontalAlignment="Left" Margin="959,285,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="26" Width="56"/>
         <Button x:Name="talkToEntityButton" Grid.Column="1" Content="Talk To Entity" HorizontalAlignment="Left" Margin="526,592,0,0" VerticalAlignment="Top" Click="FireAtEntity" Height="36" Width="119" Grid.Row="1">
             <Button.Background>

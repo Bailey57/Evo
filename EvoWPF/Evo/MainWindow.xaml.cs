@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using System.Media;
+using Evo.Windows;
 
 namespace Evo
 {
@@ -44,7 +45,7 @@ namespace Evo
             //selcetPOI_Button.AddToEventRoute();
 
 
-            gameVersionLabel.Content = "v0.5.6";
+            gameVersionLabel.Content = "v0.5.7";
 
             gameState = gameState.MakeBuild1();
 
@@ -144,14 +145,25 @@ namespace Evo
             //buttonPressSound.Play();
         }
 
+
+
         
 
+        private void GoToMainMenu(object sender, RoutedEventArgs e)
+        {
+            Sounds.PlayButtonSound1();
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.Show();
+            this.Close();
+            GameLoop();
+        }
 
         private void NewGame(object sender, RoutedEventArgs e)
         {
             loadingStatusLabel.Content = "Loading Status: in progress";
 
             gameState = gameState.MakeBuild1();
+            Sounds.PlayButtonSound1();
             GameLoop();
         }
 
@@ -160,6 +172,7 @@ namespace Evo
         {
             loadingStatusLabel.Content = "Loading Status: in progress";
             saveLoad.SaveGame(gameState);
+            Sounds.PlayButtonSound1();
             GameLoop();
         }
 
@@ -168,6 +181,7 @@ namespace Evo
             loadingStatusLabel.Content = "Loading Status: in progress";
 
             gameState = saveLoad.LoadGame();
+            Sounds.PlayButtonSound1();
             GameLoop();
         }
 
@@ -312,73 +326,86 @@ namespace Evo
             //waitButton
             //gameState.GetPlayer()
             secondsPassed = 5 * 60;
+            Sounds.PlayButtonSound1();
             GameLoop();
         }
 
         private void FaceNorth(object sender, RoutedEventArgs e) 
         {
             gameState.GetPlayer().setDirectionFacing("N");
+            Sounds.PlayButtonSound1();
             GameLoop();
         }
         private void FaceSouth(object sender, RoutedEventArgs e)
         {
             gameState.GetPlayer().setDirectionFacing("S");
+            Sounds.PlayButtonSound1();
             GameLoop();
         }
         private void FaceEast(object sender, RoutedEventArgs e)
         {
             gameState.GetPlayer().setDirectionFacing("E");
+            Sounds.PlayButtonSound1();
             GameLoop();
         }
         private void FaceWest(object sender, RoutedEventArgs e)
         {
             gameState.GetPlayer().setDirectionFacing("W");
+            Sounds.PlayButtonSound1();
             GameLoop();
         }
 
         private void PickUpItemOffOfGround(object sender, RoutedEventArgs e) 
         {
+            Sounds.PlayButtonSound1();
             gameState.GetPlayer().pickUpItemOffOfGround((BaseItem) itemsInSight.SelectedItem);
             secondsPassed += 3;
+           
             GameLoop();
         }
 
         private void DropItem(object sender, RoutedEventArgs e)
         {
+            Sounds.PlayButtonSound1();
             gameState.GetPlayer().dropItem((BaseItem)playerInventory.SelectedItem);
             //gameState.GetPlayer().removeItemFromInventory
             secondsPassed += 3;
+            
             GameLoop();
             
         }
 
         private void EquipItemAsWeapon(object sender, RoutedEventArgs e)
         {
+            Sounds.PlayButtonSound1();
             gameState.GetPlayer().equipItemAsWeapon((BaseItem) playerInventory.SelectedItem);
             secondsPassed += 3;
+            
             GameLoop();
         }
 
 
         private void AttackEntity(object sender, RoutedEventArgs e)
         {
-
+            Sounds.PlayButtonSound1();
             if (gameState.GetPlayer().getEntityWeapon() != null) 
             {
                 gameState.GetPlayer().attackEntity(gameState.GetMainMap(), (Entity)entitiesInSightList.SelectedItem, 0, true);
             }
             secondsPassed += 2;
+            
             GameLoop();
         }
 
         private void FireAtEntity(object sender, RoutedEventArgs e)
         {
-
+            Sounds.PlayButtonSound1();
             if (gameState.GetPlayer().getEntityWeapon() != null && gameState.GetPlayer().getEntityWeapon() is Gun)
             {
                 ((Gun)gameState.GetPlayer().getEntityWeapon()).fireGunAtGameObject(gameState.GetPlayer(), (Entity)entitiesInSightList.SelectedItem);
             }
             secondsPassed += 2;
+            
             GameLoop();
         }
 
@@ -387,15 +414,18 @@ namespace Evo
 
         private void RackGun(object sender, RoutedEventArgs e)
         {
+            Sounds.PlayButtonSound1();
             if (gameState.GetPlayer().getEntityWeapon() != null && gameState.GetPlayer().getEntityWeapon() is Gun)
             {
                 ((Gun)gameState.GetPlayer().getEntityWeapon()).cockGun(gameState.GetPlayer());
                 secondsPassed += 1;
+              
                 GameLoop();
             }
         }
         private void LoadGun(object sender, RoutedEventArgs e)
         {
+            Sounds.PlayButtonSound1();
             if (gameState.GetPlayer().getEntityWeapon() != null && gameState.GetPlayer().getEntityWeapon() is Gun)
             {
                 if (playerInventory.SelectedItem is Magazine)
@@ -406,16 +436,19 @@ namespace Evo
 
                 }
                 secondsPassed += 6;
+               
                 GameLoop();
             }
         }
 
         private void FillMagazine(object sender, RoutedEventArgs e)
         {
+            Sounds.PlayButtonSound1();
             if (playerInventory.SelectedItem != null && playerInventory.SelectedItem is Magazine)
             {
                 EntityAction.FillMagazine(gameState.GetPlayer(), ((Magazine)playerInventory.SelectedItem));
                 secondsPassed += 15;
+                
                 GameLoop();
             }
 
@@ -440,6 +473,7 @@ namespace Evo
                 gameState.GetMainMap().printGameMapString();
             }
             secondsPassed += 300;
+            Sounds.PlayButtonSound1();
             GameLoop();
 
 
@@ -448,13 +482,15 @@ namespace Evo
 
         private void ReloadGUI(object sender, RoutedEventArgs e)
         {
+            Sounds.PlayButtonSound1();
             GameLoop();
         }
 
 
         private void SelectPOI(object sender, RoutedEventArgs e)
         {
-           // buttonPressSound.Play();
+            Sounds.PlayButtonSound1();
+            // buttonPressSound.Play();
             GameLoop();
         }
 
