@@ -88,6 +88,18 @@
     <None Update="Resources\sounds\gui\buttons\buttonClick_1.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\sounds\weapons\guns\sig 9mm\Sig rack1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\sounds\weapons\guns\sig 9mm\Sig single shot1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\sounds\weapons\guns\sig 9mm\Sig.m4a">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\sounds\weapons\guns\sig 9mm\Sig.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

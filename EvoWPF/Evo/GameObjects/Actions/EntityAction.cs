@@ -92,10 +92,34 @@ namespace Evo
 
 		public static bool AttackGameObjectMelee(Entity performer, GameObject target) 
 		{
-			if (!performer.inAttackRange(target)) 
+			if (!performer.inAttackRange(target))
 			{
 				return false;
 			}
+			else 
+			{
+				//add more calculations regurarding kenetic energy based on strength or whatever attack is used 
+				if (performer.getEntityWeapon() == null)
+				{
+					Wound punchWound = new Wound("Punch wound", 0, 0, 0, "hurts but didnt really do anything");
+
+					target.getGameObjectHitbox().getBodyParts()[0].addWound(punchWound);
+
+					performer.addObjectStringEvents("Punched " + target.getObjectName());
+					target.addObjectStringEvents("Got punched by " + performer.getObjectName());
+				}
+				else
+				{
+					Wound hitWound = new Wound("Hit wound", 1, 1, 1, "");
+
+					target.getGameObjectHitbox().getBodyParts()[0].addWound(hitWound);
+
+					performer.addObjectStringEvents("Hit " + target.getObjectName() + " using " + performer.getEntityWeapon().getObjectName());
+					target.addObjectStringEvents("Got hit by " + performer.getObjectName() + " using " + performer.getEntityWeapon().getObjectName());
+				}
+
+			}
+
 			//later add dodge and block checks 
 
 			return true;
@@ -112,20 +136,7 @@ namespace Evo
 			}
 			else 
 			{
-				//add more calculations regurarding kenetic energy based on strength or whatever attack is used 
-				if (performer.getEntityWeapon() == null) 
-				{
-					Wound punchWound = new Wound("Punch wound", 0, 0, 0, "hurts but didnt really do anything");
-
-					target.getGameObjectHitbox().getBodyParts()[0].addWound(punchWound);
-
-					performer.addObjectStringEvents("Punched " + target.getObjectName());
-					target.addObjectStringEvents("Got punched by " + performer.getObjectName());
-				}
-				else 
-				{
-					
-				}
+				AttackGameObjectMelee(performer, target);
 			}
 
 		}

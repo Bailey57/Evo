@@ -17,7 +17,7 @@ namespace Evo
 
 	Magazine magazine;
 
-	ProjectileAmmo loadedProjectile;// aka bullet in chamber
+	private ProjectileAmmo loadedProjectile;// aka bullet in chamber
 
 	bool cockable;
 

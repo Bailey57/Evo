@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Evo
 {
+    [System.Serializable]
     public class GameTime
     {
 

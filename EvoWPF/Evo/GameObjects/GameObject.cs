@@ -370,7 +370,7 @@ public void setObjectStringEvents(String objectStringEvents)
  */
 public void addObjectStringEvents(String objectStringEvents)
 {
-	this.objectStringEvents += objectStringEvents;
+	this.objectStringEvents += "\n" + objectStringEvents;
 }
 
 
