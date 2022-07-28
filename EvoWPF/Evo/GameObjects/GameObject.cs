@@ -445,6 +445,24 @@ public double getDistanceFromObject(GameObject gameObject)
 	return distance;
 }
 
+
+
+public double GetDistanceFromPointOfInterest(PointOfInterest pointOfInterest)
+{
+	double distance = 0;
+
+	//		distance = Math.abs(entity.getGameObjectPos().getMapAreaXPos() - getGameObjectPos().getMapAreaXPos());
+	//		distance += Math.abs(entity.getGameObjectPos().getMapAreaYPos() - getGameObjectPos().getMapAreaYPos());
+	//
+	//		Math.pow(entity.getGameObjectPos().getMapAreaXPos() - getGameObjectPos().getMapAreaXPos(), 2);
+	//		Math.pow(entity.getGameObjectPos().getMapAreaYPos() - getGameObjectPos().getMapAreaYPos(), 2);
+
+	distance = Math.Sqrt(
+			Math.Pow(pointOfInterest.GetGameObjectPos().getMapAreaXPos() - getGameObjectPos().getMapAreaXPos(), 2) + Math
+					.Pow(pointOfInterest.GetGameObjectPos().getMapAreaYPos() - getGameObjectPos().getMapAreaYPos(), 2));
+
+	return distance;
+}
         //	public Material breakDownObject() {
         //		this.
         //		this.getMassInKg();

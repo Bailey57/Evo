@@ -274,6 +274,48 @@ namespace Evo
 
 		}
 
+
+
+
+		public static void ApproachPOITenthOfASecond(Entity performer, PointOfInterest pointOfInterest)
+		{
+			if (performer.getAttackRange() < performer.GetDistanceFromPointOfInterest(pointOfInterest));
+			{
+				//performer.getMovementSpeed()
+				double tenthOfASecond = .1;
+
+				if (performer.GetSecondsLeft() < .1)
+				{
+					return;
+				}
+				performer.AddSecondsLeft(-.1);
+
+
+				if (performer.getGameObjectPos().GetOverallYPosition() > pointOfInterest.GetGameObjectPos().GetOverallYPosition())
+				{
+					performer.getGameObjectPos().movePositionOnMapArea("N", performer.getMovementSpeed() * tenthOfASecond);
+
+				}
+				else if (performer.getGameObjectPos().GetOverallYPosition() < pointOfInterest.GetGameObjectPos().GetOverallYPosition())
+				{
+					performer.getGameObjectPos().movePositionOnMapArea("S", performer.getMovementSpeed() * tenthOfASecond);
+
+				}
+				else if (performer.getGameObjectPos().GetOverallXPosition() < pointOfInterest.GetGameObjectPos().GetOverallXPosition())
+				{
+					performer.getGameObjectPos().movePositionOnMapArea("E", performer.getMovementSpeed() * tenthOfASecond);
+
+				}
+				else if (performer.getGameObjectPos().GetOverallXPosition() > pointOfInterest.GetGameObjectPos().GetOverallXPosition())
+				{
+					performer.getGameObjectPos().movePositionOnMapArea("W", performer.getMovementSpeed() * tenthOfASecond);
+
+				}
+				//performer.addObjectStringEvents("Got closer to " + pointOfInterest.getObjectName());
+			}
+
+		}
+
 		public static void HorizontalDegreesToGameObject(Entity performer, GameObject target) 
 		{
 			

@@ -490,35 +490,135 @@ namespace Evo
 		return spotted;
 
 	}
-	// MapArea forest = new MapArea("Forest", "F", .1);
-
-	// MapArea street = new MapArea("Street", "S", .01);
-
-	// MapArea town = new MapArea("Town", "T", .2);
-
-	/**
-	 * Makes a 1x1 area for the game map.
-	 * 
-	 * @param areaName
-	 * @param displayLetter
-	 * @param zombieDensity
-	 * @return new area
-	 */
-//	public MapArea makeArea(String areaName, String displayLetter, double zombieDensity) {
-//		MapArea newMA = new MapArea(areaName, displayLetter, zombieDensity);
-//		return newMA;
-//	}
 
 
 
+		public bool RunThroughEntityActionsTenthOfASecond(Map worldMap, Entity player)
+		{
+			double secondsPassed = .1;
+			double bleedRate = 0;
+			bool spotted = false;
+			bool previouslySpotted = player.isSpotted();
+
+			for (int i = 0; i < worldMap.getGameObjectsOnMapList().Length; i++)
+			{
+				if (!(gameObjectsOnMapList[i] is Entity) ||
+							//gameObjectsOnMap[i,0,0] == null || 
+							(((Entity)gameObjectsOnMapList[i]).getIsThePlayer()))
+				{
+					break;
+				}
+				else
+				{
+
+					//run through the actual actions here
+					//gameObjectsOnMapList[i].
 
 
-	/**
-	 * Returns the global map
-	 * 
-	 * @return map
-	 */
-	public MapArea[,] getGameMap()
+					((Entity)gameObjectsOnMapList[i]).AddSecondsLeft(secondsPassed);
+					//bleed
+					bleedRate = ((Entity)gameObjectsOnMapList[i]).getGameObjectHitbox().GetBleedRatePerSec();
+					if (bleedRate != 0)
+					{
+						((Entity)gameObjectsOnMapList[i]).AddMillilitersOfBlood(-bleedRate * secondsPassed);
+					}
+
+
+
+							((Entity)gameObjectsOnMapList[i]).DeathCheckCloseToPlayer(player);
+
+					//secondsPassed
+					//((Entity)gameObjectsOnMapList[i]).AddSecondsLeft(secondsPassed);
+					if (((Entity)gameObjectsOnMapList[i]).entityInSight(player) && (((Entity)gameObjectsOnMapList[i]).alive))
+					{
+						spotted = true;
+						player.setSpotted(true);
+						player.setInCombat(true);
+
+						EntityAction.AttackAndPursueGameObjectMelee(((Entity)gameObjectsOnMapList[i]), player);
+
+						if (!player.isSpotted() || !player.isInCombat())
+						{
+
+							//((Entity)gameObjectsOnMapList[i]).attackEntity(worldMap, player, secondsPassed, false);
+
+
+
+							if (player.getIsThePlayer())
+							{
+								if (player.isSpotted() && player.isInCombat())
+								{
+
+									player.addObjectStringEvents("\nSpotted by a " + ((Entity)gameObjectsOnMapList[i]).getEntityName() + ".\n");
+									player.addObjectStringEvents("\nEntered combat.\n");
+
+									Console.WriteLine("Spotted by a " + ((Entity)gameObjectsOnMapList[i]).getEntityName() + ".");
+									Console.WriteLine("Entered combat.");
+								}
+
+
+
+
+							}
+
+						}
+
+
+
+
+
+					}
+
+
+				}
+
+			}
+			if (!spotted && previouslySpotted)
+			{
+				//Console.WriteLine("\n" + player.getObjectName() + " is hidden from view.");
+
+				player.setSpotted(false);
+				if (player.isInCombat() && player.getIsThePlayer())
+				{
+					player.addObjectStringEvents("\nExited combat.\n");
+					Console.WriteLine("Exited combat.");
+				}
+				player.setInCombat(false);
+
+
+			}
+			return spotted;
+
+		}
+		// MapArea forest = new MapArea("Forest", "F", .1);
+
+		// MapArea street = new MapArea("Street", "S", .01);
+
+		// MapArea town = new MapArea("Town", "T", .2);
+
+		/**
+		 * Makes a 1x1 area for the game map.
+		 * 
+		 * @param areaName
+		 * @param displayLetter
+		 * @param zombieDensity
+		 * @return new area
+		 */
+		//	public MapArea makeArea(String areaName, String displayLetter, double zombieDensity) {
+		//		MapArea newMA = new MapArea(areaName, displayLetter, zombieDensity);
+		//		return newMA;
+		//	}
+
+
+
+
+
+		/**
+		 * Returns the global map
+		 * 
+		 * @return map
+		 */
+		public MapArea[,] getGameMap()
 {
 	return this.gameMap;
 }

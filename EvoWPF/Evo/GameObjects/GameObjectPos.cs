@@ -275,6 +275,7 @@ using Wasteland.entity.Entity;
 		}
 
 		// rename to travelOnMapArea
+		//redo this 
 		public bool movePositionOnMapArea(String direction, double distance) {
 		int oldMapX = gameObject.getGameObjectPos().getWorldMapXPos();
 		int oldMapY = gameObject.getGameObjectPos().getWorldMapYPos();

@@ -28,7 +28,7 @@ namespace Evo
         private SaveLoad saveLoad = new SaveLoad();
         //private EntityAction entityAction = new EntityAction();
 
-        private SoundPlayer buttonPressSound;
+        //private SoundPlayer buttonPressSound;
 
         private double secondsPassed = 0;
         public MainWindow()
@@ -39,13 +39,13 @@ namespace Evo
             InitializeComponent();
 
            // buttonPressSound = new SoundPlayer(@"/Resources/sounds/gui/buttons/buttonClick_1.wav");
-            buttonPressSound = new SoundPlayer(@"/buttonClick_1.wav");
+            //buttonPressSound = new SoundPlayer(@"/buttonClick_1.wav");
             //buttonPressSound.Source = new Uri(@"/Resources/sounds/gui/buttons/buttonClick_1.mp3", UriKind.Relative);
             // buttonPress.routedevent
             //selcetPOI_Button.AddToEventRoute();
 
 
-            gameVersionLabel.Content = "v0.6.1";
+            gameVersionLabel.Content = "v0.6.2";
 
             gameState = gameState.MakeBuild1();
 
