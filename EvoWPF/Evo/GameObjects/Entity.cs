@@ -32,7 +32,7 @@ namespace Evo
 	// might delete later
 	public String entityName = "unnamed entity";
 	
-	public double gallonsOfBlood = 1.4; // die at >50%, pass out at 40% and possible organ failure, stats affected at 20% loss
+	private double millilitersOfBlood = 5700; // die at >50%, pass out at 40% and possible organ failure, stats affected at 20% loss
 	//millileters
 
 	public double attackRange = 1.5;
@@ -61,6 +61,8 @@ namespace Evo
 	private double TIME_MOVE_TAKES = 2.5;// change to where its based on speed
 
 	private BaseItem[] itemsInSight;
+
+	//private bool wounded;
 
 	public bool getIsThePlayer() {
 		return this.isThePlayer;
@@ -271,6 +273,23 @@ namespace Evo
 
 			this.secondsLeft += secondsLeft;
 		}
+		public double GetMillilitersOfBlood()
+		{
+			return this.millilitersOfBlood;
+		}
+
+		public void SetMillilitersOfBlood(double millilitersOfBlood)
+		{
+
+			this.millilitersOfBlood = millilitersOfBlood;
+		}
+
+		public void AddMillilitersOfBlood(double millilitersOfBlood)
+		{
+
+			this.millilitersOfBlood += millilitersOfBlood;
+			
+		}
 
 
 
@@ -303,6 +322,66 @@ namespace Evo
 
 		}
 		*/
+
+
+		public bool DeathCheck() 
+		{
+			if (!this.isAlive()) 
+			{
+				return true;
+			}
+			double minBloodInBody = 2850;
+			if (this.getGameObjectHitbox().VitalOrganDamaged())
+			{
+				
+				this.addObjectStringEvents("Died from vital organ damage to thier " + this.getGameObjectHitbox().GetDamagedVitalOrgan().getName());
+				this.setAlive(false);
+				return true;
+			}
+			else if (this.GetMillilitersOfBlood() < minBloodInBody) 
+			{
+				this.addObjectStringEvents("Died from blood loss");
+				this.setAlive(false);
+				return true;
+			}
+
+			return false;
+		}
+
+
+		public bool DeathCheckCloseToPlayer(Entity player)
+		{
+			if (!this.isAlive())
+			{
+				return true;
+			}
+			double infoRange = 1000;
+			double minBloodInBody = 2850;
+			if (this.getGameObjectHitbox().VitalOrganDamaged())
+			{
+
+				this.addObjectStringEvents("Died from vital organ damage to thier " + this.getGameObjectHitbox().GetDamagedVitalOrgan().getName());
+				if (player.getDistanceFromObject(this) < infoRange) 
+				{
+					player.addObjectStringEvents(this.getObjectName() + " died from " + this.getGameObjectHitbox().GetDamagedVitalOrgan().getName() + " damage");
+				}
+				this.setAlive(false);
+				return true;
+			}
+			else if (this.GetMillilitersOfBlood() < minBloodInBody)
+			{
+				this.addObjectStringEvents("Died from blood loss");
+				if (player.getDistanceFromObject(this) < infoRange)
+				{
+					player.addObjectStringEvents(this.getObjectName() + " died from blood loss");
+				}
+				this.setAlive(false);
+				return true;
+			}
+
+			return false;
+		}
+
 		public bool aliveCheck() {
 
 		if (integrityCheck() == true && alive == true) {
@@ -315,18 +394,30 @@ namespace Evo
 
 	}
 
-	/**
-	 * 
-	 * @param targetGameObject
-	 * @return targetGrouping size in mm
-	 */
-	public double getTargetGroupSize(GameObject targetGameObject) {
+		/*
+		public bool GetWounded()
+		{
+			return this.wounded;
+		}
+
+		public void SetWounded(bool wounded)
+		{
+			this.wounded = wounded;
+		}
+		*/
+
+		/**
+		 * 
+		 * @param targetGameObject
+		 * @return targetGrouping size in mm
+		 */
+		public double getTargetGroupSize(GameObject targetGameObject) {
 		getAccuracy();
 		double groupingFalloff = 10 + (getAccuracy() / 10);
 
 		double targetGrouping = getDistanceFromObject(targetGameObject) / groupingFalloff;
 
-		targetGrouping += 100; //temporary
+		targetGrouping += 500; //temporary
 		return targetGrouping;
 	}
 

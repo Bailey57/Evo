@@ -408,7 +408,91 @@ using Wasteland.items.ProjectileAmmo;
 		//set new location for Armor if dropping
 		removeArmorOnHitbox(armor);
 	}
-	
+
+
+
+		public bool VitalOrganDamaged() 
+		{
+
+			bool vitalOrganDamaged = false;
+			for (int i = 0; i < this.getBodyParts().Length; i++)
+			{
+
+				if (this.getBodyParts()[i] != null && this.getBodyParts()[i].getWounds() != null)
+				{
+					if (this.getBodyParts()[i].getWounds() != null)
+					{
+						for (int k = 0; k < getBodyParts()[i].getWounds().Length; k++)
+						{
+							if (getBodyParts()[i].getWounds()[k] != null)
+							{
+								if (getBodyParts()[i].isVital() && getBodyParts()[k].getIntegrity() < 0)
+								{
+									vitalOrganDamaged = true;
+								}
+							}
+						}
+					}
+
+				}
+			}
+
+			return vitalOrganDamaged;
+		}
+
+		public BodyPart GetDamagedVitalOrgan()
+		{
+
+			for (int i = 0; i < this.getBodyParts().Length; i++)
+			{
+
+				if (this.getBodyParts()[i].getWounds() != null)
+				{
+					for (int k = 0; k < getBodyParts()[i].getWounds().Length; k++)
+					{
+						if (getBodyParts()[i].getWounds()[i] != null)
+						{
+							if (getBodyParts()[i].isVital() && getBodyParts()[i].getIntegrity() < 0)
+							{
+								return this.getBodyParts()[i];
+							}
+						}
+					}
+
+				}
+			}
+
+			return null;
+		}
+
+
+		public double GetBleedRatePerSec() 
+		{
+			double bleedRatePerSec = 0;
+			for (int i = 0; i < this.getBodyParts().Length; i++) 
+			{
+
+				if (this.getBodyParts()[i] != null && this.getBodyParts()[i].getWounds() != null) 
+				{
+					if (getBodyParts()[i].getWounds() != null) 
+					{
+
+						for (int k = 0; k < getBodyParts()[i].getWounds().Length; k++)
+						{
+							if (getBodyParts()[i] != null && getBodyParts()[i].getWounds()[k] != null)
+							{
+								bleedRatePerSec += getBodyParts()[i].getWounds()[k].getBleedRate_ml_per_sec();
+							}
+						}
+					}
+					
+
+				}
+			}
+
+			return bleedRatePerSec;
+		}
+
 
 	public Hitbox newHumanHitbox() {
 		Hitbox humanHitBox = new Hitbox(-347.5, 347.5, 0, 1750);

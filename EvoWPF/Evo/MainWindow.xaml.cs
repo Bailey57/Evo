@@ -45,7 +45,7 @@ namespace Evo
             //selcetPOI_Button.AddToEventRoute();
 
 
-            gameVersionLabel.Content = "v0.6.0";
+            gameVersionLabel.Content = "v0.6.1";
 
             gameState = gameState.MakeBuild1();
 
@@ -76,6 +76,9 @@ namespace Evo
 
         public void GameLoop()
         {
+            gameState.GetPlayer().SetSecondsLeft(99999999);
+
+
             loadingStatusLabel.Content = "Loading Status: in progress";
             System.Threading.Thread.Sleep(50);
 
@@ -106,14 +109,14 @@ namespace Evo
             gameState.GetPlayer().addObjectStringEvents("\n<-------------------->\n" + gameState.GetGameTime().ToString() + "\n");
             DrawMap();
             mapPosLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapX()
-                + "Y: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapY();
+                + " Y: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapY();
             mapOverallPositionLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().GetOverallXPosition()
-                + "Y: " + gameState.GetPlayer().getGameObjectPos().GetOverallYPosition();
+                + " Y: " + gameState.GetPlayer().getGameObjectPos().GetOverallYPosition();
 
             if (entitiesInSightList.SelectedItem != null) 
             {
                 mapOverallPositionLabelEntity.Content = "X: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallXPosition()
-                + "Y: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallYPosition();
+                + " Y: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallYPosition();
             }
 
 
@@ -123,6 +126,7 @@ namespace Evo
             
             consoleOutput.ScrollToEnd();
             secondsPassed = 0;
+
             //buttonPressSound.Play();
         }
 
@@ -166,14 +170,14 @@ namespace Evo
             }
             DrawMap();
             mapPosLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapX()
-                + "Y: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapY();
+                + " Y: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapY();
             mapOverallPositionLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().GetOverallXPosition()
-                + "Y: " + gameState.GetPlayer().getGameObjectPos().GetOverallYPosition();
+                + " Y: " + gameState.GetPlayer().getGameObjectPos().GetOverallYPosition();
 
             if (entitiesInSightList.SelectedItem != null)
             {
                 mapOverallPositionLabelEntity.Content = "X: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallXPosition()
-                + "Y: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallYPosition();
+                + " Y: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallYPosition();
             }
 
         }

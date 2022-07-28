@@ -433,7 +433,17 @@ namespace Evo
 					if (target is Entity)
 					{
 
-						((Entity)target).aliveCheck();
+						//((Entity)target).aliveCheck();
+
+						if (shooter.isThePlayer)
+						{
+							((Entity)target).DeathCheckCloseToPlayer(shooter);
+						}
+						else 
+						{
+							((Entity)target).DeathCheck();
+						}
+						
 
 					}
 					else

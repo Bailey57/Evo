@@ -399,8 +399,9 @@ namespace Evo
 
 	public bool runThroughEntityActions(Map worldMap, Entity player, double secondsPassed)
 	{
-		
-		bool spotted = false;
+			double bleedRate = 0;
+			bool spotted = false;
+			bool previouslySpotted = player.isSpotted();
 
 			for (int i = 0; i < worldMap.getGameObjectsOnMapList().Length; i++)
 		{
@@ -415,45 +416,65 @@ namespace Evo
 					//gameObjectsOnMapList[i].
 
 
+					((Entity)gameObjectsOnMapList[i]).AddSecondsLeft(secondsPassed);
+					//bleed
+					bleedRate = ((Entity)gameObjectsOnMapList[i]).getGameObjectHitbox().GetBleedRatePerSec();
+					if (bleedRate != 0) 
+					{
+						((Entity)gameObjectsOnMapList[i]).AddMillilitersOfBlood(-bleedRate * secondsPassed);
+					}
+					
 
+
+					((Entity)gameObjectsOnMapList[i]).DeathCheckCloseToPlayer(player);
 
 					//secondsPassed
-			//((Entity)gameObjectsOnMapList[i]).AddSecondsLeft(secondsPassed);
-			if (((Entity)gameObjectsOnMapList[i]).entityInSight(player) && (((Entity)gameObjectsOnMapList[i]).alive))
-			{
-				
-				//((Entity)gameObjectsOnMapList[i]).attackEntity(worldMap, player, secondsPassed, false);
-				EntityAction.AttackAndPursueGameObjectMelee(((Entity)gameObjectsOnMapList[i]), player);
-				spotted = true;
-
-
-				if (player.getIsThePlayer())
-				{
-					if (player.isSpotted() && player.isInCombat())
+					//((Entity)gameObjectsOnMapList[i]).AddSecondsLeft(secondsPassed);
+					if (((Entity)gameObjectsOnMapList[i]).entityInSight(player) && (((Entity)gameObjectsOnMapList[i]).alive))
 					{
+						spotted = true;
+						player.setSpotted(true);
+						player.setInCombat(true);
 
-						player.addObjectStringEvents("\nSpotted by a " + ((Entity)gameObjectsOnMapList[i]).getEntityName() + ".\n");
-						player.addObjectStringEvents("\nEntered combat.\n");
+						EntityAction.AttackAndPursueGameObjectMelee(((Entity)gameObjectsOnMapList[i]), player);
+						
+						if (!player.isSpotted() || !player.isInCombat())
+						{
 
-						Console.WriteLine("Spotted by a " + ((Entity)gameObjectsOnMapList[i]).getEntityName() + ".");
-						Console.WriteLine("Entered combat.");
+							//((Entity)gameObjectsOnMapList[i]).attackEntity(worldMap, player, secondsPassed, false);
+							
+
+
+							if (player.getIsThePlayer())
+							{
+								if (player.isSpotted() && player.isInCombat())
+								{
+
+									player.addObjectStringEvents("\nSpotted by a " + ((Entity)gameObjectsOnMapList[i]).getEntityName() + ".\n");
+									player.addObjectStringEvents("\nEntered combat.\n");
+
+									Console.WriteLine("Spotted by a " + ((Entity)gameObjectsOnMapList[i]).getEntityName() + ".");
+									Console.WriteLine("Entered combat.");
+								}
+								
+								
+
+
+							}
+
+						}
+
+
+
+
+
 					}
-					player.setSpotted(true);
-					player.setInCombat(true);
-					spotted = true;
-
-
-				}
-
-
-
-
-			}
+					
 
 		}
 
 	}
-		if (!spotted) {
+		if (!spotted && previouslySpotted) {
 			//Console.WriteLine("\n" + player.getObjectName() + " is hidden from view.");
 			
 			player.setSpotted(false);
