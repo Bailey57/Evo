@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Evo.GameObjects.HitBoxes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Evo
 {
-	//package wasteland.entity;
+    //package wasteland.entity;
 
-	public static class EntityAction
+    public static class EntityAction
 	{
 
 		//highest number action is prioritized 0-100
@@ -237,40 +238,7 @@ namespace Evo
 
 		public static void ApproachGameObjectTenthOfASecond(Entity performer, GameObject target)
 		{
-			if (performer.getAttackRange() < performer.getDistanceFromObject(target))
-			{
-				//performer.getMovementSpeed()
-				double tenthOfASecond = .1;
-
-				if (performer.GetSecondsLeft() < .1)
-				{
-					return;
-				}
-				performer.AddSecondsLeft(-.1);
-
-
-				if (performer.getGameObjectPos().GetOverallYPosition() > target.getGameObjectPos().GetOverallYPosition())
-				{
-					performer.getGameObjectPos().movePositionOnMapArea("N", performer.getMovementSpeed() * tenthOfASecond);
-
-				}
-				else if (performer.getGameObjectPos().GetOverallYPosition() < target.getGameObjectPos().GetOverallYPosition())
-				{
-					performer.getGameObjectPos().movePositionOnMapArea("S", performer.getMovementSpeed() * tenthOfASecond);
-
-				}
-				else if (performer.getGameObjectPos().GetOverallXPosition() < target.getGameObjectPos().GetOverallXPosition())
-				{
-					performer.getGameObjectPos().movePositionOnMapArea("E", performer.getMovementSpeed() * tenthOfASecond);
-
-				}
-				else if (performer.getGameObjectPos().GetOverallXPosition() > target.getGameObjectPos().GetOverallXPosition())
-				{
-					performer.getGameObjectPos().movePositionOnMapArea("W", performer.getMovementSpeed() * tenthOfASecond);
-
-				}
-				//performer.addObjectStringEvents("Got closer to " + target.getObjectName());
-			}
+			ApproachGameObjectPosTenthOfASecond(performer, target.getGameObjectPos());
 
 		}
 
@@ -279,7 +247,16 @@ namespace Evo
 
 		public static void ApproachPOITenthOfASecond(Entity performer, PointOfInterest pointOfInterest)
 		{
-			if (performer.getAttackRange() < performer.GetDistanceFromPointOfInterest(pointOfInterest));
+			ApproachGameObjectPosTenthOfASecond(performer, pointOfInterest.GetGameObjectPos());
+
+		}
+
+
+
+
+		public static void ApproachGameObjectPosTenthOfASecond(Entity performer, GameObjectPos gameObjectPos)
+		{
+			if (performer.getAttackRange() < performer.getGameObjectPos().GetDistanceFromGameObjectPos(gameObjectPos))
 			{
 				//performer.getMovementSpeed()
 				double tenthOfASecond = .1;
@@ -291,22 +268,22 @@ namespace Evo
 				performer.AddSecondsLeft(-.1);
 
 
-				if (performer.getGameObjectPos().GetOverallYPosition() > pointOfInterest.GetGameObjectPos().GetOverallYPosition())
+				if (performer.getGameObjectPos().GetOverallYPosition() > gameObjectPos.GetOverallYPosition())
 				{
 					performer.getGameObjectPos().movePositionOnMapArea("N", performer.getMovementSpeed() * tenthOfASecond);
 
 				}
-				else if (performer.getGameObjectPos().GetOverallYPosition() < pointOfInterest.GetGameObjectPos().GetOverallYPosition())
+				else if (performer.getGameObjectPos().GetOverallYPosition() < gameObjectPos.GetOverallYPosition())
 				{
 					performer.getGameObjectPos().movePositionOnMapArea("S", performer.getMovementSpeed() * tenthOfASecond);
 
 				}
-				else if (performer.getGameObjectPos().GetOverallXPosition() < pointOfInterest.GetGameObjectPos().GetOverallXPosition())
+				else if (performer.getGameObjectPos().GetOverallXPosition() < gameObjectPos.GetOverallXPosition())
 				{
 					performer.getGameObjectPos().movePositionOnMapArea("E", performer.getMovementSpeed() * tenthOfASecond);
 
 				}
-				else if (performer.getGameObjectPos().GetOverallXPosition() > pointOfInterest.GetGameObjectPos().GetOverallXPosition())
+				else if (performer.getGameObjectPos().GetOverallXPosition() > gameObjectPos.GetOverallXPosition())
 				{
 					performer.getGameObjectPos().movePositionOnMapArea("W", performer.getMovementSpeed() * tenthOfASecond);
 
@@ -315,6 +292,8 @@ namespace Evo
 			}
 
 		}
+
+
 
 		public static void HorizontalDegreesToGameObject(Entity performer, GameObject target) 
 		{

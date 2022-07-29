@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Evo.GameObjects.HitBoxes;
+using System;
 
 
 //namespace WaistlandGameWPF.WastelandGame
@@ -12,7 +13,7 @@
 //using Wasteland.map.GameObjectPos;
 namespace Evo
 {
-	[System.Serializable]
+    [System.Serializable]
 	public class GameObject{
 	// add density or hardness or make material class
 	//
@@ -416,19 +417,22 @@ public void setGameObjectHitbox(Hitbox gameObjectHitbox)
             return this.directionFacing;
         }
 
-//	public GameObject(GameObjectPos gameObjectPos, int integraty, String objectName, double mass, double xSize, double ySize,
-//			double zSize) {
-//		super();
-//		this.gameObjectPos = gameObjectPos;
-//		this.integraty = integraty;
-//		this.objectName = objectName;
-//		this.mass = mass;
-//		this.xSize = xSize;
-//		this.ySize = ySize;
-//		this.zSize = zSize;
-//	}
+		//	public GameObject(GameObjectPos gameObjectPos, int integraty, String objectName, double mass, double xSize, double ySize,
+		//			double zSize) {
+		//		super();
+		//		this.gameObjectPos = gameObjectPos;
+		//		this.integraty = integraty;
+		//		this.objectName = objectName;
+		//		this.mass = mass;
+		//		this.xSize = xSize;
+		//		this.ySize = ySize;
+		//		this.zSize = zSize;
+		//	}
 
-public double getDistanceFromObject(GameObject gameObject)
+
+		
+
+		public double getDistanceFromObject(GameObject gameObject)
 {
 	double distance = 0;
 

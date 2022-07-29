@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Evo.GameObjects.HitBoxes;
+using System;
 
 
 namespace Evo
 {
-	/*
+    /*
     package wasteland.gameRunner;
 
 import java.io.Serializable;
@@ -12,11 +13,11 @@ using Wasteland.entity.Entity;
 using Wasteland.map.GameObjectPos;
 using Wasteland.map.Map;
 */
-	/**
+    /**
 	 * GameState represents the current state of play, like the map, player location, and so on.
 	 *
 	 */
-	[System.Serializable]
+    [System.Serializable]
 	public class GameState 
 	{
 

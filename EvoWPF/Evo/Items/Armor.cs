@@ -1,10 +1,11 @@
+using Evo.GameObjects.HitBoxes;
 using System;
 
 
 namespace Evo
 {
 
-	[System.Serializable]
+    [System.Serializable]
 	public class Armor : BaseItem
 	{
 

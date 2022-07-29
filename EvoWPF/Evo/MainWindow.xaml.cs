@@ -45,7 +45,7 @@ namespace Evo
             //selcetPOI_Button.AddToEventRoute();
 
 
-            gameVersionLabel.Content = "v0.6.2";
+            gameVersionLabel.Content = "v0.6.3";
 
             gameState = gameState.MakeBuild1();
 
@@ -80,7 +80,7 @@ namespace Evo
 
 
             loadingStatusLabel.Content = "Loading Status: in progress";
-            System.Threading.Thread.Sleep(50);
+            //System.Threading.Thread.Sleep(50);
 
 
             UpdateGUI();

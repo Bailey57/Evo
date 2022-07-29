@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Evo.GameObjects.HitBoxes;
+using System;
 using System.Diagnostics;
 
-namespace Evo {
-public class BulletPenetration {
+namespace Evo
+{
+    public class BulletPenetration {
 
 	public String name = "unnamed projectile";// _9_mm, _7_62_mm, _12_7_mm
 

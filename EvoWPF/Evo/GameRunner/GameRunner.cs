@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Evo.GameObjects.HitBoxes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Evo
 {
-	/*
+    /*
     package wasteland.gameRunner;
 using Wasteland.saveAndLoad.*;
 import java.io.Serializable;
@@ -26,13 +27,13 @@ using Wasteland.items.weapons.Magazine;
 using Wasteland.map.GameObjectPos;
 using Wasteland.map.Map;
 */
-	/**
+    /**
 	 * 
 	 * 
 	 * @author bailey
 	 *
 	 */
-	public class GameRunner
+    public class GameRunner
 	{
 
 		/**

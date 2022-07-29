@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Evo.GameObjects.HitBoxes;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Evo.Calculator.Destinations;
 
 //later: add entity levels wich affect how skilled they are ex: high lvl might have high accuracy
 namespace Evo
 {
-	[System.Serializable]
+    [System.Serializable]
 	public class Entity : GameObject {
 	// types: humaniod, vehicle,
 
@@ -61,6 +63,8 @@ namespace Evo
 	private double TIME_MOVE_TAKES = 2.5;// change to where its based on speed
 
 	private BaseItem[] itemsInSight;
+
+		private Path path;
 
 	//private bool wounded;
 
@@ -291,6 +295,14 @@ namespace Evo
 			
 		}
 
+		public Path GetPath() 
+		{
+			return this.path;
+		}
+		public void SetPath(Path path) 
+		{
+			this.path = path;
+		}
 
 
 
