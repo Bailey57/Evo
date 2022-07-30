@@ -66,6 +66,7 @@ namespace Evo
 
 		private Path path;
 
+
 	//private bool wounded;
 
 	public bool getIsThePlayer() {

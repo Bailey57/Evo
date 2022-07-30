@@ -15,11 +15,6 @@ namespace Evo.Calculator.Destinations
 
         private ObservableCollection<Destination> destinationList = new ObservableCollection<Destination>();
 
-        private Destination currentDestination;
-
-
-        private Destination nextDestination;
-
 
 
         public Path(bool repeatPath)
@@ -58,29 +53,61 @@ namespace Evo.Calculator.Destinations
         {
             this.destinationList.Remove(destination);
         }
-        public Destination GetDestination()
-        {
-            return this.currentDestination;
-        }
-        public void SetDestination(Destination currentDestination) 
-        {
-            this.currentDestination = currentDestination;
-        }
 
 
-        public void NextDestination()
+
+        public Destination GetCurrentDestination()
         {
-            if (!this.GetRepeatPath()) 
+
+            return this.destinationList[0];
+        }
+
+        public void SetNewCurrentDestination(Destination destination) 
+        {
+
+            if (destinationList != null && destinationList.Count() >= 0) 
             {
-                nextDestination = currentDestination;
-                RemoveDestination(currentDestination);
-            }    
+                for (int i = destinationList.Count(); i >= destinationList.Count(); i--)
+                {
+                    AddDestination(destinationList[i]);
+                    RemoveDestination(destinationList[i]);
+                    
+
+                }
+                destinationList[0] = destination;
+            }
+
             
         }
 
 
 
+        public void GoToNextDestination()
+        {
+            if (!this.GetRepeatPath())
+            {
 
+                //nextDestination = currentDestination;
+                RemoveDestination(destinationList[0]);
+
+            }
+            else 
+            {
+                Destination destination = this.destinationList[0];
+                RemoveDestination(destinationList[0]);
+                AddDestination(destination);
+            }
+            
+        }
+
+
+
+        public Destination MakeNewDestinationFromGameObjectPos(string name, string description, GameObjectPos gameObjectPos) 
+        {
+            Destination destination = new Destination(name, description, gameObjectPos);
+            this.AddDestination(destination);
+            return destination;
+        }
 
 
 

@@ -45,7 +45,7 @@ namespace Evo
             //selcetPOI_Button.AddToEventRoute();
 
 
-            gameVersionLabel.Content = "v0.6.3";
+            gameVersionLabel.Content = "v0.6.4";
 
             gameState = gameState.MakeBuild1();
 
@@ -566,7 +566,9 @@ namespace Evo
 
         private void SelectPOI(object sender, RoutedEventArgs e)
         {
+            PointOfInterest poi = (PointOfInterest)pointsOfInterestListView.SelectedItem;
             Sounds.PlayButtonSound1();
+            gameState.GetPlayer().GetPath().MakeNewDestinationFromGameObjectPos(poi.GetName(), poi.GetDescription(), poi.GetGameObjectPos());
             // buttonPressSound.Play();
             GameLoop();
         }
