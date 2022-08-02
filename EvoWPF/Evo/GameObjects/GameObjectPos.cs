@@ -285,9 +285,8 @@ using Wasteland.entity.Entity;
 			//		Math.pow(entity.getGameObjectPos().getMapAreaXPos() - getGameObjectPos().getMapAreaXPos(), 2);
 			//		Math.pow(entity.getGameObjectPos().getMapAreaYPos() - getGameObjectPos().getMapAreaYPos(), 2);
 
-			distance = Math.Sqrt(
-					Math.Pow(gameObjectpos.getMapAreaXPos() - this.getMapAreaXPos(), 2) + Math
-							.Pow(gameObjectpos.getMapAreaYPos() - this.getMapAreaYPos(), 2));
+			distance = Math.Sqrt(Math.Pow(gameObjectpos.GetOverallXPosition() - this.GetOverallXPosition(), 2) + 
+				Math.Pow(gameObjectpos.GetOverallYPosition() - this.GetOverallYPosition(), 2));
 
 			return distance;
 		}

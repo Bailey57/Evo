@@ -821,9 +821,9 @@ namespace Evo
 						if (projectileVelocity > 60) {
 							pennetraitedLayers += 1;
 							if (hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].isVital() == true) {
-								output += "damaged vital organ " + hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getName() + "died\n";
+								output += "\ndamaged vital organ " + hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getName() + "\ndied\n";
 								
-								Debug.WriteLine("damaged vital organ " + hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getName() + "died\n");
+								Debug.WriteLine("\ndamaged vital organ " + hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getName() + "\ndied\n");
 								//kill the target
 							}
 							projectileVelocity = this.getFinalV();

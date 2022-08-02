@@ -446,7 +446,7 @@ namespace Evo
 
 		double targetGrouping = getDistanceFromObject(targetGameObject) / groupingFalloff;
 
-		targetGrouping += 500; //temporary
+		//targetGrouping += 500; //temporary for testing
 		return targetGrouping;
 	}
 

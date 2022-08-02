@@ -470,8 +470,12 @@ namespace Evo
 
 	}
 
-	// fires gun and projectile hits target not reguarding hitbox
-	public bool fireGunAtGameObjectNoHitbox(Entity shooter, GameObject target)
+
+
+		
+
+		// fires gun and projectile hits target not reguarding hitbox
+		public bool fireGunAtGameObjectNoHitbox(Entity shooter, GameObject target)
 	{
 		bool targetHit = false;
 		double distanceFromTarget = shooter.getDistanceFromObject(target);
