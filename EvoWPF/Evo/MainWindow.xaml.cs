@@ -45,7 +45,7 @@ namespace Evo
             //selcetPOI_Button.AddToEventRoute();
 
 
-            gameVersionLabel.Content = "v0.6.4";
+            gameVersionLabel.Content = "v0.6.5";
 
             gameState = gameState.MakeBuild1();
 
@@ -180,6 +180,8 @@ namespace Evo
                 + " Y: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallYPosition();
             }
 
+            playerDestinationDescription.Text = gameState.GetPlayer().GetPath().GetCurrentDestinationToString();
+
         }
 
         private void UpdateGUI(object sender, RoutedEventArgs e) 
@@ -252,15 +254,16 @@ namespace Evo
             if (playerMapX >= 0 && playerMapY >= 0 && playerMapX < maxMapX && playerMapY < maxMapY)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX, playerMapY].getAreaName();
-                mapArea_x0_y0.Source = new BitmapImage(new Uri(@"/"+ mapAreaName +".png", UriKind.Relative));
+                mapArea_x0_y0.Source = new BitmapImage(new Uri(@"/Resources/images/map/" + mapAreaName +".png", UriKind.Relative));
                 if (mapArea_x0_y0.Source == null) 
                 {
-                    mapArea_x0_y0.Source = new BitmapImage(new Uri(@"/WIP_MapSquare.png", UriKind.Relative));           
+                    mapArea_x0_y0.Source = new BitmapImage(new Uri(@"/Resources/images/map/WIP_MapSquare.png", UriKind.Relative));           
                 }
             }
             else 
             {
-                mapArea_x0_y0.Source = new BitmapImage(new Uri(@"/gameMapBorder.png", UriKind.Relative));
+                //\Resources\images\map\gameMapBorder.png
+                mapArea_x0_y0.Source = new BitmapImage(new Uri(@"/Resources/images/map/gameMapBorder.png", UriKind.Relative));
             }
             //mapArea_x0_y0.Source = new BitmapImage(new Uri(@"/town.png", UriKind.Relative));//for testing purposes
 
@@ -268,42 +271,42 @@ namespace Evo
             if (playerMapX + 1 >= 0 && playerMapY >= 0 && playerMapX + 1 < maxMapX && playerMapY < maxMapY)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX + 1, playerMapY].getAreaName();
-                mapArea_x1_y0.Source = new BitmapImage(new Uri(@"/" + mapAreaName + ".png", UriKind.Relative));
+                mapArea_x1_y0.Source = new BitmapImage(new Uri(@"/Resources/images/map/" + mapAreaName + ".png", UriKind.Relative));
             }
             else
             {
-                mapArea_x1_y0.Source = new BitmapImage(new Uri(@"/gameMapBorder.png", UriKind.Relative));
+                mapArea_x1_y0.Source = new BitmapImage(new Uri(@"/Resources/images/map/gameMapBorder.png", UriKind.Relative));
             }
 
             if (playerMapX + 1 >= 0 && playerMapY + 1 >= 0 && playerMapX + 1 < maxMapX && playerMapY + 1 < maxMapY)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX + 1, playerMapY + 1].getAreaName();
-                mapArea_x1_y1.Source = new BitmapImage(new Uri(@"/" + mapAreaName + ".png", UriKind.Relative));
+                mapArea_x1_y1.Source = new BitmapImage(new Uri(@"/Resources/images/map/" + mapAreaName + ".png", UriKind.Relative));
             }
             else
             {
-                mapArea_x1_y1.Source = new BitmapImage(new Uri(@"/gameMapBorder.png", UriKind.Relative));
+                mapArea_x1_y1.Source = new BitmapImage(new Uri(@"/Resources/images/map/gameMapBorder.png", UriKind.Relative));
             }
 
             if (playerMapX >= 0 && playerMapY + 1 >= 0 && playerMapX < maxMapX && playerMapY + 1< maxMapY)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX, playerMapY + 1].getAreaName();
-                mapArea_x0_y1.Source = new BitmapImage(new Uri(@"/" + mapAreaName + ".png", UriKind.Relative));
+                mapArea_x0_y1.Source = new BitmapImage(new Uri(@"/Resources/images/map/" + mapAreaName + ".png", UriKind.Relative));
             }
             else
             {
-                mapArea_x0_y1.Source = new BitmapImage(new Uri(@"/gameMapBorder.png", UriKind.Relative));
+                mapArea_x0_y1.Source = new BitmapImage(new Uri(@"/Resources/images/map/gameMapBorder.png", UriKind.Relative));
             }
 
 
             if (playerMapX - 1 >= 0 && playerMapY >= 0 && playerMapX - 1 < maxMapX && playerMapY < maxMapY)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX - 1, playerMapY].getAreaName();
-                mapArea_x_1_y0.Source = new BitmapImage(new Uri(@"/" + mapAreaName + ".png", UriKind.Relative));
+                mapArea_x_1_y0.Source = new BitmapImage(new Uri(@"/Resources/images/map/" + mapAreaName + ".png", UriKind.Relative));
             }
             else
             {
-                mapArea_x_1_y0.Source = new BitmapImage(new Uri(@"/gameMapBorder.png", UriKind.Relative));
+                mapArea_x_1_y0.Source = new BitmapImage(new Uri(@"/Resources/images/map/gameMapBorder.png", UriKind.Relative));
             }
 
 
@@ -311,22 +314,22 @@ namespace Evo
             if (playerMapX - 1 >= 0 && playerMapY - 1 >= 0 && playerMapX -1 < maxMapX && playerMapY - 1 < maxMapY)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX - 1, playerMapY - 1].getAreaName();
-                mapArea_x_1_y_1.Source = new BitmapImage(new Uri(@"/" + mapAreaName + ".png", UriKind.Relative));
+                mapArea_x_1_y_1.Source = new BitmapImage(new Uri(@"/Resources/images/map/" + mapAreaName + ".png", UriKind.Relative));
             }
             else
             {
-                mapArea_x_1_y_1.Source = new BitmapImage(new Uri(@"/gameMapBorder.png", UriKind.Relative));
+                mapArea_x_1_y_1.Source = new BitmapImage(new Uri(@"/Resources/images/map/gameMapBorder.png", UriKind.Relative));
             }
 
 
             if (playerMapX >= 0 && playerMapY - 1 >= 0 && playerMapX < maxMapX && playerMapY - 1 < maxMapY)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX, playerMapY - 1].getAreaName();
-                mapArea_x0_y_1.Source = new BitmapImage(new Uri(@"/" + mapAreaName + ".png", UriKind.Relative));
+                mapArea_x0_y_1.Source = new BitmapImage(new Uri(@"/Resources/images/map/" + mapAreaName + ".png", UriKind.Relative));
             }
             else
             {
-                mapArea_x0_y_1.Source = new BitmapImage(new Uri(@"/gameMapBorder.png", UriKind.Relative));
+                mapArea_x0_y_1.Source = new BitmapImage(new Uri(@"/Resources/images/map/gameMapBorder.png", UriKind.Relative));
             }
 
 
@@ -334,11 +337,11 @@ namespace Evo
             if (playerMapX - 1 >= 0 && playerMapY + 1 >= 0 && playerMapX - 1 < maxMapX && playerMapY + 1 < maxMapY)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX - 1, playerMapY + 1].getAreaName();
-                mapArea_x_1_y1.Source = new BitmapImage(new Uri(@"/" + mapAreaName + ".png", UriKind.Relative));
+                mapArea_x_1_y1.Source = new BitmapImage(new Uri(@"/Resources/images/map/" + mapAreaName + ".png", UriKind.Relative));
             }
             else
             {
-                mapArea_x_1_y1.Source = new BitmapImage(new Uri(@"/gameMapBorder.png", UriKind.Relative));
+                mapArea_x_1_y1.Source = new BitmapImage(new Uri(@"/Resources/images/map/gameMapBorder.png", UriKind.Relative));
             }
 
 
@@ -346,11 +349,11 @@ namespace Evo
             if (playerMapX + 1 >= 0 && playerMapY - 1 >= 0 && playerMapX + 1 < maxMapX && playerMapY - 1 < maxMapY)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX + 1, playerMapY - 1].getAreaName();
-                mapArea_x1_y_1.Source = new BitmapImage(new Uri(@"/" + mapAreaName + ".png", UriKind.Relative));
+                mapArea_x1_y_1.Source = new BitmapImage(new Uri(@"/Resources/images/map/" + mapAreaName + ".png", UriKind.Relative));
             }
             else
             {
-                mapArea_x1_y_1.Source = new BitmapImage(new Uri(@"/gameMapBorder.png", UriKind.Relative));
+                mapArea_x1_y_1.Source = new BitmapImage(new Uri(@"/Resources/images/map/gameMapBorder.png", UriKind.Relative));
             }
 
             //mapArea.Source = new BitmapImage(new Uri(@"assets/" + mapAreaName + ".png"));
@@ -557,6 +560,11 @@ namespace Evo
         }
 
 
+
+
+
+
+
         private void ReloadGUI(object sender, RoutedEventArgs e)
         {
             Sounds.PlayButtonSound1();
@@ -567,10 +575,13 @@ namespace Evo
         private void SelectPOI(object sender, RoutedEventArgs e)
         {
             PointOfInterest poi = (PointOfInterest)pointsOfInterestListView.SelectedItem;
+            
             Sounds.PlayButtonSound1();
-            gameState.GetPlayer().GetPath().MakeNewDestinationFromGameObjectPos(poi.GetName(), poi.GetDescription(), poi.GetGameObjectPos());
+            //gameState.GetPlayer().GetPath().MakeNewDestinationFromGameObjectPos(poi.GetName(), poi.GetDescription(), poi.GetGameObjectPos());
+            gameState.GetPlayer().GetPath().GetDestinationList().Clear();
+            gameState.GetPlayer().GetPath().AddDestination(gameState.GetPlayer().GetPath().MakeNewDestinationFromGameObjectPos(poi.GetName(), poi.GetDescription(), poi.GetGameObjectPos()));
             // buttonPressSound.Play();
-            GameLoop();
+            UpdateGUI();
         }
 
 

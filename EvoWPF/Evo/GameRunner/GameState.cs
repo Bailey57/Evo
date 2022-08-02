@@ -202,7 +202,7 @@ using Wasteland.map.Map;
 
 			//gameState.GetMainMap().makeMap1(gameState.GetMainMap());
 			gameState.SetPlayerPos(startPos);
-
+			
 
 
 
@@ -212,6 +212,8 @@ using Wasteland.map.Map;
 			gameState.GetPlayer().setObjectName("Player");
 			gameState.GetPlayer().setEntityName("Player");
 			gameState.GetPlayer().setStrength(25);
+
+	
 
 			Hitbox hitbox = new Hitbox();
 			gameState.GetPlayer().setGameObjectHitbox(hitbox.newHumanHitbox());

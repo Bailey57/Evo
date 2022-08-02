@@ -67,9 +67,25 @@ namespace Evo
 		private Path path;
 
 
-	//private bool wounded;
+		//private bool wounded;
 
-	public bool getIsThePlayer() {
+
+
+
+
+		public Entity(String objectName, bool alive, double energy, double movementSpeed, double accuracy,
+		GameObjectPos gameObjectPos) : base(gameObjectPos, objectName)
+		{
+			this.alive = alive;
+			this.energy = energy;
+			this.accuracy = accuracy;
+			this.gameObjectPos = gameObjectPos;
+			this.movementSpeed = movementSpeed;
+			Path path = new Path(false);
+			this.SetPath(path);
+		}
+
+		public bool getIsThePlayer() {
 		return this.isThePlayer;
 	}
 
@@ -434,15 +450,7 @@ namespace Evo
 		return targetGrouping;
 	}
 
-	public Entity(String objectName, bool alive, double energy, double movementSpeed, double accuracy,
-			GameObjectPos gameObjectPos) : base(gameObjectPos, objectName)
-		{
-		this.alive = alive;
-		this.energy = energy;
-		this.accuracy = accuracy;
-		this.gameObjectPos = gameObjectPos;
-		this.movementSpeed = movementSpeed;
-	}
+
 
 	public String entitiesInSightListToString(Map worldMap) {
 		String stringOutput = "";

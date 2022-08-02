@@ -51,5 +51,16 @@ namespace Evo.Calculator.Destinations
         {
             this.gameObjectPos = gameObjectPos;
         }
+
+
+        public override string ToString() 
+        {
+            string output = "";
+            output = this.GetName() + ": \n" + this.GetDescription() + "\nX: " + this.GetGameObjectPos().GetOverallXPosition() + "\nY: " 
+                + this.GetGameObjectPos().GetOverallYPosition();
+            
+            
+            return output;
+        }
     }
 }

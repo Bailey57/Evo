@@ -58,8 +58,12 @@ namespace Evo.Calculator.Destinations
 
         public Destination GetCurrentDestination()
         {
-
-            return this.destinationList[0];
+            if (destinationList.Count > 0) 
+            {
+                return this.destinationList[0];
+            }
+            return null;
+            
         }
 
         public void SetNewCurrentDestination(Destination destination) 
@@ -109,6 +113,31 @@ namespace Evo.Calculator.Destinations
             return destination;
         }
 
+
+
+
+        public string GetCurrentDestinationToString() 
+        {
+            if (destinationList.Count > 0 && destinationList[0] != null)
+            {
+                return destinationList[0].ToString();
+            }
+            else 
+            {
+                return "No current destination";
+            }
+        }
+
+        public bool CurrentDestinationReached(GameObjectPos currentPos) 
+        {
+            double meters = 1;
+            if (currentPos.GetDistanceFromGameObjectPos(this.GetCurrentDestination().GetGameObjectPos()) < meters) 
+            {
+                return true;
+            }
+            
+            return false;
+        }
 
 
 

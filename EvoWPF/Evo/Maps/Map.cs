@@ -428,6 +428,12 @@ namespace Evo
 
 					((Entity)gameObjectsOnMapList[i]).DeathCheckCloseToPlayer(player);
 
+
+
+
+
+
+
 					//secondsPassed
 					//((Entity)gameObjectsOnMapList[i]).AddSecondsLeft(secondsPassed);
 					if (((Entity)gameObjectsOnMapList[i]).entityInSight(player) && (((Entity)gameObjectsOnMapList[i]).alive))
@@ -437,12 +443,12 @@ namespace Evo
 						player.setInCombat(true);
 
 						EntityAction.AttackAndPursueGameObjectMelee(((Entity)gameObjectsOnMapList[i]), player);
-						
+
 						if (!player.isSpotted() || !player.isInCombat())
 						{
 
 							//((Entity)gameObjectsOnMapList[i]).attackEntity(worldMap, player, secondsPassed, false);
-							
+
 
 
 							if (player.getIsThePlayer())
@@ -456,8 +462,8 @@ namespace Evo
 									Console.WriteLine("Spotted by a " + ((Entity)gameObjectsOnMapList[i]).getEntityName() + ".");
 									Console.WriteLine("Entered combat.");
 								}
-								
-								
+
+
 
 
 							}
@@ -468,6 +474,11 @@ namespace Evo
 
 
 
+					}
+					else if (((Entity)gameObjectsOnMapList[i]).GetPath().GetCurrentDestination() != null) 
+					{
+						
+					
 					}
 					
 
