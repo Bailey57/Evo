@@ -47,7 +47,7 @@ namespace Evo
             //selcetPOI_Button.AddToEventRoute();
 
 
-            gameVersionLabel.Content = "v0.7.0";
+            gameVersionLabel.Content = "v0.7.1";
 
             gameState = gameState.MakeBuild1();
 
@@ -434,6 +434,25 @@ namespace Evo
 
         }
 
+
+        private void EquipItemAsArmor(object sender, RoutedEventArgs e)
+        {
+            Sounds.PlayButtonSound1();
+            if (playerInventory.SelectedItem != null && playerInventory.SelectedItem is Armor)
+            {
+
+                gameState.GetPlayer().getGameObjectHitbox().addArmorToHitbox((Armor)playerInventory.SelectedItem);
+                gameState.GetPlayer().addObjectStringEvents("Equiped " + ((Armor)playerInventory.SelectedItem).getObjectName());
+                secondsPassed += 3;
+            }
+            else
+            {
+                gameState.GetPlayer().addObjectStringEvents("Need to select armor to equip");
+            }
+
+            GameLoop();
+        }
+
         private void EquipItemAsWeapon(object sender, RoutedEventArgs e)
         {
             Sounds.PlayButtonSound1();
@@ -634,7 +653,14 @@ namespace Evo
             UpdateGUI();
         }
 
-
+        private void ClearPOI(object sender, RoutedEventArgs e)
+        {
+            Sounds.PlayButtonSound1();
+            //gameState.GetPlayer().GetPath().MakeNewDestinationFromGameObjectPos(poi.GetName(), poi.GetDescription(), poi.GetGameObjectPos());
+            gameState.GetPlayer().GetPath().GetDestinationList().Clear();
+            // buttonPressSound.Play();
+            UpdateGUI();
+        }
 
 
     }

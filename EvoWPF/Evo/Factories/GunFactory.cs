@@ -6,60 +6,20 @@ using System.Threading.Tasks;
 
 namespace Evo.GameObjects.Factories
 {
-    /*
-    package wasteland.gameObject;
-
-using Wasteland.entity.Entity;
-using Wasteland.items.weapons.Gun;
-using Wasteland.map.GameObjectPos;
-	*/
-
-    public class GameObjectFactory
+    public static class GunFactory
     {
 
 
 
-        public GameObjectFactory()
-        {
-
-        }
-
-
-
-        public Entity makeEnemy()
-        {
-
-
-
-            Entity entity = new Entity(null, false, 0, 0, 0, null);
-            return entity;
-        }
-
-
-
-
-
-
-
-
-
-        //	public Gun makeGun(GameObjectPos objectPos) {
-        //		
-        //		
-        //		Gun gun = new Gun(objectPos, "gun", 11.43, true, true);
-        //		
-        //		
-        //		return gun;
-        //	}
 
 
         /**
-		 * Makes an M1911 pistol  
-		 * @param objectPos
-		 * @param condition
-		 * @return
-		 */
-        public Gun makeGun_M1911(GameObjectPos objectPos, double condition)
+        * Makes an M1911 pistol  
+        * @param objectPos
+        * @param condition
+        * @return
+        */
+        public static Gun MakeGun_M1911(GameObjectPos objectPos, double condition)
         {
             GameObjectPos newObjectPos = objectPos;
             Gun M1911 = new Gun(newObjectPos, "M1911", 11.43, true, true);
@@ -76,7 +36,25 @@ using Wasteland.map.GameObjectPos;
         }
 
 
-        public Gun makeGun_AK47(GameObjectPos objectPos, double condition)
+
+        public static Gun MakeGun_9mmPistol(GameObjectPos objectPos, double condition)
+        {
+            GameObjectPos newObjectPos = objectPos;
+            Gun _9mmPistol = new Gun(newObjectPos, "9mmPistol", 9, true, true);
+            _9mmPistol.setMassInKg(1.1);
+            _9mmPistol.setObjectDescription("An old but reliable pistol. Takes 9mm size ammo.");
+            //M1911.setIntegraty(100);
+            _9mmPistol.setQuality(100);
+            _9mmPistol.setDamages(6, 2, 1);
+            _9mmPistol.setLengthX(0.216);
+            _9mmPistol.setCondition(condition);
+            //last for 100000 rounds
+            //max range: 50 meters
+            return _9mmPistol;
+        }
+
+
+        public static Gun MakeGun_AK47(GameObjectPos objectPos, double condition)
         {
             GameObjectPos newObjectPos = objectPos;
             Gun AK47 = new Gun(newObjectPos, "AK47", 7.62, true, true);
@@ -100,6 +78,7 @@ using Wasteland.map.GameObjectPos;
 
 
 
-    }
 
+
+    }
 }

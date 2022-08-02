@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Evo.GameObjects.Factories;
+using System;
 using System.Collections.ObjectModel;
 
 namespace Evo
 {
-	[System.Serializable]
+    [System.Serializable]
 	public class Map
 	{
 

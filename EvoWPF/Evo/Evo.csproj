@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="WPF_GUI\**" />
+    <EmbeddedResource Remove="WPF_GUI\**" />
+    <None Remove="WPF_GUI\**" />
+    <Page Remove="WPF_GUI\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resources\forest.png" />
     <None Remove="Resources\gameMapBorder.png" />
     <None Remove="Resources\images\flags\USMilitiaFlag.png" />
@@ -34,10 +41,6 @@
     <None Remove="street.png" />
     <None Remove="town.png" />
     <None Remove="WIP_MapSquare.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="WPF_GUI\" />
   </ItemGroup>
 
   <ItemGroup>

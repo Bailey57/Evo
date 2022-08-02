@@ -1,7 +1,8 @@
 ﻿using Evo.GameObjects.HitBoxes;
 using System;
 
-
+using Evo.GameObjects.Factories;
+using Evo;
 namespace Evo
 {
     /*
@@ -235,11 +236,15 @@ using Wasteland.map.Map;
 			gameState.GetMainMap().addGameObjectToMapList(spear);
 
 
+			Armor armor = ArmorFactory.MakeGenericArmorPlate_TESTING_4mm_HardenedSteel();
+			armor.setGameObjectPos(startPos);
+			gameState.GetMainMap().addGameObjectToMapList(armor);
+
 			GameObjectPos startPos3 = new GameObjectPos(gameState.GetMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
-			Magazine _9mm_mag = new Magazine(startPos3, "9mm mag", .95, 6, 9);
+			Magazine _9mm_mag = new Magazine(startPos3, "9mm mag", .95, 9, 9);
 			_9mm_mag.setInInventory(false);
 
-			Magazine _9mm_mag2 = new Magazine(startPos3, "9mm mag", .95, 6, 9);
+			Magazine _9mm_mag2 = new Magazine(startPos3, "9mm mag2", .95, 9, 9);
 			_9mm_mag2.setInInventory(false);
 
 
