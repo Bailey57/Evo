@@ -20,10 +20,15 @@ namespace Evo
 		
 
 	}
+
+
+	
 	
 	
 	public void runThroughStatusEffects(GameObject gameObject) {
-		if (gameObject is Animal) {
+		if (gameObject is Entity) {
+
+
 			
 		}
 		

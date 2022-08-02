@@ -274,7 +274,29 @@ using Wasteland.entity.Entity;
 			return this.getMapAreaYPos() + (200 * getWorldMapYPos());
 		}
 
+
+		public double GetDistanceFromGameObjectPos(GameObjectPos gameObjectpos)
+		{
+			double distance = 0;
+
+			//		distance = Math.abs(entity.getGameObjectPos().getMapAreaXPos() - getGameObjectPos().getMapAreaXPos());
+			//		distance += Math.abs(entity.getGameObjectPos().getMapAreaYPos() - getGameObjectPos().getMapAreaYPos());
+			//
+			//		Math.pow(entity.getGameObjectPos().getMapAreaXPos() - getGameObjectPos().getMapAreaXPos(), 2);
+			//		Math.pow(entity.getGameObjectPos().getMapAreaYPos() - getGameObjectPos().getMapAreaYPos(), 2);
+
+			distance = Math.Sqrt(Math.Pow(gameObjectpos.GetOverallXPosition() - this.GetOverallXPosition(), 2) + 
+				Math.Pow(gameObjectpos.GetOverallYPosition() - this.GetOverallYPosition(), 2));
+
+			return distance;
+		}
+
+
+
+
+
 		// rename to travelOnMapArea
+		//redo this 
 		public bool movePositionOnMapArea(String direction, double distance) {
 		int oldMapX = gameObject.getGameObjectPos().getWorldMapXPos();
 		int oldMapY = gameObject.getGameObjectPos().getWorldMapYPos();

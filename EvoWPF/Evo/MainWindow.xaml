@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Evo"
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920" Background="#FF707D79" Icon="/Resources/Logo1.png">
-    <Grid Margin="499,137,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="806" Width="1378">
+    <Grid Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="1043" Width="1920">
         <Grid.RowDefinitions>
             <RowDefinition Height="0*"/>
             <RowDefinition Height="599*"/>
@@ -14,15 +14,21 @@
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="91*"/>
-            <ColumnDefinition Width="709*"/>
+            <ColumnDefinition Width="672*"/>
+            <ColumnDefinition Width="1205*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="faceNorth" Content="N" HorizontalAlignment="Left" Margin="-225,519,0,0" VerticalAlignment="Top" Click="FaceNorth" Grid.RowSpan="2" Height="20" Width="24">
+        <Button x:Name="faceNorth" Content="N" HorizontalAlignment="Left" Margin="598,306,0,0" VerticalAlignment="Top" Click="FaceNorth" Grid.RowSpan="2" Height="20" Width="24">
             <Button.Background>
-                <ImageBrush ImageSource="/gameButton1_green_up.png"/>
+                <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
-        <ListView x:Name="itemsInSight" SelectionChanged="UpdateGUI" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="70,376,0,181" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="174" Grid.Column="1" FontFamily="Cascadia Code" Background="Black" Foreground="#FF70D200">
+        <ListView x:Name="itemsInSight" SelectionChanged="UpdateGUI" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="536,589,0,192" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="174" FontFamily="Cascadia Code" Background="Black" Foreground="#FF70D200" Grid.ColumnSpan="2">
+            <ListView.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </ListView.BorderBrush>
             <ListView.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -40,38 +46,34 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBox x:Name="consoleOutput" HorizontalAlignment="Left" Margin="764,311,0,0" TextWrapping="Wrap" Text="consoleOutput" VerticalAlignment="Top" Width="447" Height="364" Grid.Column="1" VerticalScrollBarVisibility="Auto" Grid.Row="1" BorderBrush="#FF616161" FontFamily="Cascadia Code Light" Background="Black" Foreground="#FF70D200">
+        <TextBox x:Name="consoleOutput" HorizontalAlignment="Left" Margin="762,43,0,0" TextWrapping="Wrap" Text="consoleOutput" VerticalAlignment="Top" Width="457" Height="486" Grid.Column="1" VerticalScrollBarVisibility="Auto" Grid.Row="1" BorderBrush="#FF616161" FontFamily="Cascadia Code Light" Background="Black" Foreground="#FF70D200">
             <TextBox.Style>
                 <Style/>
             </TextBox.Style>
         </TextBox>
-        <Label x:Name="itemsInSightLabel" Content="Items In Sight" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="116,355,0,0" Grid.RowSpan="2" Height="21" Width="82" Grid.Column="1" Background="Black" Foreground="#FF70D200" FontFamily="Cascadia Code" FontSize="9"/>
-        <Button x:Name="faceSouth" Content="S" HorizontalAlignment="Left" Margin="-225,639,0,0" VerticalAlignment="Top" Click="FaceSouth" Grid.RowSpan="2" Height="20" Width="24">
-            <Button.Background>
-                <ImageBrush ImageSource="/gameButton1_green_up.png"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="faceEast" Content="E" HorizontalAlignment="Left" Margin="-163,579,0,0" VerticalAlignment="Top" Click="FaceEast" Grid.RowSpan="2" Height="20" Width="24">
-            <Button.Background>
-                <ImageBrush ImageSource="/gameButton1_green_up.png"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="faceWest" Content="W" HorizontalAlignment="Left" Margin="-287,579,0,0" VerticalAlignment="Top" Click="FaceWest" Grid.RowSpan="2" Height="20" Width="24">
-            <Button.Background>
-                <ImageBrush ImageSource="/gameButton1_green_up.png"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="travelButton" Content="Travel" HorizontalAlignment="Left" Margin="-168,619,0,0" VerticalAlignment="Top" Click="MovePlayer" Grid.RowSpan="2" Height="40" Width="92" FontFamily="Cascadia Code" FontSize="9.7">
-            <Button.Background>
-                <ImageBrush ImageSource="/gameButton1_green_up.png"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="pickUpItemButton" Content="Pick Up Item" HorizontalAlignment="Left" Margin="70,598,0,0" VerticalAlignment="Top" Click="PickUpItemOffOfGround" Height="35" Width="87" Grid.Column="1" Grid.Row="1" BorderBrush="Black" FontFamily="Cascadia Code" FontSize="9.7">
+        <Label x:Name="itemsInSightLabel" Content="Items In Sight" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="568,563,0,0" Grid.RowSpan="2" Height="26" Width="111" Background="Black" Foreground="#FF70D200" FontFamily="Cascadia Code"/>
+        <Button x:Name="faceSouth" Content="S" HorizontalAlignment="Left" Margin="598,426,0,0" VerticalAlignment="Top" Click="FaceSouth" Grid.RowSpan="2" Height="20" Width="24">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
-        <ListView x:Name="playerInventory" SelectionChanged="UpdateGUI" Grid.Column="1" Margin="297,376,0,0" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="186" Height="213" FontFamily="Cascadia Code" Background="Black" Foreground="#FF70D200" >
+        <Button x:Name="faceEast" Content="E" HorizontalAlignment="Left" Margin="660,366,0,0" VerticalAlignment="Top" Click="FaceEast" Grid.RowSpan="2" Height="20" Width="24">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="pickUpItemButton" Content="Pick Up Item" HorizontalAlignment="Left" Margin="536,811,0,0" VerticalAlignment="Top" Click="PickUpItemOffOfGround" Height="35" Width="87" Grid.Row="1" BorderBrush="Black" FontFamily="Cascadia Code" FontSize="9.7">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
+            </Button.Background>
+        </Button>
+        <ListView x:Name="playerInventory" SelectionChanged="UpdateGUI" Grid.Column="1" Margin="162,591,0,0" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="186" Height="213" FontFamily="Cascadia Code" Background="Black" Foreground="#FF70D200" >
+            <ListView.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </ListView.BorderBrush>
             <ListView.Style>
                 <Style/>
             </ListView.Style>
@@ -81,13 +83,19 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label x:Name="playerInventoryLabel" Content="Inventory" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="360,355,0,0" Grid.Column="1" Grid.RowSpan="2" Height="21" Width="59" Background="Black" Foreground="#FF70D200" FontFamily="Cascadia Code" FontSize="9"/>
-        <Button x:Name="equipWeaponButton" Content="Equip as Weapon" HorizontalAlignment="Left" Margin="297,589,0,0" VerticalAlignment="Top" Click="EquipItemAsWeapon" Grid.Column="1" Height="38" Width="113" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
+        <Label x:Name="playerInventoryLabel" Content="Inventory" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="218,565,0,0" Grid.Column="1" Grid.RowSpan="2" Height="26" Width="75" Background="Black" Foreground="#FF70D200" FontFamily="Cascadia Code"/>
+        <Button x:Name="equipWeaponButton" Content="Equip as Weapon" HorizontalAlignment="Left" Margin="162,804,0,0" VerticalAlignment="Top" Click="EquipItemAsWeapon" Grid.Column="1" Height="38" Width="113" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
-        <ListView x:Name="entitiesInSightList" SelectionChanged="UpdateGUI" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="531,376,0,0" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top" Height="213" Width="187" FontFamily="Cascadia Code" Background="Black" Foreground="#FF70D200">
+        <ListView x:Name="entitiesInSightList" SelectionChanged="UpdateGUI" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="485,593,0,0" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top" Height="213" Width="187" FontFamily="Cascadia Code" Background="Black" Foreground="#FF70D200">
+            <ListView.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </ListView.BorderBrush>
             <ListView.Style>
                 <Style/>
             </ListView.Style>
@@ -97,74 +105,103 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label x:Name="entitiesInSightLabel" Grid.Column="1" Content="Entities In Sight" HorizontalAlignment="Left" Margin="535,356,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="20" Width="100" Background="Black" Foreground="#FF70D200" FontFamily="Cascadia Code" FontSize="9"/>
-        <Button x:Name="attackEntityButton" Grid.Column="1" Content="Attack Using Mele" HorizontalAlignment="Left" Margin="645,592,0,0" VerticalAlignment="Top" Click="AttackEntity" Height="37" Width="119" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
+        <Label x:Name="entitiesInSightLabel" Grid.Column="1" Content="Entities In Sight" HorizontalAlignment="Left" Margin="513,543,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="25" Width="131" Background="Black" Foreground="#FF70D200" FontFamily="Cascadia Code"/>
+        <Button x:Name="attackEntityButton" Grid.Column="1" Content="Attack Using Mele" HorizontalAlignment="Left" Margin="883,807,0,0" VerticalAlignment="Top" Click="AttackEntity" Height="38" Width="119" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_red_up.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="rackGunButton" Grid.Column="1" Content="Rack Gun" HorizontalAlignment="Left" Margin="162,891,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.58,-0.198" Click="RackGun" Height="41" Width="90" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="rackGunButton" Grid.Column="1" Content="Rack Gun" HorizontalAlignment="Left" Margin="297,676,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.58,-0.198" Click="RackGun" Height="41" Width="90" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
+        <Button x:Name="dropItemButton" Content="Drop Item" HorizontalAlignment="Left" Margin="274,804,0,0" VerticalAlignment="Top" Click="DropItem" Grid.Column="1" Height="38" Width="92" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="dropItemButton" Content="Drop Item" HorizontalAlignment="Left" Margin="409,589,0,0" VerticalAlignment="Top" Click="DropItem" Grid.Column="1" Height="38" Width="92" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
+        <Button x:Name="loadGunButton" Grid.Column="1" Content="Load Gun" HorizontalAlignment="Left" Margin="257,891,0,0" VerticalAlignment="Top" Click="LoadGun" Height="41" Width="109" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="loadGunButton" Grid.Column="1" Content="Load Gun" HorizontalAlignment="Left" Margin="392,676,0,0" VerticalAlignment="Top" Click="LoadGun" Height="41" Width="109" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
+        <Button x:Name="fireAtEntityButton" Grid.Column="1" Content="Shoot At Entity" HorizontalAlignment="Left" Margin="883,845,0,0" VerticalAlignment="Top" Click="FireAtEntity" Height="36" Width="119" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_red_up.png"/>
+            </Button.Background>
+        </Button>
+        <Label x:Name="equippedWeaponLabel" Grid.Column="1" Content="Equipped Weapon: " HorizontalAlignment="Left" Margin="162,852,0,0" VerticalAlignment="Top" Height="26" Width="113" RenderTransformOrigin="0.729,0.502" Grid.Row="1" Background="Black" Foreground="#FF70D200"/>
+        <Label x:Name="equippedWeapon" Grid.Column="1" Content="nothing" HorizontalAlignment="Left" Margin="274,852,0,0" VerticalAlignment="Top" Width="113" Height="26" Grid.Row="1" Background="Black" Foreground="#FF70D200"/>
+        <Button x:Name="saveGameButton" Content="Save Game" HorizontalAlignment="Left" Margin="301,4,0,0" VerticalAlignment="Top" Click="SaveGame" Height="32" Width="79" Grid.RowSpan="2" FontFamily="Cascadia Code">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="fireAtEntityButton" Grid.Column="1" Content="Shoot At Entity" HorizontalAlignment="Left" Margin="645,628,0,0" VerticalAlignment="Top" Click="FireAtEntity" Height="36" Width="119" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
+        <Button x:Name="loadGameButton" Content="Load Game" HorizontalAlignment="Left" Margin="301,36,0,0" VerticalAlignment="Top" Click="LoadGame" Height="34" Width="79" Grid.RowSpan="2" FontFamily="Cascadia Code">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
-        <Label x:Name="equippedWeaponLabel" Grid.Column="1" Content="Equipped Weapon: " HorizontalAlignment="Left" Margin="297,637,0,0" VerticalAlignment="Top" Height="26" Width="113" RenderTransformOrigin="0.729,0.502" Grid.Row="1" Background="Black" Foreground="#FF70D200"/>
-        <Label x:Name="equippedWeapon" Grid.Column="1" Content="nothing" HorizontalAlignment="Left" Margin="409,637,0,0" VerticalAlignment="Top" Width="113" Height="26" Grid.Row="1" Background="Black" Foreground="#FF70D200"/>
-        <Button x:Name="saveGameButton" Content="Save Game" HorizontalAlignment="Left" Margin="-323,-102,0,0" VerticalAlignment="Top" Click="SaveGame"/>
-        <Button x:Name="loadGameButton" Content="Load Game" HorizontalAlignment="Left" Margin="-323,-75,0,0" VerticalAlignment="Top" Click="LoadGame"/>
-        <Button x:Name="newGameButton" Content="New Game" HorizontalAlignment="Left" Margin="-417,-75,0,0" VerticalAlignment="Top" Click="NewGame"/>
-        <Label x:Name="playerDirectionLabel" Content="Player Direction:" HorizontalAlignment="Left" Margin="-172,521,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Background="Black" Foreground="#FF70D200" FontFamily="Cascadia Code"/>
-        <Label x:Name="playerDirection" Content="?" HorizontalAlignment="Left" Margin="-42,521,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="28" Background="Black" Foreground="#FF70D200" FontFamily="Cascadia Code"/>
-        <Label x:Name="loadingStatusLabel" Content="Loading Status: done" HorizontalAlignment="Left" Margin="-243,-104,0,0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="accurateFireRB" Grid.Column="1" Content="Accurate Fire" HorizontalAlignment="Left" Margin="626,699,0,0" VerticalAlignment="Top" GroupName="fireMode" Grid.Row="1"/>
-        <Label x:Name="fireModeLabel" Grid.Column="1" Content="Fire Mode" HorizontalAlignment="Left" Margin="557,691,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <RadioButton x:Name="fastFireRB" Grid.Column="1" Content="Fast Fire" HorizontalAlignment="Left" Margin="626,717,0,0" VerticalAlignment="Top" GroupName="fireMode" Grid.Row="1"/>
-        <RadioButton x:Name="supressiveFireRB" Grid.Column="1" Content="Supressive Fire " HorizontalAlignment="Left" Margin="626,737,0,0" VerticalAlignment="Top" GroupName="fireMode" Grid.Row="1"/>
-        <Grid Margin="-436,25,90,254" Grid.RowSpan="2" RenderTransformOrigin="0,0.5" HorizontalAlignment="Left">
-            <Image x:Name="mapArea_x0_y0" HorizontalAlignment="Center" Height="100" VerticalAlignment="Top" Width="100" Source="/forest.png" RenderTransformOrigin="0.5,0.5" Margin="0,146,0,0"/>
-            <Image x:Name="mapArea_x_1_y_1" HorizontalAlignment="Left" Height="100" Margin="102,46,0,0" VerticalAlignment="Top" Width="100" Source="Resources\images\map\forest.png" RenderTransformOrigin="0.5,0.5"/>
-            <Image x:Name="mapArea_x1_y0" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="Resources\images\map\forest.png" Margin="301,146,0,0" RenderTransformOrigin="0.5,0.5"/>
-            <Image x:Name="mapArea_x_1_y1" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="Resources\images\map\forest.png" Margin="102,246,0,0" RenderTransformOrigin="0.5,0.5"/>
-            <Image x:Name="mapArea_x_1_y0" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="Resources\images\map\forest.png" Margin="102,146,0,0" RenderTransformOrigin="0.5,0.5"/>
-            <Image x:Name="mapArea_x0_y1" HorizontalAlignment="Center" Height="100" VerticalAlignment="Top" Width="100" Source="Resources\images\map\forest.png" Margin="0,246,0,0" RenderTransformOrigin="0.5,0.5"/>
-            <Image x:Name="mapArea_x1_y1" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/Resources/images/map/forest.png" Margin="301,246,0,0" RenderTransformOrigin="0.5,0.5"/>
-            <Image x:Name="mapArea_x0_y_1" HorizontalAlignment="Center" Height="100" VerticalAlignment="Top" Width="100" Source="Resources\images\map\forest.png" Margin="0,46,0,0" RenderTransformOrigin="0.5,0.5"/>
-            <Image x:Name="mapArea_x1_y_1" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="Resources\images\map\forest.png" Margin="301,46,0,0" RenderTransformOrigin="0.5,0.5"/>
-            <Label x:Name="_600x600_map_viewLabel" Content="600x600 map view" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Foreground="#FF70D200" FontFamily="Cascadia Code"/>
-            <Image x:Name="mapArea_x1_y1_Copy" HorizontalAlignment="Center" Height="614" VerticalAlignment="Top" Width="593" Source="/Resources/images/gui/map_display1.png" Margin="0,-92,0,0" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="-1"/>
-            <Image x:Name="playerMapIcon" HorizontalAlignment="Center" Height="25" VerticalAlignment="Top" Width="25" Source="/Resources/images/map/icons/player/playerIcon_64.png" RenderTransformOrigin="0.5,0.5" Margin="0,183,0,0" Opacity="0.695"/>
+        <Button x:Name="newGameButton" Content="New Game" HorizontalAlignment="Left" Margin="216,4,0,0" VerticalAlignment="Top" Click="NewGame" Height="31" Width="80" Grid.RowSpan="2" FontFamily="Cascadia Code">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
+            </Button.Background>
+        </Button>
+        <Label x:Name="playerDirectionLabel" Content="Player Direction:" HorizontalAlignment="Left" Margin="514,261,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Background="Black" Foreground="#FF70D200" FontFamily="Cascadia Code" Height="24" Width="130"/>
+        <Label x:Name="playerDirection" Content="?" HorizontalAlignment="Left" Margin="644,261,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="28" Background="Black" Foreground="#FF70D200" FontFamily="Cascadia Code" Height="24"/>
+        <Label x:Name="loadingStatusLabel" Content="Loading Status: done" HorizontalAlignment="Left" Margin="408,6,0,0" VerticalAlignment="Top" Height="26" Width="164" Grid.RowSpan="2" FontFamily="Cascadia Code" Foreground="#FF70D200" Background="Black"/>
+        <RadioButton x:Name="accurateFireRB" Grid.Column="1" Content="Accurate Fire" HorizontalAlignment="Left" Margin="843,913,0,0" VerticalAlignment="Top" GroupName="fireMode" Grid.Row="1" Height="16" Width="133" FontFamily="Cascadia Code" Foreground="#FF70D200" Background="Black" BorderBrush="#FFDC3D3D"/>
+        <Label x:Name="fireModeLabel" Grid.Column="1" Content="Fire Mode" HorizontalAlignment="Left" Margin="763,913,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="80" FontFamily="Cascadia Code" Foreground="#FF70D200" Background="Black"/>
+        <RadioButton x:Name="fastFireRB" Grid.Column="1" Content="Fast Fire" HorizontalAlignment="Left" Margin="843,929,0,0" VerticalAlignment="Top" GroupName="fireMode" Grid.Row="1" Height="16" Width="123" FontFamily="Cascadia Code" Foreground="#FF70D200" Background="Black" BorderBrush="#FFDC3D3D"/>
+        <RadioButton x:Name="supressiveFireRB" Grid.Column="1" Content="Supressive Fire " HorizontalAlignment="Left" Margin="843,945,0,0" VerticalAlignment="Top" GroupName="fireMode" Grid.Row="1" Height="16" Width="133" FontFamily="Cascadia Code" Foreground="#FF70D200" Background="Black" BorderBrush="#FFDC3D3D"/>
+        <Grid Margin="-13,75,0,6" Grid.RowSpan="2" RenderTransformOrigin="0,0.5" HorizontalAlignment="Left" Width="572" >
+            <Image x:Name="mapArea_x0_y0" HorizontalAlignment="Center" Height="100" VerticalAlignment="Top" Width="100" Source="/Resources/images/map/forest.png" RenderTransformOrigin="0.5,0" Margin="0,313,0,0"/>
+            <Label x:Name="_600x600_map_viewLabel" Content="600x600 map view" HorizontalAlignment="Left" Margin="232,184,0,0" VerticalAlignment="Top" Foreground="#FF70D200" FontFamily="Cascadia Code"/>
+            <Image x:Name="mapArea_x1_y1_Copy" HorizontalAlignment="Center" Height="599" Width="572" Source="/Resources/images/gui/map_display1.png" Margin="0,94,0,0" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="-1" VerticalAlignment="Top"/>
+            <Image x:Name="playerMapIcon" HorizontalAlignment="Center" Height="25" VerticalAlignment="Top" Width="26" Source="/Resources/images/map/icons/player/playerIcon_64.png" RenderTransformOrigin="0.5,0.5" Margin="0,355,0,0" Opacity="0.695"/>
+            <Grid x:Name="Map_" HorizontalAlignment="Center" Width="300" Margin="0,213,0,404">
+                <Image x:Name="mapArea_x0_y_1" HorizontalAlignment="Center" Height="100" VerticalAlignment="Top" Width="100" Source="/Resources/images/map/forest.png" RenderTransformOrigin="0.5,0"/>
+                <Image x:Name="mapArea_x1_y_1" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/Resources/images/map/forest.png" Margin="200,0,0,0" RenderTransformOrigin="0.5,0"/>
+                <Image x:Name="mapArea_x1_y0" HorizontalAlignment="Left" Height="100" VerticalAlignment="Center" Width="100" Source="/Resources/images/map/forest.png" Margin="200,0,0,0" RenderTransformOrigin="0.5,0"/>
+                <Image x:Name="mapArea_x1_y1" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/Resources/images/map/forest.png" Margin="200,200,0,0" RenderTransformOrigin="0.5,0"/>
+                <Image x:Name="mapArea_x0_y1" HorizontalAlignment="Center" Height="100" VerticalAlignment="Top" Width="100" Source="/Resources/images/map/forest.png" Margin="0,200,0,0" RenderTransformOrigin="0.5,0"/>
+                <Image x:Name="mapArea_x_1_y1" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/Resources/images/map/forest.png" Margin="0,200,0,0" RenderTransformOrigin="0.5,0"/>
+                <Image x:Name="mapArea_x_1_y0" HorizontalAlignment="Left" Height="100" VerticalAlignment="Center" Width="100" Source="/Resources/images/map/forest.png" RenderTransformOrigin="0.5,0"/>
+                <Image x:Name="mapArea_x_1_y_1" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="/Resources/images/map/forest.png" RenderTransformOrigin="0.5,0"/>
+            </Grid>
+            <Button x:Name="faceWest" Content="W" HorizontalAlignment="Left" Margin="548,292,0,0" VerticalAlignment="Top" Click="FaceWest" Height="20" Width="24">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
+                </Button.Background>
+            </Button>
         </Grid>
-        <Label x:Name="mapPosLabel" Content="X:? Y:?" HorizontalAlignment="Left" Margin="-328,376,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="91" Foreground="#FF70D200" FontFamily="Cascadia Code"/>
-        <Button x:Name="fillMagazineButton" Click ="FillMagazine" Grid.Column="1" Content="Fill Magazine" HorizontalAlignment="Left" Margin="392,717,0,0" VerticalAlignment="Top" Height="43" Width="109" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
+        <Label x:Name="mapPosLabel" Content="X:? Y:?" HorizontalAlignment="Left" Margin="129,589,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="92" Foreground="#FF70D200" FontFamily="Cascadia Code" Height="24"/>
+        <Button x:Name="fillMagazineButton" Click ="FillMagazine" Grid.Column="1" Content="Fill Magazine" HorizontalAlignment="Left" Margin="257,932,0,0" VerticalAlignment="Top" Height="43" Width="109" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
-        <Label x:Name="loadingNoteLabel" Content="Note: Takes 7~ seconds to load a save" HorizontalAlignment="Left" Margin="-243,-78,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="gameVersionLabel" Content="v0" HorizontalAlignment="Left" Margin="-406,-106,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="mainMenuButton" Click ="GoToMainMenu" Content="Main Menu" HorizontalAlignment="Left" Margin="-493,-131,0,0" VerticalAlignment="Top" Height="39" Width="73"/>
-        <Label x:Name="consoleLabel" Grid.Column="1" Content="Console" HorizontalAlignment="Left" Margin="959,285,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="26" Width="56"/>
-        <Button x:Name="talkToEntityButton" Grid.Column="1" Content="Talk To Entity" HorizontalAlignment="Left" Margin="526,592,0,0" VerticalAlignment="Top" Click="FireAtEntity" Height="36" Width="119" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
+        <Label x:Name="loadingNoteLabel" Content="Note: Takes 14~ seconds to load a save" HorizontalAlignment="Left" Margin="408,40,0,0" VerticalAlignment="Top" Height="26" Width="224" Grid.RowSpan="2" FontFamily="Cascadia Code" Foreground="#FF70D200" Background="Black"/>
+        <Label x:Name="gameVersionLabel" Content="v0" HorizontalAlignment="Left" Margin="216,40,0,0" VerticalAlignment="Top" Height="26" Width="80" Grid.RowSpan="2" FontFamily="Cascadia Code" Foreground="#FF70D200" Background="Black"/>
+        <Button x:Name="mainMenuButton" Click ="GoToMainMenu" Content="Main Menu" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Height="39" Width="84" Grid.RowSpan="2" FontFamily="Cascadia Code">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
-        <ListView x:Name="pointsOfInterestListView" SelectionChanged="UpdateGUI" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="70,57,0,500" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="174" Grid.Column="1" FontFamily="Cascadia Code" Background="Black" Foreground="#FF70D200">
+        <Label x:Name="consoleLabel" Grid.Column="1" Content="Console" HorizontalAlignment="Left" Margin="963,15,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="29" Width="56" Foreground="#FF70D200" Background="Black"/>
+        <Button x:Name="talkToEntityButton" Grid.Column="1" Content="Talk To Entity" HorizontalAlignment="Left" Margin="485,807,0,0" VerticalAlignment="Top" Click="FireAtEntity" Height="36" Width="119" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
+            </Button.Background>
+        </Button>
+        <ListView x:Name="pointsOfInterestListView" SelectionChanged="UpdateGUI" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="192,275,0,514" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="174" Grid.Column="1" FontFamily="Cascadia Code" Background="Black" Foreground="#FF70D200">
+            <ListView.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </ListView.BorderBrush>
             <ListView.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -182,25 +219,63 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label x:Name="poi_Label" Content="Points of Interest" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="101,38,0,0" Grid.RowSpan="2" Height="21" Width="111" Grid.Column="1" Background="Black" Foreground="#FF70D200" FontFamily="Cascadia Code" FontSize="9"/>
-        <TextBox x:Name="poi_desc" HorizontalAlignment="Left" Margin="249,57,0,0" TextWrapping="Wrap" Text="POI description" VerticalAlignment="Top" Width="212" Height="214" Grid.Column="1" VerticalScrollBarVisibility="Auto" Grid.Row="1" BorderBrush="#FF616161" FontFamily="Cascadia Code Light" Background="Black" Foreground="#FF70D200">
+        <Label x:Name="poi_Label" Content="Points of Interest" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,249,0,0" Grid.RowSpan="2" Height="25" Width="140" Grid.Column="1" Background="Black" Foreground="#FF70D200" FontFamily="Cascadia Code"/>
+        <TextBox x:Name="poi_desc" HorizontalAlignment="Left" Margin="379,274,0,0" TextWrapping="Wrap" Text="POI description" VerticalAlignment="Top" Width="212" Height="208" Grid.Column="1" VerticalScrollBarVisibility="Auto" Grid.Row="1" BorderBrush="#FF616161" FontFamily="Cascadia Code Light" Background="Black" Foreground="#FF70D200">
             <TextBox.Style>
                 <Style/>
             </TextBox.Style>
         </TextBox>
-        <Label x:Name="poi_Label_Copy" Content="Points of Interest Desciption" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="271,38,0,0" Grid.RowSpan="2" Height="21" Width="164" Grid.Column="1" Background="Black" Foreground="#FF70D200" FontFamily="Cascadia Code" FontSize="9"/>
-        <Button x:Name="selcetPOI_Button" Content="Selcet POI" HorizontalAlignment="Left" Margin="70,271,0,0" VerticalAlignment="Top" Click="ReloadGUI" Height="35" Width="87" Grid.Row="1" BorderBrush="Black" Grid.Column="1" FontFamily="Cascadia Code" FontSize="9.7">
+        <Label x:Name="poi_Label_Copy" Content="Points of Interest Desciption" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="376,251,0,0" Grid.RowSpan="2" Height="23" Width="218" Grid.Column="1" Background="Black" Foreground="#FF70D200" FontFamily="Cascadia Code"/>
+        <Button x:Name="selcetPOI_Button" Click ="SelectPOI" Content="Selcet Destination" HorizontalAlignment="Left" Margin="214,489,0,0" VerticalAlignment="Top" Height="48" Width="128" Grid.Row="1" BorderBrush="Black" Grid.Column="1" FontFamily="Cascadia Code" FontSize="9.7">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
-        <Image x:Name="compass" HorizontalAlignment="Left" Height="100" Margin="-263,539,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="100" Source="/Resources/images/gui/compass/compassBackGround_64.png"/>
-        <Label x:Name="mapOverallPositionLabel" Content="X:? Y:?" HorizontalAlignment="Left" Margin="-182,376,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="170" Foreground="#FF70D200" FontFamily="Cascadia Code"/>
-        <Button x:Name="waitButton" Click ="PlayerWait" Content="Wait for 5 min" HorizontalAlignment="Left" Margin="-213,691,0,0" VerticalAlignment="Top" Height="35" Width="104" Grid.Row="1" BorderBrush="Black" FontFamily="Cascadia Code" FontSize="9.7">
+        <Image x:Name="compass" HorizontalAlignment="Left" Height="100" Margin="560,326,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="100" Source="/Resources/images/gui/compass/compassBackGround_64.png"/>
+        <Label x:Name="mapOverallPositionLabel" Content="X:? Y:?" HorizontalAlignment="Left" Margin="301,589,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="170" Foreground="#FF70D200" FontFamily="Cascadia Code" Height="24"/>
+        <Button x:Name="waitButton" Click ="PlayerWait" Content="Wait for 5 min" HorizontalAlignment="Left" Margin="687,505,0,0" VerticalAlignment="Top" Height="36" Width="104" Grid.Row="1" BorderBrush="Black" FontFamily="Cascadia Code" FontSize="9.7" Grid.ColumnSpan="2">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
-        <Label x:Name="mapOverallPositionLabelEntity" Content="X:? Y:?" HorizontalAlignment="Left" Margin="635,356,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="83" Foreground="#FF70D200" Grid.Column="1" Background="Black" FontFamily="Cascadia Code" FontSize="9"/>
+        <Label x:Name="mapOverallPositionLabelEntity" Content="X:? Y:?" HorizontalAlignment="Left" Margin="513,568,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="131" Foreground="#FF70D200" Grid.Column="1" Background="Black" FontFamily="Cascadia Code" Height="26"/>
+        <TextBox x:Name="playerDestinationDescription" HorizontalAlignment="Left" Margin="2,277,0,0" TextWrapping="Wrap" Text="Current destination description" VerticalAlignment="Top" Width="176" Height="185" VerticalScrollBarVisibility="Auto" Grid.Row="1" BorderBrush="#FF616161" FontFamily="Cascadia Code Light" Background="Black" Foreground="#FF70D200" Grid.Column="1">
+            <TextBox.Style>
+                <Style/>
+            </TextBox.Style>
+        </TextBox>
+        <Label x:Name="playerDestinationDescriptionLabel" Content="Player Destination:" HorizontalAlignment="Left" Margin="18,253,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Background="Black" Foreground="#FF70D200" FontFamily="Cascadia Code" Height="24" Width="144" Grid.Column="1"/>
+        <Button x:Name="travelButton" Content="Travel" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="MovePlayer" Height="38" Width="104" FontFamily="Cascadia Code" FontSize="9.7" Margin="687,462,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
+            </Button.Background>
+        </Button>
+        <ListView x:Name="bodyPartsList" SelectionChanged="UpdateGUI" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="789,593,0,0" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top" Height="213" Width="187" FontFamily="Cascadia Code" Background="Black" Foreground="#FF70D200">
+            <ListView.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </ListView.BorderBrush>
+            <ListView.Style>
+                <Style/>
+            </ListView.Style>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="165"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label x:Name="bodyPartsListLabel" Grid.Column="1" Content="Body Parts " HorizontalAlignment="Left" Margin="840,569,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="24" Width="85" Background="Black" Foreground="#FF70D200" FontFamily="Cascadia Code"/>
+        <Button x:Name="targetBodyPartButton" Grid.Column="1" Content="Target Body Part" HorizontalAlignment="Left" Margin="764,843,0,0" VerticalAlignment="Top" Click="AttackEntity" Height="38" Width="119" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="targetCenterOfMass" Grid.Column="1" Content="Target center of&#xa;      Mass" HorizontalAlignment="Left" Margin="764,807,0,0" VerticalAlignment="Top" Click="TargetCenterOfMass" Height="36" Width="119" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

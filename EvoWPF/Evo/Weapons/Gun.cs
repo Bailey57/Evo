@@ -433,7 +433,17 @@ namespace Evo
 					if (target is Entity)
 					{
 
-						((Entity)target).aliveCheck();
+						//((Entity)target).aliveCheck();
+
+						if (shooter.isThePlayer)
+						{
+							((Entity)target).DeathCheckCloseToPlayer(shooter);
+						}
+						else 
+						{
+							((Entity)target).DeathCheck();
+						}
+						
 
 					}
 					else
@@ -460,8 +470,12 @@ namespace Evo
 
 	}
 
-	// fires gun and projectile hits target not reguarding hitbox
-	public bool fireGunAtGameObjectNoHitbox(Entity shooter, GameObject target)
+
+
+		
+
+		// fires gun and projectile hits target not reguarding hitbox
+		public bool fireGunAtGameObjectNoHitbox(Entity shooter, GameObject target)
 	{
 		bool targetHit = false;
 		double distanceFromTarget = shooter.getDistanceFromObject(target);

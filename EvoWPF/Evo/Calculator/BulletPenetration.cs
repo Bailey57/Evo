@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Evo.GameObjects.HitBoxes;
+using System;
 using System.Diagnostics;
 
-namespace Evo {
-public class BulletPenetration {
+namespace Evo
+{
+    public class BulletPenetration {
 
 	public String name = "unnamed projectile";// _9_mm, _7_62_mm, _12_7_mm
 
@@ -517,7 +519,7 @@ public class BulletPenetration {
 
 	// maybe return bool
 	public bool penetraiteBodyPart(BodyPart bodyPart) {
-		bool penetraited = false;
+		bool penetrated = false;
 		//BodyPart bodyPartClone;
 		MaterialLayer materialLayerClone;
 
@@ -526,7 +528,7 @@ public class BulletPenetration {
 
 		}
 
-		return penetraited;
+		return penetrated;
 	}
 
 	/**
@@ -811,7 +813,7 @@ public class BulletPenetration {
 						hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].addWound(bulletWound);
 						bleedRate = Math.Round(bulletWound.getAndSetBleedRate(), 2);
 						output += "\nWound added: bleeding " + bleedRate + " ml/sec\n";
-						Debug.WriteLine("\nWound added: bleeding" + bleedRate + " ml/sec\n");
+						Debug.WriteLine("\nWound added: bleeding " + bleedRate + " ml/sec\n");
 								
 						
 
@@ -819,9 +821,9 @@ public class BulletPenetration {
 						if (projectileVelocity > 60) {
 							pennetraitedLayers += 1;
 							if (hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].isVital() == true) {
-								output += "damaged vital organ, killed\n";
+								output += "\ndamaged vital organ " + hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getName() + "\ndied\n";
 								
-								Debug.WriteLine("damaged vital organ, killed\n");
+								Debug.WriteLine("\ndamaged vital organ " + hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getName() + "\ndied\n");
 								//kill the target
 							}
 							projectileVelocity = this.getFinalV();
@@ -846,7 +848,7 @@ public class BulletPenetration {
 
 							mmPenetratedOverall += layerThickness;
 
-							output += "\nPenetraited " + hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getName() + "\n";
+							output += "\npenetrated " + hitbox.bodyPartsHitCheck(projectileX, projectileY)[i].getName() + "\n";
 
 							// calculate new velocity
 							setFinalV(kruppVelocity(mass, remainingPen, kruppConstant, diameter));
@@ -878,8 +880,8 @@ public class BulletPenetration {
 		}
 
 		Debug.WriteLine(
-				"Penetraited Layers: " + pennetraitedLayers + "\n" + "mm penetraited: " + mmPenetratedOverall + "\n");
-		output += "\nPenetraited Layers: " + pennetraitedLayers + "\n" + "mm penetraited: " + mmPenetratedOverall
+				"penetrated Layers: " + pennetraitedLayers + "\n" + "mm penetrated: " + mmPenetratedOverall + "\n");
+		output += "\npenetrated Layers: " + pennetraitedLayers + "\n" + "mm penetrated: " + mmPenetratedOverall
 				+ "\n";
 		if (!hitSomething) {
 			Debug.WriteLine("Hit nothing\n");

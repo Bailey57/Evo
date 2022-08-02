@@ -15,7 +15,9 @@ using System.Windows.Shapes;
 using System.Diagnostics;
 using System.Media;
 using Evo.Windows;
-
+using Evo;
+using Evo.GameObjects.HitBoxes;
+//using Evo.GameObjects.HitBoxes.BodyPart;
 namespace Evo
 {
     /// <summary>
@@ -28,7 +30,7 @@ namespace Evo
         private SaveLoad saveLoad = new SaveLoad();
         //private EntityAction entityAction = new EntityAction();
 
-        private SoundPlayer buttonPressSound;
+        //private SoundPlayer buttonPressSound;
 
         private double secondsPassed = 0;
         public MainWindow()
@@ -38,14 +40,14 @@ namespace Evo
             //DrawButtons();
             InitializeComponent();
 
-           // buttonPressSound = new SoundPlayer(@"/Resources/sounds/gui/buttons/buttonClick_1.wav");
-            buttonPressSound = new SoundPlayer(@"/buttonClick_1.wav");
+            // buttonPressSound = new SoundPlayer(@"/Resources/sounds/gui/buttons/buttonClick_1.wav");
+            //buttonPressSound = new SoundPlayer(@"/buttonClick_1.wav");
             //buttonPressSound.Source = new Uri(@"/Resources/sounds/gui/buttons/buttonClick_1.mp3", UriKind.Relative);
             // buttonPress.routedevent
             //selcetPOI_Button.AddToEventRoute();
 
 
-            gameVersionLabel.Content = "v0.6.0";
+            gameVersionLabel.Content = "v0.7.0";
 
             gameState = gameState.MakeBuild1();
 
@@ -76,12 +78,15 @@ namespace Evo
 
         public void GameLoop()
         {
+            gameState.GetPlayer().SetSecondsLeft(99999999);
+
+
             loadingStatusLabel.Content = "Loading Status: in progress";
-            System.Threading.Thread.Sleep(50);
+            //System.Threading.Thread.Sleep(50);
 
 
             UpdateGUI();
-            
+
 
 
             //change later to be more robust and organized(ie, move from map and organize entity decision making)
@@ -90,13 +95,13 @@ namespace Evo
 
 
             gameState.GetGameTime().PassSeconds(secondsPassed);
-            
+
 
             if (gameState.GetPlayer().getEntityWeapon() != null)
             {
                 equippedWeapon.Content = gameState.GetPlayer().getEntityWeapon().getObjectName();
             }
-            else 
+            else
             {
                 equippedWeapon.Content = "nothing equipped";
             }
@@ -106,28 +111,29 @@ namespace Evo
             gameState.GetPlayer().addObjectStringEvents("\n<-------------------->\n" + gameState.GetGameTime().ToString() + "\n");
             DrawMap();
             mapPosLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapX()
-                + "Y: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapY();
+                + " Y: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapY();
             mapOverallPositionLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().GetOverallXPosition()
-                + "Y: " + gameState.GetPlayer().getGameObjectPos().GetOverallYPosition();
+                + " Y: " + gameState.GetPlayer().getGameObjectPos().GetOverallYPosition();
 
-            if (entitiesInSightList.SelectedItem != null) 
+            if (entitiesInSightList.SelectedItem != null)
             {
                 mapOverallPositionLabelEntity.Content = "X: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallXPosition()
-                + "Y: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallYPosition();
+                + " Y: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallYPosition();
             }
 
 
-            
+
             loadingStatusLabel.Content = "Loading Status: done";
 
-            
+
             consoleOutput.ScrollToEnd();
             secondsPassed = 0;
+
             //buttonPressSound.Play();
         }
 
 
-        private void UpdateGUI() 
+        private void UpdateGUI()
         {
             //consoleOutput.Text = gameState.GetPlayer().getObjectStringEvents();
             playerDirection.Content = gameState.GetPlayer().getDirectionFacing();
@@ -154,6 +160,12 @@ namespace Evo
 
 
             entitiesInSightList.ItemsSource = gameState.GetPlayer().entitiesInSightList(gameState.GetMainMap());
+            //entitiesInSightList
+            if (entitiesInSightList.SelectedItem != null)
+            {
+                bodyPartsList.ItemsSource = ((Entity)entitiesInSightList.SelectedItem).getGameObjectHitbox().getBodyParts();
+            }
+
             consoleOutput.ScrollToEnd();
 
             if (gameState.GetPlayer().getEntityWeapon() != null)
@@ -166,19 +178,21 @@ namespace Evo
             }
             DrawMap();
             mapPosLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapX()
-                + "Y: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapY();
+                + " Y: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapY();
             mapOverallPositionLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().GetOverallXPosition()
-                + "Y: " + gameState.GetPlayer().getGameObjectPos().GetOverallYPosition();
+                + " Y: " + gameState.GetPlayer().getGameObjectPos().GetOverallYPosition();
 
             if (entitiesInSightList.SelectedItem != null)
             {
                 mapOverallPositionLabelEntity.Content = "X: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallXPosition()
-                + "Y: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallYPosition();
+                + " Y: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallYPosition();
             }
+
+            playerDestinationDescription.Text = gameState.GetPlayer().GetPath().GetCurrentDestinationToString();
 
         }
 
-        private void UpdateGUI(object sender, RoutedEventArgs e) 
+        private void UpdateGUI(object sender, RoutedEventArgs e)
         {
             UpdateGUI();
         }
@@ -202,7 +216,7 @@ namespace Evo
         }
 
 
-        private void SaveGame(object sender, RoutedEventArgs e) 
+        private void SaveGame(object sender, RoutedEventArgs e)
         {
             loadingStatusLabel.Content = "Loading Status: in progress";
             saveLoad.SaveGame(gameState);
@@ -221,7 +235,7 @@ namespace Evo
 
 
 
-        private void DrawButtons() 
+        private void DrawButtons()
         {
 
             /*pickUpItemButton.Background = new BitmapImage(new Uri(@"/Assets/images/gui/buttons/gameButton1_green_up.png", UriKind.Relative));
@@ -234,7 +248,7 @@ namespace Evo
             fireAtEntityButton.Content = new BitmapImage(new Uri(@"/Assets/images/gui/buttons/gameButton1_green_up.png", UriKind.Relative));*/
         }
 
-        private void DrawMap() 
+        private void DrawMap()
         {
             string mapAreaName;
             int playerMapX = gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapX();
@@ -248,15 +262,16 @@ namespace Evo
             if (playerMapX >= 0 && playerMapY >= 0 && playerMapX < maxMapX && playerMapY < maxMapY)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX, playerMapY].getAreaName();
-                mapArea_x0_y0.Source = new BitmapImage(new Uri(@"/"+ mapAreaName +".png", UriKind.Relative));
-                if (mapArea_x0_y0.Source == null) 
+                mapArea_x0_y0.Source = new BitmapImage(new Uri(@"/Resources/images/map/" + mapAreaName + ".png", UriKind.Relative));
+                if (mapArea_x0_y0.Source == null)
                 {
-                    mapArea_x0_y0.Source = new BitmapImage(new Uri(@"/WIP_MapSquare.png", UriKind.Relative));           
+                    mapArea_x0_y0.Source = new BitmapImage(new Uri(@"/Resources/images/map/WIP_MapSquare.png", UriKind.Relative));
                 }
             }
-            else 
+            else
             {
-                mapArea_x0_y0.Source = new BitmapImage(new Uri(@"/gameMapBorder.png", UriKind.Relative));
+                //\Resources\images\map\gameMapBorder.png
+                mapArea_x0_y0.Source = new BitmapImage(new Uri(@"/Resources/images/map/gameMapBorder.png", UriKind.Relative));
             }
             //mapArea_x0_y0.Source = new BitmapImage(new Uri(@"/town.png", UriKind.Relative));//for testing purposes
 
@@ -264,65 +279,65 @@ namespace Evo
             if (playerMapX + 1 >= 0 && playerMapY >= 0 && playerMapX + 1 < maxMapX && playerMapY < maxMapY)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX + 1, playerMapY].getAreaName();
-                mapArea_x1_y0.Source = new BitmapImage(new Uri(@"/" + mapAreaName + ".png", UriKind.Relative));
+                mapArea_x1_y0.Source = new BitmapImage(new Uri(@"/Resources/images/map/" + mapAreaName + ".png", UriKind.Relative));
             }
             else
             {
-                mapArea_x1_y0.Source = new BitmapImage(new Uri(@"/gameMapBorder.png", UriKind.Relative));
+                mapArea_x1_y0.Source = new BitmapImage(new Uri(@"/Resources/images/map/gameMapBorder.png", UriKind.Relative));
             }
 
             if (playerMapX + 1 >= 0 && playerMapY + 1 >= 0 && playerMapX + 1 < maxMapX && playerMapY + 1 < maxMapY)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX + 1, playerMapY + 1].getAreaName();
-                mapArea_x1_y1.Source = new BitmapImage(new Uri(@"/" + mapAreaName + ".png", UriKind.Relative));
+                mapArea_x1_y1.Source = new BitmapImage(new Uri(@"/Resources/images/map/" + mapAreaName + ".png", UriKind.Relative));
             }
             else
             {
-                mapArea_x1_y1.Source = new BitmapImage(new Uri(@"/gameMapBorder.png", UriKind.Relative));
+                mapArea_x1_y1.Source = new BitmapImage(new Uri(@"/Resources/images/map/gameMapBorder.png", UriKind.Relative));
             }
 
-            if (playerMapX >= 0 && playerMapY + 1 >= 0 && playerMapX < maxMapX && playerMapY + 1< maxMapY)
+            if (playerMapX >= 0 && playerMapY + 1 >= 0 && playerMapX < maxMapX && playerMapY + 1 < maxMapY)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX, playerMapY + 1].getAreaName();
-                mapArea_x0_y1.Source = new BitmapImage(new Uri(@"/" + mapAreaName + ".png", UriKind.Relative));
+                mapArea_x0_y1.Source = new BitmapImage(new Uri(@"/Resources/images/map/" + mapAreaName + ".png", UriKind.Relative));
             }
             else
             {
-                mapArea_x0_y1.Source = new BitmapImage(new Uri(@"/gameMapBorder.png", UriKind.Relative));
+                mapArea_x0_y1.Source = new BitmapImage(new Uri(@"/Resources/images/map/gameMapBorder.png", UriKind.Relative));
             }
 
 
             if (playerMapX - 1 >= 0 && playerMapY >= 0 && playerMapX - 1 < maxMapX && playerMapY < maxMapY)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX - 1, playerMapY].getAreaName();
-                mapArea_x_1_y0.Source = new BitmapImage(new Uri(@"/" + mapAreaName + ".png", UriKind.Relative));
+                mapArea_x_1_y0.Source = new BitmapImage(new Uri(@"/Resources/images/map/" + mapAreaName + ".png", UriKind.Relative));
             }
             else
             {
-                mapArea_x_1_y0.Source = new BitmapImage(new Uri(@"/gameMapBorder.png", UriKind.Relative));
+                mapArea_x_1_y0.Source = new BitmapImage(new Uri(@"/Resources/images/map/gameMapBorder.png", UriKind.Relative));
             }
 
 
 
-            if (playerMapX - 1 >= 0 && playerMapY - 1 >= 0 && playerMapX -1 < maxMapX && playerMapY - 1 < maxMapY)
+            if (playerMapX - 1 >= 0 && playerMapY - 1 >= 0 && playerMapX - 1 < maxMapX && playerMapY - 1 < maxMapY)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX - 1, playerMapY - 1].getAreaName();
-                mapArea_x_1_y_1.Source = new BitmapImage(new Uri(@"/" + mapAreaName + ".png", UriKind.Relative));
+                mapArea_x_1_y_1.Source = new BitmapImage(new Uri(@"/Resources/images/map/" + mapAreaName + ".png", UriKind.Relative));
             }
             else
             {
-                mapArea_x_1_y_1.Source = new BitmapImage(new Uri(@"/gameMapBorder.png", UriKind.Relative));
+                mapArea_x_1_y_1.Source = new BitmapImage(new Uri(@"/Resources/images/map/gameMapBorder.png", UriKind.Relative));
             }
 
 
             if (playerMapX >= 0 && playerMapY - 1 >= 0 && playerMapX < maxMapX && playerMapY - 1 < maxMapY)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX, playerMapY - 1].getAreaName();
-                mapArea_x0_y_1.Source = new BitmapImage(new Uri(@"/" + mapAreaName + ".png", UriKind.Relative));
+                mapArea_x0_y_1.Source = new BitmapImage(new Uri(@"/Resources/images/map/" + mapAreaName + ".png", UriKind.Relative));
             }
             else
             {
-                mapArea_x0_y_1.Source = new BitmapImage(new Uri(@"/gameMapBorder.png", UriKind.Relative));
+                mapArea_x0_y_1.Source = new BitmapImage(new Uri(@"/Resources/images/map/gameMapBorder.png", UriKind.Relative));
             }
 
 
@@ -330,11 +345,11 @@ namespace Evo
             if (playerMapX - 1 >= 0 && playerMapY + 1 >= 0 && playerMapX - 1 < maxMapX && playerMapY + 1 < maxMapY)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX - 1, playerMapY + 1].getAreaName();
-                mapArea_x_1_y1.Source = new BitmapImage(new Uri(@"/" + mapAreaName + ".png", UriKind.Relative));
+                mapArea_x_1_y1.Source = new BitmapImage(new Uri(@"/Resources/images/map/" + mapAreaName + ".png", UriKind.Relative));
             }
             else
             {
-                mapArea_x_1_y1.Source = new BitmapImage(new Uri(@"/gameMapBorder.png", UriKind.Relative));
+                mapArea_x_1_y1.Source = new BitmapImage(new Uri(@"/Resources/images/map/gameMapBorder.png", UriKind.Relative));
             }
 
 
@@ -342,18 +357,18 @@ namespace Evo
             if (playerMapX + 1 >= 0 && playerMapY - 1 >= 0 && playerMapX + 1 < maxMapX && playerMapY - 1 < maxMapY)
             {
                 mapAreaName = gameState.GetMainMap().gameMap[playerMapX + 1, playerMapY - 1].getAreaName();
-                mapArea_x1_y_1.Source = new BitmapImage(new Uri(@"/" + mapAreaName + ".png", UriKind.Relative));
+                mapArea_x1_y_1.Source = new BitmapImage(new Uri(@"/Resources/images/map/" + mapAreaName + ".png", UriKind.Relative));
             }
             else
             {
-                mapArea_x1_y_1.Source = new BitmapImage(new Uri(@"/gameMapBorder.png", UriKind.Relative));
+                mapArea_x1_y_1.Source = new BitmapImage(new Uri(@"/Resources/images/map/gameMapBorder.png", UriKind.Relative));
             }
 
             //mapArea.Source = new BitmapImage(new Uri(@"assets/" + mapAreaName + ".png"));
             //mapArea_x0_y0.Source = new BitmapImage(new Uri(@"/street.png", UriKind.Relative));
         }
 
-        
+
         private void PlayerWait(object sender, RoutedEventArgs e)
         {
 
@@ -366,7 +381,7 @@ namespace Evo
             GameLoop();
         }
 
-        private void FaceNorth(object sender, RoutedEventArgs e) 
+        private void FaceNorth(object sender, RoutedEventArgs e)
         {
             gameState.GetPlayer().setDirectionFacing("N");
             Sounds.PlayButtonSound1();
@@ -391,7 +406,7 @@ namespace Evo
             UpdateGUI();
         }
 
-        private void PickUpItemOffOfGround(object sender, RoutedEventArgs e) 
+        private void PickUpItemOffOfGround(object sender, RoutedEventArgs e)
         {
             Sounds.PlayButtonSound1();
             if (itemsInSight.SelectedItem != null)
@@ -399,12 +414,12 @@ namespace Evo
                 gameState.GetPlayer().pickUpItemOffOfGround((BaseItem)itemsInSight.SelectedItem);
                 secondsPassed += 3;
             }
-            else 
+            else
             {
                 gameState.GetPlayer().addObjectStringEvents("No item on ground selected");
             }
-            
-           
+
+
             GameLoop();
         }
 
@@ -414,15 +429,15 @@ namespace Evo
             gameState.GetPlayer().dropItem((BaseItem)playerInventory.SelectedItem);
             //gameState.GetPlayer().removeItemFromInventory
             secondsPassed += 3;
-            
+
             GameLoop();
-            
+
         }
 
         private void EquipItemAsWeapon(object sender, RoutedEventArgs e)
         {
             Sounds.PlayButtonSound1();
-            if (playerInventory.SelectedItem != null) 
+            if (playerInventory.SelectedItem != null)
             {
                 gameState.GetPlayer().equipItemAsWeapon((BaseItem)playerInventory.SelectedItem);
                 secondsPassed += 3;
@@ -439,12 +454,12 @@ namespace Evo
         private void AttackEntity(object sender, RoutedEventArgs e)
         {
             Sounds.PlayButtonSound1();
-            if (gameState.GetPlayer().getEntityWeapon() != null) 
+            if (gameState.GetPlayer().getEntityWeapon() != null)
             {
                 gameState.GetPlayer().attackEntity(gameState.GetMainMap(), (Entity)entitiesInSightList.SelectedItem, 0, true);
             }
             secondsPassed += 2;
-            
+
             GameLoop();
         }
 
@@ -453,24 +468,31 @@ namespace Evo
             Sounds.PlayButtonSound1();
             if (gameState.GetPlayer().getEntityWeapon() != null && gameState.GetPlayer().getEntityWeapon() is Gun)
             {
-                if (((Gun)gameState.GetPlayer().getEntityWeapon()).getLoadedProjectile() != null) 
+                if (((Gun)gameState.GetPlayer().getEntityWeapon()).getLoadedProjectile() != null)
                 {
                     Sounds.PlayFireSingleSig9mm();
                 }
-                ((Gun)gameState.GetPlayer().getEntityWeapon()).fireGunAtGameObject(gameState.GetPlayer(), (Entity)entitiesInSightList.SelectedItem);
-                
+
+                EntityAction.FireGunAtEntityBodyPart(gameState.GetPlayer(), (Entity)entitiesInSightList.SelectedItem, (BodyPart)bodyPartsList.SelectedItem);
+
+                //((Gun)gameState.GetPlayer().getEntityWeapon()).fireGunAtGameObject(gameState.GetPlayer(), (Entity)entitiesInSightList.SelectedItem);
+
                 secondsPassed += 2;
             }
-            else 
+            else
             {
                 gameState.GetPlayer().addObjectStringEvents("No firearm equipped");
             }
-            
-            
+
+
             GameLoop();
         }
 
-
+        private void TargetCenterOfMass(object sender, RoutedEventArgs e)
+        {
+            bodyPartsList.SelectedItem = null;
+            UpdateGUI();
+        }
 
 
         private void RackGun(object sender, RoutedEventArgs e)
@@ -530,27 +552,67 @@ namespace Evo
 
         private void MovePlayer(object sender, RoutedEventArgs e)
         {
-            double minutesWalking = 5;
-
-            gameState.SetLastPosition(gameState.GetPlayerPos().toString());
-            // gameState.GetPlayer().GameObjectPos.movePosition(gameState.GetMainMap().map,
-            // direction);
-            gameState.GetPlayer().gameObjectPos.movePlayerOnMapArea(gameState.GetMainMap(), gameState.GetPlayer(),
-                    gameState.GetPlayer().getDirectionFacing(), minutesWalking);
-
-            gameState.SetThisPosition(gameState.GetPlayerPos().toString());
-
-            if (!gameState.GetLastPosition().Equals(gameState.GetThisPosition()))
+            if (gameState.GetPlayer().GetPath().GetCurrentDestination() != null)
             {
-                gameState.SetDidPlayerMoveThisTurn(true);
-                gameState.GetMainMap().printGameMapString();
+                int loops = 0;
+                secondsPassed = 0;
+                //gameState.GetPlayer().
+                
+
+                while (!gameState.GetPlayer().GetPath().CurrentDestinationReached(gameState.GetPlayer().getGameObjectPos())) 
+                {
+                    loops++;
+                    secondsPassed = .1;
+                    EntityAction.ApproachGameObjectPosTenthOfASecond(gameState.GetPlayer(), gameState.GetPlayer().GetPath().GetCurrentDestination().GetGameObjectPos());
+                    gameState.GetMainMap().runThroughEntityActions(gameState.GetMainMap(), gameState.GetPlayer(), secondsPassed);
+                    gameState.GetGameTime().PassSeconds(secondsPassed);
+                    secondsPassed = 0;
+                    if (gameState.GetPlayer().isSpotted() || loops >= 10000) 
+                    {
+                        break;
+                    }
+
+                }
+
+
+
+
             }
-            secondsPassed += 300;
+            else 
+            {
+
+
+                double minutesWalking = 5;
+
+                gameState.SetLastPosition(gameState.GetPlayerPos().toString());
+                // gameState.GetPlayer().GameObjectPos.movePosition(gameState.GetMainMap().map,
+                // direction);
+
+
+                gameState.GetPlayer().gameObjectPos.movePlayerOnMapArea(gameState.GetMainMap(), gameState.GetPlayer(),
+                        gameState.GetPlayer().getDirectionFacing(), minutesWalking);
+
+                gameState.SetThisPosition(gameState.GetPlayerPos().toString());
+
+                if (!gameState.GetLastPosition().Equals(gameState.GetThisPosition()))
+                {
+                    gameState.SetDidPlayerMoveThisTurn(true);
+                    gameState.GetMainMap().printGameMapString();
+                }
+                secondsPassed += 300;
+
+            }
+   
             Sounds.PlayButtonSound1();
             GameLoop();
 
 
         }
+
+
+
+
+
 
 
         private void ReloadGUI(object sender, RoutedEventArgs e)
@@ -562,9 +624,14 @@ namespace Evo
 
         private void SelectPOI(object sender, RoutedEventArgs e)
         {
+            PointOfInterest poi = (PointOfInterest)pointsOfInterestListView.SelectedItem;
+            
             Sounds.PlayButtonSound1();
+            //gameState.GetPlayer().GetPath().MakeNewDestinationFromGameObjectPos(poi.GetName(), poi.GetDescription(), poi.GetGameObjectPos());
+            gameState.GetPlayer().GetPath().GetDestinationList().Clear();
+            gameState.GetPlayer().GetPath().AddDestination(gameState.GetPlayer().GetPath().MakeNewDestinationFromGameObjectPos(poi.GetName(), poi.GetDescription(), poi.GetGameObjectPos()));
             // buttonPressSound.Play();
-            GameLoop();
+            UpdateGUI();
         }
 
 

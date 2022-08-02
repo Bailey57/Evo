@@ -1,10 +1,11 @@
+using Evo.GameObjects.HitBoxes;
 using System;
 
 
 namespace Evo
 {
 
-	public class MapAreaFactory
+    public class MapAreaFactory
 	{
 		//Note: add something to keep track of entities in the map area 
 

@@ -8,16 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="forest.png" />
-    <None Remove="gameButton1_greenUp.png" />
-    <None Remove="gameButton1_green_down.png" />
-    <None Remove="gameButton1_green_up.png" />
-    <None Remove="gameMapBorder.png" />
     <None Remove="Resources\forest.png" />
     <None Remove="Resources\gameMapBorder.png" />
     <None Remove="Resources\images\flags\USMilitiaFlag.png" />
     <None Remove="Resources\images\gui\buttons\gameButton1_green_down.png" />
     <None Remove="Resources\images\gui\buttons\gameButton1_green_up.png" />
+    <None Remove="Resources\images\gui\buttons\gameButton1_red_up.png" />
     <None Remove="Resources\images\gui\compass\compassBackGround_64.png" />
     <None Remove="Resources\images\gui\map_display1.png" />
     <None Remove="Resources\images\items\64bit\ak74_64.png" />
@@ -37,8 +33,6 @@
     <None Remove="Resources\WIP_MapSquare.png" />
     <None Remove="street.png" />
     <None Remove="town.png" />
-    <None Remove="Windows\gameButton1_green_up.png" />
-    <None Remove="Windows\Logo1.png" />
     <None Remove="WIP_MapSquare.png" />
   </ItemGroup>
 
@@ -47,27 +41,39 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="forest.png" />
-    <Resource Include="gameButton1_greenUp.png" />
-    <Resource Include="gameButton1_green_down.png" />
-    <Resource Include="gameButton1_green_up.png" />
-    <Resource Include="gameMapBorder.png" />
     <Resource Include="Resources\forest.png" />
     <Resource Include="Resources\gameMapBorder.png" />
     <Resource Include="Resources\images\flags\USMilitiaFlag.png" />
-    <Resource Include="Resources\images\gui\buttons\gameButton1_green_down.png" />
-    <Resource Include="Resources\images\gui\buttons\gameButton1_green_up.png" />
+    <Resource Include="Resources\images\gui\buttons\gameButton1_green_down.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\images\gui\buttons\gameButton1_green_up.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\images\gui\buttons\gameButton1_red_up.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\images\gui\compass\compassBackGround_64.png" />
     <Resource Include="Resources\images\gui\map_display1.png" />
     <Resource Include="Resources\images\items\64bit\ak74_64.png" />
     <Resource Include="Resources\images\items\64bit\armorVest_64.png" />
     <Resource Include="Resources\images\items\64bit\sig9mm_64.png" />
-    <Resource Include="Resources\images\map\forest.png" />
-    <Resource Include="Resources\images\map\gameMapBorder.png" />
+    <Resource Include="Resources\images\map\forest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\images\map\gameMapBorder.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\images\map\icons\player\playerIcon_64.png" />
-    <Resource Include="Resources\images\map\street.png" />
-    <Resource Include="Resources\images\map\town.png" />
-    <Resource Include="Resources\images\map\WIP_MapSquare.png" />
+    <Resource Include="Resources\images\map\street.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\images\map\town.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\images\map\WIP_MapSquare.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Logo1.png" />
     <Resource Include="Resources\m1Carbine_v1.png" />
     <Resource Include="Resources\sounds\gui\buttons\buttonClick_1.mp3" />
@@ -76,13 +82,11 @@
     <Resource Include="Resources\WIP_MapSquare.png" />
     <Resource Include="street.png" />
     <Resource Include="town.png" />
-    <Resource Include="Windows\gameButton1_green_up.png" />
-    <Resource Include="Windows\Logo1.png" />
     <Resource Include="WIP_MapSquare.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="buttonClick_1.wav">
+    <None Update="Resources\images\cursors\Evo-Cursor1.1.cur">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\sounds\gui\buttons\buttonClick_1.wav">
