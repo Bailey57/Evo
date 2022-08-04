@@ -436,12 +436,15 @@ public void setGameObjectHitbox(Hitbox gameObjectHitbox)
 {
 	double distance = 0;
 
-	//		distance = Math.abs(entity.getGameObjectPos().getMapAreaXPos() - getGameObjectPos().getMapAreaXPos());
-	//		distance += Math.abs(entity.getGameObjectPos().getMapAreaYPos() - getGameObjectPos().getMapAreaYPos());
-	//
-	//		Math.pow(entity.getGameObjectPos().getMapAreaXPos() - getGameObjectPos().getMapAreaXPos(), 2);
-	//		Math.pow(entity.getGameObjectPos().getMapAreaYPos() - getGameObjectPos().getMapAreaYPos(), 2);
-
+			//		distance = Math.abs(entity.getGameObjectPos().getMapAreaXPos() - getGameObjectPos().getMapAreaXPos());
+			//		distance += Math.abs(entity.getGameObjectPos().getMapAreaYPos() - getGameObjectPos().getMapAreaYPos());
+			//
+			//		Math.pow(entity.getGameObjectPos().getMapAreaXPos() - getGameObjectPos().getMapAreaXPos(), 2);
+			//		Math.pow(entity.getGameObjectPos().getMapAreaYPos() - getGameObjectPos().getMapAreaYPos(), 2);
+			if (gameObject == null) 
+			{
+				return -1;
+			}
 	distance = Math.Sqrt(
 			Math.Pow(gameObject.getGameObjectPos().getMapAreaXPos() - getGameObjectPos().getMapAreaXPos(), 2) + Math
 					.Pow(gameObject.getGameObjectPos().getMapAreaYPos() - getGameObjectPos().getMapAreaYPos(), 2));

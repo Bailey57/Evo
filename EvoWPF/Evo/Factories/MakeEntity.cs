@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Evo.GameObjects.Factories
+namespace Evo.Factories
 {
     //package wasteland.entity;
 
@@ -48,6 +48,11 @@ namespace Evo.GameObjects.Factories
             return baseZombie;
 
         }
+
+
+
+
+
 
 
 

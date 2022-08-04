@@ -1026,6 +1026,7 @@ namespace Evo
 
 
 			inventory.Add(item);
+			item.setInInventory(true);
 			item.setGameObjectPos(null);
 		
 		// Console.WriteLine("Could not add item to inventory.");

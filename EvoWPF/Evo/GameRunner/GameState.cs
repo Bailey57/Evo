@@ -1,8 +1,9 @@
 ﻿using Evo.GameObjects.HitBoxes;
 using System;
 
-using Evo.GameObjects.Factories;
+using Evo.Factories;
 using Evo;
+
 namespace Evo
 {
     /*
@@ -246,6 +247,20 @@ using Wasteland.map.Map;
 
 			Magazine _9mm_mag2 = new Magazine(startPos3, "9mm mag2", .95, 9, 9);
 			_9mm_mag2.setInInventory(false);
+
+
+			//adding ak stuff
+			Magazine akMag = MagazineFactory.MakeEmptyAK47Magazine(startPos2);
+			gameState.mainMap.addGameObjectToMapList(akMag);
+			MagazineFactory.FillMagWithNewRounds(akMag, ProjectileAmmoFactory.MakeAK_762_Standard(startPos2));
+			Gun newAK = GunFactory.MakeGun_AK47(startPos2, 100);
+			gameState.mainMap.addGameObjectToMapList(akMag);
+
+
+			gameState.GetPlayer().addItemToInventory(newAK);
+			gameState.GetPlayer().addItemToInventory(akMag);
+			
+			//MagazineFactory.MakeEmptyAK47Magazine(null);
 
 
 			for (int i = 0; i < 8; i++)

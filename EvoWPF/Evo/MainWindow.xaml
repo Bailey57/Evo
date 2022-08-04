@@ -182,7 +182,7 @@
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
-        <Label x:Name="loadingNoteLabel" Content="Note: Takes 14~ seconds to load a save" HorizontalAlignment="Left" Margin="408,40,0,0" VerticalAlignment="Top" Height="26" Width="224" Grid.RowSpan="2" FontFamily="Cascadia Code" Foreground="#FF70D200" Background="Black"/>
+        <Label x:Name="loadingNoteLabel" Content="Note: Takes 14~ seconds to load a save" HorizontalAlignment="Left" Margin="408,40,0,0" VerticalAlignment="Top" Height="26" Width="279" Grid.RowSpan="2" FontFamily="Cascadia Code" Foreground="#FF70D200" Background="Black"/>
         <Label x:Name="gameVersionLabel" Content="v0" HorizontalAlignment="Left" Margin="216,40,0,0" VerticalAlignment="Top" Height="26" Width="80" Grid.RowSpan="2" FontFamily="Cascadia Code" Foreground="#FF70D200" Background="Black"/>
         <Button x:Name="mainMenuButton" Click ="GoToMainMenu" Content="Main Menu" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Height="39" Width="84" Grid.RowSpan="2" FontFamily="Cascadia Code">
             <Button.Background>
@@ -267,7 +267,7 @@
             </ListView.View>
         </ListView>
         <Label x:Name="bodyPartsListLabel" Grid.Column="1" Content="Body Parts " HorizontalAlignment="Left" Margin="840,569,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="24" Width="85" Background="Black" Foreground="#FF70D200" FontFamily="Cascadia Code"/>
-        <Button x:Name="targetBodyPartButton" Grid.Column="1" Content="Target Body Part" HorizontalAlignment="Left" Margin="764,843,0,0" VerticalAlignment="Top" Click="AttackEntity" Height="38" Width="119" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
+        <Button x:Name="targetBodyPartButton" Grid.Column="1" Content="Target Body Part" HorizontalAlignment="Left" Margin="764,843,0,0" VerticalAlignment="Top" Click="UpdateGUI" Height="38" Width="119" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>

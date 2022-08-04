@@ -47,7 +47,7 @@ namespace Evo
             //selcetPOI_Button.AddToEventRoute();
 
 
-            gameVersionLabel.Content = "v0.7.1";
+            gameVersionLabel.Content = "v0.7.2";
 
             gameState = gameState.MakeBuild1();
 
@@ -509,6 +509,7 @@ namespace Evo
 
         private void TargetCenterOfMass(object sender, RoutedEventArgs e)
         {
+            Sounds.PlayButtonSound1();
             bodyPartsList.SelectedItem = null;
             UpdateGUI();
         }
@@ -592,9 +593,6 @@ namespace Evo
                     }
 
                 }
-
-
-
 
             }
             else 

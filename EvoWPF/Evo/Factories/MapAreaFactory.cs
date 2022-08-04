@@ -2,7 +2,7 @@ using Evo.GameObjects.HitBoxes;
 using System;
 
 
-namespace Evo.GameObjects.Factories
+namespace Evo.Factories
 {
 
     public class MapAreaFactory
