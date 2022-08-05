@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Evo.Calculator.Destinations;
-
+using Evo.Factions;
 //later: add entity levels wich affect how skilled they are ex: high lvl might have high accuracy
 namespace Evo
 {
@@ -44,6 +44,7 @@ namespace Evo
 	
 	public double medicalKnowlege;
 
+
 	// carrie over seconds
 	public double secondsLeft = 0;
 
@@ -67,13 +68,19 @@ namespace Evo
 		private Path path;
 
 
-		//private bool wounded;
+
+		private Faction faction;
+
+        public Faction Faction { get => faction; set => faction = value; }
+
+
+        //private bool wounded;
 
 
 
 
 
-		public Entity(String objectName, bool alive, double energy, double movementSpeed, double accuracy,
+        public Entity(String objectName, bool alive, double energy, double movementSpeed, double accuracy,
 		GameObjectPos gameObjectPos) : base(gameObjectPos, objectName)
 		{
 			this.alive = alive;

@@ -2,8 +2,9 @@
 using System;
 
 using Evo.Factories;
+using Evo.Factions;
 using Evo;
-
+using System.Collections.ObjectModel;
 namespace Evo
 {
     /*
@@ -45,7 +46,7 @@ using Wasteland.map.Map;
 
 		private bool didPlayerMoveThisTurn;
 
-
+		private ObservableCollection<Faction> factionList = new ObservableCollection<Faction>();
 
 		/**
 		 * @return the gameStateSaveName
@@ -165,7 +166,15 @@ using Wasteland.map.Map;
 			return this.gameTime;
 		}
 
-
+		//private ObservableCollection<Faction> factionList = new ObservableCollection<Faction>();
+		public ObservableCollection<Faction> GetFactionList()
+		{
+			return this.factionList;
+		}
+		public void SetFactionList(ObservableCollection<Faction> factionList)
+		{
+			this.factionList = factionList;
+		}
 
 		public GameState MakeBuild1() 
 		{
@@ -188,8 +197,9 @@ using Wasteland.map.Map;
 			int initMapAreaY = 0;
 			gameState.GetMainMap().makeGameMap1();
 
-			
-
+			ObservableCollection<Faction> worldFactions = FactionFactory.MakeGameFactions();
+			gameState.SetFactionList(worldFactions);
+			//worldFactions 
 
 			GameObjectPos startPos = new GameObjectPos(gameState.GetMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
 			GameObjectPos startPos2 = new GameObjectPos(gameState.GetMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
@@ -215,7 +225,9 @@ using Wasteland.map.Map;
 			gameState.GetPlayer().setEntityName("Player");
 			gameState.GetPlayer().setStrength(25);
 
-	
+			gameState.GetPlayer().Faction = gameState.GetFactionList()[3];
+			//gameState.
+
 
 			Hitbox hitbox = new Hitbox();
 			gameState.GetPlayer().setGameObjectHitbox(hitbox.newHumanHitbox());
