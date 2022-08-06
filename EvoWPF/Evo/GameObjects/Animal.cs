@@ -360,13 +360,13 @@ public class Animal : Entity {
 	 * @return
 	 */
 	public Entity[] entitiesInSightList(Map worldMap) {
-		GameObject[] worldGameObjectList = gameObjectInSightList(worldMap);
+			ObservableCollection<GameObject> worldGameObjectList = gameObjectInSightList(worldMap);
 
 		Entity[] entitiesInSightList = new Entity[999000];
 
 		int iterations = 0;
 
-		for (int i = 0; i < worldGameObjectList.Length; i++) {
+		for (int i = 0; i < worldGameObjectList.Count; i++) {
 			if (worldGameObjectList[i] is Entity) {
 				entitiesInSightList[iterations] = (Entity) worldGameObjectList[i];
 				iterations++;
@@ -421,8 +421,8 @@ public class Animal : Entity {
 
 	public String gameObjectInSightListToString(Map worldMap) {
 		String stringOutput = "";
-		// bool done = false;
-		GameObject[] gameObjectList;
+			// bool done = false;
+			ObservableCollection<GameObject> gameObjectList;
 		gameObjectList = gameObjectInSightList(worldMap);
 
 		for (int i = 0; i < 999000; i++) {
@@ -442,11 +442,11 @@ public class Animal : Entity {
 
 	}
 
-	public GameObject[] gameObjectInSightList(Map worldMap) {
-		GameObject[] worldGameObjectList = new GameObject[999000];
+	public ObservableCollection<GameObject> gameObjectInSightList(Map worldMap) {
+			ObservableCollection<GameObject> worldGameObjectList = new ObservableCollection<GameObject>();
 		worldGameObjectList = worldMap.gameObjectsOnMapList;
 
-		GameObject[] gameObjectsInSight = new GameObject[999000];
+			ObservableCollection<GameObject> gameObjectsInSight = new ObservableCollection<GameObject>();
 
 		int gameObjectListCount = 0;
 		int iterations = 0;
@@ -540,13 +540,13 @@ public class Animal : Entity {
 	}
 
 	public BaseItem[] itemsInSightList(Map worldMap) {
-		GameObject[] worldGameObjectList = gameObjectInSightList(worldMap);
+			ObservableCollection<GameObject> worldGameObjectList = gameObjectInSightList(worldMap);
 
 		BaseItem[] itemsInSightList = new BaseItem[999000];
 
 		int iterations = 0;
 
-		for (int i = 0; i < worldGameObjectList.GetLength(0); i++) {
+		for (int i = 0; i < worldGameObjectList.Count; i++) {
 			if (worldGameObjectList[i] is BaseItem && !((BaseItem) worldGameObjectList[i]).isInInventory()) {
 				itemsInSightList[iterations] = (BaseItem) worldGameObjectList[i];
 				iterations++;

@@ -313,6 +313,10 @@ using Wasteland.entity.Entity;
 
 		int yMove = 0;
 		int xMove = 0;
+			if (direction == null) 
+			{
+				return moved;	
+			}
 		if (direction.Equals("n") || direction.Equals("N")) {
 			// changePlayerPos(currentMap, 0, -1);
 			yMove = -1;
@@ -359,7 +363,8 @@ using Wasteland.entity.Entity;
 				currentMap.gameMap[oldMapY, oldMapX].playerOnArea = false;
 				
 				//change later to accept z values in last place
-				currentMap.gameObjectsOnMap[(int) oldMapAreaY, (int) oldMapAreaX, 0] = null;
+				//currentMap.gameObjectsOnMapList[(int) oldMapAreaY, (int) oldMapAreaX, 0] = null;
+
 				
 			}
 			

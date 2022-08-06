@@ -63,7 +63,7 @@ namespace Evo
 
 	private double TIME_MOVE_TAKES = 2.5;// change to where its based on speed
 
-	private BaseItem[] itemsInSight;
+	private ObservableCollection<BaseItem> itemsInSight;
 
 		private Path path;
 
@@ -461,11 +461,11 @@ namespace Evo
 
 	public String entitiesInSightListToString(Map worldMap) {
 		String stringOutput = "";
-		// bool done = false;
-		Entity[] entityList;
+			// bool done = false;
+			ObservableCollection<Entity> entityList;
 		entityList = entitiesInSightList(worldMap);
 
-		for (int i = 0; i < 999000; i++) {
+		for (int i = 0; i < entityList.Count; i++) {
 
 			if (entityList[i] != null) {
 				stringOutput += "\n" + i + ": " + entityList[i].getObjectName() + ", "
@@ -491,17 +491,18 @@ namespace Evo
 	 * @param yPos
 	 * @return
 	 */
-	public Entity[] entitiesInSightList(Map worldMap) {
-		GameObject[] worldGameObjectList = gameObjectInSightList(worldMap);
+	public ObservableCollection<Entity> entitiesInSightList(Map worldMap) {
+			ObservableCollection<GameObject> worldGameObjectList = gameObjectInSightList(worldMap);
 
-		Entity[] entitiesInSightList = new Entity[999000];
+			ObservableCollection<Entity> entitiesInSightList = new ObservableCollection<Entity>();
 
-		int iterations = 0;
 
-		for (int i = 0; i < worldGameObjectList.GetLength(0); i++) {
+
+		for (int i = 0; i < worldGameObjectList.Count; i++) {
 			if (worldGameObjectList[i] is Entity) {
-				entitiesInSightList[iterations] = (Entity) worldGameObjectList[i];
-				iterations++;
+					entitiesInSightList.Add((Entity)worldGameObjectList[i]);
+					//entitiesInSightList[iterations] = (Entity) worldGameObjectList[i];
+
 			}
 
 		}
@@ -553,8 +554,8 @@ namespace Evo
 
 	public String gameObjectInSightListToString(Map worldMap) {
 		String stringOutput = "";
-		// bool done = false;
-		GameObject[] gameObjectList;
+			// bool done = false;
+			ObservableCollection<GameObject> gameObjectList;
 		gameObjectList = gameObjectInSightList(worldMap);
 
 		for (int i = 0; i < 999000; i++) {
@@ -573,22 +574,23 @@ namespace Evo
 		}
 
 	}
-
-	public GameObject[] gameObjectInSightList(Map worldMap) {
-		GameObject[] worldGameObjectList = new GameObject[999000];
+		
+	public ObservableCollection<GameObject> gameObjectInSightList(Map worldMap) {
+			ObservableCollection<GameObject> worldGameObjectList = new ObservableCollection<GameObject>();
 		worldGameObjectList = worldMap.gameObjectsOnMapList;
 
-		GameObject[] gameObjectsInSight = new GameObject[999000];
+			ObservableCollection<GameObject> gameObjectsInSight = new ObservableCollection<GameObject>();
 
 		int gameObjectListCount = 0;
 		int iterations = 0;
 		bool done = false;
 
 		while (!done) {
-			if (worldGameObjectList[iterations] != null) {
+			if (worldGameObjectList.Count > iterations && worldGameObjectList[iterations] != null) {
 
 				if (gameObjectInSight(worldGameObjectList[iterations])) {
-					gameObjectsInSight[gameObjectListCount] = worldGameObjectList[iterations];
+						gameObjectsInSight.Add(worldGameObjectList[iterations]);
+					//gameObjectsInSight[gameObjectListCount] = worldGameObjectList[iterations];
 					gameObjectListCount++;
 				}
 
@@ -601,6 +603,7 @@ namespace Evo
 		return gameObjectsInSight;
 
 	}
+
 
 	public bool gameObjectInSight(GameObject gameObject) {
 		// double viewDistance = 20; // in meters
@@ -650,38 +653,36 @@ namespace Evo
 	public String itemsInSightListToString(Map worldMap) {
 		String stringOutput = "";
 		// bool done = false;
-		BaseItem[] itemList;
-		itemList = itemsInSightList(worldMap);
+		//ObservableCollection<GameObject> itemList;
+		//itemList = itemsInSightList(worldMap);
 
-		for (int i = 0; i < 999000; i++) {
+		for (int i = 0; i < this.itemsInSight.Count; i++) {
 
-			if (itemList[i] != null && !itemList[i].isInInventory()) {
+			if (itemsInSight[i] != null && !itemsInSight[i].isInInventory()) {
 
-				stringOutput += "\n" + i + ": " + itemList[i].getObjectName() + ", "
-						+ getDistanceFromObject(itemList[i]) + " meters away. \n";
+				stringOutput += "\n" + i + ": " + itemsInSight[i].getObjectName() + ", "
+						+ getDistanceFromObject(itemsInSight[i]) + " meters away. \n";
 			}
 
 		}
 
-		if (itemList[0] != null) {
+		if (itemsInSight[0] != null) {
 			return stringOutput;
 		} else {
 			return "No items in sight.\n";
 		}
 
 	}
+	//public ObservableCollection<GameObject> gameObjectsOnMapList = new ObservableCollection<GameObject>();
+	public ObservableCollection<BaseItem> itemsInSightList(Map worldMap) {
+			ObservableCollection<GameObject> worldGameObjectList = gameObjectInSightList(worldMap);
 
-	public BaseItem[] itemsInSightList(Map worldMap) {
-		GameObject[] worldGameObjectList = gameObjectInSightList(worldMap);
+			ObservableCollection<BaseItem> itemsInSightList = new ObservableCollection<BaseItem>();
 
-		BaseItem[] itemsInSightList = new BaseItem[999000];
-
-		int iterations = 0;
-
-		for (int i = 0; i < worldGameObjectList.GetLength(0); i++) {
+		for (int i = 0; i < worldGameObjectList.Count; i++) {
 			if (worldGameObjectList[i] is BaseItem && !((BaseItem) worldGameObjectList[i]).isInInventory()) {
-				itemsInSightList[iterations] = (BaseItem) worldGameObjectList[i];
-				iterations++;
+					itemsInSightList.Add((BaseItem)worldGameObjectList[i]);
+				//itemsInSightList[i] = (BaseItem) worldGameObjectList[i];
 			}
 
 		}

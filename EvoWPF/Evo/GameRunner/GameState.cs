@@ -180,7 +180,7 @@ using Wasteland.map.Map;
 		{
 			// create new command handler
 			//commandHandler = CommandHandler.GetInstance();
-
+			
 			// create new game state
 			GameState gameState = new GameState();
 			GameTime gameTime = new GameTime();
@@ -191,11 +191,15 @@ using Wasteland.map.Map;
 			gameState.SetPlayerAction(new PlayerAction());
 			gameState.SetMainMap(new Map(25));
 
+			MapAreaFactory mf = new MapAreaFactory(gameState.GetMainMap());
+
 			int initMapX = 0;
 			int initMapY = 0;
 			int initMapAreaX = 0;
 			int initMapAreaY = 0;
 			gameState.GetMainMap().makeGameMap1();
+
+			
 
 			ObservableCollection<Faction> worldFactions = FactionFactory.MakeGameFactions();
 			gameState.SetFactionList(worldFactions);
@@ -291,6 +295,11 @@ using Wasteland.map.Map;
 			gameState.GetMainMap().addGameObjectToMapList(gun);
 			gun.setMagazine(_9mm_mag);
 			gun.setAttackRange(50);
+
+
+
+			mf.PopulateGameMap(gameState);
+
 
 
 			gameState.GetPlayer().addObjectStringEvents("Started\n");

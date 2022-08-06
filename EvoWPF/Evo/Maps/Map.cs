@@ -2,6 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using Evo.Factories;
+using Evo.Factions;
 namespace Evo
 {
     [System.Serializable]
@@ -33,10 +34,11 @@ namespace Evo
 	public int currentAmmountOfEntitiesOnMap = 0;
 	public int entityMapLimit = 999000;
 
-	//public Entity[] entitiesOnMap = new Entity[999000]; // limit initially 1000
+		//public Entity[] entitiesOnMap = new Entity[999000]; // limit initially 1000
 
-	public GameObject[,,] gameObjectsOnMap;//delete 7/26/2022
-	public GameObject[] gameObjectsOnMapList = new GameObject[999000];
+		//private ObservableCollection<BaseItem> inventory = new ObservableCollection<BaseItem>();
+		public ObservableCollection<GameObject> gameObjectsOnMapList = new ObservableCollection<GameObject>();
+		//public GameObject[] gameObjectsOnMapList = new GameObject[999000];
 
 
 
@@ -72,7 +74,7 @@ namespace Evo
 		mapX_max = mapSize;
 		mapY_max = mapSize;
 		gameMap = new MapArea[mapSize, mapSize];
-		gameObjectsOnMap = new GameObject[mapSize * mapAreaSize, mapSize * mapAreaSize, 5];
+		
 
 	}
 
@@ -162,7 +164,7 @@ namespace Evo
 	/**
 	 * @return the gameObjectsOnMap
 	 */
-	public GameObject[] getGameObjectsOnMap()
+	public ObservableCollection<GameObject> GetGameObjectsOnMap()
 	{
 		return gameObjectsOnMapList;
 	}
@@ -170,7 +172,7 @@ namespace Evo
 	/**
 	 * @param gameObjectsOnMap the gameObjectsOnMap to set
 	 */
-	public void setGameObjectsOnMap(GameObject[] gameObjectsOnMapList)
+	public void SetGameObjectsOnMap(ObservableCollection<GameObject> gameObjectsOnMapList)
 	{
 		this.gameObjectsOnMapList = gameObjectsOnMapList;
 	}
@@ -190,7 +192,7 @@ namespace Evo
 	/**
 	 * @return the gameObjectsOnMapList
 	 */
-	public GameObject[] getGameObjectsOnMapList()
+	public ObservableCollection<GameObject> GetGameObjectsOnMapList()
 	{
 		return gameObjectsOnMapList;
 	}
@@ -198,7 +200,7 @@ namespace Evo
 	/**
 	 * @param gameObjectsOnMapList the gameObjectsOnMapList to set
 	 */
-	public void setGameObjectsOnMapList(GameObject[] gameObjectsOnMapList)
+	public void SetGameObjectsOnMapList(ObservableCollection<GameObject> gameObjectsOnMapList)
 	{
 		this.gameObjectsOnMapList = gameObjectsOnMapList;
 	}
@@ -243,13 +245,6 @@ namespace Evo
 		this.gameMap = gameMap;
 	}
 
-	/**
-	 * @param gameObjectsOnMap the gameObjectsOnMap to set
-	 */
-	public void setGameObjectsOnMap(GameObject[,,] gameObjectsOnMap)
-	{
-		this.gameObjectsOnMap = gameObjectsOnMap;
-	}
 
 	public String getWorldGameObjectInfo()
 	{
@@ -303,7 +298,7 @@ namespace Evo
 		String stringOutput = "";
 		bool done = false;
 		int iteration = 0;
-		GameObject[] objectOnMap = getGameObjectsOnMap();
+		ObservableCollection<GameObject> objectOnMap = GetGameObjectsOnMap();
 
 		while (!done)
 		{
@@ -335,35 +330,50 @@ namespace Evo
 	public bool addGameObjectToMapList(GameObject gameObject)
 	{
 		bool placedOnMap = false;
-		int gameObjectNum = 0;
+		//int gameObjectNum = 0;
 
-		for (int i = 0; i < entityMapLimit; i++)
-		{
-			if (gameObjectsOnMapList[i] == null)
+			if (gameObjectsOnMapList.Contains(gameObject)) 
 			{
-				gameObjectsOnMapList[i] = gameObject;
-				placedOnMap = true;
-				currentAmmountOfGameObjectsOnMap++;
-				return placedOnMap;
-				//break;
-
+				return false;
+			
 			}
-			else if (gameObjectsOnMapList[i] == gameObject)
+
+			gameObjectsOnMapList.Add(gameObject);
+			placedOnMap = true;
+			currentAmmountOfGameObjectsOnMap++;
+			/*
+			for (int i = 0; i < entityMapLimit; i++)
 			{
-				//Console.WriteLine("GameObject already on map");
+					if (gameObjectsOnMapList.Count < i) 
+					{
+						break;
+					}
+				if (gameObjectsOnMapList[i] == null)
+				{
+					gameObjectsOnMapList[i] = gameObject;
+					placedOnMap = true;
+					currentAmmountOfGameObjectsOnMap++;
+					return placedOnMap;
+					//break;
+
+				}
+				else if (gameObjectsOnMapList[i] == gameObject)
+				{
+					//Console.WriteLine("GameObject already on map");
+					placedOnMap = false;
+					return placedOnMap;
+				}
+				gameObjectNum++;
+			}
+
+			if (!placedOnMap)
+			{
+				// Console.WriteLine("Map full, can't add any more Entities.");
+				Console.WriteLine("Map full, can't add any more GameObjects." + "\nGameObjects on map: " + gameObjectNum + "\n\n");
 				placedOnMap = false;
-				return placedOnMap;
 			}
-			gameObjectNum++;
-		}
-
-		if (!placedOnMap)
-		{
-			// Console.WriteLine("Map full, can't add any more Entities.");
-			Console.WriteLine("Map full, can't add any more GameObjects." + "\nGameObjects on map: " + gameObjectNum + "\n\n");
-			placedOnMap = false;
-		}
-		return placedOnMap;
+			*/
+			return placedOnMap;
 
 	}
 
@@ -404,7 +414,7 @@ namespace Evo
 			bool spotted = false;
 			bool previouslySpotted = player.isSpotted();
 
-			for (int i = 0; i < worldMap.getGameObjectsOnMapList().Length; i++)
+			for (int i = 0; i < worldMap.GetGameObjectsOnMapList().Count; i++)
 		{
 			if (!(gameObjectsOnMapList[i] is Entity) || 
 					//gameObjectsOnMap[i,0,0] == null || 
@@ -431,9 +441,38 @@ namespace Evo
 
 
 
+					
+					if (((Entity)gameObjectsOnMapList[i]).alive)
+					{
+						/*
+						for (int k = 0; k < gameObjectsOnMapList.Count; k++) 
+						{
+							//
+							//IsEnemyFaction
+
+							if (gameObjectsOnMapList[k] is Entity && ((Entity)gameObjectsOnMapList[i]).entityInSight(((Entity)gameObjectsOnMapList[k])) &&
+								FactionFactory.IsEnemyFaction(((Entity)gameObjectsOnMapList[i]).Faction, ((Entity)gameObjectsOnMapList[k]).Faction))
+							{
+								((Entity)gameObjectsOnMapList[k]).setSpotted(true);
+								((Entity)gameObjectsOnMapList[k]).setInCombat(true);
+								EntityAction.AttackAndPursueGameObjectMelee(((Entity)gameObjectsOnMapList[i]), ((Entity)gameObjectsOnMapList[k]));
+								((Entity)gameObjectsOnMapList[k]).addObjectStringEvents("\nSpotted by a " + ((Entity)gameObjectsOnMapList[i]).getEntityName() + ".\n");
+								((Entity)gameObjectsOnMapList[k]).addObjectStringEvents("\nEntered combat.\n");
 
 
+							}
+							else 
+							{
+							
+							}
+							//IsEnemyFaction
 
+
+						}
+						*/
+					
+					}
+					
 
 					//secondsPassed
 					//((Entity)gameObjectsOnMapList[i]).AddSecondsLeft(secondsPassed);
@@ -444,6 +483,7 @@ namespace Evo
 						player.setInCombat(true);
 
 						EntityAction.AttackAndPursueGameObjectMelee(((Entity)gameObjectsOnMapList[i]), player);
+
 
 						if (!player.isSpotted() || !player.isInCombat())
 						{
@@ -512,7 +552,7 @@ namespace Evo
 			bool spotted = false;
 			bool previouslySpotted = player.isSpotted();
 
-			for (int i = 0; i < worldMap.getGameObjectsOnMapList().Length; i++)
+			for (int i = 0; i < worldMap.GetGameObjectsOnMapList().Count; i++)
 			{
 				if (!(gameObjectsOnMapList[i] is Entity) ||
 							//gameObjectsOnMap[i,0,0] == null || 

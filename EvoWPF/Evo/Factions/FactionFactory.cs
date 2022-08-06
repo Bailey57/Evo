@@ -7,16 +7,23 @@ using System.Collections.ObjectModel;
 namespace Evo.Factions
 {
     [System.Serializable]
-    internal static class FactionFactory
+    public static class FactionFactory
     { 
 
         
         private static ObservableCollection<Faction> factionList = new ObservableCollection<Faction>();
 
 
-
         //string name, string description, ObservableCollection<FactionReputation> reputation
         //100 best, -100 worst, 
+        /**
+         * 1: Evo
+         * 2: USMilitary
+         * 3: NC Militia
+         * 4: Player
+         * 
+         * 
+         */
         public static ObservableCollection<Faction> MakeGameFactions() 
         {
             Faction Evo = new Faction("Evos", "The Evo faction");
@@ -51,6 +58,29 @@ namespace Evo.Factions
             return factionList; 
         }
 
+
+
+
+        public static bool IsEnemyFaction(Faction mainFaction, Faction secondaryFaction) 
+        {
+            if (mainFaction == null || secondaryFaction == null) 
+            {
+                return false;
+            }
+            for (int i = 0; i < mainFaction.Reputation.Count; i++) 
+            {
+                if (mainFaction.Reputation[i].Faction == secondaryFaction) 
+                {
+                    if (mainFaction.Reputation[i].Reputation <= -25)
+                    {
+                        return true;
+                    }
+                }
+                
+            }
+
+            return false;
+        }
 
 
     }

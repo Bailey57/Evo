@@ -1,6 +1,6 @@
 using Evo.GameObjects.HitBoxes;
 using System;
-
+using Evo.Factions;
 
 namespace Evo.Factories
 {
@@ -115,7 +115,7 @@ namespace Evo.Factories
 
             MapArea newMapArea = new MapArea("forest", "F", entitiesOnMapArea, elevation, xPosOnMap, yPosOnMap);
 
-            makeMultipleEntitieOnMapArea(entitiesOnMapArea, newMapArea, 5);
+            //makeMultipleEntitieOnMapArea(entitiesOnMapArea, newMapArea, 5);
 
             return newMapArea;
         }
@@ -127,7 +127,7 @@ namespace Evo.Factories
             int entitiesOnMapArea = entitiesOnMapAreaNum(difficulty);
 
             MapArea newMapArea = new MapArea("town", "T", entitiesOnMapArea, elevation, xPosOnMap, yPosOnMap);
-            makeMultipleEntitieOnMapArea(entitiesOnMapArea, newMapArea, 5);
+            //makeMultipleEntitieOnMapArea(entitiesOnMapArea, newMapArea, 5);
             return newMapArea;
         }
 
@@ -138,7 +138,7 @@ namespace Evo.Factories
             int entitiesOnMapArea = entitiesOnMapAreaNum(difficulty);
 
             MapArea newMapArea = new MapArea("street", "S", entitiesOnMapArea, elevation, xPosOnMap, yPosOnMap);
-            makeMultipleEntitieOnMapArea(entitiesOnMapArea, newMapArea, 5);
+            //makeMultipleEntitieOnMapArea(entitiesOnMapArea, newMapArea, 5);
             return newMapArea;
         }
 
@@ -160,7 +160,30 @@ namespace Evo.Factories
             return entitiesOnAra;
         }
 
-        public void makeMultipleEntitieOnMapArea(int ammountOfEntities, MapArea mapArea, int areaDifficulty)
+
+
+        public void PopulateGameMap(GameState gameState) 
+        {
+            int Xmax = gameState.GetMainMap().getMapX_max();
+            int Ymax = gameState.GetMainMap().getMapY_max();
+            for (int x = 0; x < Xmax; x++) 
+            {
+                for (int y = 0; y < Ymax; y++) 
+                {
+                    // Faction facion = gameState.GetFactionList()[1];
+                    makeMultipleEntitieOnMapArea(3, gameState.GetMainMap().getGameMap()[y, x], 1, gameState.GetFactionList()[0]);
+                    //gameState.GetMainMap().getGameMap()[y,x].
+
+                }
+            }
+
+
+            //makeMultipleEntitieOnMapArea(entitiesOnMapArea, newMapArea, 5);
+
+
+        }
+
+        public void makeMultipleEntitieOnMapArea(int ammountOfEntities, MapArea mapArea, int areaDifficulty, Faction faction)
         {
             if (ammountOfEntities == 0)
             {
@@ -168,13 +191,13 @@ namespace Evo.Factories
             }
             for (int i = 0; i < ammountOfEntities; i++)
             {
-                makeEntitieOnMapArea(mapArea, areaDifficulty);
+                makeEntitieOnMapArea(mapArea, areaDifficulty, faction);
             }
 
 
         }
 
-        public void makeEntitieOnMapArea(MapArea mapArea, int areaDifficulty)
+        public void makeEntitieOnMapArea(MapArea mapArea, int areaDifficulty, Faction faction)
         {
             
             double max = 0;
@@ -228,7 +251,7 @@ namespace Evo.Factories
 
 
             entPos.setMapAreaYPos(entMapPos);
-
+            entity.Faction = faction;
             worldMap.addGameObjectToMapList(entity);
 
         }
