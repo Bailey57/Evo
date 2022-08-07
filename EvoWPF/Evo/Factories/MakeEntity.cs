@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Evo.Factions;
 namespace Evo.Factories
 {
     //package wasteland.entity;
@@ -50,7 +50,12 @@ namespace Evo.Factories
         }
 
 
-
+        public Entity MakeUS_MilitiaMan(GameObjectPos gameObjectPos, Faction faction) 
+        {
+            Entity militiaMan = new Entity("US militia man", true, 100, 1, 50, gameObjectPos);
+            militiaMan.Faction = FactionFactory.FactionList[2];
+            return militiaMan;
+        }
 
 
 

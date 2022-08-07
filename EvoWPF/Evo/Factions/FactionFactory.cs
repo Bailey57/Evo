@@ -13,6 +13,9 @@ namespace Evo.Factions
         
         private static ObservableCollection<Faction> factionList = new ObservableCollection<Faction>();
 
+        public static ObservableCollection<Faction> FactionList { get => factionList; set => factionList = value; }
+
+
 
         //string name, string description, ObservableCollection<FactionReputation> reputation
         //100 best, -100 worst, 
@@ -50,12 +53,12 @@ namespace Evo.Factions
             PlayerFaction.AddFactionRep(NCMilitia, 0);
 
 
-            factionList.Add(Evo);
-            factionList.Add(USMilitary);
-            factionList.Add(NCMilitia);
-            factionList.Add(PlayerFaction);
+            FactionList.Add(Evo);
+            FactionList.Add(USMilitary);
+            FactionList.Add(NCMilitia);
+            FactionList.Add(PlayerFaction);
 
-            return factionList; 
+            return FactionList; 
         }
 
 

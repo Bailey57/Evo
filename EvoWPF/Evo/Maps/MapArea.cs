@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.ObjectModel;
 
 namespace Evo
 {
@@ -38,7 +38,7 @@ namespace Evo
 
 	public bool playerOnArea = false;
 
-	public Entity[] entitiesOnArea;
+	private ObservableCollection<Entity> entitiesOnArea = new ObservableCollection<Entity>();
 
 	public GameObject[,] gameObjectsOnMapAreaCords = new GameObject[200, 200];
 
@@ -51,7 +51,9 @@ namespace Evo
 	public int posOnMapX;
 	public int posOnMapY;
 
-	public MapArea(String areaName, String displayLetter, int numOfEntitiesOnArea, double areaElevation)
+        
+
+        public MapArea(String areaName, String displayLetter, int numOfEntitiesOnArea, double areaElevation)
 	{
 		this.areaName = areaName;
 		this.numOfEntitiesOnArea = numOfEntitiesOnArea;
@@ -73,15 +75,15 @@ namespace Evo
 		setMapAreaY_max(posOnMapY);
 		setMapAreaY_min(posOnMapY);
 
-		entitiesOnArea = new Entity[numOfEntitiesOnArea];// change later so less limmited
+		//entitiesOnArea = new Entity[numOfEntitiesOnArea];// change later so less limmited
 	}
 
 
-
-	/**
-	 * @return the areaName
-	 */
-	public String getAreaName()
+		public ObservableCollection<Entity> EntitiesOnArea { get => entitiesOnArea; set => entitiesOnArea = value; }
+		/**
+		 * @return the areaName
+		 */
+		public String getAreaName()
 	{
 		return areaName;
 	}
@@ -302,9 +304,9 @@ namespace Evo
 	{
 		for (int i = 0; i < numOfEntitiesOnArea; i++)
 		{
-			if (entitiesOnArea[i] == null)
+			if (EntitiesOnArea[i] == null)
 			{
-				entitiesOnArea[i] = entity;
+				EntitiesOnArea[i] = entity;
 			}
 		}
 

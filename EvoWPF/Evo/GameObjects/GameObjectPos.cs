@@ -369,11 +369,14 @@ using Wasteland.entity.Entity;
 			}
 			
 			this.getCurrentArea().gameObjectsOnMapAreaCords[(int) oldMapAreaY  / (getWorldMapYPos() + 1), (int) oldMapAreaX / (getWorldMapXPos() + 1)] = null;
-		
-			
-			
-			updateGameObjectMapPosition();
-		}
+
+
+				//gameObject.getGameObjectPos().setCurrentArea(currentArea);
+				
+				updateGameObjectMapPosition();
+
+				//gameObject.getGameObjectPos().getCurrentArea().EntitiesOnArea.Remove(entity);
+			}
 		
 		if (oldMapAreaX == newMapAreaXPos && oldMapAreaY == newMapAreaYPos) {
 			moved = false;
@@ -433,15 +436,17 @@ using Wasteland.entity.Entity;
 	 * @param time       in minutes
 	 */
 	public void movePlayerOnMapArea(Map currentMap, Entity entity, String direction, double minutes) {
-		double secondsPassed = 1;// change name to secondsPassedEachLoop
+			
+			double secondsPassed = 1;// change name to secondsPassedEachLoop
 
 		double seconds = minutes * 60; // convert to seconds
 		int iterations = 0;
 		
 		bool moved = false;
 
-		// might need to change back to i = 0
-		for (double i = 0; i < seconds; i += secondsPassed) {
+			// might need to change back to i = 0
+			gameObject.getGameObjectPos().getCurrentArea().EntitiesOnArea.Remove(entity);
+			for (double i = 0; i < seconds; i += secondsPassed) {
 			if (this.getMapAreaXPos() == 0) {
 				//int daofd = 0;
 			}
@@ -453,6 +458,7 @@ using Wasteland.entity.Entity;
 			moved = movePositionOnMapArea(direction, entity.movementSpeed * secondsPassed);
 
 			if (moved) {
+
 				
 				// change to spotted by an enemy method and uncomment
 				//!entity.isInCombat()
@@ -501,7 +507,9 @@ using Wasteland.entity.Entity;
 		Console.WriteLine("Walked " + (iterations * secondsPassed * entity.movementSpeed)
 				+ " meters in " + iterations * secondsPassed + " seconds.\n");
 
-	}
+
+
+		}
 	
 	
 	//add part that delets object from MapArea when it isnt on there any more
