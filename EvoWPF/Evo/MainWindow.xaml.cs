@@ -47,7 +47,7 @@ namespace Evo
             //selcetPOI_Button.AddToEventRoute();
 
 
-            gameVersionLabel.Content = "v0.7.5";
+            gameVersionLabel.Content = "v0.7.6";
 
             gameState = gameState.MakeBuild1();
 
@@ -582,8 +582,9 @@ namespace Evo
                 while (!gameState.GetPlayer().GetPath().CurrentDestinationReached(gameState.GetPlayer().getGameObjectPos())) 
                 {
                     loops++;
-                    secondsPassed = .1;
-                    EntityAction.ApproachGameObjectPosTenthOfASecond(gameState.GetPlayer(), gameState.GetPlayer().GetPath().GetCurrentDestination().GetGameObjectPos());
+                    secondsPassed = 5;
+                    EntityAction.ApproachGameObjectPos(gameState.GetPlayer(), gameState.GetPlayer().GetPath().GetCurrentDestination().GetGameObjectPos(), secondsPassed);
+                    //EntityAction.ApproachGameObjectPosTenthOfASecond(gameState.GetPlayer(), gameState.GetPlayer().GetPath().GetCurrentDestination().GetGameObjectPos());
                     gameState.GetMainMap().runThroughEntityActions(gameState.GetMainMap(), gameState.GetPlayer(), secondsPassed);
                     gameState.GetGameTime().PassSeconds(secondsPassed);
                     secondsPassed = 0;
@@ -600,23 +601,35 @@ namespace Evo
 
 
                 double minutesWalking = 5;
-
+                double tickTimeInSec = 1;
+                bool wasSpotted = gameState.GetPlayer().isSpotted();
                 gameState.SetLastPosition(gameState.GetPlayerPos().toString());
                 // gameState.GetPlayer().GameObjectPos.movePosition(gameState.GetMainMap().map,
                 // direction);
 
-
-                gameState.GetPlayer().gameObjectPos.movePlayerOnMapArea(gameState.GetMainMap(), gameState.GetPlayer(),
-                        gameState.GetPlayer().getDirectionFacing(), minutesWalking);
-
-                gameState.SetThisPosition(gameState.GetPlayerPos().toString());
-
-                if (!gameState.GetLastPosition().Equals(gameState.GetThisPosition()))
+                for (int i = 0; i < minutesWalking; i++) 
                 {
-                    gameState.SetDidPlayerMoveThisTurn(true);
-                    gameState.GetMainMap().printGameMapString();
+
+                    gameState.GetPlayer().gameObjectPos.movePlayerOnMapArea(gameState.GetMainMap(), gameState.GetPlayer(),
+                            gameState.GetPlayer().getDirectionFacing(), minutesWalking);
+
+                    gameState.SetThisPosition(gameState.GetPlayerPos().toString());
+
+                    if (!gameState.GetLastPosition().Equals(gameState.GetThisPosition()))
+                    {
+                        gameState.SetDidPlayerMoveThisTurn(true);
+                        gameState.GetMainMap().printGameMapString();
+                    }
+                    secondsPassed += minutesWalking * 60;
+                    gameState.GetGameTime().PassSeconds(secondsPassed);
+                    gameState.GetMainMap().runThroughEntityActions(gameState.GetMainMap(), gameState.GetPlayer(), secondsPassed);
+                    if (gameState.GetPlayer().isSpotted() && !wasSpotted) 
+                    {
+                        break;
+                    }
+
                 }
-                secondsPassed += 300;
+                
 
             }
    

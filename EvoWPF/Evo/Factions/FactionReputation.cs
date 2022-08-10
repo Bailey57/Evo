@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Evo.Factions
 {
+    [System.Serializable]
     public class FactionReputation
     {
 

@@ -253,19 +253,18 @@ namespace Evo
 
 
 
-
-		public static void ApproachGameObjectPosTenthOfASecond(Entity performer, GameObjectPos gameObjectPos)
+		public static void ApproachGameObjectPos(Entity performer, GameObjectPos gameObjectPos, double secondsPassed)
 		{
 			if (performer.getAttackRange() < performer.getGameObjectPos().GetDistanceFromGameObjectPos(gameObjectPos))
 			{
 				//performer.getMovementSpeed()
-				double tenthOfASecond = .1;
+				double tenthOfASecond = secondsPassed;
 
-				if (performer.GetSecondsLeft() < .1)
+				if (performer.GetSecondsLeft() < secondsPassed)
 				{
 					return;
 				}
-				performer.AddSecondsLeft(-.1);
+				performer.AddSecondsLeft(-secondsPassed);
 
 
 				if (performer.getGameObjectPos().GetOverallYPosition() > gameObjectPos.GetOverallYPosition())
@@ -290,6 +289,12 @@ namespace Evo
 				}
 				//performer.addObjectStringEvents("Got closer to " + pointOfInterest.getObjectName());
 			}
+
+		}
+
+		public static void ApproachGameObjectPosTenthOfASecond(Entity performer, GameObjectPos gameObjectPos)
+		{
+			ApproachGameObjectPos(performer, gameObjectPos, .1);
 
 		}
 
@@ -420,6 +425,10 @@ namespace Evo
 					//target.gameObjectHitbox.projectileImpactHitbox(loadedProjectile, side_y, base_x);
 
 					shooter.addObjectStringEvents(panCalc.penetraitHitBox(target.getGameObjectHitbox(), xPosHit, yPosHit, 0));
+					if (target.getGameObjectHitbox().VitalOrganDamaged()) 
+					{
+						target.alive = false;
+					}
 					//add damage/wound
 
 				}

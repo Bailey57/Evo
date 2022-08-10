@@ -304,7 +304,8 @@ using Wasteland.entity.Entity;
 		
 		double oldMapAreaX = gameObject.getGameObjectPos().getMapAreaXPos();
 		double oldMapAreaY = gameObject.getGameObjectPos().getMapAreaYPos();
-		
+
+			MapArea oldArea = this.currentArea;
 		
 		bool moved = false;
 		// entity.getGameObjectPos().getCurrentArea();
@@ -372,6 +373,7 @@ using Wasteland.entity.Entity;
 
 
 				//gameObject.getGameObjectPos().setCurrentArea(currentArea);
+
 				
 				updateGameObjectMapPosition();
 
@@ -381,6 +383,7 @@ using Wasteland.entity.Entity;
 		if (oldMapAreaX == newMapAreaXPos && oldMapAreaY == newMapAreaYPos) {
 			moved = false;
 		} else {
+
 			moved = true;
 		}
 
@@ -437,7 +440,7 @@ using Wasteland.entity.Entity;
 	 */
 	public void movePlayerOnMapArea(Map currentMap, Entity entity, String direction, double minutes) {
 			
-			double secondsPassed = 1;// change name to secondsPassedEachLoop
+		double secondsPassed = .1;// change name to secondsPassedEachLoop
 
 		double seconds = minutes * 60; // convert to seconds
 		int iterations = 0;
@@ -445,23 +448,26 @@ using Wasteland.entity.Entity;
 		bool moved = false;
 
 			// might need to change back to i = 0
-			gameObject.getGameObjectPos().getCurrentArea().EntitiesOnArea.Remove(entity);
+			//gameObject.getGameObjectPos().getCurrentArea().EntitiesOnArea.Remove(entity);
 			for (double i = 0; i < seconds; i += secondsPassed) {
 			if (this.getMapAreaXPos() == 0) {
 				//int daofd = 0;
 			}
 
-//			if (i >= 133) {
-//				int m = 0;
-//			}
-			
-			moved = movePositionOnMapArea(direction, entity.movementSpeed * secondsPassed);
-
-			if (moved) {
+				//			if (i >= 133) {
+				//				int m = 0;
+				//			}
+				this.getCurrentArea().EntitiesOnArea.Remove(entity);
+				moved = movePositionOnMapArea(direction, entity.movementSpeed * secondsPassed);
+				this.getCurrentArea().EntitiesOnArea.Add(entity);
+				if (moved) {
 
 				
 				// change to spotted by an enemy method and uncomment
 				//!entity.isInCombat()
+
+
+					/*
 				if (!entity.isInCombat() && currentMap.runThroughEntityActions(currentMap, entity, secondsPassed) && entity.isSpotted()) {
 					this.gameObject.addObjectStringEvents("\nSpotted: Walked " + (i * secondsPassed * entity.movementSpeed) + " meters in "
 							+ i * secondsPassed + " seconds.\n");
@@ -477,7 +483,7 @@ using Wasteland.entity.Entity;
 				} else {
 					this.gameObject.addObjectStringEvents("\nStopped moving.\n");
 				}
-				
+				*/
 				return;
 			}
 		

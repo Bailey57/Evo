@@ -212,8 +212,9 @@ namespace Evo.Factories
 
 
 
-
-            Entity entity = new Entity("humanoid enemy", true, 100, 1, 50, entPos);
+            RandomNumbers rn2 = new RandomNumbers();
+            int randNum = rn2.rollRandInt(1000, -1000);
+            Entity entity = new Entity("humanoid enemy " + randNum, true, 100, 1, 50, entPos);
             Hitbox humanHitbox = new Hitbox();
             humanHitbox = humanHitbox.newHumanHitbox();
             entity.setGameObjectHitbox(humanHitbox);

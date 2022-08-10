@@ -412,6 +412,23 @@ namespace Evo
 	}
 
 
+
+
+
+		private ObservableCollection<Entity> GetEntitiesInMapAreaAndAddToList(Map map, MapArea middleMapArea, ObservableCollection<Entity> entityList, int x, int y) 
+		{
+
+			//string1 = "(" + x + "," + y + ")";
+			if (x >= 0 && y >= 0 && x < map.mapX_max && y < map.mapY_max)
+			{
+				for (int i = 0; i < map.gameMap[x, y].EntitiesOnArea.Count; i++)
+				{
+					entityList.Add(map.gameMap[x, y].EntitiesOnArea[i]);
+				}
+			}
+			return entityList;
+		}
+
 		public ObservableCollection<Entity> GetEntitiesInSurroundingMapAreas(Map map, MapArea middleMapArea) 
 		{
 			string string1 = "";
@@ -425,27 +442,82 @@ namespace Evo
 
 			int yReturn = y;
 
-			for (; x < xMax; x++) 
-			{
-				for (; y < yMax; y++) 
-				{
 
-					string1 = "(" + x + y + ")";
-					if (x >= 0 && y >= 0 && x < map.mapX_max && y < map.mapY_max) 
+
+			
+			x = middleMapArea.getPosOnMapX();
+			y = middleMapArea.getPosOnMapY();
+
+			/*
+			string1 = "(" + x + "," + y + ")";
+			if (x >= 0 && y >= 0 && x < map.mapX_max && y < map.mapY_max)
+			{
+				for (int i = 0; i < map.gameMap[x, y].EntitiesOnArea.Count; i++)
+				{
+					entityList.Add(map.gameMap[x, y].EntitiesOnArea[i]);
+				}
+			}
+
+
+
+			x = middleMapArea.getPosOnMapX() - 1;
+			y = middleMapArea.getPosOnMapY() - 1;
+			string1 = "(" + x + "," + y + ")";
+			if (x >= 0 && y >= 0 && x < map.mapX_max && y < map.mapY_max)
+			{
+				for (int i = 0; i < map.gameMap[x, y].EntitiesOnArea.Count; i++)
+				{
+					entityList.Add(map.gameMap[x, y].EntitiesOnArea[i]);
+				}
+			}
+			*/
+
+
+			GetEntitiesInMapAreaAndAddToList(map, middleMapArea, entityList, x - 1, y - 1);
+
+			GetEntitiesInMapAreaAndAddToList(map, middleMapArea, entityList, x - 1, y);
+
+
+			GetEntitiesInMapAreaAndAddToList(map, middleMapArea, entityList, x, y - 1);
+
+			GetEntitiesInMapAreaAndAddToList(map, middleMapArea, entityList, x, y);
+
+			GetEntitiesInMapAreaAndAddToList(map, middleMapArea, entityList, x + 1, y);
+
+			GetEntitiesInMapAreaAndAddToList(map, middleMapArea, entityList, x, y + 1);
+
+			GetEntitiesInMapAreaAndAddToList(map, middleMapArea, entityList, x + 1, y + 1);
+
+			/*
+			for (int rows = 0; rows < 3; rows++) 
+			{
+				for (; x <= xMax; x++)
+				{
+					for (; y <= yMax; y++)
 					{
-						for (int i = 0; i < map.gameMap[x, y].EntitiesOnArea.Count; i++)
+
+						string1 += "(" + x + "," + y + ")";
+						if (x >= 0 && y >= 0 && x < map.mapX_max && y < map.mapY_max)
 						{
-							entityList.Add(map.gameMap[x, y].EntitiesOnArea[i]);
+							for (int i = 0; i < map.gameMap[x, y].EntitiesOnArea.Count; i++)
+							{
+								entityList.Add(map.gameMap[x, y].EntitiesOnArea[i]);
+							}
+
 						}
 
-					}
-					
-					
-				}
-				string1 += "\n";
 
-				y = yReturn;
+					}
+
+					string1 += "\n";
+
+					y = yReturn;
+				}
+
 			}
+
+			*/
+
 
 			//for (int i = 0; i < middleMapArea.EntitiesOnArea.Count; i++) 
 			//{
@@ -463,13 +535,12 @@ namespace Evo
 	{
 			double bleedRate = 0;
 			bool spotted = false;
-			bool previouslySpotted = player.isSpotted();
+			bool previouslySpotted;
 
 			for (int i = 0; i < worldMap.GetGameObjectsOnMapList().Count; i++)
 		{
-			if (!(gameObjectsOnMapList[i] is Entity) || 
-					//gameObjectsOnMap[i,0,0] == null || 
-						(((Entity)gameObjectsOnMapList[i]).getIsThePlayer())) 
+				//if (!(gameObjectsOnMapList[i] is Entity) || (((Entity)gameObjectsOnMapList[i]).getIsThePlayer())) 
+				if (!(gameObjectsOnMapList[i] is Entity))
 				{
 			//break;
 		} 
@@ -479,6 +550,7 @@ namespace Evo
 					//run through the actual actions here
 					//gameObjectsOnMapList[i].
 
+					previouslySpotted = ((Entity)gameObjectsOnMapList[i]).isSpotted();
 
 					((Entity)gameObjectsOnMapList[i]).AddSecondsLeft(secondsPassed);
 					//bleed
@@ -497,73 +569,104 @@ namespace Evo
 					
 					if (((Entity)gameObjectsOnMapList[i]).alive)
 					{
-						if (true) 
-						{
-						
-						}
 
 
 
 						ObservableCollection<Entity> entityList = GetEntitiesInSurroundingMapAreas(worldMap, ((Entity)gameObjectsOnMapList[i]).getGameObjectPos().getCurrentArea());
+
+						bool targeting = false;
 						for (int k = 0; k < entityList.Count; k++) 
 						{
 							
 
-							if ((entityList[k] is Entity)) 
+							if ((entityList[k] is Entity) && ((Entity)gameObjectsOnMapList[i]) != entityList[k]) 
 							{
-								previouslySpotted = entityList[k].isSpotted();
+
+
+								//if (entityList[k].isAlive() && FactionFactory.IsEnemyFaction(((Entity)gameObjectsOnMapList[i]).Faction, entityList[k].Faction) && entityList[k].entityInSight((Entity)gameObjectsOnMapList[i])) 
+								//{
+
+
+								//}
+								//previouslySpotted = entityList[k].isSpotted();
+
 
 								//
 								//IsEnemyFaction
+								if (entityList[k].entityInSight((Entity)gameObjectsOnMapList[i]))
+								{
 
-								if (gameObjectsOnMapList[k] is Entity && ((Entity)gameObjectsOnMapList[i]).entityInSight(entityList[k]) &&
+									spotted = true;
+									((Entity)gameObjectsOnMapList[i]).setSpotted(true);
+									if (!previouslySpotted) 
+									{
+										((Entity)gameObjectsOnMapList[i]).addObjectStringEvents("\nSpotted by " + entityList[k].getEntityName() + ".\n");
+									}
+									
+
+								}
+
+
+
+								if (((Entity)gameObjectsOnMapList[i]).entityInSight(entityList[k]) &&
 									FactionFactory.IsEnemyFaction(((Entity)gameObjectsOnMapList[i]).Faction, entityList[k].Faction))
 								{
-									spotted = true;
-									entityList[k].setSpotted(true);
-									entityList[k].setInCombat(true);
-									EntityAction.AttackAndPursueGameObjectMelee(((Entity)gameObjectsOnMapList[i]), entityList[k]);
+
+
+									//((Entity)gameObjectsOnMapList[i]).setSpotted(true);
+									targeting = true;
+
+									if (!entityList[k].isInCombat()) 
+									{
+										entityList[k].setInCombat(true);
+										entityList[k].addObjectStringEvents("\nEntered combat with " + ((Entity)gameObjectsOnMapList[i]).getObjectName() + "\n");
+									}
+
+
+									if (!((Entity)gameObjectsOnMapList[i]).isThePlayer) 
+									{
+										((Entity)gameObjectsOnMapList[i]).setInCombat(true);
+										EntityAction.AttackAndPursueGameObjectMelee(((Entity)gameObjectsOnMapList[i]), entityList[k]);
+
+									}
+									
+
 									
 
 
-
-								}
-								else
-								{
-									entityList[k].setSpotted(false);
-									entityList[k].setInCombat(false);
-
 								}
 
-								if (!spotted && previouslySpotted)
-								{
-									//Console.WriteLine("\n" + player.getObjectName() + " is hidden from view.");
+								
 
-									entityList[k].setSpotted(false);
-									if (entityList[k].isInCombat())
-									{
-										entityList[k].addObjectStringEvents("\nExited combat.\n");
-										Console.WriteLine("Exited combat.");
-									}
-									entityList[k].setInCombat(false);
-								}
-								else if (spotted && !previouslySpotted) 
-								{
-									entityList[k].addObjectStringEvents("\nSpotted by a " + ((Entity)gameObjectsOnMapList[i]).getEntityName() + ".\n");
-									entityList[k].addObjectStringEvents("\nEntered combat.\n");
-								}
-								//IsEnemyFaction
+								
 
 							}
 
 
-
+						}
+						if (!spotted && previouslySpotted && !targeting)
+						{
+							//Console.WriteLine("\n" + player.getObjectName() + " is hidden from view.");
+							((Entity)gameObjectsOnMapList[i]).setSpotted(false);
+							((Entity)gameObjectsOnMapList[i]).setInCombat(false);
+							((Entity)gameObjectsOnMapList[i]).addObjectStringEvents("\nExited combat.\n");
+							//entityList[k].setSpotted(false);
+							
+						}
+						else if (!spotted && previouslySpotted && targeting)
+						{
+							((Entity)gameObjectsOnMapList[i]).setSpotted(false);
+							((Entity)gameObjectsOnMapList[i]).addObjectStringEvents("\nHidden from enemy view.\n");
 
 						}
-					
-					
+						//IsEnemyFaction
+
+
+
+
+
 					}
-					
+
 
 					//secondsPassed
 					//((Entity)gameObjectsOnMapList[i]).AddSecondsLeft(secondsPassed);
@@ -610,10 +713,10 @@ namespace Evo
 
 
 					}
-					*/
 					
+					*/
 
-		}
+				}
 
 	}
 			
