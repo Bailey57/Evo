@@ -609,10 +609,7 @@ namespace Evo
 		// double viewDistance = 20; // in meters
 
 		if (gameObject.getGameObjectPos() != null && getDistanceFromObject(gameObject) <= this.viewDistance) {
-			if (gameObject is Entity && (((Entity) gameObject).isThePlayer)) {
-				// Console.WriteLine("You have been spotted by a " + entityName);
-				// gameObjectPos.printToString();
-			}
+
 
 			return true;
 		} else {

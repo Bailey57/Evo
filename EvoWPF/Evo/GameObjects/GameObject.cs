@@ -445,9 +445,8 @@ public void setGameObjectHitbox(Hitbox gameObjectHitbox)
 			{
 				return -1;
 			}
-	distance = Math.Sqrt(
-			Math.Pow(gameObject.getGameObjectPos().getMapAreaXPos() - getGameObjectPos().getMapAreaXPos(), 2) + Math
-					.Pow(gameObject.getGameObjectPos().getMapAreaYPos() - getGameObjectPos().getMapAreaYPos(), 2));
+	distance = Math.Sqrt(Math.Pow(gameObject.getGameObjectPos().GetOverallXPosition() - getGameObjectPos().GetOverallXPosition(), 2) + 
+			Math.Pow(gameObject.getGameObjectPos().GetOverallYPosition() - getGameObjectPos().GetOverallYPosition(), 2));
 
 	return distance;
 }

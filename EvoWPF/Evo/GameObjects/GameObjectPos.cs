@@ -312,27 +312,27 @@ using Wasteland.entity.Entity;
 
 		// MapArea oldMapArea = entity.getGameObjectPos().getCurrMapArea();
 
-		int yMove = 0;
-		int xMove = 0;
+		double yMove = 0;
+		double xMove = 0;
 			if (direction == null) 
 			{
 				return moved;	
 			}
 		if (direction.Equals("n") || direction.Equals("N")) {
 			// changePlayerPos(currentMap, 0, -1);
-			yMove = -1;
+			yMove = -distance;
 			//moveGameObjectOnMapAreaY(currentMap, gameObject, -distance);
 		} else if (direction.Equals("s") || direction.Equals("S")) {
 			// changePlayerPos(currentMap, 0, 1);
-			yMove = 1;
+			yMove = distance;
 			//moveGameObjectOnMapAreaY(currentMap, gameObject, distance);
 		} else if (direction.Equals("e") || direction.Equals("E")) {
-			xMove = 1;
+			xMove = distance;
 			// changePlayerPos(currentMap, 1, 0);
 			//moveGameObjectOnMapAreaX(currentMap, gameObject, distance);
 		} else if (direction.Equals("w") || direction.Equals("W")) {
 			// changePlayerPos(currentMap, -1, 0);
-			xMove = -1;
+			xMove = -distance;
 			//moveGameObjectOnMapAreaX(currentMap, gameObject, -distance);
 		} else {
 			Console.WriteLine("input invalid");
@@ -344,22 +344,39 @@ using Wasteland.entity.Entity;
 		double newMapAreaYPos = gameObject.getGameObjectPos().mapAreaYPos + yMove;
 		double newMapAreaXPos = gameObject.getGameObjectPos().mapAreaXPos + xMove;
 
+		//gameObject.getGameObjectPos().mapAreaXPos = newMapAreaXPos;
+		//gameObject.getGameObjectPos().mapAreaYPos = newMapAreaYPos;
 
-		if (currentMap.gameMap.GetLength(0) * 199 >= newMapAreaXPos && newMapAreaXPos >= 0) {
+		if (newMapAreaXPos < 0 && gameObject.getGameObjectPos().GetOverallXPosition() <= .2 || newMapAreaXPos > 0 && gameObject.getGameObjectPos().GetOverallXPosition() >= 199 * 25 - .01
+				|| newMapAreaYPos < 0 && gameObject.getGameObjectPos().GetOverallYPosition() <= .2 || newMapAreaYPos > 0 && gameObject.getGameObjectPos().GetOverallYPosition() >= 199 * 25 - .01) 
+		{
+				double test = gameObject.getGameObjectPos().GetOverallXPosition();
+				decimal test2 = Convert.ToDecimal(gameObject.getGameObjectPos().GetOverallXPosition() + newMapAreaXPos);
+				return moved;
+
+			}
+
+		if (currentMap.gameMap.GetLength(0) * 199 >= newMapAreaXPos && (Convert.ToDecimal(gameObject.getGameObjectPos().GetOverallXPosition() + newMapAreaXPos) >= 0) 
+				&& currentMap.gameMap.GetLength(0) * 199 >= newMapAreaYPos && (Convert.ToDecimal(gameObject.getGameObjectPos().GetOverallYPosition() + newMapAreaYPos) >= 0)) 
+		{
 
 			gameObject.getGameObjectPos().mapAreaXPos = newMapAreaXPos;
 
-		} if (currentMap.gameMap.GetLength(0) * 199 >= newMapAreaYPos && newMapAreaYPos >= 0) {
-
 			gameObject.getGameObjectPos().mapAreaYPos = newMapAreaYPos;
 
-		} else {
-			Console.WriteLine("Thats off the map.");
-			this.gameObject.addObjectStringEvents("\nThats off the map.\n");
+				
+
+		} 
+		else 
+			
+		{
+			//Console.WriteLine("Thats off the map.");
+			//this.gameObject.addObjectStringEvents("\nThats off the map.\n");
 			return moved;
 		}
 
-		if (onCorrectMapArea()) {
+		if (onCorrectMapArea()) 
+		{
 			if (oldMapY < currentMap.gameMap.GetLength(0) && oldMapX < currentMap.gameMap.GetLength(0)) {
 				currentMap.gameMap[oldMapY, oldMapX].playerOnArea = false;
 				
@@ -371,13 +388,9 @@ using Wasteland.entity.Entity;
 			
 			this.getCurrentArea().gameObjectsOnMapAreaCords[(int) oldMapAreaY  / (getWorldMapYPos() + 1), (int) oldMapAreaX / (getWorldMapXPos() + 1)] = null;
 
-
-				//gameObject.getGameObjectPos().setCurrentArea(currentArea);
-
-				
 				updateGameObjectMapPosition();
 
-				//gameObject.getGameObjectPos().getCurrentArea().EntitiesOnArea.Remove(entity);
+
 			}
 		
 		if (oldMapAreaX == newMapAreaXPos && oldMapAreaY == newMapAreaYPos) {
@@ -447,72 +460,88 @@ using Wasteland.entity.Entity;
 		
 		bool moved = false;
 
+			double timeTraveled = 0;
+			double distanceTraveled = 0;
+
+
+
+
+			double initialX = entity.getGameObjectPos().GetOverallXPosition();
+			double initialY = entity.getGameObjectPos().GetOverallYPosition();
+
+			double currentX = entity.getGameObjectPos().GetOverallXPosition();
+			double currentY = entity.getGameObjectPos().GetOverallYPosition();
+
+			double lastX = entity.getGameObjectPos().GetOverallXPosition();
+			double lastY = entity.getGameObjectPos().GetOverallYPosition();
 			// might need to change back to i = 0
 			//gameObject.getGameObjectPos().getCurrentArea().EntitiesOnArea.Remove(entity);
 			for (double i = 0; i < seconds; i += secondsPassed) {
-			if (this.getMapAreaXPos() == 0) {
-				//int daofd = 0;
-			}
 
-				//			if (i >= 133) {
-				//				int m = 0;
-				//			}
+
 				this.getCurrentArea().EntitiesOnArea.Remove(entity);
 				moved = movePositionOnMapArea(direction, entity.movementSpeed * secondsPassed);
 				this.getCurrentArea().EntitiesOnArea.Add(entity);
-				if (moved) {
+				if (moved)
+				{
+					timeTraveled += secondsPassed;
+					distanceTraveled += (entity.movementSpeed * secondsPassed);
 
-				
-				// change to spotted by an enemy method and uncomment
-				//!entity.isInCombat()
-
-
-					/*
-				if (!entity.isInCombat() && currentMap.runThroughEntityActions(currentMap, entity, secondsPassed) && entity.isSpotted()) {
-					this.gameObject.addObjectStringEvents("\nSpotted: Walked " + (i * secondsPassed * entity.movementSpeed) + " meters in "
-							+ i * secondsPassed + " seconds.\n");
-					
-					Console.WriteLine("Spotted: Walked " + (i * secondsPassed * entity.movementSpeed) + " meters in "
-							+ i * secondsPassed + " seconds.\n");
+					//testing
+					currentX = entity.getGameObjectPos().GetOverallXPosition();
+					currentY = entity.getGameObjectPos().GetOverallYPosition();
+				}
+				else 
+				{ 
+					this.gameObject.addObjectStringEvents("\nWalked " + Math.Ceiling((Math.Abs((lastX - initialX)) + Math.Abs((lastY - initialY))))
+						+ " meters in " + Math.Ceiling(iterations * secondsPassed) + " seconds.\n");
 					return;
+
 				}
-				
-			} else {
-				if (iterations == 0) {
-					this.gameObject.addObjectStringEvents("\nDidnt move.\n");
-				} else {
-					this.gameObject.addObjectStringEvents("\nStopped moving.\n");
+				if (currentX >= 199 || currentX - lastX > 2 || lastX >= 198.7) 
+				{
+					double test = entity.getGameObjectPos().GetOverallXPosition();
 				}
-				*/
-				return;
-			}
-		
+				if (currentX - lastX < 0)
+				{
+					double test = entity.getGameObjectPos().GetOverallXPosition();
+				}
+				if (currentY >= 198.9)
+				{
+					double test = entity.getGameObjectPos().GetOverallXPosition();
+				}
+				lastX = entity.getGameObjectPos().GetOverallXPosition();
+				lastY = entity.getGameObjectPos().GetOverallYPosition();
 
 
-
-			iterations++;
+				iterations++;
 		}
 
-		// tst using
-//		while (iterations < seconds) {
-//			movePositionOnMapArea(currentMap, entity, direction, entity.movementSpeed * secondsPassed);
-//			
-//			//change to spotted by an enemy method
-//			if (currentMap.runThroughEntitieActionsWhilePlayerMoves(currentMap, entity, secondsPassed)) {
-//				Console.WriteLine("\nspotted: Walked " + (i * secondsPassed * entity.movementSpeed) + " meters in " + i * secondsPassed + " seconds.\n");
-//				return;
-//			}
-//			
-//			iterations++;
-//			
-//		}
+			// tst using
+			//		while (iterations < seconds) {
+			//			movePositionOnMapArea(currentMap, entity, direction, entity.movementSpeed * secondsPassed);
+			//			
+			//			//change to spotted by an enemy method
+			//			if (currentMap.runThroughEntitieActionsWhilePlayerMoves(currentMap, entity, secondsPassed)) {
+			//				Console.WriteLine("\nspotted: Walked " + (i * secondsPassed * entity.movementSpeed) + " meters in " + i * secondsPassed + " seconds.\n");
+			//				return;
+			//			}
+			//			
+			//			iterations++;
+			//			
+			//		}
 
-		// Console.WriteLine("\ndone moving\n");
-		this.gameObject.addObjectStringEvents("\nWalked " + (iterations * secondsPassed * entity.movementSpeed)
+			// Console.WriteLine("\ndone moving\n");
+
+			this.gameObject.addObjectStringEvents("\nWalked " + Math.Ceiling((Math.Abs((lastX - initialX)) + Math.Abs((lastY - initialY))))
+						+ " meters in " + Math.Ceiling(iterations * secondsPassed) + " seconds.\n");
+
+			/*
+			this.gameObject.addObjectStringEvents("\nWalked " + (iterations * secondsPassed * entity.movementSpeed)
 				+ " meters in " + iterations * secondsPassed + " seconds.\n");
 		Console.WriteLine("Walked " + (iterations * secondsPassed * entity.movementSpeed)
 				+ " meters in " + iterations * secondsPassed + " seconds.\n");
-
+			*/
 
 
 		}
@@ -530,17 +559,44 @@ using Wasteland.entity.Entity;
 		//gameObject.getGameObjectPos().getCurrentMap().map[(int) getMapAreaYPos()][(int) getMapAreaXPos()].playerOnArea = false;
 		
 		if((int) Math.Floor(getMapAreaXPos() / 199) < mapMaxSize && (int) Math.Floor(getMapAreaYPos() / 199) < mapMaxSize) {
-			
-			gameObject.getGameObjectPos().setWorldMapXPos((int) Math.Floor(getMapAreaXPos() / 199));
-			gameObject.getGameObjectPos().setWorldMapYPos((int) Math.Floor(getMapAreaYPos() / 199));
-			
 
-			gameObject.getGameObjectPos().setCurrentArea(this.currentMap.gameMap[(int) getWorldMapYPos(), (int) getWorldMapXPos()]);
+				if (gameObject.getGameObjectPos().getMapAreaXPos() >= 199)
+				{
+					gameObject.getGameObjectPos().setWorldMapXPos(gameObject.getGameObjectPos().getWorldMapXPos() + (int)Math.Floor(getMapAreaXPos() / 199));
+					gameObject.getGameObjectPos().setMapAreaXPos(gameObject.getGameObjectPos().getMapAreaXPos() - 199);
+				}
+				if (gameObject.getGameObjectPos().getMapAreaYPos() >= 199)
+				{
+					gameObject.getGameObjectPos().setWorldMapYPos(gameObject.getGameObjectPos().getWorldMapYPos() + (int)Math.Floor(getMapAreaYPos() / 199));
+					gameObject.getGameObjectPos().setMapAreaYPos(gameObject.getGameObjectPos().getMapAreaYPos() - 199);
+				}
+
+
+				if (gameObject.getGameObjectPos().getMapAreaXPos() < 0)
+				{
+					gameObject.getGameObjectPos().setWorldMapXPos(gameObject.getGameObjectPos().getWorldMapXPos() + (int)Math.Floor(getMapAreaXPos() / 199));
+					gameObject.getGameObjectPos().setMapAreaXPos(gameObject.getGameObjectPos().getMapAreaXPos() + 199);
+				}
+				if (gameObject.getGameObjectPos().getMapAreaYPos() < 0)
+				{
+					gameObject.getGameObjectPos().setWorldMapYPos(gameObject.getGameObjectPos().getWorldMapYPos() + (int)Math.Floor(getMapAreaYPos() / 199));
+					gameObject.getGameObjectPos().setMapAreaYPos(gameObject.getGameObjectPos().getMapAreaYPos() + 199);
+				}
+				//if ((int)getWorldMapYPos() > 0 &&  (int)getWorldMapXPos() > 0) 
+				//{
+
+					gameObject.getGameObjectPos().setCurrentArea(this.currentMap.gameMap[(int)getWorldMapYPos(), (int)getWorldMapXPos()]);
+				//}
+				
+
+
 			
 			
 			this.getCurrentArea().gameObjectsOnMapAreaCords[(int) getMapAreaYPos() / (getWorldMapYPos() + 1), (int) getMapAreaXPos() / (getWorldMapXPos() + 1)] = this.getGameObject();
 
-			if (gameObject is Entity && ((Entity)gameObject).getIsThePlayer()) {
+				
+
+				if (gameObject is Entity && ((Entity)gameObject).getIsThePlayer()) {
 				gameObject.getGameObjectPos().getCurrentArea().playerOnArea = true;
 			}
 			

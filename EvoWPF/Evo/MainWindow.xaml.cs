@@ -47,7 +47,7 @@ namespace Evo
             //selcetPOI_Button.AddToEventRoute();
 
 
-            gameVersionLabel.Content = "v0.7.6";
+            gameVersionLabel.Content = "v0.7.7";
 
             gameState = gameState.MakeBuild1();
 
@@ -110,21 +110,22 @@ namespace Evo
             //gameState.GetPlayer().addObjectStringEvents("\n<-day: ?-------Time: ?->\n
             gameState.GetPlayer().addObjectStringEvents("\n<-------------------->\n" + gameState.GetGameTime().ToString() + "\n");
             DrawMap();
+            //move a lot of the coordinate info into getter methods for gameObject
             mapPosLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapX()
                 + " Y: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapY();
-            mapOverallPositionLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().GetOverallXPosition()
-                + " Y: " + gameState.GetPlayer().getGameObjectPos().GetOverallYPosition();
+            mapOverallPositionLabel.Content = "X: " + Math.Ceiling(gameState.GetPlayer().getGameObjectPos().GetOverallXPosition())
+                + " Y: " + Math.Ceiling(gameState.GetPlayer().getGameObjectPos().GetOverallYPosition());
 
             if (entitiesInSightList.SelectedItem != null)
             {
-                mapOverallPositionLabelEntity.Content = "X: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallXPosition()
-                + " Y: " + ((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallYPosition();
+                mapOverallPositionLabelEntity.Content = "X: " + Math.Ceiling(((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallXPosition())
+                + " Y: " + Math.Ceiling(((Entity)entitiesInSightList.SelectedItem).getGameObjectPos().GetOverallYPosition());
             }
 
 
 
             loadingStatusLabel.Content = "Loading Status: done";
-
+            
 
             consoleOutput.ScrollToEnd();
             secondsPassed = 0;
@@ -179,8 +180,8 @@ namespace Evo
             DrawMap();
             mapPosLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapX()
                 + " Y: " + gameState.GetPlayer().getGameObjectPos().getCurrentArea().getPosOnMapY();
-            mapOverallPositionLabel.Content = "X: " + gameState.GetPlayer().getGameObjectPos().GetOverallXPosition()
-                + " Y: " + gameState.GetPlayer().getGameObjectPos().GetOverallYPosition();
+            mapOverallPositionLabel.Content = "X: " + Math.Ceiling(gameState.GetPlayer().getGameObjectPos().GetOverallXPosition())
+                + " Y: " + Math.Ceiling(gameState.GetPlayer().getGameObjectPos().GetOverallYPosition());
 
             if (entitiesInSightList.SelectedItem != null)
             {
@@ -607,8 +608,8 @@ namespace Evo
                 // gameState.GetPlayer().GameObjectPos.movePosition(gameState.GetMainMap().map,
                 // direction);
 
-                for (int i = 0; i < minutesWalking; i++) 
-                {
+                //for (int i = 0; i < minutesWalking * 60; i++) 
+                //{
 
                     gameState.GetPlayer().gameObjectPos.movePlayerOnMapArea(gameState.GetMainMap(), gameState.GetPlayer(),
                             gameState.GetPlayer().getDirectionFacing(), minutesWalking);
@@ -622,13 +623,13 @@ namespace Evo
                     }
                     secondsPassed += minutesWalking * 60;
                     gameState.GetGameTime().PassSeconds(secondsPassed);
-                    gameState.GetMainMap().runThroughEntityActions(gameState.GetMainMap(), gameState.GetPlayer(), secondsPassed);
+                    //gameState.GetMainMap().runThroughEntityActions(gameState.GetMainMap(), gameState.GetPlayer(), secondsPassed);
                     if (gameState.GetPlayer().isSpotted() && !wasSpotted) 
                     {
-                        break;
+                        //break;
                     }
 
-                }
+                //}
                 
 
             }
