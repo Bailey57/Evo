@@ -16,7 +16,9 @@ using System.Diagnostics;
 using System.Media;
 using Evo.Windows;
 using Evo;
+using Evo.GameObjects.Dialogues;
 using Evo.GameObjects.HitBoxes;
+using Evo.Factories;
 //using Evo.GameObjects.HitBoxes.BodyPart;
 namespace Evo
 {
@@ -40,14 +42,13 @@ namespace Evo
             //DrawButtons();
             InitializeComponent();
 
+            gameVersionLabel.Content = "v0.8.0x";
+
             // buttonPressSound = new SoundPlayer(@"/Resources/sounds/gui/buttons/buttonClick_1.wav");
             //buttonPressSound = new SoundPlayer(@"/buttonClick_1.wav");
             //buttonPressSound.Source = new Uri(@"/Resources/sounds/gui/buttons/buttonClick_1.mp3", UriKind.Relative);
             // buttonPress.routedevent
             //selcetPOI_Button.AddToEventRoute();
-
-
-            gameVersionLabel.Content = "v0.7.7";
 
             gameState = gameState.MakeBuild1();
 
@@ -190,6 +191,13 @@ namespace Evo
             }
 
             playerDestinationDescription.Text = gameState.GetPlayer().GetPath().GetCurrentDestinationToString();
+
+            if (entitiesInSightList.SelectedItem != null && ((Entity)entitiesInSightList.SelectedItem).DialaugeTree != null) 
+            {
+                dialogueOptionsList.ItemsSource = ((Entity)entitiesInSightList.SelectedItem).DialaugeTree.DialogueNodeList;
+
+            }
+            
 
         }
 
@@ -375,10 +383,10 @@ namespace Evo
 
             //waitButton
             //gameState.GetPlayer()
-            Sounds.PlayButtonSound1();
+            
             secondsPassed = 5 * 60;
             gameState.GetPlayer().addObjectStringEvents("Waited for 5 minutes");
-
+            Sounds.PlayButtonSound1();
             GameLoop();
         }
 
@@ -407,6 +415,25 @@ namespace Evo
             UpdateGUI();
         }
 
+        private void SelectDialogueOption(object sender, RoutedEventArgs e)
+        {
+            Sounds.PlayButtonSound1();
+            if (dialogueOptionsList.SelectedItem != null && entitiesInSightList.SelectedItem is Entity && ((Entity)entitiesInSightList.SelectedItem).DialaugeTree != null)
+            {
+                //gameState.GetPlayer().pickUpItemOffOfGround((BaseItem)itemsInSight.SelectedItem);
+                ((Entity)entitiesInSightList.SelectedItem).DialaugeTree = DialogueFactory.GetNextNode(gameState.GetPlayer(), ((Entity)entitiesInSightList.SelectedItem),
+                    ((Entity)entitiesInSightList.SelectedItem).DialaugeTree, dialogueOptionsList.SelectedIndex);
+                //dialogueOptionsList.SelectedItem
+                secondsPassed += 2;
+            }
+            else
+            {
+                gameState.GetPlayer().addObjectStringEvents("No option selected");
+            }
+
+
+            GameLoop();
+        }
         private void PickUpItemOffOfGround(object sender, RoutedEventArgs e)
         {
             Sounds.PlayButtonSound1();
@@ -601,15 +628,25 @@ namespace Evo
             {
 
 
-                double minutesWalking = 5;
+                double minutesWalking = 1;
                 double tickTimeInSec = 1;
                 bool wasSpotted = gameState.GetPlayer().isSpotted();
                 gameState.SetLastPosition(gameState.GetPlayerPos().toString());
                 // gameState.GetPlayer().GameObjectPos.movePosition(gameState.GetMainMap().map,
                 // direction);
 
-                //for (int i = 0; i < minutesWalking * 60; i++) 
+               // for (int i = 0; i < minutesWalking * 60; i++) 
                 //{
+                    if (gameState.GetPlayer().isSpotted() && !wasSpotted)
+                    {
+                        //gameState.GetPlayer().addObjectStringEvents("Cant travel, recently spoted by something");
+                        //break;
+                    }
+                    if (gameState.GetPlayer().isInCombat())
+                    {
+                        gameState.GetPlayer().addObjectStringEvents("\nCant travel while in combat.\n");
+                        //break;
+                    }
 
                     gameState.GetPlayer().gameObjectPos.movePlayerOnMapArea(gameState.GetMainMap(), gameState.GetPlayer(),
                             gameState.GetPlayer().getDirectionFacing(), minutesWalking);
@@ -622,14 +659,11 @@ namespace Evo
                         gameState.GetMainMap().printGameMapString();
                     }
                     secondsPassed += minutesWalking * 60;
-                    gameState.GetGameTime().PassSeconds(secondsPassed);
-                    //gameState.GetMainMap().runThroughEntityActions(gameState.GetMainMap(), gameState.GetPlayer(), secondsPassed);
-                    if (gameState.GetPlayer().isSpotted() && !wasSpotted) 
-                    {
-                        //break;
-                    }
+                    //gameState.GetGameTime().PassSeconds(secondsPassed);
+                    //gameState.GetMainMap().runThroughEntityActions(gameState.GetMainMap(), gameState.GetPlayer(), 1);
+                    
 
-                //}
+               // }
                 
 
             }

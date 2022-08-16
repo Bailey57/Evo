@@ -252,9 +252,9 @@ using Wasteland.map.Map;
 			spear.setSlash(5);
 			gameState.GetMainMap().addGameObjectToMapList(spear);
 
-
+			GameObjectPos armorPos = new GameObjectPos(gameState.GetMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
 			Armor armor = ArmorFactory.MakeGenericArmorPlate_TESTING_4mm_HardenedSteel();
-			armor.setGameObjectPos(startPos);
+			armor.setGameObjectPos(armorPos);
 			gameState.GetMainMap().addGameObjectToMapList(armor);
 
 			GameObjectPos startPos3 = new GameObjectPos(gameState.GetMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
@@ -297,6 +297,31 @@ using Wasteland.map.Map;
 			gun.setAttackRange(50);
 
 
+
+
+
+			//GunFactory.MakeGun_9mmPistol(startPos, 100);
+			GameObjectPos samPos = new GameObjectPos(gameState.GetMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
+			GameObjectPos samGunPos = new GameObjectPos(gameState.GetMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
+			GameObjectPos samMagPos = new GameObjectPos(gameState.GetMainMap(), initMapX, initMapY, initMapAreaX, initMapAreaY);
+			samPos.setMapAreaXPos(3);
+			Entity Sam = new Entity("Sam", true, 100, 1.4, 50, samPos);
+			samPos.setGameObject(Sam);
+			Sam.setGameObjectHitbox(hitbox.newHumanHitbox());
+
+			Gun sams9mm = GunFactory.MakeGun_9mmPistol(samGunPos, 100);
+			sams9mm.setGameObjectPos(samGunPos);
+			Sam.addItemToInventory(sams9mm);
+
+			Magazine sams9mmMag = MagazineFactory.MakeEmpty9mmMagazine(samMagPos);
+			sams9mmMag.setGameObjectPos(samMagPos);
+			Sam.addItemToInventory(sams9mmMag);
+
+			Sam.DialaugeTree = DialogueFactory.TestDialauge();
+			Sam.Faction = gameState.GetFactionList()[2];
+
+			gameState.GetMainMap().addGameObjectToMapList(Sam);
+			//gameState.GetMainMap().addGameObjectToMapList(_9mm_mag);
 
 			mf.PopulateGameMap(gameState);
 

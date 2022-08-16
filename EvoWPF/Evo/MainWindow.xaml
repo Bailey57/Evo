@@ -89,7 +89,7 @@
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
-        <ListView x:Name="entitiesInSightList" SelectionChanged="UpdateGUI" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="485,593,0,0" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top" Height="213" Width="187" FontFamily="Cascadia Code" Background="Black" Foreground="#FF70D200">
+        <ListView x:Name="entitiesInSightList" SelectionChanged="UpdateGUI" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="485,593,0,0" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top" Height="141" Width="187" FontFamily="Cascadia Code" Background="Black" Foreground="#FF70D200">
             <ListView.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>
@@ -182,7 +182,7 @@
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
-        <Label x:Name="loadingNoteLabel" Content="Note: Takes 14~ seconds to load a save" HorizontalAlignment="Left" Margin="408,40,0,0" VerticalAlignment="Top" Height="26" Width="279" Grid.RowSpan="2" FontFamily="Cascadia Code" Foreground="#FF70D200" Background="Black"/>
+        <Label x:Name="loadingNoteLabel" Content="Note: Takes 3~ seconds to load a save" HorizontalAlignment="Left" Margin="408,40,0,0" VerticalAlignment="Top" Height="26" Width="279" Grid.RowSpan="2" FontFamily="Cascadia Code" Foreground="#FF70D200" Background="Black"/>
         <Label x:Name="gameVersionLabel" Content="v0" HorizontalAlignment="Left" Margin="216,40,0,0" VerticalAlignment="Top" Height="26" Width="80" Grid.RowSpan="2" FontFamily="Cascadia Code" Foreground="#FF70D200" Background="Black"/>
         <Button x:Name="mainMenuButton" Click ="GoToMainMenu" Content="Main Menu" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Height="39" Width="84" Grid.RowSpan="2" FontFamily="Cascadia Code">
             <Button.Background>
@@ -190,7 +190,7 @@
             </Button.Background>
         </Button>
         <Label x:Name="consoleLabel" Grid.Column="1" Content="Console" HorizontalAlignment="Left" Margin="963,15,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="29" Width="56" Foreground="#FF70D200" Background="Black"/>
-        <Button x:Name="talkToEntityButton" Grid.Column="1" Content="Talk To Entity" HorizontalAlignment="Left" Margin="485,807,0,0" VerticalAlignment="Top" Click="FireAtEntity" Height="36" Width="119" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
+        <Button x:Name="selectDialougeOptionButton" Grid.Column="1" Content="Select Dialouge&#xa;    Option" HorizontalAlignment="Left" Margin="485,940,0,0" VerticalAlignment="Top" Click="SelectDialogueOption" Height="36" Width="119" Grid.Row="1" FontFamily="Cascadia Code" FontSize="9.7">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
@@ -287,5 +287,22 @@
                 <ImageBrush ImageSource="/Resources/images/gui/buttons/gameButton1_green_up.png"/>
             </Button.Background>
         </Button>
+        <ListView x:Name="dialogueOptionsList" SelectionChanged="UpdateGUI" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="485,798,0,0" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top" Height="141" Width="187" FontFamily="Cascadia Code" Background="Black" Foreground="#FF70D200">
+            <ListView.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </ListView.BorderBrush>
+            <ListView.Style>
+                <Style/>
+            </ListView.Style>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="165"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label x:Name="dialogueOptionsListLabel" Grid.Column="1" Content="Dialogue Options" HorizontalAlignment="Left" Margin="513,773,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="25" Width="131" Background="Black" Foreground="#FF70D200" FontFamily="Cascadia Code"/>
     </Grid>
 </Window>

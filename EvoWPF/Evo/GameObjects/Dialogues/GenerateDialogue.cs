@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace Evo.GameObjects.Dialogues
 {
-    internal class GenerateDialogue
+    public  class GenerateDialogue
     {
+
+
+
+        
+
+
+
+
+
+
+
+
+
     }
 }

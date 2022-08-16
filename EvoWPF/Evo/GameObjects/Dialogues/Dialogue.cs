@@ -10,6 +10,10 @@ namespace Evo.GameObjects.Dialogues
     public class Dialogue
     {
 
+
+
+
+
         public Dialogue() 
         {
         
